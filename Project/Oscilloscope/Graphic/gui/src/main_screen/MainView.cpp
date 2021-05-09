@@ -541,8 +541,14 @@ void MainView::handleTickEvent()
 	* For every tick, check which marker, trigger line is enabled/disabled
 	* For every ten ticks, the graph is invalidated
 	*/
-	presenter->p_SetRawData(CHANNEL_1);
-	presenter->p_SetRawData(CHANNEL_2);
+	for (int ch_idx = 0; ch_idx < 2; ch_idx++)
+	{
+		presenter->p_SetTimeScale(ch_idx, panelChn[ch_idx].GetTimeBaseIndex());
+		presenter->p_SetVoltageScale(ch_idx, panelChn[ch_idx].GetVoltBaseIndex());
+		presenter->p_SetRawData(ch_idx);
+		presenter->p_SetYOffset(ch_idx, panelChn[ch_idx].GetYOffset());
+		presenter->p_SetXOffset(ch_idx, panelChn[ch_idx].GetXOffset());
+	}
 
 	/*Used to store some temporary value for calculation*/
 	float temp_value;
@@ -630,6 +636,7 @@ void MainView::handleTickEvent()
 		presenter->p_SetTimeScale(CHANNEL_2, panelChn[1].GetTimeBaseIndex());
 		presenter->p_SetVoltageScale(CHANNEL_2, panelChn[1].GetVoltBaseIndex());
 	}
+
 
 	tickCounter++;
 	if (tickCounter % 1 == 0)
