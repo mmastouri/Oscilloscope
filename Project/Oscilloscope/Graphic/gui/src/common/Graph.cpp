@@ -38,13 +38,12 @@
 
 
 Graph::Graph()
-	: counter(0)
 {
 	graphColor = Color::getColorFrom24BitRGB(0x07, 0x89, 0xBA);
 	graphBlendColor = Color::getColorFrom24BitRGB(71, 71, 71);
-
-	rightCurveSegment = 0;
-
+	
+	counter = 0;
+	
 	setWidth(graphWidth);
 	setHeight(graphHeight);
 
@@ -56,40 +55,29 @@ Graph::Graph()
 }
 
 
-
-void Graph::calculate()
+void Graph::calculateSegments()
 {
 	for (int i = 0; i < graphWidth; i++)
 	{
-		if (rightCurveSegment < graphWidth - 1)
-		{
-			rightCurveSegment++;
-		}
-		else
-		{
-			counter++;
-		}
+		counter++;
 
-		//generate new value each frame in the unused spot
+		//inject new values in already processed indexes
 		values[GetCurrentIndex(0)] = (int)*(p_gragh_data + i);
 
-		calculateRightCurveSegment();
+		calculateOneSegment();
 	}
 }
 
-void Graph::calculateRightCurveSegment()
+void Graph::calculateOneSegment()
 {
-
-	uint16_t x = rightCurveSegment;
 	uint16_t nbralpha = 0;
 	uint16_t distance;
 	uint16_t direction, maxdistance;
 
-	uint16_t circularX = GetCurrentIndex(x);
-	CurveSegment& curveSegment = curveSegments[circularX];
+	CurveSegment& curveSegment = curveSegments[GetCurrentIndex(0)];
 
-	uint16_t valueCur = values[GetCurrentIndex(x)];
-	uint16_t valueNext = values[GetCurrentIndex(x + 1)];
+	uint16_t valueCur  = values[GetCurrentIndex(1)];
+	uint16_t valueNext = values[GetCurrentIndex(2)];
 
 	distance  = abs(valueNext - valueCur);
 	direction = (valueNext - valueCur) > 0 ? 1 : 0;
@@ -137,10 +125,11 @@ void Graph::drawCurve(uint16_t* frameBuffer, const Rect& invalidatedArea) const
 	// invalidatedArea is relative to enclosing container
 	Rect absoluteRect = getRect();
 	translateRectToAbsolute(absoluteRect);
+	uint16_t index = 0;
 
 	for (int x = invalidatedArea.x + 1; x < invalidatedArea.right() - 1 ; x++)
 	{
-		CurveSegment curveSegment = curveSegments[(x + counter) % graphWidth];
+		CurveSegment curveSegment = curveSegments[GetCurrentIndex(index++)];
 
 		int y = curveSegment.y;
 		uint8_t* alphas = &curveSegment.alphas[0];
@@ -168,40 +157,6 @@ void Graph::drawCurve(uint16_t* frameBuffer, const Rect& invalidatedArea) const
 	}
 }
 
-bool Graph::withinCurrentCurve(const int16_t xCoordinate) const
-{
-	return (xCoordinate >= 0) && (xCoordinate < rightCurveSegment);
-}
-
-int16_t Graph::getYCoordinate(const int16_t xCoordinate) const
-{
-	if (!withinCurrentCurve(xCoordinate))
-	{
-		return 0;
-	}
-	else
-	{
-		// Respect circular buffer by using counter and modulo graphWidth
-		return curveSegments[(counter + xCoordinate) % graphWidth].y;
-	}
-}
-
-int16_t Graph::getYValue(const int16_t xCoordinate) const
-{
-	if (!withinCurrentCurve(xCoordinate))
-	{
-		return 0;
-	}
-	else
-	{
-		return (graphHeight - getYCoordinate(xCoordinate)) + static_cast<int16_t>(graphTopMargin);
-	}
-}
-
-bool Graph::isScrolling() const
-{
-	return rightCurveSegment >= (graphWidth - 1);
-}
 
 void Graph::SetGraphColor(colortype color)
 {
@@ -245,7 +200,5 @@ void Graph::draw(const Rect& invalidatedArea) const
 void Graph::handleTickEvent()
 {
 
-	calculate();
-    invalidate();
-
+	calculateSegments();
 }

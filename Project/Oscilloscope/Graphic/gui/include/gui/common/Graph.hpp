@@ -66,12 +66,6 @@ public:
 	virtual void setPosition(int16_t x, int16_t y, int16_t width, int16_t height);
 
 	virtual Rect getSolidRect() const;
-
-	bool isScrolling() const;
-	bool withinCurrentCurve(const int16_t xCoordinate) const;
-
-	int16_t getYCoordinate(const int16_t xCoordinate) const;
-	int16_t getYValue(const int16_t xCoordinate) const;
 	
 	void SetGraphColor(colortype color);
 	void SetGraphData(int * data);
@@ -82,23 +76,13 @@ private:
 
 	 colortype graphBlendColor;
 
-	void calculate(); 
+	void calculateSegments(); 
 
-	void calculateRightCurveSegment();
+	void calculateOneSegment();
 
 	void drawCurve(uint16_t* frameBuffer, const Rect& invalidatedArea) const;
 
 	uint16_t GetCurrentIndex(int16_t offset) const;
-
-	float cubicInterpolate(float p0, float p1, float p2, float p3, float x) const
-	{
-		return p1 + 0.5f * x * (p2 - p0 + x * (2.0f * p0 - 5.0f * p1 + 4.0f * p2 - p3 + x * (3.0f * (p1 - p2) + p3 - p0)));
-	}
-
-	float randomNumberBetween(float lowest, float highest) const
-	{
-		return lowest + (highest - lowest) * (rand() / (float)RAND_MAX);
-	}
 
 	uint16_t blend(uint16_t colTo, uint16_t colFrom, uint8_t alpha) const
 	{
@@ -134,8 +118,7 @@ private:
 	};
 	CurveSegment curveSegments[graphWidth];
 
-	uint16_t rightCurveSegment;
-	uint16_t counter;
+	uint32_t counter;
 
 	int16_t values[graphPointsInGraph];
 

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun May 09 11:43:59 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun May 09 15:05:01 2021
 <BR><P>
 <H3>Maximum Stack Usage =        652 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1644,8 +1644,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Start_IT
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_Callback
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCTask(void*)
+<BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCTask(void*)
+<LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_Callback
 </UL>
 
 <P><STRONG><a name="[1cc]"></a>HAL_ADC_Stop_DMA</STRONG> (Thumb, 88 bytes, Stack size 8 bytes, stm32f7xx_hal_adc.o(i.HAL_ADC_Stop_DMA))
@@ -1798,12 +1798,12 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
 <LI><a href="#[1a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
+<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 <LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
 <LI><a href="#[1c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_MspInit
 <LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_QSPI_MspInit
 <LI><a href="#[1b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_MspInit
-<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 </UL>
 
 <P><STRONG><a name="[1ab]"></a>HAL_GPIO_TogglePin</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f7xx_hal_gpio.o(i.HAL_GPIO_TogglePin))
@@ -1980,10 +1980,10 @@ Global Symbols
 
 <P><STRONG><a name="[1b5]"></a>HAL_NVIC_EnableIRQ</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f7xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ))
 <BR><BR>[Called By]<UL><LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
+<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 <LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_QSPI_MspInit
 <LI><a href="#[1b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 </UL>
 
 <P><STRONG><a name="[1b4]"></a>HAL_NVIC_SetPriority</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, stm32f7xx_hal_cortex.o(i.HAL_NVIC_SetPriority))
@@ -1992,11 +1992,11 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 </UL>
 <BR>[Called By]<UL><LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
+<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 <LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspInit
 <LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_QSPI_MspInit
 <LI><a href="#[1b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 <LI><a href="#[1e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 </UL>
 
@@ -3054,32 +3054,22 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[fc]"></a>Graph::handleTickEvent()</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, graph.o(i._ZN5Graph15handleTickEventEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = Graph::handleTickEvent() &rArr; Graph::calculate() &rArr; Graph::calculateRightCurveSegment()
-</UL>
-<BR>[Calls]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculate()
-</UL>
+<P><STRONG><a name="[fc]"></a>Graph::handleTickEvent()</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, graph.o(i._ZN5Graph15handleTickEventEv))
 <BR>[Address Reference Count : 1]<UL><LI> graph.o(.constdata__ZTV5Graph)
 </UL>
-<P><STRONG><a name="[299]"></a>Graph::calculateRightCurveSegment()</STRONG> (Thumb, 200 bytes, Stack size 32 bytes, graph.o(i._ZN5Graph26calculateRightCurveSegmentEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Graph::calculateRightCurveSegment()
-</UL>
-<BR>[Calls]<UL><LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
-</UL>
-<BR>[Called By]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculate()
+<P><STRONG><a name="[298]"></a>Graph::calculateSegments()</STRONG> (Thumb, 70 bytes, Stack size 24 bytes, graph.o(i._ZN5Graph17calculateSegmentsEv), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::GetCurrentIndex(short) const
+<LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateOneSegment()
 </UL>
 
-<P><STRONG><a name="[298]"></a>Graph::calculate()</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, graph.o(i._ZN5Graph9calculateEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = Graph::calculate() &rArr; Graph::calculateRightCurveSegment()
+<P><STRONG><a name="[29a]"></a>Graph::calculateOneSegment()</STRONG> (Thumb, 178 bytes, Stack size 32 bytes, graph.o(i._ZN5Graph19calculateOneSegmentEv), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::GetCurrentIndex(short) const
-<LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateRightCurveSegment()
-</UL>
-<BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::handleTickEvent()
+<BR>[Called By]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateSegments()
 </UL>
 
-<P><STRONG><a name="[29c]"></a>Graph::Graph()</STRONG> (Thumb, 132 bytes, Stack size 24 bytes, graph.o(i._ZN5GraphC1Ev))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Graph::Graph() &rArr; touchgfx::Color::getColorFrom24BitRGB(unsigned char, unsigned char, unsigned char)
+<P><STRONG><a name="[29c]"></a>Graph::Graph()</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, graph.o(i._ZN5GraphC1Ev))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Graph::Graph() &rArr; touchgfx::Color::getColorFrom24BitRGB(unsigned char, unsigned char, unsigned char)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[288]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Color::getColorFrom24BitRGB(unsigned char, unsigned char, unsigned char)
 <LI><a href="#[29d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Rect::Rect(short, short, short, short)
@@ -3087,7 +3077,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
 </UL>
 
-<P><STRONG><a name="[3d2]"></a>Graph::Graph__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, graph.o(i._ZN5GraphC1Ev), UNUSED)
+<P><STRONG><a name="[3d2]"></a>Graph::Graph__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, graph.o(i._ZN5GraphC1Ev), UNUSED)
 
 <P><STRONG><a name="[25d]"></a>Model::GetYOffset(int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model10GetYOffsetEi))
 <BR><BR>[Called By]<UL><LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetYOffset(int)
@@ -5119,8 +5109,8 @@ Global Symbols
 <LI><a href="#[28f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Image::Image(const touchgfx::Bitmap&)
 </UL>
 
-<P><STRONG><a name="[29a]"></a>touchgfx::memset(void*, unsigned char, unsigned)</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, utils.o(i._ZN8touchgfx6memsetEPvhj))
-<BR><BR>[Called By]<UL><LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateRightCurveSegment()
+<P><STRONG><a name="[29b]"></a>touchgfx::memset(void*, unsigned char, unsigned)</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, utils.o(i._ZN8touchgfx6memsetEPvhj))
+<BR><BR>[Called By]<UL><LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateOneSegment()
 <LI><a href="#[359]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const unsigned short*, std::__va_list)
 <LI><a href="#[353]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const float*)
 <LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Scanline::addSpan(int, int, unsigned, unsigned)
@@ -5296,7 +5286,7 @@ Global Symbols
 <P><STRONG><a name="[353]"></a>touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const float*)</STRONG> (Thumb, 640 bytes, Stack size 328 bytes, unicode.o(i._ZN8touchgfx7Unicode14snprintfFloatsEPttPKtPKf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const float*) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
+<BR>[Calls]<UL><LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
 <LI><a href="#[355]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int)
 <LI><a href="#[354]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::parseFlagsAndPrecision(const unsigned short*&, unsigned short&, bool&, bool&, bool&, bool&, int&, bool&, int&)
 <LI><a href="#[34e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::composeString(const unsigned short*&, unsigned short, const unsigned short*, bool, bool, int, bool, int, bool, int&, unsigned short, unsigned short*)
@@ -5373,7 +5363,7 @@ Global Symbols
 <P><STRONG><a name="[359]"></a>touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const unsigned short*, std::__va_list)</STRONG> (Thumb, 580 bytes, Stack size 192 bytes, unicode.o(i._ZN8touchgfx7Unicode9vsnprintfEPttPKtSt9__va_list))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const unsigned short*, std::__va_list) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
+<BR>[Calls]<UL><LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
 <LI><a href="#[357]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::utoa(unsigned, unsigned short*, unsigned short, int)
 <LI><a href="#[355]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int)
 <LI><a href="#[354]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::parseFlagsAndPrecision(const unsigned short*&, unsigned short&, bool&, bool&, bool&, bool&, int&, bool&, int&)
@@ -5889,7 +5879,7 @@ Global Symbols
 <P><STRONG><a name="[36c]"></a>touchgfx::Scanline::addSpan(int, int, unsigned, unsigned)</STRONG> (Thumb, 116 bytes, Stack size 24 bytes, scanline.o(i._ZN8touchgfx8Scanline7addSpanEiijj))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = touchgfx::Scanline::addSpan(int, int, unsigned, unsigned)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
+<BR>[Calls]<UL><LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
 <LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::CanvasWidgetRenderer::getScanlineWidth()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[331]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bool touchgfx::Rasterizer::render&lang;touchgfx::Renderer&rang;(T1&)
@@ -6153,8 +6143,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> graph.o(.constdata__ZTV5Graph)
 </UL>
-<P><STRONG><a name="[29b]"></a>Graph::GetCurrentIndex(short) const</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, graph.o(i._ZNK5Graph15GetCurrentIndexEs))
-<BR><BR>[Called By]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculate()
+<P><STRONG><a name="[299]"></a>Graph::GetCurrentIndex(short) const</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, graph.o(i._ZNK5Graph15GetCurrentIndexEs), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateSegments()
 </UL>
 
 <P><STRONG><a name="[f8]"></a>Graph::draw(const touchgfx::Rect&) const</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, graph.o(i._ZNK5Graph4drawERKN8touchgfx4RectE))
@@ -6164,7 +6154,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> graph.o(.constdata__ZTV5Graph)
 </UL>
-<P><STRONG><a name="[372]"></a>Graph::drawCurve(unsigned short*, const touchgfx::Rect&) const</STRONG> (Thumb, 294 bytes, Stack size 296 bytes, graph.o(i._ZNK5Graph9drawCurveEPtRKN8touchgfx4RectE))
+<P><STRONG><a name="[372]"></a>Graph::drawCurve(unsigned short*, const touchgfx::Rect&) const</STRONG> (Thumb, 302 bytes, Stack size 296 bytes, graph.o(i._ZNK5Graph9drawCurveEPtRKN8touchgfx4RectE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = Graph::drawCurve(unsigned short*, const touchgfx::Rect&) const
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
@@ -6959,9 +6949,9 @@ Global Symbols
 <LI> abstractpartition.o(.constdata__ZTVN8touchgfx17AbstractPartitionE)
 <LI> abstractpainter.o(.constdata__ZTVN8touchgfx15AbstractPainterE)
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
+<LI> constfont.o(.constdata__ZTVN8touchgfx9ConstFontE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> hal.o(.constdata__ZTVN8touchgfx3HALE)
-<LI> constfont.o(.constdata__ZTVN8touchgfx9ConstFontE)
 </UL>
 <P><STRONG><a name="[404]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
@@ -7070,12 +7060,12 @@ Global Symbols
 <LI><a href="#[383]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 <LI><a href="#[35a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
 <LI><a href="#[2e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::touchgfx_init()
-<LI><a href="#[381]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::CanvasWidgetRenderer::setupBuffer(unsigned char*, unsigned)
 <LI><a href="#[23a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM4_Init()
 <LI><a href="#[238]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init()
 <LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 <LI><a href="#[236]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC3_Init()
 <LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC1_Init()
+<LI><a href="#[381]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::CanvasWidgetRenderer::setupBuffer(unsigned char*, unsigned)
 <LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)

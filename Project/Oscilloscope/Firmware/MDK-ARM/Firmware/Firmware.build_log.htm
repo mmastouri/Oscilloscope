@@ -29,12 +29,6 @@ Project File Date:  05/03/2021
 *** Warning: You are compiling one or more files of source type C++ and have selected 'use MicroLIB'. MicroLIB does not support C++!
   
 Build target 'Firmware'
-compiling Graph.cpp...
-..\..\Graphic\gui\src\common\Graph.cpp(85): warning:  #550-D: variable "maxdistance"  was set but never used
-  	uint16_t direction, maxdistance;
-..\..\Graphic\gui\src\common\Graph.cpp(252): warning:  #1-D: last line of file ends without a newline
-  }
-..\..\Graphic\gui\src\common\Graph.cpp: 2 warnings, 0 errors
 compiling MainPresenter.cpp...
 ..\..\Graphic\gui\include\gui\common\Marker.hpp(80): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -43,6 +37,12 @@ compiling MainPresenter.cpp...
 ..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(88): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\..\Graphic\gui\src\main_screen\MainPresenter.cpp: 3 warnings, 0 errors
+compiling Graph.cpp...
+..\..\Graphic\gui\src\common\Graph.cpp(75): warning:  #550-D: variable "maxdistance"  was set but never used
+  	uint16_t direction, maxdistance;
+..\..\Graphic\gui\src\common\Graph.cpp(204): warning:  #1-D: last line of file ends without a newline
+  }
+..\..\Graphic\gui\src\common\Graph.cpp: 2 warnings, 0 errors
 compiling FrontendApplication.cpp...
 ..\..\Graphic\gui\include\gui\common\Marker.hpp(80): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -72,7 +72,7 @@ compiling MainView.cpp...
   	uint8_t temp = 0;
 ..\..\Graphic\gui\src\main_screen\MainView.cpp: 5 warnings, 0 errors
 linking...
-Program Size: Code=79272 RO-data=951516 RW-data=468 ZI-data=180668  
+Program Size: Code=79228 RO-data=951516 RW-data=468 ZI-data=180668  
 FromELF: creating hex file...
 "Firmware\Firmware.axf" - 0 Error(s), 16 Warning(s).
 
@@ -97,7 +97,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.4.0
-Build Time Elapsed:  00:00:09
+Build Time Elapsed:  00:00:14
 </pre>
 </body>
 </html>
