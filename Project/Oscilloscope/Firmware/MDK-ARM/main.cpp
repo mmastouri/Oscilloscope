@@ -138,7 +138,7 @@ static void ADCTask(void* params)
 	static uint16_t prev_value1 = 0;
 	static uint16_t prev_value2 = 0;
 	
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);	
+	//HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);	
 	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
 
 	#ifdef USE_TIM_TIME_BASE	
@@ -146,7 +146,7 @@ static void ADCTask(void* params)
 	HAL_TIM_Base_Start(&htim2);
 	HAL_TIM_Base_Start(&htim4);
 #else
-  HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_2);
+  //HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_2);
 	HAL_TIM_OC_Start(&htim4, TIM_CHANNEL_4);
 #endif	
 	
@@ -179,11 +179,12 @@ int main(void)
     hw_init();
     touchgfx_init();
 		
+	
 		MX_GPIO_Init();
 		MX_DMA_Init();
-		MX_ADC1_Init();
+		//MX_ADC1_Init();
 		MX_ADC3_Init();
-		MX_TIM2_Init();
+		//MX_TIM2_Init();
 	  MX_TIM4_Init();	
 	
 		HAL_UART_Init(&huart2);
@@ -352,6 +353,8 @@ static void MX_TIM2_Init(void)
   TIM_MasterConfigTypeDef sMasterConfig;
   TIM_OC_InitTypeDef sConfigOC;
 
+  __HAL_RCC_TIM2_CLK_ENABLE();
+	
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 4;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
@@ -388,16 +391,13 @@ static void MX_TIM4_Init(void)
   TIM_MasterConfigTypeDef sMasterConfig;
   TIM_OC_InitTypeDef sConfigOC;
 
+   __HAL_RCC_TIM4_CLK_ENABLE();
+	
   htim4.Instance = TIM4;
   htim4.Init.Prescaler = 4;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim4.Init.Period = 100;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	
-  if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
-  {
-    Error_Handler();
-  }
 
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
   if (HAL_TIM_ConfigClockSource(&htim4, &sClockSourceConfig) != HAL_OK)
