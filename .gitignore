@@ -6,6 +6,10 @@
 *.pbi
 *.dep
 *.log
+*.exe
+*.ilk
+*.pdb
+*.sqlite
 Project/Oscilloscope/Graphic/build/
 Project/Oscilloscope/Firmware/MDK-ARM/Firmware/
 

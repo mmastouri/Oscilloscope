@@ -120,6 +120,7 @@ void Graph::calculateOneSegment()
 	}
 }
 
+
 void Graph::drawCurve(uint16_t* frameBuffer, const Rect& invalidatedArea) const
 {
 	// invalidatedArea is relative to enclosing container
