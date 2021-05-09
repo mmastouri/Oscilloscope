@@ -75,9 +75,11 @@ UART_HandleTypeDef huart2;
 /*
  * Global Variables
  */
+ 
+#define  ADC_BUFF_SIZ   1000
 
-uint16_t adc_chn1_buffer[1000];
-uint16_t adc_chn2_buffer[1000];
+uint16_t adc_chn1_buffer[ADC_BUFF_SIZ];
+uint16_t adc_chn2_buffer[ADC_BUFF_SIZ];
 
 
 int chan1_time_base = 0;
@@ -135,25 +137,25 @@ static void GUITask(void* params)
 
 static void ADCTask(void* params)
 {	
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, 1000);	
-	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, 1000);
+	static uint16_t prev_value1 = 0;
+	static uint16_t prev_value2 = 0;
 	
-	HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_2);
-	HAL_TIM_OC_Start(&htim4, TIM_CHANNEL_4);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);	
+	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
+	
+	HAL_TIM_Base_Start(&htim2);
+	HAL_TIM_Base_Start(&htim4);
 	
 	for(;;)
 	{
-		if(!stop_flag)
+
+		if((prev_value1 != chan1_time_base) || (prev_value2 != chan2_time_base))
 		{
 			SetTimeScale();
-			HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, 1000);	
-			HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, 1000);
-		
-			HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_2);
-			HAL_TIM_OC_Start(&htim4, TIM_CHANNEL_4);
-			temp = chan1_time_base;
+			prev_value1 = chan1_time_base;
+			prev_value2 = chan2_time_base;
 		}
-		vTaskDelay(100);
+		vTaskDelay(10);
 	
 	}
 }
@@ -170,11 +172,12 @@ int main(void)
     touchgfx_init();
 		
 		MX_GPIO_Init();
-		MX_DMA_Init();
+		MX_DMA_Init();		
+	  MX_TIM2_Init();
+	  MX_TIM4_Init();	
 		MX_ADC1_Init();
 		MX_ADC3_Init();
-		MX_TIM2_Init();
-	  MX_TIM4_Init();	
+
 	
 		HAL_UART_Init(&huart2);
 		printf("hello \n");
@@ -218,7 +221,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
-  hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T2_CC2;
+  hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T2_TRGO;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.NbrOfConversion = 1;
   hadc1.Init.DMAContinuousRequests = ENABLE;
@@ -255,7 +258,7 @@ static void MX_ADC3_Init(void)
   hadc3.Init.ContinuousConvMode = DISABLE;
   hadc3.Init.DiscontinuousConvMode = DISABLE;
   hadc3.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
-  hadc3.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T4_CC4;
+  hadc3.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T4_TRGO;
   hadc3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc3.Init.NbrOfConversion = 1;
   hadc3.Init.DMAContinuousRequests = ENABLE;
@@ -339,7 +342,6 @@ static void MX_GPIO_Init(void)
 /* TIM2 init function */
 static void MX_TIM2_Init(void)
 {
-
   TIM_MasterConfigTypeDef sMasterConfig;
   TIM_OC_InitTypeDef sConfigOC;
 
@@ -347,24 +349,18 @@ static void MX_TIM2_Init(void)
   htim2.Init.Prescaler = 4;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 26;
+	htim2.Init.RepetitionCounter = 0;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  if (HAL_TIM_OC_Init(&htim2) != HAL_OK)
+
+	
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
   {
     Error_Handler();
   }
-
+	
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  sConfigOC.OCMode = TIM_OCMODE_TOGGLE;
-  sConfigOC.Pulse =13;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_OC_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -374,27 +370,17 @@ static void MX_TIM2_Init(void)
 static void MX_TIM4_Init(void)
 {
 
-  TIM_ClockConfigTypeDef sClockSourceConfig;
   TIM_MasterConfigTypeDef sMasterConfig;
   TIM_OC_InitTypeDef sConfigOC;
 
   htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 199;
+  htim4.Init.Prescaler = 4;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 99;
+  htim4.Init.Period = 26;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim4.Init.RepetitionCounter = 0;
+	
   if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim4, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  if (HAL_TIM_OC_Init(&htim4) != HAL_OK)
   {
     Error_Handler();
   }
@@ -405,17 +391,27 @@ static void MX_TIM4_Init(void)
   {
     Error_Handler();
   }
-
-  sConfigOC.OCMode = TIM_OCMODE_TOGGLE;
-  sConfigOC.Pulse = 50;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_OC_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
 }
+
+
+
+/* TIM2 init function */
+static void MX_TIM2_Init_Mod(int period, int pulse)
+{
+
+	__HAL_TIM_SET_AUTORELOAD(&htim2, period); 
+	//__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, pulse); 
+}
+
+static void MX_TIM4_Init_Mod(int period, int pulse)
+{
+	__HAL_TIM_SET_AUTORELOAD(&htim4, period); 
+	//__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_4, pulse); 
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
 
 
 /* USART2 init function */
@@ -438,90 +434,6 @@ static void MX_USART2_UART_Init(void)
   }
 
 }
-
-/* TIM2 init function */
-static void MX_TIM2_Init_Mod(int period, int pulse)
-{
-
-  TIM_MasterConfigTypeDef sMasterConfig;
-  TIM_OC_InitTypeDef sConfigOC;
-
-  htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 4;
-  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = period;
-  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  if (HAL_TIM_OC_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  sConfigOC.OCMode = TIM_OCMODE_TOGGLE;
-  sConfigOC.Pulse =pulse;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_OC_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-}
-
-static void MX_TIM4_Init_Mod(int period, int pulse)
-{
-
-  TIM_ClockConfigTypeDef sClockSourceConfig;
-  TIM_MasterConfigTypeDef sMasterConfig;
-  TIM_OC_InitTypeDef sConfigOC;
-
-  htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 4;
-  htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = period;
-  htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim4, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  if (HAL_TIM_OC_Init(&htim4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  sConfigOC.OCMode = TIM_OCMODE_TOGGLE;
-  sConfigOC.Pulse = pulse;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_OC_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-}
-
-/* USER CODE BEGIN 4 */
-
-/* USER CODE END 4 */
 
 /**
   * @brief  This function is executed in case of error occurrence.
@@ -548,8 +460,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	}
 	else
 	{
-		HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, 1000);	
-		HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, 1000);
+		HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);	
+		HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
 		
 		stop_flag = false;
 		

@@ -29,7 +29,20 @@ Project File Date:  05/03/2021
 *** Warning: You are compiling one or more files of source type C++ and have selected 'use MicroLIB'. MicroLIB does not support C++!
   
 Build target 'Firmware'
-"Firmware\Firmware.axf" - 0 Error(s), 0 Warning(s).
+compiling main.cpp...
+main.cpp(346): warning:  #177-D: variable "sConfigOC"  was declared but never referenced
+    TIM_OC_InitTypeDef sConfigOC;
+main.cpp(374): warning:  #177-D: variable "sConfigOC"  was declared but never referenced
+    TIM_OC_InitTypeDef sConfigOC;
+main.cpp(714): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.cpp(418): warning:  #177-D: function "MX_USART2_UART_Init"  was declared but never referenced
+  static void MX_USART2_UART_Init(void)
+main.cpp: 4 warnings, 0 errors
+linking...
+Program Size: Code=77800 RO-data=951516 RW-data=468 ZI-data=180668  
+FromELF: creating hex file...
+"Firmware\Firmware.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -52,7 +65,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.4.0
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:25
 </pre>
 </body>
 </html>
