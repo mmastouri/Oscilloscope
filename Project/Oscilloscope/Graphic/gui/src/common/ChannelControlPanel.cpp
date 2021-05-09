@@ -238,7 +238,7 @@ void ChannelControlPanel::setup(int width, int height, uint16_t buttonOn, uint16
 			-voltTxt[i].getHeight());
 	}
 
-	selectedVerticalTextIndex = 6;
+	selectedVerticalTextIndex = 7;
 
 	slideVerticalText(DOWN);
 

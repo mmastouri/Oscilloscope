@@ -536,11 +536,14 @@ void MainView::slideTexts(SlideDirection direction)
 *                                                                                                  *
 ***************************************************************************************************/
 void MainView::handleTickEvent()
-{
+{	
+	/*Used to store some temporary value for calculation*/
+	float temp_value;
 	/*
 	* For every tick, check which marker, trigger line is enabled/disabled
 	* For every ten ticks, the graph is invalidated
 	*/
+	
 	for (int ch_idx = 0; ch_idx < 2; ch_idx++)
 	{
 		presenter->p_SetTimeScale(ch_idx, panelChn[ch_idx].GetTimeBaseIndex());
@@ -549,9 +552,6 @@ void MainView::handleTickEvent()
 		presenter->p_SetYOffset(ch_idx, panelChn[ch_idx].GetYOffset());
 		presenter->p_SetXOffset(ch_idx, panelChn[ch_idx].GetXOffset());
 	}
-
-	/*Used to store some temporary value for calculation*/
-	float temp_value;
 
 	if (selectedChnIndex == 0)
 	{
