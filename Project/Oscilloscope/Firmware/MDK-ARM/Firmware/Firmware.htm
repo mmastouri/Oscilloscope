@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun May 09 15:42:03 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun May 09 16:08:09 2021
 <BR><P>
 <H3>Maximum Stack Usage =        652 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -3054,16 +3054,26 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[fc]"></a>Graph::handleTickEvent()</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, graph.o(i._ZN5Graph15handleTickEventEv))
+<P><STRONG><a name="[fc]"></a>Graph::handleTickEvent()</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, graph.o(i._ZN5Graph15handleTickEventEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = Graph::handleTickEvent() &rArr; Graph::calculateSegments() &rArr; Graph::calculateOneSegment()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateSegments()
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> graph.o(.constdata__ZTV5Graph)
 </UL>
-<P><STRONG><a name="[298]"></a>Graph::calculateSegments()</STRONG> (Thumb, 70 bytes, Stack size 24 bytes, graph.o(i._ZN5Graph17calculateSegmentsEv), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::GetCurrentIndex(short) const
+<P><STRONG><a name="[298]"></a>Graph::calculateSegments()</STRONG> (Thumb, 70 bytes, Stack size 24 bytes, graph.o(i._ZN5Graph17calculateSegmentsEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = Graph::calculateSegments() &rArr; Graph::calculateOneSegment()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::GetCurrentIndex(short) const
 <LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateOneSegment()
 </UL>
+<BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::handleTickEvent()
+</UL>
 
-<P><STRONG><a name="[29a]"></a>Graph::calculateOneSegment()</STRONG> (Thumb, 178 bytes, Stack size 32 bytes, graph.o(i._ZN5Graph19calculateOneSegmentEv), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
+<P><STRONG><a name="[29a]"></a>Graph::calculateOneSegment()</STRONG> (Thumb, 178 bytes, Stack size 32 bytes, graph.o(i._ZN5Graph19calculateOneSegmentEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Graph::calculateOneSegment()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::memset(void*, unsigned char, unsigned)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateSegments()
 </UL>
@@ -6143,7 +6153,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> graph.o(.constdata__ZTV5Graph)
 </UL>
-<P><STRONG><a name="[299]"></a>Graph::GetCurrentIndex(short) const</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, graph.o(i._ZNK5Graph15GetCurrentIndexEs), UNUSED)
+<P><STRONG><a name="[299]"></a>Graph::GetCurrentIndex(short) const</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, graph.o(i._ZNK5Graph15GetCurrentIndexEs))
 <BR><BR>[Called By]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::calculateSegments()
 </UL>
 

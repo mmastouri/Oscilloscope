@@ -6,6 +6,6 @@
 *.pbi
 *.dep
 *.log
-/build
-/MDK-ARM
+/Project/Oscilloscope/Graphic/build
+/Project/Oscilloscope/Firmware/MDK-ARM/Firmware
 

@@ -201,4 +201,5 @@ void Graph::handleTickEvent()
 {
 
 	calculateSegments();
+	invalidate();
 }
