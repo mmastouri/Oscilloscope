@@ -6,6 +6,6 @@
 *.pbi
 *.dep
 *.log
-build
+/build
 /MDK-ARM
 

@@ -259,7 +259,7 @@ void MainPresenter::p_SetRawData(int channel)
 		#ifndef SIMULATOR
 			model->SetRawData(channel, PushDaTaToModel_2());
 		#else
-			model->SetRawData(channel, dummy1);
+			model->SetRawData(channel, dummy);
 		#endif // !1
 	}
 	model->ConvertToTriggerData(channel);
