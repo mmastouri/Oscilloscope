@@ -35,8 +35,7 @@ enum ButtonID
 #ifndef SIMULATOR
 uint16_t * PushDaTaToModel_1(void);
 uint16_t * PushDaTaToModel_2(void);
-void GetDataFromModel_1(int value);
-void GetDataFromModel_2(int value);
+void GetDataFromModel(int channel, int value);
 #endif // !SIMULATOR
 
 #endif

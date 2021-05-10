@@ -318,20 +318,10 @@ void MainPresenter::p_SetTriggerType(int channel, bool value)
 
 int MainPresenter::p_GetTimeScale(int channel)
 {
-	
-	
-	if (channel == CHANNEL_1)
-	{
-		#ifndef SIMULATOR
-			GetDataFromModel_1(model->GetTimeScale(channel));
-		#endif // !1
-	}
-	else
-	{
+
 		#ifndef  SIMULATOR
-			GetDataFromModel_2(model->GetTimeScale(channel));
+		GetDataFromModel(channel, model->GetTimeScale(channel));
 		#endif // ! SIMULATOR		
-	}
 
 	
 	return model->GetTimeScale(channel);

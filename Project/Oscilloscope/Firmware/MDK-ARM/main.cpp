@@ -75,6 +75,7 @@ UART_HandleTypeDef huart2;
 /*
  * Global Variables
  */
+#define ULONG_MAX 0xFFFFFFFFUL 
 #define  ADC_BUFF_SIZ   1000
 uint16_t adc_chn1_buffer[ADC_BUFF_SIZ];
 uint16_t adc_chn2_buffer[ADC_BUFF_SIZ];
@@ -87,9 +88,6 @@ bool trigger_found;
 
 bool stop_flag = false;
 
-volatile bool data_ready = false;
-
-int temp;
 
 /*
  * Define the FreeRTOS task priorities and stack sizes
@@ -122,8 +120,7 @@ static void MX_TIM4_Init_Mod(int period, int pulse);
 static void MX_TIM4_Init(void);
 static void MX_USART2_UART_Init(void);
 	
-void SetTimeScale(void);
-	
+
 
 /*
  *  Free RTOS Task Section 
@@ -132,43 +129,6 @@ static void GUITask(void* params)
 {
     touchgfx::HAL::getInstance()->taskEntry();
 }
-
-static void ADCTask(void* params)
-{	
-	static uint16_t prev_value1 = 0;
-	static uint16_t prev_value2 = 0;
-	
-	//HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);	
-	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
-
-	#ifdef USE_TIM_TIME_BASE	
-	
-	HAL_TIM_Base_Start(&htim2);
-	HAL_TIM_Base_Start(&htim4);
-#else
-  //HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_2);
-	HAL_TIM_OC_Start(&htim4, TIM_CHANNEL_4);
-#endif	
-	
-
-	
-	for(;;)
-	{
-		if((prev_value1 != chan1_time_base) || (prev_value2 != chan2_time_base))
-		{
-			SetTimeScale();
-			prev_value1 = chan1_time_base;
-			prev_value2 = chan2_time_base;
-		}
-		
-		vTaskDelay(100);
-	
-	}
-}
-
-
-
-
 
 /*
  *  Main Section
@@ -182,9 +142,9 @@ int main(void)
 	
 		MX_GPIO_Init();
 		MX_DMA_Init();
-		//MX_ADC1_Init();
+		MX_ADC1_Init();
 		MX_ADC3_Init();
-		//MX_TIM2_Init();
+		MX_TIM2_Init();
 	  MX_TIM4_Init();	
 	
 		HAL_UART_Init(&huart2);
@@ -199,14 +159,14 @@ int main(void)
                 configGUI_TASK_PRIORITY ,
                 NULL);
 		
-		xTaskCreate( ADCTask, 
-								(TASKCREATE_NAME_TYPE)"ADCTask", 
-								128, 
-								NULL, 
-								configGUI_TASK_PRIORITY +1,  
-								NULL);
 		
-		
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);	
+	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
+
+
+  HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_2);
+	HAL_TIM_OC_Start(&htim4, TIM_CHANNEL_4);
+	
     vTaskStartScheduler();
 
     for (;;);
@@ -266,6 +226,7 @@ static void MX_ADC3_Init(void)
   hadc3.Init.ContinuousConvMode = DISABLE;
   hadc3.Init.DiscontinuousConvMode = DISABLE;
   hadc3.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
+  //hadc3.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T4_TRGO;
   hadc3.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T4_CC4;
   hadc3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc3.Init.NbrOfConversion = 1;
@@ -405,6 +366,7 @@ static void MX_TIM4_Init(void)
     Error_Handler();
   }
 
+ // if (HAL_TIM_Base_Init(&htim4) != HAL_OK)	
   if (HAL_TIM_OC_Init(&htim4) != HAL_OK)
   {
     Error_Handler();
@@ -527,205 +489,99 @@ uint16_t * PushDaTaToModel_2(void)
 		
 }
 
-void GetDataFromModel_1(int value)
-{
-	chan1_time_base = value;
-}
-
-void GetDataFromModel_2(int value)
-{
-	chan2_time_base = value;
-}
-
-void SetTimeScale(void)
-{
-	switch(chan1_time_base)
+void GetDataFromModel(int channel, int value)
+{	
+	int period;
+	int pulse;
+	
+	switch(value)
 	{
-		int period;
-		int pulse;
+
 		
 		//Div 50us
 		case 0:
 			period = 12;
 			pulse = 6;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 100us
 		case 1:
 		  period = 24;
 		  pulse = 12;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 200us
 		case 2:
 			period = 48;
 			pulse = 24;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 500us
 		case 3:
 			period = 120;
 			pulse = 60;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 1ms
 		case 4:
 			period = 240;
 			pulse = 120;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 2ms
 		case 5:
 			period = 480;
 			pulse = 240;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 5ms
 		case 6:
 			period = 1200;
 			pulse = 600;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 10ms
 		case 7:
 			period = 2400;
 			pulse = 1200;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 20ms
 		case 8:
 			period = 4800;
 			pulse = 2400;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 50ms
 		case 9:
 			period = 12000;
 			pulse = 6000;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 100ms
 		case 10:
 			period = 24000;
 			pulse = 12000;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 200ms
 		case 11:
 			period = 48000;
 			pulse = 24000;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
 		
 		//Div 500ms
 		case 12:
 			period = 120000;
 			pulse = 60000;
-			MX_TIM2_Init_Mod(period, pulse);
 			break;
-	}
-	
-	switch(chan2_time_base)
-	{
-		int period;
-		int pulse;
-		
-		//Div 50us
-		case 0:
-			period = 12;
-			pulse = 6;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 100us
-		case 1:
-		  period = 24;
-		  pulse = 12;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 200us
-		case 2:
-			period = 48;
-			pulse = 24;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 500us
-		case 3:
-			period = 120;
-			pulse = 60;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 1ms
-		case 4:
-			period = 240;
-			pulse = 120;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 2ms
-		case 5:
-			period = 480;
-			pulse = 240;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 5ms
-		case 6:
-			period = 1200;
-			pulse = 600;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 10ms
-		case 7:
-			period = 2400;
-			pulse = 1200;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 20ms
-		case 8:
-			period = 4800;
-			pulse = 2400;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 50ms
-		case 9:
-			period = 12000;
-			pulse = 6000;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 100ms
-		case 10:
-			period = 24000;
-			pulse = 12000;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-		
-		//Div 200ms
-		case 11:
-			period = 48000;
-			pulse = 24000;
-			MX_TIM4_Init_Mod(period, pulse);
-			break;
-	}
+	}	
+	if(channel == 0)
+				MX_TIM2_Init_Mod(period, pulse);
+	else
+				MX_TIM4_Init_Mod(period, pulse);
 }
+
 #ifdef USE_FULL_ASSERT
 
 /**
