@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon May 10 16:57:15 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon May 10 19:04:39 2021
 <BR><P>
 <H3>Maximum Stack Usage =        652 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2187,7 +2187,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = HAL_TIMEx_MasterConfigSynchronization
 </UL>
 <BR>[Called By]<UL><LI><a href="#[239]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM4_Init()
-<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init()
+<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init()
 </UL>
 
 <P><STRONG><a name="[201]"></a>HAL_TIM_Base_Init</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, stm32f7xx_hal_tim.o(i.HAL_TIM_Base_Init))
@@ -2229,7 +2229,7 @@ Global Symbols
 <LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC1_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[239]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM4_Init()
-<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init()
+<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init()
 </UL>
 
 <P><STRONG><a name="[210]"></a>HAL_TIM_OC_Init</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, stm32f7xx_hal_tim.o(i.HAL_TIM_OC_Init))
@@ -2239,7 +2239,7 @@ Global Symbols
 <LI><a href="#[203]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[239]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM4_Init()
-<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init()
+<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init()
 </UL>
 
 <P><STRONG><a name="[211]"></a>HAL_TIM_OC_MspInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f7xx_hal_tim.o(i.HAL_TIM_OC_MspInit))
@@ -2433,7 +2433,7 @@ Global Symbols
 <LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_CheckIdleState
 </UL>
 
-<P><STRONG><a name="[266]"></a>GetDataFromModel(int, int)</STRONG> (Thumb, 154 bytes, Stack size 20 bytes, main.o(i._Z16GetDataFromModelii))
+<P><STRONG><a name="[266]"></a>GetDataFromModel(int, int)</STRONG> (Thumb, 144 bytes, Stack size 20 bytes, main.o(i._Z16GetDataFromModelii))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GetDataFromModel(int, int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[264]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTimeScale(int)
@@ -7047,7 +7047,7 @@ Global Symbols
 <LI><a href="#[354]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
 <LI><a href="#[2de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::touchgfx_init()
 <LI><a href="#[239]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM4_Init()
-<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init()
+<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init()
 <LI><a href="#[236]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC3_Init()
 <LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC1_Init()
@@ -7966,8 +7966,8 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[237]"></a>MX_TIM2_Init()</STRONG> (Thumb, 100 bytes, Stack size 56 bytes, main.o(i._Z12MX_TIM2_Initv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = MX_TIM2_Init() &rArr; HAL_TIM_OC_ConfigChannel &rArr; TIM_OC6_SetConfig
+<P><STRONG><a name="[237]"></a>MX_TIM3_Init()</STRONG> (Thumb, 98 bytes, Stack size 56 bytes, main.o(i._Z12MX_TIM3_Initv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = MX_TIM3_Init() &rArr; HAL_TIM_OC_ConfigChannel &rArr; TIM_OC6_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_Init
 <LI><a href="#[238]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_MasterConfigSynchronization
@@ -7976,7 +7976,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[239]"></a>MX_TIM4_Init()</STRONG> (Thumb, 114 bytes, Stack size 72 bytes, main.o(i._Z12MX_TIM4_Initv))
+<P><STRONG><a name="[239]"></a>MX_TIM4_Init()</STRONG> (Thumb, 116 bytes, Stack size 72 bytes, main.o(i._Z12MX_TIM4_Initv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = MX_TIM4_Init() &rArr; HAL_TIM_OC_ConfigChannel &rArr; TIM_OC6_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_Init

@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Document",
+    "\\Project",
+    "\\Project\\Oscilloscope",
+    "\\Project\\Oscilloscope\\Firmware",
+    "\\Project\\Oscilloscope\\Graphic",
+    "\\Project\\Oscilloscope\\Graphic\\simulator",
+    "\\Project\\Oscilloscope\\Graphic\\simulator\\msvs",
+    "\\touchgfx"
+  ],
+  "SelectedNode": "\\Project\\Oscilloscope\\Graphic\\simulator\\msvs\\Application.sln",
+  "PreviewInSolutionExplorer": false
+}

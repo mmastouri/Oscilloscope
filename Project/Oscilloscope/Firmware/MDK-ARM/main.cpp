@@ -60,10 +60,6 @@ using namespace touchgfx;
 #include <stdlib.h>
 #include <string.h>
 
- /* Private variables ---------------------------------------------------------*/
-
-
-
 /*
  * Define const/macros
  */
@@ -97,7 +93,7 @@ ADC_HandleTypeDef hadc3;
 DMA_HandleTypeDef hdma_adc1;
 DMA_HandleTypeDef hdma_adc3;
 
-TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 
 UART_HandleTypeDef huart2;
@@ -110,8 +106,8 @@ static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_ADC3_Init(void);
-static void MX_TIM2_Init(void);
-static void MX_TIM2_Init_Mod(int period, int pulse);
+static void MX_TIM3_Init(void);
+static void MX_TIM3_Init_Mod(int period, int pulse);
 static void MX_TIM4_Init_Mod(int period, int pulse);
 static void MX_TIM4_Init(void);
 static void MX_USART2_UART_Init(void);
@@ -138,7 +134,7 @@ int main(void)
 	MX_DMA_Init();
 	MX_ADC1_Init();
 	MX_ADC3_Init();
-	MX_TIM2_Init();
+	MX_TIM3_Init();
 	MX_TIM4_Init();
 
 	HAL_UART_Init(&huart2);
@@ -158,7 +154,7 @@ int main(void)
 	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
 
 
-	HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_2);
+	HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_4);
 	HAL_TIM_OC_Start(&htim4, TIM_CHANNEL_4);
 
 	vTaskStartScheduler();
@@ -221,7 +217,7 @@ static void MX_ADC1_Init(void)
 	hadc1.Init.ContinuousConvMode = DISABLE;
 	hadc1.Init.DiscontinuousConvMode = DISABLE;
 	hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
-	hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T2_CC2;
+	hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T3_CC4;
 	hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
 	hadc1.Init.NbrOfConversion = 1;
 	hadc1.Init.DMAContinuousRequests = ENABLE;
@@ -340,28 +336,28 @@ static void MX_GPIO_Init(void)
 
 }
 
-/* TIM2 init function */
-static void MX_TIM2_Init(void)
+/* TIM3 init function */
+static void MX_TIM3_Init(void)
 {
 	TIM_MasterConfigTypeDef sMasterConfig;
 	TIM_OC_InitTypeDef sConfigOC;
 
-	__HAL_RCC_TIM2_CLK_ENABLE();
+	__HAL_RCC_TIM3_CLK_ENABLE();
 
-	htim2.Instance = TIM2;
-	htim2.Init.Prescaler = 4;
-	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim2.Init.Period = 100;
-	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	htim3.Instance = TIM3;
+	htim3.Init.Prescaler = 4;
+	htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+	htim3.Init.Period = 100;
+	htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 
-	if (HAL_TIM_OC_Init(&htim2) != HAL_OK)
+	if (HAL_TIM_OC_Init(&htim3) != HAL_OK)
 	{
 		Error_Handler();
 	}
 
 	sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
 	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-	if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+	if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
 	{
 		Error_Handler();
 	}
@@ -370,7 +366,7 @@ static void MX_TIM2_Init(void)
 	sConfigOC.Pulse = 13;
 	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
 	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-	if (HAL_TIM_OC_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+	if (HAL_TIM_OC_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
 	{
 		Error_Handler();
 	}
@@ -392,14 +388,13 @@ static void MX_TIM4_Init(void)
 	htim4.Init.Period = 100;
 	htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 
-	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-	if (HAL_TIM_ConfigClockSource(&htim4, &sClockSourceConfig) != HAL_OK)
+	if (HAL_TIM_OC_Init(&htim4) != HAL_OK)
 	{
 		Error_Handler();
 	}
-
-	// if (HAL_TIM_Base_Init(&htim4) != HAL_OK)	
-	if (HAL_TIM_OC_Init(&htim4) != HAL_OK)
+	
+	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+	if (HAL_TIM_ConfigClockSource(&htim4, &sClockSourceConfig) != HAL_OK)
 	{
 		Error_Handler();
 	}
@@ -444,12 +439,12 @@ static void MX_USART2_UART_Init(void)
 
 }
 
-/* TIM2 init function */
-static void MX_TIM2_Init_Mod(int period, int pulse)
+/* TIM3 init function */
+static void MX_TIM3_Init_Mod(int period, int pulse)
 {
 
-	__HAL_TIM_SET_AUTORELOAD(&htim2, period);
-	__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, pulse);
+	__HAL_TIM_SET_AUTORELOAD(&htim3, period);
+	__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, pulse);
 }
 
 static void MX_TIM4_Init_Mod(int period, int pulse)
@@ -600,7 +595,7 @@ void GetDataFromModel(int channel, int value)
 		break;
 	}
 	if (channel == 0)
-		MX_TIM2_Init_Mod(period, pulse);
+		MX_TIM3_Init_Mod(period, pulse);
 	else
 		MX_TIM4_Init_Mod(period, pulse);
 }
