@@ -138,8 +138,8 @@ void MainView::setupScreen()
 					  BITMAP_BUTTONDOWNON_ID);
 
 	panelChn[0].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
-
-
+	panelChn[0].associatedChannel = 0;
+	panelChn[1].associatedChannel = 1;
 	panelChn[1].SetUpButtonImage(BITMAP_BUTTONUPON_ID,
 		                         BITMAP_BUTTONUPOFF_ID,
 		                         BITMAP_BUTTONDOWNON_ID,
@@ -543,7 +543,7 @@ void MainView::handleTickEvent()
 	* For every tick, check which marker, trigger line is enabled/disabled
 	* For every ten ticks, the graph is invalidated
 	*/
-	
+
 	for (int ch_idx = 0; ch_idx < 2; ch_idx++)
 	{
 		presenter->p_SetTimeScale(ch_idx, panelChn[ch_idx].GetTimeBaseIndex());

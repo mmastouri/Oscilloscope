@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon May 10 19:04:39 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon May 10 21:06:26 2021
 <BR><P>
 <H3>Maximum Stack Usage =        652 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2433,10 +2433,10 @@ Global Symbols
 <LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_CheckIdleState
 </UL>
 
-<P><STRONG><a name="[266]"></a>GetDataFromModel(int, int)</STRONG> (Thumb, 144 bytes, Stack size 20 bytes, main.o(i._Z16GetDataFromModelii))
+<P><STRONG><a name="[27a]"></a>GetDataFromModel(int, int)</STRONG> (Thumb, 144 bytes, Stack size 20 bytes, main.o(i._Z16GetDataFromModelii))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GetDataFromModel(int, int)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[264]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTimeScale(int)
+<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&)
 </UL>
 
 <P><STRONG><a name="[25d]"></a>PushDaTaToModel_1()</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(i._Z17PushDaTaToModel_1v))
@@ -2715,77 +2715,74 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[264]"></a>MainPresenter::p_GetTimeScale(int)</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, mainpresenter.o(i._ZN13MainPresenter14p_GetTimeScaleEi))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = MainPresenter::p_GetTimeScale(int) &rArr; GetDataFromModel(int, int)
-</UL>
-<BR>[Calls]<UL><LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetTimeScale(int)
-<LI><a href="#[266]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDataFromModel(int, int)
+<P><STRONG><a name="[264]"></a>MainPresenter::p_GetTimeScale(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter14p_GetTimeScaleEi))
+<BR><BR>[Calls]<UL><LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetTimeScale(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[267]"></a>MainPresenter::p_SetTimeScale(int, int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter14p_SetTimeScaleEii))
-<BR><BR>[Calls]<UL><LI><a href="#[268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetTimeScale(int, int)
+<P><STRONG><a name="[266]"></a>MainPresenter::p_SetTimeScale(int, int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter14p_SetTimeScaleEii))
+<BR><BR>[Calls]<UL><LI><a href="#[267]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetTimeScale(int, int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[269]"></a>MainPresenter::p_GetTimeOffset(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter15p_GetTimeOffsetEi))
-<BR><BR>[Calls]<UL><LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetTimeOffset(int)
+<P><STRONG><a name="[268]"></a>MainPresenter::p_GetTimeOffset(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter15p_GetTimeOffsetEi))
+<BR><BR>[Calls]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetTimeOffset(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[26b]"></a>MainPresenter::p_GetVoltOffset(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter15p_GetVoltOffsetEi))
+<P><STRONG><a name="[26a]"></a>MainPresenter::p_GetVoltOffset(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter15p_GetVoltOffsetEi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = MainPresenter::p_GetVoltOffset(int) &rArr; Model::GetVoltageOffset(int)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageOffset(int)
+<BR>[Calls]<UL><LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageOffset(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[26d]"></a>MainPresenter::p_GetTriggerData(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter16p_GetTriggerDataEi))
-<BR><BR>[Calls]<UL><LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetTriggerData(int)
+<P><STRONG><a name="[26c]"></a>MainPresenter::p_GetTriggerData(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter16p_GetTriggerDataEi))
+<BR><BR>[Calls]<UL><LI><a href="#[26d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetTriggerData(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[26f]"></a>MainPresenter::p_SetTriggerType(int, bool)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter16p_SetTriggerTypeEib))
-<BR><BR>[Calls]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetTriggerType(int, bool)
+<P><STRONG><a name="[26e]"></a>MainPresenter::p_SetTriggerType(int, bool)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter16p_SetTriggerTypeEib))
+<BR><BR>[Calls]<UL><LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetTriggerType(int, bool)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[271]"></a>MainPresenter::p_GetTriggerValue(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter17p_GetTriggerValueEi))
-<BR><BR>[Calls]<UL><LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetTriggerValue(int)
+<P><STRONG><a name="[270]"></a>MainPresenter::p_GetTriggerValue(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter17p_GetTriggerValueEi))
+<BR><BR>[Calls]<UL><LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetTriggerValue(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[273]"></a>MainPresenter::p_GetVoltageScale(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter17p_GetVoltageScaleEi))
-<BR><BR>[Calls]<UL><LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageScale(int)
+<P><STRONG><a name="[272]"></a>MainPresenter::p_GetVoltageScale(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter17p_GetVoltageScaleEi))
+<BR><BR>[Calls]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageScale(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[275]"></a>MainPresenter::p_SetTriggerValue(int, int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter17p_SetTriggerValueEii))
-<BR><BR>[Calls]<UL><LI><a href="#[276]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetTriggerValue(int, int)
+<P><STRONG><a name="[274]"></a>MainPresenter::p_SetTriggerValue(int, int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter17p_SetTriggerValueEii))
+<BR><BR>[Calls]<UL><LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetTriggerValue(int, int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[277]"></a>MainPresenter::p_SetVoltageScale(int, int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter17p_SetVoltageScaleEii))
-<BR><BR>[Calls]<UL><LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetVoltageScale(int, int)
+<P><STRONG><a name="[276]"></a>MainPresenter::p_SetVoltageScale(int, int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, mainpresenter.o(i._ZN13MainPresenter17p_SetVoltageScaleEii))
+<BR><BR>[Calls]<UL><LI><a href="#[277]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetVoltageScale(int, int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[279]"></a>MainPresenter::p_VoltagePerPixel(int)</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, mainpresenter.o(i._ZN13MainPresenter17p_VoltagePerPixelEi))
+<P><STRONG><a name="[278]"></a>MainPresenter::p_VoltagePerPixel(int)</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, mainpresenter.o(i._ZN13MainPresenter17p_VoltagePerPixelEi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = MainPresenter::p_VoltagePerPixel(int)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageScale(int)
+<BR>[Calls]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageScale(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
@@ -2832,10 +2829,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[9f]"></a>ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 312 bytes, Stack size 8 bytes, channelcontrolpanel.o(i._ZN19ChannelControlPanel13buttonClickedERKN8touchgfx14AbstractButtonE))
+<P><STRONG><a name="[9f]"></a>ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 324 bytes, Stack size 8 bytes, channelcontrolpanel.o(i._ZN19ChannelControlPanel13buttonClickedERKN8touchgfx14AbstractButtonE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&) &rArr; ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[27a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
+<BR>[Calls]<UL><LI><a href="#[27a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDataFromModel(int, int)
+<LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
 <LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideVerticalText(ChannelControlPanel::SlideDirection)
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> channelcontrolpanel.o(.constdata)
@@ -2880,7 +2878,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[27a]"></a>ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)</STRONG> (Thumb, 180 bytes, Stack size 40 bytes, channelcontrolpanel.o(i._ZN19ChannelControlPanel18slideHorizotalTextENS_14SlideDirectionE))
+<P><STRONG><a name="[279]"></a>ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)</STRONG> (Thumb, 180 bytes, Stack size 40 bytes, channelcontrolpanel.o(i._ZN19ChannelControlPanel18slideHorizotalTextENS_14SlideDirectionE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
@@ -2933,7 +2931,7 @@ Global Symbols
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::setXY(short, short)
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::setPosition(short, short, short, short)
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ToggleButton::setBitmaps(const touchgfx::Bitmap&, const touchgfx::Bitmap&)
-<LI><a href="#[27a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
+<LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
 <LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideVerticalText(ChannelControlPanel::SlideDirection)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
@@ -3072,7 +3070,7 @@ Global Symbols
 <P><STRONG><a name="[25b]"></a>Model::SetRawData(int, unsigned short*)</STRONG> (Thumb, 94 bytes, Stack size 20 bytes, model.o(i._ZN5Model10SetRawDataEiPt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = Model::SetRawData(int, unsigned short*) &rArr; Model::GetVoltageOffset(int)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageOffset(int)
+<BR>[Calls]<UL><LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageOffset(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetRawData(int)
 </UL>
@@ -3093,51 +3091,51 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[264]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTimeScale(int)
 </UL>
 
-<P><STRONG><a name="[268]"></a>Model::SetTimeScale(int, int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model12SetTimeScaleEii))
-<BR><BR>[Called By]<UL><LI><a href="#[267]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTimeScale(int, int)
+<P><STRONG><a name="[267]"></a>Model::SetTimeScale(int, int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model12SetTimeScaleEii))
+<BR><BR>[Called By]<UL><LI><a href="#[266]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTimeScale(int, int)
 </UL>
 
-<P><STRONG><a name="[26a]"></a>Model::GetTimeOffset(int)</STRONG> (Thumb, 188 bytes, Stack size 0 bytes, model.o(i._ZN5Model13GetTimeOffsetEi))
-<BR><BR>[Called By]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTimeOffset(int)
+<P><STRONG><a name="[269]"></a>Model::GetTimeOffset(int)</STRONG> (Thumb, 188 bytes, Stack size 0 bytes, model.o(i._ZN5Model13GetTimeOffsetEi))
+<BR><BR>[Called By]<UL><LI><a href="#[268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTimeOffset(int)
 </UL>
 
-<P><STRONG><a name="[26e]"></a>Model::GetTriggerData(int)</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, model.o(i._ZN5Model14GetTriggerDataEi))
-<BR><BR>[Called By]<UL><LI><a href="#[26d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTriggerData(int)
+<P><STRONG><a name="[26d]"></a>Model::GetTriggerData(int)</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, model.o(i._ZN5Model14GetTriggerDataEi))
+<BR><BR>[Called By]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTriggerData(int)
 </UL>
 
-<P><STRONG><a name="[270]"></a>Model::SetTriggerType(int, bool)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model14SetTriggerTypeEib))
-<BR><BR>[Called By]<UL><LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerType(int, bool)
+<P><STRONG><a name="[26f]"></a>Model::SetTriggerType(int, bool)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model14SetTriggerTypeEib))
+<BR><BR>[Called By]<UL><LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerType(int, bool)
 </UL>
 
-<P><STRONG><a name="[272]"></a>Model::GetTriggerValue(int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model15GetTriggerValueEi))
-<BR><BR>[Called By]<UL><LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTriggerValue(int)
+<P><STRONG><a name="[271]"></a>Model::GetTriggerValue(int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model15GetTriggerValueEi))
+<BR><BR>[Called By]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTriggerValue(int)
 </UL>
 
-<P><STRONG><a name="[274]"></a>Model::GetVoltageScale(int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model15GetVoltageScaleEi))
-<BR><BR>[Called By]<UL><LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_VoltagePerPixel(int)
-<LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltageScale(int)
+<P><STRONG><a name="[273]"></a>Model::GetVoltageScale(int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model15GetVoltageScaleEi))
+<BR><BR>[Called By]<UL><LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_VoltagePerPixel(int)
+<LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltageScale(int)
 </UL>
 
-<P><STRONG><a name="[276]"></a>Model::SetTriggerValue(int, int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model15SetTriggerValueEii))
-<BR><BR>[Called By]<UL><LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerValue(int, int)
+<P><STRONG><a name="[275]"></a>Model::SetTriggerValue(int, int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model15SetTriggerValueEii))
+<BR><BR>[Called By]<UL><LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerValue(int, int)
 </UL>
 
-<P><STRONG><a name="[278]"></a>Model::SetVoltageScale(int, int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model15SetVoltageScaleEii))
-<BR><BR>[Called By]<UL><LI><a href="#[277]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetVoltageScale(int, int)
+<P><STRONG><a name="[277]"></a>Model::SetVoltageScale(int, int)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, model.o(i._ZN5Model15SetVoltageScaleEii))
+<BR><BR>[Called By]<UL><LI><a href="#[276]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetVoltageScale(int, int)
 </UL>
 
-<P><STRONG><a name="[26c]"></a>Model::GetVoltageOffset(int)</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, model.o(i._ZN5Model16GetVoltageOffsetEi))
+<P><STRONG><a name="[26b]"></a>Model::GetVoltageOffset(int)</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, model.o(i._ZN5Model16GetVoltageOffsetEi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Model::GetVoltageOffset(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::ConvertToTriggerData(int)
 <LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetRawData(int, unsigned short*)
-<LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltOffset(int)
+<LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltOffset(int)
 </UL>
 
 <P><STRONG><a name="[25c]"></a>Model::ConvertToTriggerData(int)</STRONG> (Thumb, 754 bytes, Stack size 24 bytes, model.o(i._ZN5Model20ConvertToTriggerDataEi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Model::ConvertToTriggerData(int) &rArr; Model::GetVoltageOffset(int)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageOffset(int)
+<BR>[Calls]<UL><LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::GetVoltageOffset(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetRawData(int)
 </UL>
@@ -3207,7 +3205,7 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[3cf]"></a>Marker::~Marker__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, marker.o(i._ZN6MarkerD1Ev), UNUSED)
 
-<P><STRONG><a name="[29b]"></a>MainView::slideTexts(MainView::SlideDirection)</STRONG> (Thumb, 340 bytes, Stack size 48 bytes, mainview.o(i._ZN8MainView10slideTextsENS_14SlideDirectionE))
+<P><STRONG><a name="[29b]"></a>MainView::slideTexts(MainView::SlideDirection)</STRONG> (Thumb, 332 bytes, Stack size 48 bytes, mainview.o(i._ZN8MainView10slideTextsENS_14SlideDirectionE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = MainView::slideTexts(MainView::SlideDirection) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Image::setBitmap(const touchgfx::Bitmap&)
@@ -3219,8 +3217,8 @@ Global Symbols
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[100]"></a>MainView::setupScreen()</STRONG> (Thumb, 2128 bytes, Stack size 104 bytes, mainview.o(i._ZN8MainView11setupScreenEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 528<LI>Call Chain = MainView::setupScreen() &rArr; touchgfx::Unicode::snprintf(unsigned short*, unsigned short, const char*, ...) &rArr; touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const char*, std::__va_list) &rArr; touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const unsigned short*, std::__va_list) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
+<P><STRONG><a name="[100]"></a>MainView::setupScreen()</STRONG> (Thumb, 2142 bytes, Stack size 80 bytes, mainview.o(i._ZN8MainView11setupScreenEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 504<LI>Call Chain = MainView::setupScreen() &rArr; touchgfx::Unicode::snprintf(unsigned short*, unsigned short, const char*, ...) &rArr; touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const char*, std::__va_list) &rArr; touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const unsigned short*, std::__va_list) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::SetGraphColor(touchgfx::colortype)
 <LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::SetGraphData(int*)
@@ -3242,9 +3240,9 @@ Global Symbols
 <LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::SetTriggerButtonOn()
 <LI><a href="#[27c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::SetMarkerButtonOn()
 <LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::SetUpButtonImage(unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short)
-<LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerValue(int, int)
-<LI><a href="#[26d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTriggerData(int)
-<LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltOffset(int)
+<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerValue(int, int)
+<LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTriggerData(int)
+<LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltOffset(int)
 <LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetYOffset(int)
 <LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
 <LI><a href="#[2a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerPosition()
@@ -3259,7 +3257,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mainview.o(.constdata__ZTV8MainView)
 </UL>
-<P><STRONG><a name="[a1]"></a>MainView::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, mainview.o(i._ZN8MainView13buttonClickedERKN8touchgfx14AbstractButtonE))
+<P><STRONG><a name="[a1]"></a>MainView::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, mainview.o(i._ZN8MainView13buttonClickedERKN8touchgfx14AbstractButtonE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MainView::buttonClicked(const touchgfx::AbstractButton&) &rArr; MainView::slideTexts(MainView::SlideDirection) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::remove(touchgfx::Drawable&)
@@ -3273,8 +3271,8 @@ Global Symbols
 <P><STRONG><a name="[102]"></a>MainView::tearDownScreen()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, mainview.o(i._ZN8MainView14tearDownScreenEv))
 <BR>[Address Reference Count : 1]<UL><LI> mainview.o(.constdata__ZTV8MainView)
 </UL>
-<P><STRONG><a name="[106]"></a>MainView::handleTickEvent()</STRONG> (Thumb, 1050 bytes, Stack size 56 bytes, mainview.o(i._ZN8MainView15handleTickEventEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 616<LI>Call Chain = MainView::handleTickEvent() &rArr; touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const float*) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
+<P><STRONG><a name="[106]"></a>MainView::handleTickEvent()</STRONG> (Thumb, 1038 bytes, Stack size 48 bytes, mainview.o(i._ZN8MainView15handleTickEventEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 608<LI>Call Chain = MainView::handleTickEvent() &rArr; touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const float*) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::invalidate() const
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::remove(touchgfx::Drawable&)
@@ -3287,15 +3285,15 @@ Global Symbols
 <LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::GetTimeBaseIndex()
 <LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::GetYOffset()
 <LI><a href="#[2ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::GetXOffset()
-<LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_VoltagePerPixel(int)
-<LI><a href="#[277]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetVoltageScale(int, int)
-<LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerValue(int, int)
-<LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltageScale(int)
-<LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTriggerValue(int)
-<LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerType(int, bool)
-<LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltOffset(int)
-<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTimeOffset(int)
-<LI><a href="#[267]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTimeScale(int, int)
+<LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_VoltagePerPixel(int)
+<LI><a href="#[276]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetVoltageScale(int, int)
+<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerValue(int, int)
+<LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltageScale(int)
+<LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTriggerValue(int)
+<LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTriggerType(int, bool)
+<LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetVoltOffset(int)
+<LI><a href="#[268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTimeOffset(int)
+<LI><a href="#[266]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetTimeScale(int, int)
 <LI><a href="#[264]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTimeScale(int)
 <LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetYOffset(int, int)
 <LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetXOffset(int, int)
@@ -3325,7 +3323,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[2b4]"></a>MainView::MainView()</STRONG> (Thumb, 630 bytes, Stack size 64 bytes, frontendapplication.o(i._ZN8MainViewC1Ev))
+<P><STRONG><a name="[2b4]"></a>MainView::MainView()</STRONG> (Thumb, 608 bytes, Stack size 64 bytes, frontendapplication.o(i._ZN8MainViewC1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MainView::MainView() &rArr; touchgfx::SlideMenu::SlideMenu() &rArr; touchgfx::Image::setBitmap(const touchgfx::Bitmap&) &rArr; touchgfx::Bitmap::getHeight() const
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
@@ -3347,7 +3345,7 @@ Global Symbols
 
 <P><STRONG><a name="[3d0]"></a>MainView::MainView__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 64 bytes, frontendapplication.o(i._ZN8MainViewC1Ev), UNUSED)
 
-<P><STRONG><a name="[fe]"></a>MainView::~MainView()</STRONG> (Thumb, 344 bytes, Stack size 8 bytes, mainview.o(i._ZN8MainViewD1Ev))
+<P><STRONG><a name="[fe]"></a>MainView::~MainView()</STRONG> (Thumb, 332 bytes, Stack size 8 bytes, mainview.o(i._ZN8MainViewD1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = MainView::~MainView() &rArr; __aeabi_vec_dtor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::~TriggerLine()
@@ -5648,7 +5646,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep()
 <LI><a href="#[3a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep()
-<LI><a href="#[27a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
+<LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
 <LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideVerticalText(ChannelControlPanel::SlideDirection)
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Snapper&lang;touchgfx::Line&rang;::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::slideTexts(MainView::SlideDirection)
@@ -7477,7 +7475,7 @@ Global Symbols
 <LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::getInstance()
 <LI><a href="#[3a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[27a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
+<BR>[Called By]<UL><LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
 <LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideVerticalText(ChannelControlPanel::SlideDirection)
 <LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::slideTexts(MainView::SlideDirection)
 </UL>

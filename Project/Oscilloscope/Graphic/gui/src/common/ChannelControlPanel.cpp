@@ -495,11 +495,17 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 	else if (&source == &horizontalUp)
 	{
 		slideHorizotalText(UP);
+#ifndef  SIMULATOR
+		GetDataFromModel(associatedChannel, selectedHorizontalTextIndex);
+#endif // ! SIMULATOR	
 	}
 	
 	else if (&source == &horizontalDown)
 	{
 		slideHorizotalText(DOWN);
+#ifndef  SIMULATOR
+		GetDataFromModel(associatedChannel, selectedHorizontalTextIndex);
+#endif // ! SIMULATOR	
 	}
 
 	else if (&source == &verticalUp)
@@ -620,6 +626,7 @@ void ChannelControlPanel::slideHorizotalText(SlideDirection direction)
 													  EasingEquations::cubicEaseOut);
 
 	selectedHorizontalTextIndex = nextSelectedTextIndex;
+
 }
 
 /*****************************************************************************************

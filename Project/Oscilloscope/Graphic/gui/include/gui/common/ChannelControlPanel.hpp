@@ -186,6 +186,9 @@ public:
 	                       uint16_t left_on, uint16_t left_off, uint16_t right_on, uint16_t right_off);
 	int GetYOffset(void);
 	int GetXOffset(void);
+
+	int associatedChannel;
+
 protected:
 
 	bool triggerButtonClicked;
