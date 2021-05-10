@@ -61,40 +61,16 @@ using namespace touchgfx;
 #include <string.h>
 
  /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc1;
-ADC_HandleTypeDef hadc3;
 
-DMA_HandleTypeDef hdma_adc1;
-DMA_HandleTypeDef hdma_adc3;
 
-TIM_HandleTypeDef htim2;
 
-TIM_HandleTypeDef htim4;
-
-UART_HandleTypeDef huart2;
 /*
- * Global Variables
+ * Define const/macros
  */
 #define ULONG_MAX 0xFFFFFFFFUL 
 #define  ADC_BUFF_SIZ   2000
-uint16_t adc_chn1_buffer[ADC_BUFF_SIZ];
-uint16_t adc_chn2_buffer[ADC_BUFF_SIZ];
-
-uint16_t adc_chn1_readptr = 0;
-uint16_t adc_chn2_readptr = 0;
-
-bool trigger_found;
-
-bool stop_flag = false;
-
-
-/*
- * Define the FreeRTOS task priorities and stack sizes
- */
 #define configGUI_TASK_PRIORITY                 ( tskIDLE_PRIORITY + 3 )
-
 #define configGUI_TASK_STK_SIZE                 ( 1000 )
-
 #define CANVAS_BUFFER_SIZE (4000)
 
 #ifdef __GNUC__
@@ -104,6 +80,27 @@ bool stop_flag = false;
 #else
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
+
+/*
+ * Define variables
+ */
+
+uint16_t adc_chn1_buffer[ADC_BUFF_SIZ];
+uint16_t adc_chn2_buffer[ADC_BUFF_SIZ]; 
+
+uint16_t adc_chn1_readptr = 0;
+uint16_t adc_chn2_readptr = 0;
+
+ADC_HandleTypeDef hadc1;
+ADC_HandleTypeDef hadc3;
+
+DMA_HandleTypeDef hdma_adc1;
+DMA_HandleTypeDef hdma_adc3;
+
+TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim4;
+
+UART_HandleTypeDef huart2;
 
  /*
   * Fuction prototypes
@@ -118,8 +115,6 @@ static void MX_TIM2_Init_Mod(int period, int pulse);
 static void MX_TIM4_Init_Mod(int period, int pulse);
 static void MX_TIM4_Init(void);
 static void MX_USART2_UART_Init(void);
-
-
 
 /*
  *  Free RTOS Task Section
@@ -483,6 +478,8 @@ void Error_Handler(void)
 }
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+	static bool stop_flag = false;
+	
 	if (stop_flag == false)
 	{
 		HAL_ADC_Stop_DMA(&hadc1);
