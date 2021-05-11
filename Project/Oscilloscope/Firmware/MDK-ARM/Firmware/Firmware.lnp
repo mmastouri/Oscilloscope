@@ -55,7 +55,6 @@
 "firmware\edgedown.o"
 "firmware\edgeup.o"
 "firmware\channel1.o"
-"firmware\channel1line.o"
 "firmware\channel2.o"
 "firmware\boardconfiguration.o"
 "firmware\gpio.o"

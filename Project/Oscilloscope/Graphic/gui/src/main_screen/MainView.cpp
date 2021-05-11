@@ -413,10 +413,12 @@ void MainView::buttonClicked(const AbstractButton &source)
 		control_menu.resetExpandedStateTimer();
 		if (chn1_enable.getState() == true)
 		{
+			add(triggLine2);
 			graph_container.add(chan_1_graph);
 		}
 		else
 		{
+			remove(triggLine2);
 			graph_container.remove(chan_1_graph);
 
 		}
@@ -426,10 +428,12 @@ void MainView::buttonClicked(const AbstractButton &source)
 		control_menu.resetExpandedStateTimer();
 		if (chn2_enable.getState() == true)
 		{
+			add(triggLine1);
 			graph_container.add(chan_2_graph);
 		}
 		else
 		{
+			remove(triggLine1);
 			graph_container.remove(chan_2_graph);
 		}
 	}
@@ -554,6 +558,7 @@ void MainView::handleTickEvent()
 		presenter->p_SetXOffset(ch_idx, panelChn[ch_idx].GetXOffset());
 	}
 
+	
 	triggLine2.EnableLine(panelChn[0].isMarkerButtonClicked());
 	triggLine1.EnableLine(panelChn[1].isMarkerButtonClicked());
 
@@ -578,27 +583,11 @@ void MainView::handleTickEvent()
 		Unicode::snprintfFloat(cursor_buff, 10, "%.2f", temp_value);
 		cursor_value_wildcard.invalidate();
 
-		temp_value = presenter->p_GetTriggerValue(CHANNEL_1) * presenter->p_VoltagePerPixel(CHANNEL_1);
-		if (presenter->p_GetVoltageScale(CHANNEL_1) > 5)
-			temp_value = temp_value / 1000;
-
-		presenter->p_SetTriggerValue(CHANNEL_1, presenter->p_GetVoltOffset(CHANNEL_1) - triggLine2.TriggerPosition());
-		Unicode::snprintfFloat(trig2_buff, 5, "%.2f", temp_value);
-		trig2_value_wildcard.invalidate();
-
-
-
-		triggLine2.setY(2 * chan_1_graph.getY());
-		triggLine2.SetVoltOffset(presenter->p_GetVoltOffset(CHANNEL_1));
-		triggLine2.invalidate();
 
 		chan_1_graph.setY(panelChn[0].GetYOffset());
 		presenter->p_SetYOffset(CHANNEL_1, panelChn[0].GetYOffset());
 		presenter->p_SetXOffset(CHANNEL_1, panelChn[0].GetXOffset());
 		chan_1_graph.invalidate();
-
-		presenter->p_SetTimeScale(CHANNEL_1, panelChn[0].GetTimeBaseIndex());
-		presenter->p_SetVoltageScale(CHANNEL_1, panelChn[0].GetVoltBaseIndex());
 	}
 	else
 	{
@@ -621,28 +610,40 @@ void MainView::handleTickEvent()
 		Unicode::snprintfFloat(cursor_buff, 10, "%.2f", temp_value);
 		cursor_value_wildcard.invalidate();
 
-		temp_value = presenter->p_GetTriggerValue(CHANNEL_2) * presenter->p_VoltagePerPixel(CHANNEL_2);
-		if (presenter->p_GetVoltageScale(CHANNEL_2) > 5)
-			temp_value = temp_value / 1000;
-
-		presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltOffset(CHANNEL_2) - triggLine1.TriggerPosition());
-		Unicode::snprintfFloat(trig1_buff, 5, "%.2f", temp_value);
-		trig1_value_wildcard.invalidate();
-
-
-		triggLine1.setY( 2 * panelChn[1].GetYOffset());
-		triggLine1.SetVoltOffset(presenter->p_GetVoltOffset(CHANNEL_2));
-		triggLine1.invalidate();
-
 		chan_2_graph.setY(panelChn[1].GetYOffset());
 		presenter->p_SetYOffset(CHANNEL_2, panelChn[1].GetYOffset());
 		presenter->p_SetXOffset(CHANNEL_2, panelChn[1].GetXOffset());
 		chan_2_graph.invalidate();
-
-		presenter->p_SetTimeScale(CHANNEL_2, panelChn[1].GetTimeBaseIndex());
-		presenter->p_SetVoltageScale(CHANNEL_2, panelChn[1].GetVoltBaseIndex());
 	}
 
+
+
+	temp_value = presenter->p_GetTriggerValue(CHANNEL_1) * presenter->p_VoltagePerPixel(CHANNEL_1);
+	if (presenter->p_GetVoltageScale(CHANNEL_1) > 5)
+		temp_value = temp_value / 1000;
+
+	presenter->p_SetTriggerValue(CHANNEL_1, presenter->p_GetVoltOffset(CHANNEL_1) - triggLine2.TriggerPosition());
+	Unicode::snprintfFloat(trig2_buff, 5, "%.2f", temp_value);
+	trig2_value_wildcard.invalidate();
+
+
+
+	triggLine2.setY(2 * chan_1_graph.getY());
+	triggLine2.SetVoltOffset(presenter->p_GetVoltOffset(CHANNEL_1));
+	triggLine2.invalidate();
+
+	temp_value = presenter->p_GetTriggerValue(CHANNEL_2) * presenter->p_VoltagePerPixel(CHANNEL_2);
+	if (presenter->p_GetVoltageScale(CHANNEL_2) > 5)
+		temp_value = temp_value / 1000;
+
+	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltOffset(CHANNEL_2) - triggLine1.TriggerPosition());
+	Unicode::snprintfFloat(trig1_buff, 5, "%.2f", temp_value);
+	trig1_value_wildcard.invalidate();
+
+
+	triggLine1.setY(2 * panelChn[1].GetYOffset());
+	triggLine1.SetVoltOffset(presenter->p_GetVoltOffset(CHANNEL_2));
+	triggLine1.invalidate();
 
 	tickCounter++;
 	if (tickCounter % 1 == 0)

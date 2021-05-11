@@ -101,10 +101,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>128</Top>
-        <Left>350</Left>
-        <Right>1790</Right>
-        <Bottom>887</Bottom>
+        <Top>88</Top>
+        <Left>150</Left>
+        <Right>1590</Right>
+        <Bottom>847</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>
@@ -3716,7 +3716,7 @@
         <Name>..\..\Graphic\gui\src\common\Graph.cpp</Name>
         <ColumnNumber>1</ColumnNumber>
         <TopLine>164</TopLine>
-        <CurrentLine>190</CurrentLine>
+        <CurrentLine>184</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
