@@ -29,6 +29,21 @@ Project File Date:  05/11/2021
 *** Warning: You are compiling one or more files of source type C++ and have selected 'use MicroLIB'. MicroLIB does not support C++!
   
 Build target 'Firmware'
+compiling CustomListElement.cpp...
+compiling TriggerLine.cpp...
+..\..\Graphic\gui\include\gui/common/TriggerLine.hpp(70): warning:  #427-D: qualified name is not allowed in member declaration
+  	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
+..\..\Graphic\gui\include\gui/common/TriggerLine.hpp(96): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\src\common\TriggerLine.cpp: 2 warnings, 0 errors
+compiling BitmapDatabase.cpp...
+compiling channel1.cpp...
+compiling ChannelControlPanel.cpp...
+..\..\Graphic\gui\include\gui\common\ChannelControlPanel.hpp(286): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\src\common\ChannelControlPanel.cpp(831): warning:  #1-D: last line of file ends without a newline
+  }
+..\..\Graphic\gui\src\common\ChannelControlPanel.cpp: 2 warnings, 0 errors
 compiling MainView.cpp...
 ..\..\Graphic\gui\include\gui\common\Marker.hpp(80): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -38,15 +53,26 @@ compiling MainView.cpp...
   	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
 ..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(96): warning:  #1-D: last line of file ends without a newline
   #endif
-..\..\Graphic\gui\src\main_screen\MainView.cpp(675): warning:  #1-D: last line of file ends without a newline
+..\..\Graphic\gui\src\main_screen\MainView.cpp(678): warning:  #1-D: last line of file ends without a newline
   }
-..\..\Graphic\gui\src\main_screen\MainView.cpp(674): warning:  #177-D: variable "temp"  was declared but never referenced
+..\..\Graphic\gui\src\main_screen\MainView.cpp(677): warning:  #177-D: variable "temp"  was declared but never referenced
   	uint8_t temp = 0;
 ..\..\Graphic\gui\src\main_screen\MainView.cpp: 6 warnings, 0 errors
+compiling channel2.cpp...
+compiling BoardConfiguration.cpp...
+..\..\Graphic\gui\include\gui\common\Marker.hpp(80): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\ChannelControlPanel.hpp(286): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(70): warning:  #427-D: qualified name is not allowed in member declaration
+  	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(96): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\BoardConfiguration.cpp: 4 warnings, 0 errors
 linking...
-Program Size: Code=79016 RO-data=961988 RW-data=456 ZI-data=184808  
+Program Size: Code=79004 RO-data=952788 RW-data=456 ZI-data=184808  
 FromELF: creating hex file...
-"Firmware\Firmware.axf" - 0 Error(s), 6 Warning(s).
+"Firmware\Firmware.axf" - 0 Error(s), 14 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -69,7 +95,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.4.0
-Build Time Elapsed:  00:00:06
+Build Time Elapsed:  00:00:07
 </pre>
 </body>
 </html>

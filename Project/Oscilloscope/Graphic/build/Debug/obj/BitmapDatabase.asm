@@ -35,8 +35,6 @@ EXTRN	?_button_background@@3QBEB:BYTE			; _button_background
 EXTRN	?_button_background_alpha_channel@@3QBEB:BYTE	; _button_background_alpha_channel
 EXTRN	?_channel1@@3QBEB:BYTE				; _channel1
 EXTRN	?_channel1_alpha_channel@@3QBEB:BYTE		; _channel1_alpha_channel
-EXTRN	?_channel1line@@3QBEB:BYTE			; _channel1line
-EXTRN	?_channel1line_alpha_channel@@3QBEB:BYTE	; _channel1line_alpha_channel
 EXTRN	?_channel2@@3QBEB:BYTE				; _channel2
 EXTRN	?_channel2_alpha_channel@@3QBEB:BYTE		; _channel2_alpha_channel
 EXTRN	?_channelInfo@@3QBEB:BYTE			; _channelInfo
@@ -207,24 +205,14 @@ CONST	SEGMENT
 	DW	0aH
 	DB	00H
 	ORG $+3
-	DD	FLAT:?_channel1line@@3QBEB
-	DD	FLAT:?_channel1line_alpha_channel@@3QBEB
-	DW	0132H
-	DW	0aH
-	DW	00H
-	DW	00H
-	DW	0eH
-	DW	0aH
-	DB	00H
-	ORG $+3
 	DD	FLAT:?_channel2@@3QBEB
 	DD	FLAT:?_channel2_alpha_channel@@3QBEB
 	DW	014H
 	DW	0aH
-	DW	07H
+	DW	05H
 	DW	00H
-	DW	0dH
-	DW	0aH
+	DW	0fH
+	DW	09H
 	DB	00H
 	ORG $+3
 	DD	FLAT:?_channelInfo@@3QBEB
@@ -398,7 +386,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 ?getInstanceSize@BitmapDatabase@@YAGXZ PROC		; BitmapDatabase::getInstanceSize, COMDAT
 ; File D:\Oscilloscope\Project\Oscilloscope\Graphic\generated\images\src\BitmapDatabase.cpp
-; Line 103
+; Line 100
 	push	ebp
 	mov	ebp, esp
 	sub	esp, 192				; 000000c0H
@@ -411,9 +399,9 @@ _TEXT	SEGMENT
 	rep stosd
 	mov	ecx, OFFSET __C9D37D10_BitmapDatabase@cpp
 	call	@__CheckForDebuggerJustMyCode@4
-; Line 104
-	mov	eax, 30					; 0000001eH
-; Line 105
+; Line 101
+	mov	eax, 29					; 0000001dH
+; Line 102
 	pop	edi
 	pop	esi
 	pop	ebx
@@ -430,7 +418,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 ?getInstance@BitmapDatabase@@YAPBUBitmapData@Bitmap@touchgfx@@XZ PROC ; BitmapDatabase::getInstance, COMDAT
 ; File D:\Oscilloscope\Project\Oscilloscope\Graphic\generated\images\src\BitmapDatabase.cpp
-; Line 99
+; Line 96
 	push	ebp
 	mov	ebp, esp
 	sub	esp, 192				; 000000c0H
@@ -443,9 +431,9 @@ _TEXT	SEGMENT
 	rep stosd
 	mov	ecx, OFFSET __C9D37D10_BitmapDatabase@cpp
 	call	@__CheckForDebuggerJustMyCode@4
-; Line 100
+; Line 97
 	mov	eax, OFFSET ?bitmap_database@@3QBUBitmapData@Bitmap@touchgfx@@B
-; Line 101
+; Line 98
 	pop	edi
 	pop	esi
 	pop	ebx

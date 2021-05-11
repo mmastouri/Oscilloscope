@@ -255,7 +255,7 @@ void MainView::setupScreen()
 		                  oziBackground.getWidth(),
 		                  oziBackground.getHeight(),
 
-		                 Color::getColorFrom24BitRGB(120, 120, 120));
+		                 Color::getColorFrom24BitRGB(102, 178, 255));
 
 	add(triggLine1);
 
@@ -269,7 +269,7 @@ void MainView::setupScreen()
 	triggLine2.setup(1,  chan_1_graph.getY() + 80,
 		                 oziBackground.getWidth(),
 		                 oziBackground.getHeight(),
-					     Color::getColorFrom24BitRGB(120, 120, 120));
+					     Color::getColorFrom24BitRGB(255, 128, 0));
 
 	
 	add(triggLine2);
@@ -554,10 +554,13 @@ void MainView::handleTickEvent()
 		presenter->p_SetXOffset(ch_idx, panelChn[ch_idx].GetXOffset());
 	}
 
+	triggLine2.EnableLine(panelChn[0].isMarkerButtonClicked());
+	triggLine1.EnableLine(panelChn[1].isMarkerButtonClicked());
+
 	if (selectedChnIndex == 0)
 	{
-		triggLine2.EnableLine(panelChn[0].isMarkerButtonClicked());
-		triggLine1.EnableLine(false);
+
+		//triggLine1.EnableLine(false);
 		marker1.EnableLine(panelChn[0].isMarkerAButtonClicked());
 		marker2.EnableLine(panelChn[0].isMarkerBButtonClicked());
 
@@ -600,8 +603,8 @@ void MainView::handleTickEvent()
 	else
 	{
 		
-		triggLine1.EnableLine(panelChn[1].isMarkerButtonClicked());
-		triggLine2.EnableLine(false);
+		
+		//triggLine2.EnableLine(false);
 
 		marker1.EnableLine(panelChn[1].isMarkerAButtonClicked());
 		marker2.EnableLine(panelChn[1].isMarkerBButtonClicked());

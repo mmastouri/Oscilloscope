@@ -33,8 +33,6 @@ extern const unsigned char _button_background[];
 extern const unsigned char _button_background_alpha_channel[]; 
 extern const unsigned char _channel1[]; 
 extern const unsigned char _channel1_alpha_channel[]; 
-extern const unsigned char _channel1line[]; 
-extern const unsigned char _channel1line_alpha_channel[]; 
 extern const unsigned char _channel2[]; 
 extern const unsigned char _channel2_alpha_channel[]; 
 extern const unsigned char _channelInfo[]; 
@@ -75,8 +73,7 @@ const touchgfx::Bitmap::BitmapData bitmap_database[] = {
     { _buttonUpOn, _buttonUpOn_alpha_channel, 30, 30, 7, 10, 16, 11, touchgfx::Bitmap::RGB565 },
     { _button_background, _button_background_alpha_channel, 60, 100, 2, 4, 56, 88, touchgfx::Bitmap::RGB565 },
     { _channel1, _channel1_alpha_channel, 20, 10, 6, 0, 14, 10, touchgfx::Bitmap::RGB565 },
-    { _channel1line, _channel1line_alpha_channel, 306, 10, 0, 0, 14, 10, touchgfx::Bitmap::RGB565 },
-    { _channel2, _channel2_alpha_channel, 20, 10, 7, 0, 13, 10, touchgfx::Bitmap::RGB565 },
+    { _channel2, _channel2_alpha_channel, 20, 10, 5, 0, 15, 9, touchgfx::Bitmap::RGB565 },
     { _channelInfo, 0, 92, 30, 0, 0, 92, 30, touchgfx::Bitmap::RGB565 },
     { _channelInfo_ch2, 0, 92, 30, 0, 0, 92, 30, touchgfx::Bitmap::RGB565 },
     { _controlPanel, _controlPanel_alpha_channel, 165, 231, 0, 0, 165, 230, touchgfx::Bitmap::RGB565 },

@@ -66,20 +66,68 @@ CONST	SEGMENT
 	DB	01bH
 	DB	0b8H
 	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	07aH
-	DB	03cH
+	DB	0fcH
+	DB	095H
 	DB	0feH
 	DB	0ceH
-	DB	07aH
-	DB	03cH
+	DB	0feH
+	DB	0c6H
+	DB	0feH
+	DB	0ceH
+	DB	0feH
+	DB	0ceH
+	DB	0feH
+	DB	0c6H
+	DB	05bH
+	DB	075H
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	03bH
+	DB	06dH
+	DB	0deH
+	DB	0c6H
+	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	03bH
+	DB	065H
+	DB	0dcH
+	DB	08dH
+	DB	09dH
+	DB	0b6H
+	DB	0ffH
+	DB	0ffH
+	DB	07dH
+	DB	0a6H
+	DB	0dcH
+	DB	08dH
+	DB	0daH
+	DB	054H
+	DB	0b9H
+	DB	01bH
+	DB	0faH
+	DB	05cH
+	DB	0dfH
+	DB	0f7H
+	DB	0ffH
+	DB	0ffH
 	DB	0b8H
 	DB	01bH
 	DB	0b9H
@@ -88,45 +136,39 @@ CONST	SEGMENT
 	DB	01bH
 	DB	0b8H
 	DB	01bH
-	DB	0b9H
+	DB	0b8H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
+	DB	0d9H
 	DB	01bH
 	DB	0b8H
+	DB	01bH
+	DB	0b9H
 	DB	01bH
 	DB	0d9H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
-	DB	0d8H
+	DB	01bH
+	DB	065H
+	DB	0ffH
+	DB	0ffH
+	DB	0baH
+	DB	04cH
+	DB	0b9H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
-	DB	059H
-	DB	03cH
+	DB	07bH
+	DB	075H
+	DB	0ffH
+	DB	0ffH
 	DB	05fH
 	DB	0dfH
 	DB	0ffH
 	DB	0ffH
-	DB	0baH
-	DB	04cH
 	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0d9H
-	DB	01bH
-	DB	0b8H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
@@ -135,10 +177,6 @@ CONST	SEGMENT
 	DB	0b9H
 	DB	01bH
 	DB	0b8H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0b9H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
@@ -146,16 +184,14 @@ CONST	SEGMENT
 	DB	01bH
 	DB	0b9H
 	DB	01bH
+	DB	0b9H
+	DB	01bH
 	DB	0b8H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
-	DB	07aH
-	DB	044H
-	DB	0ffH
-	DB	0ffH
-	DB	05eH
-	DB	0dfH
+	DB	01bH
+	DB	065H
 	DB	0ffH
 	DB	0ffH
 	DB	0baH
@@ -164,36 +200,116 @@ CONST	SEGMENT
 	DB	01bH
 	DB	0b9H
 	DB	01bH
-	DB	0d8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0d8H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0d8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0d9H
-	DB	01bH
+	DB	09aH
+	DB	04cH
 	DB	039H
 	DB	034H
+	DB	03dH
+	DB	09eH
+	DB	0ffH
+	DB	0ffH
+	DB	0b8H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0d9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0d9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0d8H
+	DB	01bH
+	DB	01bH
+	DB	05dH
+	DB	0ffH
+	DB	0ffH
+	DB	09aH
+	DB	04cH
+	DB	0b9H
+	DB	01bH
+	DB	0d8H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	03cH
+	DB	09eH
+	DB	0dfH
+	DB	0ffH
+	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	00H
+	DB	00H
+	DB	0b8H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0d9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	01bH
+	DB	065H
+	DB	0ffH
+	DB	0ffH
 	DB	0baH
 	DB	04cH
+	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	03cH
+	DB	09eH
+	DB	0ffH
+	DB	0ffH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	0d9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
 	DB	01bH
 	DB	065H
 	DB	0ffH
@@ -204,33 +320,33 @@ CONST	SEGMENT
 	DB	01bH
 	DB	0b8H
 	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0d9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
 	DB	0d9H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
+	DB	03dH
+	DB	09eH
+	DB	0dfH
+	DB	0ffH
 	DB	0b8H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	0d9H
+	DB	01bH
 	DB	0b9H
+	DB	01bH
+	DB	0b8H
+	DB	01bH
+	DB	0d9H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
@@ -244,149 +360,31 @@ CONST	SEGMENT
 	DB	01bH
 	DB	0b8H
 	DB	01bH
-	DB	0d9H
-	DB	01bH
 	DB	0b8H
 	DB	01bH
 	DB	0b9H
 	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	00H
-	DB	00H
-	DB	0b8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0d9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0d9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	01bH
-	DB	065H
+	DB	03cH
+	DB	09eH
 	DB	0ffH
 	DB	0ffH
-	DB	0baH
-	DB	04cH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0d8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0d8H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
 	DB	0b9H
 	DB	01bH
 	DB	0b8H
 	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0d9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	01bH
-	DB	065H
-	DB	0ffH
-	DB	0ffH
-	DB	09aH
-	DB	04cH
-	DB	0b8H
-	DB	01bH
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
 	DB	0b9H
 	DB	01bH
 	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	0d9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	01bH
-	DB	05dH
-	DB	0ffH
-	DB	0ffH
-	DB	0baH
-	DB	04cH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0d8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	0d9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0d8H
 	DB	01bH
 	DB	0d8H
 	DB	01bH
@@ -398,19 +396,21 @@ CONST	SEGMENT
 	DB	01bH
 	DB	0b9H
 	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
-	DB	0d8H
-	DB	01bH
-	DB	0b9H
-	DB	01bH
 	DB	0d9H
 	DB	01bH
-	DB	0b8H
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
 	DB	01bH
 	DB	0b8H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
+	DB	01bH
+	DB	0b9H
 	DB	01bH
 ?_channel1_alpha_channel@@3QBEB DB 00H			; _channel1_alpha_channel
 	DB	00H

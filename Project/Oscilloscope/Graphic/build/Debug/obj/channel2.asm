@@ -64,139 +64,107 @@ CONST	SEGMENT
 	DB	0dbH
 	DB	060H
 	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	04cH
+	DB	0d0H
 	DB	0edH
-	DB	0d7H
+	DB	0f8H
+	DB	0feH
+	DB	0f8H
 	DB	0f6H
-	DB	0b7H
+	DB	0f8H
 	DB	0f6H
-	DB	0eaH
-	DB	0e4H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	080H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	0bH
+	DB	0f8H
+	DB	0feH
+	DB	0f8H
+	DB	0f6H
+	DB	02cH
 	DB	0e5H
-	DB	0ffH
-	DB	0ffH
-	DB	054H
+	DB	0a1H
+	DB	0dbH
+	DB	0d0H
+	DB	0edH
+	DB	0d8H
 	DB	0f6H
-	DB	0b7H
+	DB	095H
 	DB	0f6H
-	DB	0ffH
-	DB	0ffH
-	DB	067H
+	DB	046H
+	DB	0dcH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	0ebH
 	DB	0e4H
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	00H
-	DB	00H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0dbH
-	DB	04dH
+	DB	0b0H
 	DB	0edH
 	DB	075H
 	DB	0f6H
+	DB	0ffH
+	DB	0ffH
+	DB	033H
+	DB	0f6H
+	DB	0b0H
+	DB	0edH
+	DB	088H
+	DB	0e4H
+	DB	033H
+	DB	0f6H
+	DB	0dfH
+	DB	0ffH
+	DB	0f1H
+	DB	0edH
+	DB	05bH
+	DB	0ffH
+	DB	0bdH
+	DB	0ffH
+	DB	0a1H
+	DB	0dbH
 	DB	060H
 	DB	0dbH
-	DB	03H
-	DB	0dcH
+	DB	00H
+	DB	00H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0d3H
+	DB	060H
+	DB	0dbH
+	DB	080H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	0c9H
+	DB	0e4H
 	DB	0ffH
 	DB	0ffH
-	DB	04dH
+	DB	066H
+	DB	0e4H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	032H
+	DB	0f6H
+	DB	0afH
 	DB	0edH
 	DB	060H
 	DB	0dbH
-	DB	080H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	080H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0d3H
-	DB	080H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	0afH
+	DB	0cH
 	DB	0edH
 	DB	0ffH
 	DB	0ffH
@@ -209,140 +177,26 @@ CONST	SEGMENT
 	DB	060H
 	DB	0dbH
 	DB	060H
-	DB	0d3H
-	DB	060H
 	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
 	DB	080H
-	DB	0dbH
+	DB	0d3H
 	DB	060H
 	DB	0dbH
 	DB	080H
 	DB	0d3H
 	DB	060H
 	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0d3H
-	DB	08eH
-	DB	0edH
-	DB	0ffH
-	DB	0ffH
-	DB	04dH
-	DB	0edH
-	DB	060H
-	DB	0dbH
 	DB	080H
 	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	08fH
-	DB	0edH
-	DB	0dfH
-	DB	0ffH
-	DB	0ebH
-	DB	0e4H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	080H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	080H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	0c9H
+	DB	0caH
 	DB	0e4H
 	DB	0ffH
 	DB	0ffH
-	DB	0f8H
-	DB	0feH
-	DB	0b0H
-	DB	0edH
-	DB	0b0H
-	DB	0edH
 	DB	067H
 	DB	0e4H
 	DB	060H
-	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	080H
 	DB	0dbH
 	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0d3H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	080H
 	DB	0dbH
 	DB	060H
 	DB	0dbH
@@ -352,36 +206,194 @@ CONST	SEGMENT
 	DB	0dbH
 	DB	0d7H
 	DB	0f6H
+	DB	07cH
+	DB	0ffH
+	DB	080H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0d3H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	0c9H
+	DB	0e4H
 	DB	0ffH
 	DB	0ffH
+	DB	067H
+	DB	0e4H
+	DB	060H
+	DB	0d3H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0d3H
+	DB	081H
+	DB	0dbH
+	DB	096H
+	DB	0f6H
+	DB	0deH
+	DB	0ffH
+	DB	067H
+	DB	0e4H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	080H
+	DB	0d3H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	080H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0d3H
+	DB	080H
+	DB	0dbH
+	DB	0caH
+	DB	0e4H
 	DB	0ffH
 	DB	0ffH
+	DB	066H
+	DB	0e4H
+	DB	060H
+	DB	0dbH
+	DB	080H
+	DB	0dbH
+	DB	080H
+	DB	0dbH
+	DB	0b6H
+	DB	0f6H
+	DB	07cH
+	DB	0ffH
+	DB	025H
+	DB	0e4H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0d3H
+	DB	060H
+	DB	0dbH
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	060H
+	DB	0d3H
+	DB	080H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0d3H
+	DB	080H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	0caH
+	DB	0e4H
 	DB	0ffH
 	DB	0ffH
-	DB	0ffH
-	DB	0ffH
-	DB	06dH
+	DB	067H
+	DB	0e4H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0d3H
+	DB	0f1H
 	DB	0edH
+	DB	0ffH
+	DB	0ffH
+	DB	054H
+	DB	0f6H
+	DB	0b0H
+	DB	0edH
+	DB	0b0H
+	DB	0edH
+	DB	0e2H
+	DB	0dbH
 	DB	060H
 	DB	0dbH
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	060H
+	DB	0dbH
+	DB	0e9H
+	DB	0e4H
+	DB	0ffH
+	DB	0ffH
+	DB	067H
+	DB	0e4H
 	DB	060H
 	DB	0dbH
 	DB	080H
+	DB	0dbH
+	DB	0deH
+	DB	0ffH
+	DB	0ffH
+	DB	0ffH
+	DB	0ffH
+	DB	0ffH
+	DB	0ffH
+	DB	0ffH
+	DB	0ffH
+	DB	0ffH
+	DB	045H
+	DB	0e4H
+	DB	060H
+	DB	0dbH
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	080H
+	DB	0d3H
+	DB	060H
+	DB	0dbH
+	DB	060H
 	DB	0dbH
 	DB	060H
 	DB	0d3H
 	DB	060H
 	DB	0dbH
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	00H
+	DB	060H
+	DB	0dbH
 	DB	060H
 	DB	0d3H
 	DB	060H
@@ -396,22 +408,10 @@ CONST	SEGMENT
 	DB	0dbH
 	DB	060H
 	DB	0dbH
-	DB	080H
-	DB	0dbH
 	DB	060H
 	DB	0dbH
 	DB	060H
-	DB	0dbH
-	DB	080H
 	DB	0d3H
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
-	DB	060H
-	DB	0dbH
 ?_channel2_alpha_channel@@3QBEB DB 00H			; _channel2_alpha_channel
 	DB	00H
 	DB	00H
@@ -436,7 +436,7 @@ CONST	SEGMENT
 	DB	00H
 	DB	00H
 	DB	020H
-	DB	0cfH
+	DB	0ffH
 	DB	0ffH
 	DB	0ffH
 	DB	0ffH
@@ -455,7 +455,7 @@ CONST	SEGMENT
 	DB	00H
 	DB	00H
 	DB	041H
-	DB	0dfH
+	DB	0ffH
 	DB	0ffH
 	DB	0ffH
 	DB	0ffH
@@ -474,7 +474,7 @@ CONST	SEGMENT
 	DB	0ffH
 	DB	00H
 	DB	05dH
-	DB	0dfH
+	DB	0ffH
 	DB	0ffH
 	DB	0ffH
 	DB	0ffH
@@ -493,7 +493,7 @@ CONST	SEGMENT
 	DB	0ffH
 	DB	0ffH
 	DB	09aH
-	DB	0cfH
+	DB	0ffH
 	DB	0ffH
 	DB	0ffH
 	DB	0ffH
@@ -534,7 +534,7 @@ CONST	SEGMENT
 	DB	0ffH
 	DB	010H
 	DB	0aeH
-	DB	0cfH
+	DB	0ffH
 	DB	0ffH
 	DB	0ffH
 	DB	0ffH
@@ -555,7 +555,7 @@ CONST	SEGMENT
 	DB	00H
 	DB	00H
 	DB	051H
-	DB	0efH
+	DB	0ffH
 	DB	0ffH
 	DB	0ffH
 	DB	0ffH
@@ -577,7 +577,7 @@ CONST	SEGMENT
 	DB	00H
 	DB	010H
 	DB	0ffH
-	DB	0cfH
+	DB	0ffH
 	DB	0ffH
 	DB	0ffH
 	DB	0ffH

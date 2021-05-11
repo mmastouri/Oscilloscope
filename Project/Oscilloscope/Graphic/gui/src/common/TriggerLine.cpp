@@ -109,7 +109,7 @@ void TriggerLine::setup(int channel, int offset, int marker_length, int graph_he
 	line.setDragAction(markerDraggedCallback);
 	line.setSnappedAction(markerSnappedCallback);
 	line.setTouchable(true);
-	channel_idx.setAlpha(64);
+	line.setAlpha(128);
 	add(line);
 
 	if(channel == 0)

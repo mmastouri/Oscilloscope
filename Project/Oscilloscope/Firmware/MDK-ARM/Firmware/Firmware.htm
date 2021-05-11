@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue May 11 19:12:53 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue May 11 20:40:19 2021
 <BR><P>
 <H3>Maximum Stack Usage =        652 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2699,10 +2699,10 @@ Global Symbols
 <P><STRONG><a name="[25c]"></a>MainPresenter::p_SetRawData(int)</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, mainpresenter.o(i._ZN13MainPresenter12p_SetRawDataEi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = MainPresenter::p_SetRawData(int) &rArr; Model::ConvertToTriggerData(int) &rArr; Model::GetVoltageOffset(int)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PushDaTaToModel_1()
-<LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::ConvertToTriggerData(int)
+<BR>[Calls]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::ConvertToTriggerData(int)
 <LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::SetRawData(int, unsigned short*)
 <LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PushDaTaToModel_2()
+<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PushDaTaToModel_1()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
@@ -3228,8 +3228,8 @@ Global Symbols
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[101]"></a>MainView::setupScreen()</STRONG> (Thumb, 2158 bytes, Stack size 104 bytes, mainview.o(i._ZN8MainView11setupScreenEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 528<LI>Call Chain = MainView::setupScreen() &rArr; touchgfx::Unicode::snprintf(unsigned short*, unsigned short, const char*, ...) &rArr; touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const char*, std::__va_list) &rArr; touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const unsigned short*, std::__va_list) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
+<P><STRONG><a name="[101]"></a>MainView::setupScreen()</STRONG> (Thumb, 2158 bytes, Stack size 80 bytes, mainview.o(i._ZN8MainView11setupScreenEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 504<LI>Call Chain = MainView::setupScreen() &rArr; touchgfx::Unicode::snprintf(unsigned short*, unsigned short, const char*, ...) &rArr; touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const char*, std::__va_list) &rArr; touchgfx::Unicode::vsnprintf(unsigned short*, unsigned short, const unsigned short*, std::__va_list) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::SetGraphColor(touchgfx::colortype)
 <LI><a href="#[2a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::SetGraphData(int*)
@@ -3282,8 +3282,8 @@ Global Symbols
 <P><STRONG><a name="[103]"></a>MainView::tearDownScreen()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, mainview.o(i._ZN8MainView14tearDownScreenEv))
 <BR>[Address Reference Count : 1]<UL><LI> mainview.o(.constdata__ZTV8MainView)
 </UL>
-<P><STRONG><a name="[107]"></a>MainView::handleTickEvent()</STRONG> (Thumb, 1036 bytes, Stack size 48 bytes, mainview.o(i._ZN8MainView15handleTickEventEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 608<LI>Call Chain = MainView::handleTickEvent() &rArr; touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const float*) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
+<P><STRONG><a name="[107]"></a>MainView::handleTickEvent()</STRONG> (Thumb, 1022 bytes, Stack size 56 bytes, mainview.o(i._ZN8MainView15handleTickEventEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 616<LI>Call Chain = MainView::handleTickEvent() &rArr; touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const float*) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::invalidate() const
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::remove(touchgfx::Drawable&)
@@ -3373,9 +3373,9 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::handleDragEvent(const touchgfx::DragEvent&)
-<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleDragEvent(const touchgfx::DragEvent&)
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
 </UL>
 
 <P><STRONG><a name="[3d5]"></a>touchgfx::ClickEvent::ClickEvent__sub_object(touchgfx::ClickEvent::ClickEventType, short, short, short)</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, screen.o(i._ZN8touchgfx10ClickEventC1ENS0_14ClickEventTypeEsss), UNUSED)
@@ -3470,12 +3470,12 @@ Global Symbols
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 <LI><a href="#[2e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL& touchgfx::touchgfx_generic_init&lang;STM32F7HAL&rang;(touchgfx::DMA_Interface&, touchgfx::LCD&, touchgfx::TouchController&, short, short, unsigned short*, unsigned, unsigned)
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::tick()
-<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleTickEvent()
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::RepeatButton::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[3aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::Container&rang;::nextMoveAnimationStep()
 <LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::Container&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
 </UL>
 
 <P><STRONG><a name="[f1]"></a>touchgfx::Application::handleKeyEvent(unsigned char)</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, application.o(i._ZN8touchgfx11Application14handleKeyEventEh))
@@ -3543,9 +3543,9 @@ Global Symbols
 <LI><a href="#[281]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
 <LI><a href="#[29f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
-<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::RepeatButton::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::Container&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
 </UL>
 
 <P><STRONG><a name="[2d6]"></a>touchgfx::Application::clearAllTimerWidgets()</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, application.o(i._ZN8touchgfx11Application20clearAllTimerWidgetsEv))
@@ -6949,8 +6949,8 @@ Global Symbols
 <LI> abstractpartition.o(.constdata__ZTVN8touchgfx17AbstractPartitionE)
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> constfont.o(.constdata__ZTVN8touchgfx9ConstFontE)
 <LI> hal.o(.constdata__ZTVN8touchgfx3HALE)
+<LI> constfont.o(.constdata__ZTVN8touchgfx9ConstFontE)
 </UL>
 <P><STRONG><a name="[401]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
@@ -7583,8 +7583,8 @@ Global Symbols
 
 <P><STRONG><a name="[2eb]"></a>T1 touchgfx::abs&lang;short&rang;(T1)</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, scrollablecontainer.o(t._ZN8touchgfx3absIsEET_S1_))
 <BR><BR>[Called By]<UL><LI><a href="#[308]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Gestures::registerDragEvent(unsigned short, unsigned short, unsigned short, unsigned short)
-<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleDragEvent(const touchgfx::DragEvent&)
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
 </UL>
 
 <P><STRONG><a name="[286]"></a>void touchgfx::Line::setLineWidth&lang;int&rang;(T1)</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, channelcontrolpanel.o(t._ZN8touchgfx4Line12setLineWidthIiEEvT_))
