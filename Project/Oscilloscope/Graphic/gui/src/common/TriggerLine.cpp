@@ -40,7 +40,7 @@
 #include <touchgfx/Color.hpp>
 #include <touchgfx/EasingEquations.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
-
+#include <BitmapDatabase.hpp>
 
 /*****************************************************************************************
 *                                                                                        *
@@ -55,9 +55,11 @@
 *                                                                                        *
 *****************************************************************************************/
 
-TriggerLine::TriggerLine():markerDraggedCallback(this, &TriggerLine::handleMarkerDragEvent)
+TriggerLine::TriggerLine():markerDraggedCallback(this, &TriggerLine::handleMarkerDragEvent),
+                          markerSnappedCallback(this, &TriggerLine::handleMarkerSnappedEvent)
 {
 }
+
 
 /*****************************************************************************************
 *                                                                                        *
@@ -67,7 +69,7 @@ TriggerLine::TriggerLine():markerDraggedCallback(this, &TriggerLine::handleMarke
 *                                                                                        *
 * ARGUMENT       TYPE     I/O   DESCRIPTION                                              *
 * --------       ----     ---   -----------                                              *
-* x_position      int       I   Position of the marker on x Coordinate                   *
+* offset      int       I   Position of the marker on x Coordinate                   *
 * marker_length   int       I   The length of the marker                                 *
 * graph_height    int       I   The limit of the y Coordinate, to keep the graph in the  *
 *                                  screen                                                *
@@ -77,7 +79,10 @@ TriggerLine::TriggerLine():markerDraggedCallback(this, &TriggerLine::handleMarke
 *                                                                                        *
 *****************************************************************************************/
 
-void TriggerLine::setup(int x_position, int marker_length, int graph_height, uint16_t marker_color)
+
+#define X_OFFSET 306
+
+void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color)
 {
 	/* LOCAL VARIABLES:
 	*
@@ -87,7 +92,7 @@ void TriggerLine::setup(int x_position, int marker_length, int graph_height, uin
 	* y_marker      int       Copy the value of y_position
 	*/
 	height_limit = graph_height;
-	y_marker = x_position;
+	y_marker = offset;
 	length = marker_length;
 	trigger_position = y_marker;
 	/*
@@ -95,16 +100,29 @@ void TriggerLine::setup(int x_position, int marker_length, int graph_height, uin
 	* Enable touchable
 	* Add to the screen
 	*/
-	marker_painter.setColor(marker_color);
-	marker.setLineWidth(2);
-	marker.setPosition(-300, y_marker, marker_length + 500, 50 );
-	marker.setStart(0, 5);
-	marker.setEnd(marker_length + 500, 5);
-	marker.setPainter(marker_painter);
-	marker.setDragAction(markerDraggedCallback);
-	marker.setTouchable(true);
-	add(marker);
+	line_painter.setColor(marker_color);
+	line.setLineWidth(1);
+	line.setPosition(-X_OFFSET, y_marker, marker_length +  2 * X_OFFSET, 10 );
+	line.setStart(0, 5);
+	line.setEnd(marker_length + 2 * X_OFFSET, 5);
+	line.setPainter(line_painter);
+	line.setDragAction(markerDraggedCallback);
+	line.setSnappedAction(markerSnappedCallback);
+	line.setTouchable(true);
+	channel_idx.setAlpha(64);
+	add(line);
+
+	if(channel == 0)
+	    channel_idx.setBitmap(Bitmap(BITMAP_CHANNEL1_ID));
+
+	if (channel== 1)
+		channel_idx.setBitmap(Bitmap(BITMAP_CHANNEL2_ID));
+
+	channel_idx.setXY(286, y_marker);
+	channel_idx.setAlpha(250);
+	add(channel_idx);
 }
+
 
 /*****************************************************************************************
 *                                                                                        *
@@ -135,6 +153,24 @@ TriggerLine::~TriggerLine()
 * RETURNS:  void                                                                         *
 *                                                                                        *
 *****************************************************************************************/
+void TriggerLine::handleMarkerSnappedEvent(void)
+{
+	channel_idx.setXY(286, y_marker);
+	channel_idx.invalidate();
+}
+/*****************************************************************************************
+*                                                                                        *
+* FUNCTION NAME: handleMarkerDragEvent                                                   *
+*                                                                                        *
+* ARGUMENTS:                                                                             *
+*                                                                                        *
+* ARGUMENT TYPE       I/O DESCRIPTION                                                    *
+* -------- ----       --- -----------                                                    *
+* evt      DragEvent    I Pointer to the DragEvent class                                 *
+*                                                                                        *
+* RETURNS:  void                                                                         *
+*                                                                                        *
+*****************************************************************************************/
 void TriggerLine::handleMarkerDragEvent(const DragEvent& evt)
 {
 	/*
@@ -142,6 +178,8 @@ void TriggerLine::handleMarkerDragEvent(const DragEvent& evt)
 	 *  If yes, keep it at the boundary
 	 *  If no, move to the new position
 	 */
+
+	channel_idx.setY(line.getY() + evt.getDeltaY());
 
 	if (evt.getDeltaY() > (height_limit - 10))
 		y_marker = height_limit - 10;
@@ -154,9 +192,11 @@ void TriggerLine::handleMarkerDragEvent(const DragEvent& evt)
 		y_marker = y_marker + evt.getDeltaY();
 
 	}
-	marker.setSnapPosition(-300, y_marker);
 	trigger_position = y_marker;
-	marker.invalidate();
+	
+	line.setSnapPosition(-X_OFFSET, y_marker);
+
+	invalidate();
 }
 
 /*****************************************************************************************
@@ -174,9 +214,11 @@ void TriggerLine::handleMarkerDragEvent(const DragEvent& evt)
 *****************************************************************************************/
 void TriggerLine::EnableLine(bool enable)
 {
-	marker.setVisible(enable);
-	marker.invalidate();
-}
+	line.setVisible(enable);
+	channel_idx.setVisible(enable);
+	invalidate();
+}	
+
 
 int TriggerLine::TriggerPosition(void)
 {

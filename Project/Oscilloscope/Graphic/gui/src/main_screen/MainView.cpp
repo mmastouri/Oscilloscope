@@ -233,13 +233,13 @@ void MainView::setupScreen()
 	*/
 
 	marker1.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
-	marker1.setup(marker1.getX(), marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(112, 242, 68));
+	marker1.setup(marker1.getX(), marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(60, 232, 23));
 
 	add(marker1);
 
 	marker2.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
 
-	marker2.setup( oziBackground.getWidth() - 50, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(255, 23, 133));
+	marker2.setup( oziBackground.getWidth() - 50, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(60, 232, 23));
 
 	add(marker2);
 
@@ -251,24 +251,25 @@ void MainView::setupScreen()
 		                  oziBackground.getWidth(),
 		                  oziBackground.getHeight());
 
-	triggLine1.setup(chan_2_graph.getY() + 120,
-	              	marker2.getHeight(),
-		            marker2.getWidth(),
-		            Color::getColorFrom24BitRGB(255, 247, 0));
+	triggLine1.setup(0, chan_2_graph.getY() + 120,
+		                  oziBackground.getWidth(),
+		                  oziBackground.getHeight(),
+
+		                 Color::getColorFrom24BitRGB(120, 120, 120));
 
 	add(triggLine1);
 
 	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltOffset(CHANNEL_2) - triggLine1.TriggerPosition());
 
 	triggLine2.setPosition( oziBackground.getX(),
-							chan_1_graph.getY(),
-							oziBackground.getWidth(),
-							oziBackground.getHeight());
+		                    oziBackground.getY(),
+		                    oziBackground.getWidth(),
+		                    oziBackground.getHeight());
 
-	triggLine2.setup(	chan_1_graph.getY() + 80,
-						marker2.getHeight(),
-						marker2.getWidth(),
-						Color::getColorFrom24BitRGB(255, 32, 0));
+	triggLine2.setup(1,  chan_1_graph.getY() + 80,
+		                 oziBackground.getWidth(),
+		                 oziBackground.getHeight(),
+					     Color::getColorFrom24BitRGB(120, 120, 120));
 
 	
 	add(triggLine2);
@@ -582,14 +583,16 @@ void MainView::handleTickEvent()
 		Unicode::snprintfFloat(trig2_buff, 5, "%.2f", temp_value);
 		trig2_value_wildcard.invalidate();
 
-		chan_1_graph.setY(panelChn[0].GetYOffset());
-		presenter->p_SetYOffset(CHANNEL_1, panelChn[0].GetYOffset());
-		presenter->p_SetXOffset(CHANNEL_1, panelChn[0].GetXOffset());
-		chan_1_graph.invalidate();
+
 
 		triggLine2.setY(2 * chan_1_graph.getY());
 		triggLine2.SetVoltOffset(presenter->p_GetVoltOffset(CHANNEL_1));
 		triggLine2.invalidate();
+
+		chan_1_graph.setY(panelChn[0].GetYOffset());
+		presenter->p_SetYOffset(CHANNEL_1, panelChn[0].GetYOffset());
+		presenter->p_SetXOffset(CHANNEL_1, panelChn[0].GetXOffset());
+		chan_1_graph.invalidate();
 
 		presenter->p_SetTimeScale(CHANNEL_1, panelChn[0].GetTimeBaseIndex());
 		presenter->p_SetVoltageScale(CHANNEL_1, panelChn[0].GetVoltBaseIndex());
@@ -623,15 +626,15 @@ void MainView::handleTickEvent()
 		Unicode::snprintfFloat(trig1_buff, 5, "%.2f", temp_value);
 		trig1_value_wildcard.invalidate();
 
-		chan_2_graph.setY(panelChn[1].GetYOffset());
-		presenter->p_SetYOffset(CHANNEL_2, panelChn[1].GetYOffset());
-		presenter->p_SetXOffset(CHANNEL_2, panelChn[1].GetXOffset());
-		chan_2_graph.invalidate();
-		
 
 		triggLine1.setY( 2 * panelChn[1].GetYOffset());
 		triggLine1.SetVoltOffset(presenter->p_GetVoltOffset(CHANNEL_2));
 		triggLine1.invalidate();
+
+		chan_2_graph.setY(panelChn[1].GetYOffset());
+		presenter->p_SetYOffset(CHANNEL_2, panelChn[1].GetYOffset());
+		presenter->p_SetXOffset(CHANNEL_2, panelChn[1].GetXOffset());
+		chan_2_graph.invalidate();
 
 		presenter->p_SetTimeScale(CHANNEL_2, panelChn[1].GetTimeBaseIndex());
 		presenter->p_SetVoltageScale(CHANNEL_2, panelChn[1].GetVoltBaseIndex());

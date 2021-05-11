@@ -54,6 +54,8 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565.hpp>
 #include <touchgfx/mixins/Snapper.hpp>
+#include <touchgfx/widgets/Image.hpp>
+#include <gui\common\main_header.h>
 
 using namespace touchgfx;
 
@@ -65,8 +67,9 @@ public:
 	virtual ~TriggerLine();
 
 
-	void setup(int x_position, int marker_length, int graph_height, uint16_t marker_color);
+	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
 	void handleMarkerDragEvent(const DragEvent&);
+	void handleMarkerSnappedEvent(void);
 	void EnableLine(bool enable);
 	int TriggerPosition(void);
 	void SetYOffset(int y);
@@ -79,9 +82,14 @@ private:
 	int height_limit;
 	int length;
 	int volt_offset;
-	Snapper<Line> marker;
-	PainterRGB565 marker_painter;
+	int associated_channel;
+
+
+	Image channel_idx;
+	Snapper<Line> line;
+	PainterRGB565 line_painter;
 	Callback< TriggerLine, const DragEvent& > markerDraggedCallback;
+	Callback< TriggerLine > markerSnappedCallback;
 	
 	
 };

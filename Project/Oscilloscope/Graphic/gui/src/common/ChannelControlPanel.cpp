@@ -417,10 +417,9 @@ void ChannelControlPanel::setup(int width, int height, uint16_t buttonOn, uint16
 
 
 	add(chnControlPanel);
-
-
-
-
+#ifndef SIMULATOR
+	GetDataFromModel(associatedChannel, selectedHorizontalTextIndex);
+#endif
 }
 
 void ChannelControlPanel::SetTriggerButtonOn(void)
@@ -557,7 +556,7 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 			y_offset = 0;
 		}
 	}
-	else if (&source == &move_right_button)
+	else if (&source == &move_left_button)
 	{
 		x_offset++;
 		if (x_offset > 300)
@@ -565,7 +564,7 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 			x_offset = 300;
 		}
 	}
-	else if (&source == &move_left_button)
+	else if (&source == &move_right_button)
 	{
 		x_offset--;
 		if (x_offset < -99)

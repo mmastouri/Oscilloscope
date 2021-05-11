@@ -94,7 +94,7 @@ void Marker::setup(int x_position, int marker_height, int graph_width, uint16_t 
 	* Add to the screen
 	*/
 	marker_painter.setColor(marker_color);
-	marker.setLineWidth(2);
+	marker.setLineWidth(1);
 	marker.setPosition(x_marker, -300, 50, marker_height + 500);
 	marker.setStart(5, 0);
 	marker.setEnd(5, marker_height + 500);

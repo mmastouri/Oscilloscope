@@ -19,20 +19,23 @@ const uint16_t BITMAP_BUTTONDOWNON_ID = 9; // Size: 30x30 pixels
 const uint16_t BITMAP_BUTTONUPOFF_ID = 10; // Size: 30x30 pixels
 const uint16_t BITMAP_BUTTONUPON_ID = 11; // Size: 30x30 pixels
 const uint16_t BITMAP_BUTTON_BACKGROUND_ID = 12; // Size: 60x100 pixels
-const uint16_t BITMAP_CHANNELINFO_ID = 13; // Size: 92x30 pixels
-const uint16_t BITMAP_CHANNELINFO_CH2_ID = 14; // Size: 92x30 pixels
-const uint16_t BITMAP_CONTROLPANEL_ID = 15; // Size: 165x231 pixels
-const uint16_t BITMAP_COUNTERBOX_ID = 16; // Size: 55x35 pixels
-const uint16_t BITMAP_DIRECTION_BACKGROUND_ID = 17; // Size: 120x120 pixels
-const uint16_t BITMAP_LEFTBUTTONPRESS_ID = 18; // Size: 23x30 pixels
-const uint16_t BITMAP_LEFTBUTTONUNPRESS_ID = 19; // Size: 23x30 pixels
-const uint16_t BITMAP_OZIBACKGROUND_ID = 20; // Size: 306x230 pixels
-const uint16_t BITMAP_RIGHTBUTTONPRESS_ID = 21; // Size: 23x30 pixels
-const uint16_t BITMAP_RIGHTBUTTONUNPRESS_ID = 22; // Size: 23x30 pixels
-const uint16_t BITMAP_SIDESLIDEBUTTON_ID = 23; // Size: 15x35 pixels
-const uint16_t BITMAP_SIDESLIDEBUTTON_PRESS_ID = 24; // Size: 15x35 pixels
-const uint16_t BITMAP_SLIDEMENU_ID = 25; // Size: 465x35 pixels
-const uint16_t BITMAP_TEXT_BACKGROUND_ID = 26; // Size: 50x22 pixels
+const uint16_t BITMAP_CHANNEL1_ID = 13; // Size: 20x10 pixels
+const uint16_t BITMAP_CHANNEL1LINE_ID = 14; // Size: 306x10 pixels
+const uint16_t BITMAP_CHANNEL2_ID = 15; // Size: 20x10 pixels
+const uint16_t BITMAP_CHANNELINFO_ID = 16; // Size: 92x30 pixels
+const uint16_t BITMAP_CHANNELINFO_CH2_ID = 17; // Size: 92x30 pixels
+const uint16_t BITMAP_CONTROLPANEL_ID = 18; // Size: 165x231 pixels
+const uint16_t BITMAP_COUNTERBOX_ID = 19; // Size: 55x35 pixels
+const uint16_t BITMAP_DIRECTION_BACKGROUND_ID = 20; // Size: 120x120 pixels
+const uint16_t BITMAP_LEFTBUTTONPRESS_ID = 21; // Size: 23x30 pixels
+const uint16_t BITMAP_LEFTBUTTONUNPRESS_ID = 22; // Size: 23x30 pixels
+const uint16_t BITMAP_OZIBACKGROUND_ID = 23; // Size: 306x230 pixels
+const uint16_t BITMAP_RIGHTBUTTONPRESS_ID = 24; // Size: 23x30 pixels
+const uint16_t BITMAP_RIGHTBUTTONUNPRESS_ID = 25; // Size: 23x30 pixels
+const uint16_t BITMAP_SIDESLIDEBUTTON_ID = 26; // Size: 15x35 pixels
+const uint16_t BITMAP_SIDESLIDEBUTTON_PRESS_ID = 27; // Size: 15x35 pixels
+const uint16_t BITMAP_SLIDEMENU_ID = 28; // Size: 465x35 pixels
+const uint16_t BITMAP_TEXT_BACKGROUND_ID = 29; // Size: 50x22 pixels
 
 namespace BitmapDatabase
 {

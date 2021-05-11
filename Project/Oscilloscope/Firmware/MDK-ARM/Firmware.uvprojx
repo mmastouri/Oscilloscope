@@ -668,6 +668,21 @@
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\EdgeUp.cpp</FilePath>
             </File>
+            <File>
+              <FileName>channel1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\channel1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>channel1line.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\channel1line.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>channel2.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\channel2.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
