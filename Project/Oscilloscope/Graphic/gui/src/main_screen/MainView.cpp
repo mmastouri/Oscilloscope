@@ -202,7 +202,7 @@ void MainView::setupScreen()
 	*/
 
 	chan_1_graph.setPosition(0, 
-		                     presenter->p_GetYOffset(CHANNEL_1),
+		                     0 + presenter->p_GetYOffset(CHANNEL_1),
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
 
@@ -210,7 +210,7 @@ void MainView::setupScreen()
 	chan_1_graph.SetGraphData(presenter->p_GetTriggerData(CHANNEL_1));
 
 	chan_2_graph.setPosition(0, 
-		                     presenter->p_GetYOffset(CHANNEL_2),
+		                     115 + presenter->p_GetYOffset(CHANNEL_2),
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
 

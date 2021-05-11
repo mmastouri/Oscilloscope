@@ -98,7 +98,7 @@ void Graph::calculateOneSegment()
 	{
 		if (!direction)
 		{
-			curveSegment.y = valueNext + 1;
+			curveSegment.y = valueNext;
 		}
 
 
@@ -125,22 +125,25 @@ void Graph::drawCurve(uint16_t* frameBuffer, const Rect& invalidatedArea) const
 {
 	// invalidatedArea is relative to enclosing container
 	Rect absoluteRect = getRect();
-	translateRectToAbsolute(absoluteRect);
+
 	uint16_t index = 0;
+	int y ;
+	uint8_t* alphas;
 
 	for (int x = invalidatedArea.x + 1; x < invalidatedArea.right() - 1 ; x++)
 	{
 		CurveSegment curveSegment = curveSegments[GetCurrentIndex(index++)];
 
-		int y = curveSegment.y;
-		uint8_t* alphas = &curveSegment.alphas[0];
+		y = absoluteRect.height/2  + absoluteRect.y - curveSegment.y;
+
+		alphas = &curveSegment.alphas[0];
 
 		// Graph is drawn with absolute coordinates
-		uint32_t offset = (absoluteRect.x + x) + HAL::DISPLAY_WIDTH * (absoluteRect.y + y);
+		uint32_t offset = (absoluteRect.x + x) + HAL::DISPLAY_WIDTH *  y;
 
 		while (*alphas)
 		{
-			if (y >= invalidatedArea.y && y < invalidatedArea.bottom())
+			if ( y > 0)
 			{
 				if (*alphas == 255)
 				{
@@ -152,8 +155,8 @@ void Graph::drawCurve(uint16_t* frameBuffer, const Rect& invalidatedArea) const
 				}
 			}
 			alphas++;
-			y++;
-			offset += HAL::DISPLAY_WIDTH;
+			y--;
+			offset -= HAL::DISPLAY_WIDTH;
 		}
 	}
 }
@@ -180,8 +183,16 @@ uint16_t Graph::GetCurrentIndex(int16_t offset) const
 	return (offset + counter) % graphWidth;
 }
 
+
+void Graph::setY(int16_t y)
+{
+
+	Widget::setY(y + y_offset);
+}
+
 void Graph::setPosition(int16_t x, int16_t y, int16_t width, int16_t height)
 {
+	y_offset = y;
 	Widget::setPosition(x, y, width, height);
 	for (int i = 0; i < graphPointsInGraph; i++)
 	{

@@ -64,6 +64,7 @@ public:
 	virtual void draw(const Rect& invalidatedArea) const;
 	virtual void handleTickEvent();
 	virtual void setPosition(int16_t x, int16_t y, int16_t width, int16_t height);
+	virtual void setY(int16_t y);
 
 	virtual Rect getSolidRect() const;
 	
@@ -123,6 +124,8 @@ private:
 	int16_t values[graphPointsInGraph];
 
 	int * p_gragh_data;
+
+	int16_t y_offset;
 };
 
 #endif
