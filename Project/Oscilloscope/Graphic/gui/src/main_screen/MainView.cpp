@@ -413,6 +413,7 @@ void MainView::buttonClicked(const AbstractButton &source)
 		control_menu.resetExpandedStateTimer();
 		if (chn1_enable.getState() == true)
 		{
+			remove(triggLine2);
 			add(triggLine2);
 			graph_container.add(chan_1_graph);
 		}
@@ -428,6 +429,7 @@ void MainView::buttonClicked(const AbstractButton &source)
 		control_menu.resetExpandedStateTimer();
 		if (chn2_enable.getState() == true)
 		{
+			remove(triggLine1);
 			add(triggLine1);
 			graph_container.add(chan_2_graph);
 		}
