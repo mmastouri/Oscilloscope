@@ -33,7 +33,7 @@ const uint16_t BITMAP_RIGHTBUTTONPRESS_ID = 23; // Size: 23x30 pixels
 const uint16_t BITMAP_RIGHTBUTTONUNPRESS_ID = 24; // Size: 23x30 pixels
 const uint16_t BITMAP_SIDESLIDEBUTTON_ID = 25; // Size: 15x35 pixels
 const uint16_t BITMAP_SIDESLIDEBUTTON_PRESS_ID = 26; // Size: 15x35 pixels
-const uint16_t BITMAP_SLIDEMENU_ID = 27; // Size: 465x35 pixels
+const uint16_t BITMAP_SLIDEMENU_ID = 27; // Size: 291x35 pixels
 const uint16_t BITMAP_TEXT_BACKGROUND_ID = 28; // Size: 50x22 pixels
 
 namespace BitmapDatabase

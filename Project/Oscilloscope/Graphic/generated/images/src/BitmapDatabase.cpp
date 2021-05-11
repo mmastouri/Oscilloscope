@@ -86,7 +86,7 @@ const touchgfx::Bitmap::BitmapData bitmap_database[] = {
     { _rightButtonUnpress, _rightButtonUnpress_alpha_channel, 23, 30, 3, 7, 11, 16, touchgfx::Bitmap::RGB565 },
     { _sideslidebutton, 0, 15, 35, 0, 0, 15, 35, touchgfx::Bitmap::RGB565 },
     { _sideslidebutton_press, 0, 15, 35, 0, 0, 15, 35, touchgfx::Bitmap::RGB565 },
-    { _slideMenu, 0, 465, 35, 0, 0, 465, 35, touchgfx::Bitmap::RGB565 },
+    { _slideMenu, 0, 291, 35, 0, 0, 291, 35, touchgfx::Bitmap::RGB565 },
     { _text_background, _text_background_alpha_channel, 50, 22, 4, 1, 42, 20, touchgfx::Bitmap::RGB565 }
 };
 

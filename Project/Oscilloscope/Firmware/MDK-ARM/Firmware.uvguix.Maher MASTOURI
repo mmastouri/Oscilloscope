@@ -3714,9 +3714,9 @@
       </Doc>
       <Doc>
         <Name>..\..\Graphic\gui\src\common\Graph.cpp</Name>
-        <ColumnNumber>1</ColumnNumber>
+        <ColumnNumber>0</ColumnNumber>
         <TopLine>164</TopLine>
-        <CurrentLine>184</CurrentLine>
+        <CurrentLine>177</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

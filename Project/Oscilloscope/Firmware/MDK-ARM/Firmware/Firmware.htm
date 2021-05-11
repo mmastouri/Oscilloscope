@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue May 11 21:23:51 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue May 11 21:36:18 2021
 <BR><P>
 <H3>Maximum Stack Usage =        652 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -3268,8 +3268,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mainview.o(.constdata__ZTV8MainView)
 </UL>
-<P><STRONG><a name="[a1]"></a>MainView::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 152 bytes, Stack size 16 bytes, mainview.o(i._ZN8MainView13buttonClickedERKN8touchgfx14AbstractButtonE))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MainView::buttonClicked(const touchgfx::AbstractButton&) &rArr; MainView::slideTexts(MainView::SlideDirection) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
+<P><STRONG><a name="[a1]"></a>MainView::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 168 bytes, Stack size 24 bytes, mainview.o(i._ZN8MainView13buttonClickedERKN8touchgfx14AbstractButtonE))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = MainView::buttonClicked(const touchgfx::AbstractButton&) &rArr; MainView::slideTexts(MainView::SlideDirection) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::remove(touchgfx::Drawable&)
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::add(touchgfx::Drawable&)
@@ -5428,10 +5428,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[e5]"></a>touchgfx::Drawable::moveRelative(short, short)</STRONG> (Thumb, 92 bytes, Stack size 24 bytes, drawable.o(i._ZN8touchgfx8Drawable12moveRelativeEss))
@@ -5458,10 +5458,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[33e]"></a>touchgfx::Drawable::getCachedAbsX()</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, screen.o(i._ZN8touchgfx8Drawable13getCachedAbsXEv))
@@ -5513,9 +5513,9 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
+<LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
-<LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[e4]"></a>touchgfx::Drawable::handleTickEvent()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, channelcontrolpanel.o(i._ZN8touchgfx8Drawable15handleTickEventEv))
@@ -5550,8 +5550,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[e2]"></a>touchgfx::Drawable::handleGestureEvent(const touchgfx::GestureEvent&)</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, channelcontrolpanel.o(i._ZN8touchgfx8Drawable18handleGestureEventERKNS_12GestureEventE))
@@ -5572,9 +5572,9 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
+<LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
-<LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[33c]"></a>touchgfx::Drawable::getCachedVisibleRect()</STRONG> (Thumb, 56 bytes, Stack size 24 bytes, screen.o(i._ZN8touchgfx8Drawable20getCachedVisibleRectEv))
@@ -5603,10 +5603,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[dd]"></a>touchgfx::Drawable::setY(short)</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, channelcontrolpanel.o(i._ZN8touchgfx8Drawable4setYEs))
@@ -5627,10 +5627,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[de]"></a>touchgfx::Drawable::setXY(short, short)</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, channelcontrolpanel.o(i._ZN8touchgfx8Drawable5setXYEss))
@@ -5660,10 +5660,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[e6]"></a>touchgfx::Drawable::moveTo(short, short)</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, channelcontrolpanel.o(i._ZN8touchgfx8Drawable6moveToEss))
@@ -5695,10 +5695,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[df]"></a>touchgfx::Drawable::setWidth(short)</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, channelcontrolpanel.o(i._ZN8touchgfx8Drawable8setWidthEs))
@@ -5719,10 +5719,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[e0]"></a>touchgfx::Drawable::setHeight(short)</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, channelcontrolpanel.o(i._ZN8touchgfx8Drawable9setHeightEs))
@@ -5743,10 +5743,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[252]"></a>touchgfx::Drawable::Drawable__sub_object()</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, customlistelement.o(i._ZN8touchgfx8DrawableC2Ev))
@@ -6666,10 +6666,10 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[d9]"></a>touchgfx::Drawable::getVisibleRect(touchgfx::Rect&) const</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, drawable.o(i._ZNK8touchgfx8Drawable14getVisibleRectERNS_4RectE))
@@ -6694,10 +6694,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[d6]"></a>touchgfx::Drawable::invalidateRect(touchgfx::Rect&) const</STRONG> (Thumb, 82 bytes, Stack size 32 bytes, drawable.o(i._ZNK8touchgfx8Drawable14invalidateRectERNS_4RectE))
@@ -6723,10 +6723,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[2e9]"></a>touchgfx::Drawable::getAbsoluteRect() const</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, drawable.o(i._ZNK8touchgfx8Drawable15getAbsoluteRectEv))
@@ -6761,10 +6761,10 @@ Global Symbols
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
+<LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[173]"></a>touchgfx::LCD16bpp::bitDepth() const</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, lcd16bpp.o(i._ZNK8touchgfx8LCD16bpp8bitDepthEv))

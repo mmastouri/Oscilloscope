@@ -331,7 +331,7 @@ void MainView::setupScreen()
 	/*
      * Control Menu section	
    	 */
-	control_menu.setup(SlideMenu::EAST, Bitmap(BITMAP_SLIDEMENU_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_PRESS_ID), 0, 0, 462, 0);
+	control_menu.setup(SlideMenu::EAST, Bitmap(BITMAP_SLIDEMENU_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_PRESS_ID), 0, 0, 291, 0);
 	control_menu.setXY(3, 235);
 	control_menu.setVisiblePixelsWhenCollapsed(15);
 	add(control_menu);
