@@ -93,6 +93,11 @@ void TriggerLine::setup(int channel, int offset, int marker_length, int graph_he
 	*/
 	height_limit = graph_height;
 	y_marker = offset;
+
+
+	if (y_marker < 10)
+		y_marker = 10;
+
 	length = marker_length;
 	trigger_position = height_limit/2 - y_marker;
 	/*
@@ -155,8 +160,7 @@ TriggerLine::~TriggerLine()
 *****************************************************************************************/
 void TriggerLine::handleMarkerSnappedEvent(void)
 {
-	channel_idx.setY(y_marker - 5);
-	channel_idx.invalidate();
+	channel_idx.setY(y_marker + y_offset - 5);
 }
 /*****************************************************************************************
 *                                                                                        *
@@ -181,9 +185,7 @@ void TriggerLine::handleMarkerDragEvent(const DragEvent& evt)
 
 	channel_idx.setY(line.getY() + evt.getDeltaY()- 5);
 
-	if (evt.getDeltaY() > (height_limit - 10))
-		y_marker = height_limit - 10;
-	else if (y_marker + evt.getDeltaY() < 0)
+    if (y_marker + evt.getDeltaY() < 0)
 		y_marker = 0;
 	else if (y_marker + evt.getDeltaY() > height_limit / 2)
 		y_marker = height_limit / 2;
@@ -227,19 +229,22 @@ int TriggerLine::TriggerPosition(void)
 
 void TriggerLine::SetYOffset(int y)
 {
-	y_offset = y;
+	if (y_offset != y)
+	{
+		y_offset = y;
 
-	if ((y_marker + y_offset) < 10)
-		y_offset = -y_marker + 10;
+		if ((y_marker + y_offset) < 10)
+			y_offset = -y_marker + 10;
 
-	else if ((y_marker + y_offset) > height_limit)
-		y_offset = height_limit - y_marker;
+		else if ((y_marker + y_offset) > height_limit)
+			y_offset = height_limit - y_marker;
 
 
-	line.setY(y_marker + y_offset);
-	channel_idx.setY(y_marker + y_offset - 5);
+		line.setY(y_marker + y_offset);
+		channel_idx.setY(y_marker + y_offset - 5);
 
-	trigger_position = height_limit/2 - y_marker;
+		trigger_position = height_limit / 2 - y_marker;
 
-	invalidate();
+		invalidate();
+	}
 }
