@@ -10,4 +10,6 @@
 *.ilk
 *.pdb
 *.sqlite
+/Project/Oscilloscope/Firmware/MDK-ARM/Firmware 
+/Project/Oscilloscope/Graphic/build 
 

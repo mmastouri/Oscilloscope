@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed May 12 23:21:16 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed May 12 23:52:32 2021
 <BR><P>
 <H3>Maximum Stack Usage =        652 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2620,7 +2620,7 @@ Global Symbols
 <P><STRONG><a name="[a5]"></a>TriggerLine::handleMarkerSnappedEvent()</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, triggerline.o(i._ZN11TriggerLine24handleMarkerSnappedEventEv))
 <BR>[Address Reference Count : 1]<UL><LI> triggerline.o(.constdata)
 </UL>
-<P><STRONG><a name="[24d]"></a>TriggerLine::setup(int, int, int, int, unsigned short)</STRONG> (Thumb, 252 bytes, Stack size 32 bytes, triggerline.o(i._ZN11TriggerLine5setupEiiiit))
+<P><STRONG><a name="[24d]"></a>TriggerLine::setup(int, int, int, int, unsigned short)</STRONG> (Thumb, 260 bytes, Stack size 32 bytes, triggerline.o(i._ZN11TriggerLine5setupEiiiit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = TriggerLine::setup(int, int, int, int, unsigned short) &rArr; touchgfx::Line::setStart(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5) &rArr; touchgfx::Line::updateCachedShape() &rArr; touchgfx::CWRUtil::Q10::operator /(const touchgfx::CWRUtil::Q5&) const
 </UL>
 <BR>[Calls]<UL><LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Image::setBitmap(const touchgfx::Bitmap&)
