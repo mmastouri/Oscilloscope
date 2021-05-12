@@ -94,7 +94,7 @@ void TriggerLine::setup(int channel, int offset, int marker_length, int graph_he
 	height_limit = graph_height;
 	y_marker = offset;
 	length = marker_length;
-	trigger_position = y_marker;
+	trigger_position = height_limit/2 - y_marker;
 	/*
 	* Configure the width, height, color and position of the trigger line
 	* Enable touchable
@@ -185,14 +185,14 @@ void TriggerLine::handleMarkerDragEvent(const DragEvent& evt)
 		y_marker = height_limit - 10;
 	else if (y_marker + evt.getDeltaY() < 0)
 		y_marker = 0;
-	//else if (y_marker + evt.getDeltaY() > (volt_offset ))
-	//	y_marker = volt_offset -5;
+	else if (y_marker + evt.getDeltaY() > height_limit / 2)
+		y_marker = height_limit / 2;
 	else
 	{
 		y_marker = y_marker + evt.getDeltaY();
 	}
 
-	trigger_position = height_limit - (y_marker + y_offset);
+	trigger_position = height_limit / 2 - y_marker;
 	
 	line.setSnapPosition(-X_OFFSET, y_marker + y_offset);
 	
@@ -238,5 +238,8 @@ void TriggerLine::SetYOffset(int y)
 
 	line.setY(y_marker + y_offset);
 	channel_idx.setY(y_marker + y_offset - 5);
+
+	trigger_position = height_limit/2 - y_marker;
+
 	invalidate();
 }

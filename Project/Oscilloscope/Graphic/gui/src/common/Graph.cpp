@@ -98,7 +98,7 @@ void Graph::calculateOneSegment()
 	{
 		if (!direction)
 		{
-			curveSegment.y = valueNext;
+			curveSegment.y = valueNext + 1;
 		}
 
 
