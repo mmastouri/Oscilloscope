@@ -100,8 +100,8 @@ public:
 	void SetVoltageScale(int channel, int value);
 	int GetVoltageScale(int channel);
 
-	float GetTimeOffset(int channel);
-	int GetVoltageOffset(int channel);
+	float GetTimeScale2Pixel(int channel);
+	int GetVoltageScale2Pixel(int channel);
 
 protected:
 	/**

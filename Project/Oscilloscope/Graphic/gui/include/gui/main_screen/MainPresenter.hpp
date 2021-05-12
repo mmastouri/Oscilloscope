@@ -92,8 +92,8 @@ public:
 	int p_GetVoltageScale(int channel);
 	void p_SetVoltageScale(int channel, int value);
 
-	float p_GetTimeOffset(int channel);
-	int p_GetVoltOffset(int channel);
+	float p_GetTimeScale2Pixel(int channel);
+	int p_GetVoltScale2Pixel(int channel);
 
 	float p_VoltagePerPixel(int channel);
 

@@ -29,12 +29,12 @@ Project File Date:  05/11/2021
 *** Warning: You are compiling one or more files of source type C++ and have selected 'use MicroLIB'. MicroLIB does not support C++!
   
 Build target 'Firmware'
-compiling Graph.cpp...
-..\..\Graphic\gui\src\common\Graph.cpp(75): warning:  #550-D: variable "maxdistance"  was set but never used
-  	uint16_t direction, maxdistance;
-..\..\Graphic\gui\src\common\Graph.cpp(217): warning:  #1-D: last line of file ends without a newline
-  }
-..\..\Graphic\gui\src\common\Graph.cpp: 2 warnings, 0 errors
+compiling TriggerLine.cpp...
+..\..\Graphic\gui\include\gui/common/TriggerLine.hpp(70): warning:  #427-D: qualified name is not allowed in member declaration
+  	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
+..\..\Graphic\gui\include\gui/common/TriggerLine.hpp(97): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\src\common\TriggerLine.cpp: 2 warnings, 0 errors
 compiling MainPresenter.cpp...
 ..\..\Graphic\gui\include\gui\common\Marker.hpp(80): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -42,7 +42,7 @@ compiling MainPresenter.cpp...
   #endif
 ..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(70): warning:  #427-D: qualified name is not allowed in member declaration
   	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
-..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(96): warning:  #1-D: last line of file ends without a newline
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(97): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\..\Graphic\gui\src\main_screen\MainPresenter.cpp: 4 warnings, 0 errors
 compiling FrontendApplication.cpp...
@@ -52,7 +52,7 @@ compiling FrontendApplication.cpp...
   #endif
 ..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(70): warning:  #427-D: qualified name is not allowed in member declaration
   	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
-..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(96): warning:  #1-D: last line of file ends without a newline
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(97): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\..\Graphic\gui\src\common\FrontendApplication.cpp: 4 warnings, 0 errors
 compiling BoardConfiguration.cpp...
@@ -62,7 +62,7 @@ compiling BoardConfiguration.cpp...
   #endif
 ..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(70): warning:  #427-D: qualified name is not allowed in member declaration
   	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
-..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(96): warning:  #1-D: last line of file ends without a newline
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(97): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\BoardConfiguration.cpp: 4 warnings, 0 errors
 compiling MainView.cpp...
@@ -72,15 +72,15 @@ compiling MainView.cpp...
   #endif
 ..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(70): warning:  #427-D: qualified name is not allowed in member declaration
   	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
-..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(96): warning:  #1-D: last line of file ends without a newline
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(97): warning:  #1-D: last line of file ends without a newline
   #endif
-..\..\Graphic\gui\src\main_screen\MainView.cpp(681): warning:  #1-D: last line of file ends without a newline
+..\..\Graphic\gui\src\main_screen\MainView.cpp(680): warning:  #1-D: last line of file ends without a newline
   }
-..\..\Graphic\gui\src\main_screen\MainView.cpp(680): warning:  #177-D: variable "temp"  was declared but never referenced
+..\..\Graphic\gui\src\main_screen\MainView.cpp(679): warning:  #177-D: variable "temp"  was declared but never referenced
   	uint8_t temp = 0;
 ..\..\Graphic\gui\src\main_screen\MainView.cpp: 6 warnings, 0 errors
 linking...
-Program Size: Code=79040 RO-data=940608 RW-data=456 ZI-data=184816  
+Program Size: Code=79120 RO-data=940608 RW-data=456 ZI-data=184824  
 FromELF: creating hex file...
 "Firmware\Firmware.axf" - 0 Error(s), 20 Warning(s).
 
@@ -105,7 +105,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.4.0
-Build Time Elapsed:  00:00:08
+Build Time Elapsed:  00:00:10
 </pre>
 </body>
 </html>

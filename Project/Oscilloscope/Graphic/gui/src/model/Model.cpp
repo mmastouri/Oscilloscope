@@ -97,15 +97,13 @@ void Model::SetRawData(int channel, uint16_t *data)
 		case CHANNEL_1:
 			for( i = 0; i < 1000; i++)
 			{
-				chan1.raw_data[i] = (*(data + i)) * GetVoltageOffset(CHANNEL_1) / 4096;// -4 * GetYOffset(CHANNEL_1) - (Y1_OFFSET - GetVoltageOffset(CHANNEL_1));
-				//chan1.raw_data[i] =  *(data + i);
+				chan1.raw_data[i] = ((*(data + i)) * GetVoltageScale2Pixel(CHANNEL_1)) / 4096;
 			}
 			break;
 		case CHANNEL_2:
 			for( i = 0; i < 1000; i++)
 			{
-				chan2.raw_data[i] = (*(data + i)) * GetVoltageOffset(CHANNEL_2) / 4096;// -4 * GetYOffset(CHANNEL_2) - (Y2_OFFSET - GetVoltageOffset(CHANNEL_2));
-				//chan2.raw_data[i] =   *(data + i);
+				chan2.raw_data[i] = ((*(data + i)) * GetVoltageScale2Pixel(CHANNEL_2))/ 4096;
 			}
 			break;
 	}
@@ -138,7 +136,7 @@ void Model::ConvertToTriggerData(int channel)
 							chan1.trigger_found = true;
 							for (j = 0; j < NUMBER_OF_POINT; j++)
 							{
-								chan1.trigger_data[j] = GetVoltageOffset(CHANNEL_1) - (chan1.raw_data[trigg_position]);
+								chan1.trigger_data[j] = (chan1.raw_data[trigg_position]);
 								trigg_position++;
 							}
 							break;
@@ -148,7 +146,7 @@ void Model::ConvertToTriggerData(int channel)
 					{
 						for (i = 0 + chan1.x_offset; i < NUMBER_OF_POINT; i++)
 						{
-							chan1.trigger_data[i] = GetVoltageOffset(CHANNEL_1) - (chan1.raw_data[99 + i]);
+							chan1.trigger_data[i] = (chan1.raw_data[99 + i]);
 						}
 					}
 				}
@@ -165,7 +163,7 @@ void Model::ConvertToTriggerData(int channel)
 							chan1.trigger_found = true;
 							for (j = 0; j < NUMBER_OF_POINT; j++)
 							{
-								chan1.trigger_data[j] = GetVoltageOffset(CHANNEL_1) - (chan1.raw_data[trigg_position]);
+								chan1.trigger_data[j] = (chan1.raw_data[trigg_position]);
 								trigg_position++;
 							}
 							break;
@@ -175,7 +173,7 @@ void Model::ConvertToTriggerData(int channel)
 					{
 						for (i = 0 + chan1.x_offset; i < NUMBER_OF_POINT; i++)
 						{
-							chan1.trigger_data[i] = GetVoltageOffset(CHANNEL_1) - (chan1.raw_data[99 + i]);
+							chan1.trigger_data[i] = (chan1.raw_data[99 + i]);
 						}
 					}
 				}
@@ -185,7 +183,7 @@ void Model::ConvertToTriggerData(int channel)
 			{
 				for (i = 0 + chan1.x_offset; i < NUMBER_OF_POINT; i++)
 				{
-					chan1.trigger_data[i] = GetVoltageOffset(CHANNEL_1) - (chan1.raw_data[99 + i]);
+					chan1.trigger_data[i] = (chan1.raw_data[99 + i]);
 				}
 			}
 			
@@ -209,7 +207,7 @@ void Model::ConvertToTriggerData(int channel)
 							trigg_position = i + 1 + chan2.x_offset;
 							for (j = 0; j < NUMBER_OF_POINT; j++)
 							{
-								chan2.trigger_data[j] = GetVoltageOffset(CHANNEL_2) - (chan2.raw_data[trigg_position]);
+								chan2.trigger_data[j] =  (chan2.raw_data[trigg_position]);
 								trigg_position++;
 							}
 							break;
@@ -219,7 +217,7 @@ void Model::ConvertToTriggerData(int channel)
 					{
 						for (i = 0 + chan2.x_offset; i < NUMBER_OF_POINT; i++)
 						{
-							chan2.trigger_data[i] = GetVoltageOffset(CHANNEL_2) - (chan2.raw_data[99 + i]);
+							chan2.trigger_data[i] =  (chan2.raw_data[99 + i]);
 						}
 					}
 				}
@@ -236,7 +234,7 @@ void Model::ConvertToTriggerData(int channel)
 							trigg_position = i + 1 + chan2.x_offset;
 							for (j = 0; j < NUMBER_OF_POINT; j++)
 							{
-								chan2.trigger_data[j] = GetVoltageOffset(CHANNEL_2) - (chan2.raw_data[trigg_position]);
+								chan2.trigger_data[j] =  (chan2.raw_data[trigg_position]);
 								trigg_position++;
 							}
 							break;
@@ -246,7 +244,7 @@ void Model::ConvertToTriggerData(int channel)
 					{
 						for (i = 0 + chan2.x_offset; i < NUMBER_OF_POINT; i++)
 						{
-							chan2.trigger_data[i] = GetVoltageOffset(CHANNEL_2) - (chan2.raw_data[99 + i]);
+							chan2.trigger_data[i] =  (chan2.raw_data[99 + i]);
 						}
 					}
 				}
@@ -255,7 +253,7 @@ void Model::ConvertToTriggerData(int channel)
 			{
 				for (i = 0 + chan2.x_offset; i < NUMBER_OF_POINT; i++)
 				{
-					chan2.trigger_data[i] = GetVoltageOffset(CHANNEL_2) - (chan2.raw_data[99 + i]);
+					chan2.trigger_data[i] =  (chan2.raw_data[99 + i]);
 				}
 			}
 			
@@ -433,7 +431,7 @@ int Model::GetVoltageScale(int channel)
 	return temp_value;
 }
 
-float Model::GetTimeOffset(int channel)
+float Model::GetTimeScale2Pixel(int channel)
 {
 	float temp_value;
 	if (channel == CHANNEL_1)
@@ -555,7 +553,7 @@ float Model::GetTimeOffset(int channel)
 	return temp_value;
 }
 
-int Model::GetVoltageOffset(int channel)
+int Model::GetVoltageScale2Pixel(int channel)
 {
 	int temp_value = 0;
 

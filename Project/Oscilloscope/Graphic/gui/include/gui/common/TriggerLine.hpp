@@ -73,12 +73,12 @@ public:
 	void EnableLine(bool enable);
 	int TriggerPosition(void);
 	void SetYOffset(int y);
-	void SetVoltOffset(int value);
 
 private:
 
 	int trigger_position; 
 	int y_marker;
+	int y_offset;
 	int height_limit;
 	int length;
 	int volt_offset;

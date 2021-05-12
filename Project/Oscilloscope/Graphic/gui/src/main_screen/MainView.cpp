@@ -201,16 +201,16 @@ void MainView::setupScreen()
 	* Graph section: setup the graph
 	*/
 
-	chan_1_graph.setPosition(0, 
-		                     0 + presenter->p_GetYOffset(CHANNEL_1),
+	chan_1_graph.setPosition(3, 
+		                     presenter->p_GetYOffset(CHANNEL_1),
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
 
 	chan_1_graph.SetGraphColor(Color::getColorFrom24BitRGB(255, 128, 0));
 	chan_1_graph.SetGraphData(presenter->p_GetTriggerData(CHANNEL_1));
 
-	chan_2_graph.setPosition(0, 
-		                     115 + presenter->p_GetYOffset(CHANNEL_2),
+	chan_2_graph.setPosition(3, 
+		                     presenter->p_GetYOffset(CHANNEL_2),
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
 
@@ -246,29 +246,28 @@ void MainView::setupScreen()
 	/*
 	* Trigger Line: Setup the Trigger Line
 	*/
-	triggLine1.setPosition(oziBackground.getX(),
-		                  oziBackground.getY(),
-		                  oziBackground.getWidth(),
-		                  oziBackground.getHeight());
+	triggLine1.setPosition(0,
+		                   -5,
+		                   chan_2_graph.getWidth(),
+		                   chan_2_graph.getHeight() + 10);
 
-	triggLine1.setup(0, chan_2_graph.getY() + 120,
-		                  oziBackground.getWidth(),
-		                  oziBackground.getHeight(),
-
+	triggLine1.setup(0, chan_2_graph.getY(),
+		                 chan_2_graph.getWidth(),
+		                 chan_2_graph.getHeight(),
 		                 Color::getColorFrom24BitRGB(102, 178, 255));
 
 	add(triggLine1);
 
-	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltOffset(CHANNEL_2) - triggLine1.TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine1.TriggerPosition());
 
-	triggLine2.setPosition( oziBackground.getX(),
-		                    oziBackground.getY(),
-		                    oziBackground.getWidth(),
-		                    oziBackground.getHeight());
-
-	triggLine2.setup(1,  chan_1_graph.getY() + 80,
-		                 oziBackground.getWidth(),
-		                 oziBackground.getHeight(),
+	triggLine2.setPosition (0,
+		                    -5,
+		                    chan_1_graph.getWidth(),
+		                    chan_1_graph.getHeight() + 10);
+		                    
+	triggLine2.setup(1, chan_1_graph.getY(),
+		                 chan_1_graph.getWidth(),
+		                 chan_1_graph.getHeight(),
 					     Color::getColorFrom24BitRGB(255, 128, 0));
 
 	
@@ -577,7 +576,7 @@ void MainView::handleTickEvent()
 
 		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
-		temp_value = cursor_value * presenter->p_GetTimeOffset(CHANNEL_1);
+		temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_1);
 
 		if (presenter->p_GetTimeScale(CHANNEL_1) > 3)
 			temp_value = (temp_value / 1000);
@@ -605,7 +604,7 @@ void MainView::handleTickEvent()
 
 		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
-		temp_value = cursor_value * presenter->p_GetTimeOffset(CHANNEL_2);
+		temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_2);
 		if (presenter->p_GetTimeScale(CHANNEL_2) > 3)
 			temp_value = (temp_value / 1000);
 
@@ -624,27 +623,25 @@ void MainView::handleTickEvent()
 	if (presenter->p_GetVoltageScale(CHANNEL_1) > 5)
 		temp_value = temp_value / 1000;
 
-	presenter->p_SetTriggerValue(CHANNEL_1, presenter->p_GetVoltOffset(CHANNEL_1) - triggLine2.TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_1, triggLine2.TriggerPosition());
 	Unicode::snprintfFloat(trig2_buff, 5, "%.2f", temp_value);
 	trig2_value_wildcard.invalidate();
 
 
 
-	triggLine2.setY(2 * chan_1_graph.getY());
-	triggLine2.SetVoltOffset(presenter->p_GetVoltOffset(CHANNEL_1));
+	triggLine2.SetYOffset(chan_1_graph.getY());
 	triggLine2.invalidate();
 
 	temp_value = presenter->p_GetTriggerValue(CHANNEL_2) * presenter->p_VoltagePerPixel(CHANNEL_2);
 	if (presenter->p_GetVoltageScale(CHANNEL_2) > 5)
 		temp_value = temp_value / 1000;
 
-	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltOffset(CHANNEL_2) - triggLine1.TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_2, triggLine1.TriggerPosition());
 	Unicode::snprintfFloat(trig1_buff, 5, "%.2f", temp_value);
 	trig1_value_wildcard.invalidate();
 
 
-	triggLine1.setY(2 * panelChn[1].GetYOffset());
-	triggLine1.SetVoltOffset(presenter->p_GetVoltOffset(CHANNEL_2));
+	triggLine1.SetYOffset(chan_2_graph.getY());
 	triggLine1.invalidate();
 
 	tickCounter++;

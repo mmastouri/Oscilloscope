@@ -338,14 +338,14 @@ void MainPresenter::p_SetVoltageScale(int channel, int value)
 	model->SetVoltageScale(channel, value);
 }
 
-float MainPresenter::p_GetTimeOffset(int channel)
+float MainPresenter::p_GetTimeScale2Pixel(int channel)
 {
-	return model->GetTimeOffset(channel);
+	return model->GetTimeScale2Pixel(channel);
 }
 
-int MainPresenter::p_GetVoltOffset(int channel)
+int MainPresenter::p_GetVoltScale2Pixel(int channel)
 {
-	return  model->GetVoltageOffset(channel);
+	return  model->GetVoltageScale2Pixel(channel);
 }
 
 

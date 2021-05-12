@@ -100,7 +100,17 @@ void ChannelControlPanel::setup(int width, int height, uint16_t buttonOn, uint16
 {
 
 #define TMP_OFFSET 80
-	y_offset = 0;
+
+
+
+	if (associatedChannel == 0)
+	{
+		y_offset = 0;
+	}
+	else
+	{
+		y_offset = 115;
+	}
 	x_offset = 0;
 
 	/*
@@ -542,18 +552,18 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 	else if (&source == &move_down_button)
 	{
 		y_offset++;
-		if (y_offset > 19)
+		if (y_offset > 115)
 		{
-			y_offset = 19;
+			y_offset = 115;
 		}
 	}
 	
 	else if (&source == &move_up_button)
 	{
 		y_offset--;
-		if (y_offset < 0)
+		if (y_offset < -115)
 		{
-			y_offset = 0;
+			y_offset = -115;
 		}
 	}
 	else if (&source == &move_left_button)

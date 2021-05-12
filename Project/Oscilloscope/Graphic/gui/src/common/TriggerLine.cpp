@@ -102,9 +102,9 @@ void TriggerLine::setup(int channel, int offset, int marker_length, int graph_he
 	*/
 	line_painter.setColor(marker_color);
 	line.setLineWidth(1);
-	line.setPosition(-X_OFFSET, y_marker, marker_length +  2 * X_OFFSET, 10 );
-	line.setStart(0, 5);
-	line.setEnd(marker_length + 2 * X_OFFSET, 5);
+	line.setPosition(-X_OFFSET, y_marker, marker_length +  2 * X_OFFSET, 50 );
+	line.setStart(0, 0);
+	line.setEnd(marker_length + 2 * X_OFFSET, 0);
 	line.setPainter(line_painter);
 	line.setDragAction(markerDraggedCallback);
 	line.setSnappedAction(markerSnappedCallback);
@@ -118,7 +118,7 @@ void TriggerLine::setup(int channel, int offset, int marker_length, int graph_he
 	if (channel== 1)
 		channel_idx.setBitmap(Bitmap(BITMAP_CHANNEL2_ID));
 
-	channel_idx.setXY(286, y_marker);
+	channel_idx.setXY(286, y_marker - 5);
 	channel_idx.setAlpha(250);
 	add(channel_idx);
 }
@@ -155,7 +155,7 @@ TriggerLine::~TriggerLine()
 *****************************************************************************************/
 void TriggerLine::handleMarkerSnappedEvent(void)
 {
-	channel_idx.setXY(286, y_marker);
+	channel_idx.setY(y_marker - 5);
 	channel_idx.invalidate();
 }
 /*****************************************************************************************
@@ -179,23 +179,23 @@ void TriggerLine::handleMarkerDragEvent(const DragEvent& evt)
 	 *  If no, move to the new position
 	 */
 
-	channel_idx.setY(line.getY() + evt.getDeltaY());
+	channel_idx.setY(line.getY() + evt.getDeltaY()- 5);
 
 	if (evt.getDeltaY() > (height_limit - 10))
 		y_marker = height_limit - 10;
 	else if (y_marker + evt.getDeltaY() < 0)
 		y_marker = 0;
-	else if (y_marker + evt.getDeltaY() > (volt_offset ))
-		y_marker = (volt_offset);
+	//else if (y_marker + evt.getDeltaY() > (volt_offset ))
+	//	y_marker = volt_offset -5;
 	else
 	{
 		y_marker = y_marker + evt.getDeltaY();
-
 	}
-	trigger_position = y_marker;
-	
-	line.setSnapPosition(-X_OFFSET, y_marker);
 
+	trigger_position = height_limit - (y_marker + y_offset);
+	
+	line.setSnapPosition(-X_OFFSET, y_marker + y_offset);
+	
 	invalidate();
 }
 
@@ -227,9 +227,16 @@ int TriggerLine::TriggerPosition(void)
 
 void TriggerLine::SetYOffset(int y)
 {
-}
+	y_offset = y;
 
-void TriggerLine::SetVoltOffset(int value)
-{
-	volt_offset = value;
+	if ((y_marker + y_offset) < 10)
+		y_offset = -y_marker + 10;
+
+	else if ((y_marker + y_offset) > height_limit)
+		y_offset = height_limit - y_marker;
+
+
+	line.setY(y_marker + y_offset);
+	channel_idx.setY(y_marker + y_offset - 5);
+	invalidate();
 }
