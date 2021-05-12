@@ -55,4 +55,4 @@ These tools are used for developing the application
 
 ## Contact
 
-For any information or feedback, please use Issues or drop me an email: hainguyen.eeit@gmail.com
+For any information or feedback, please use Issues or drop me an email: maher.mastouri@gmail.com
