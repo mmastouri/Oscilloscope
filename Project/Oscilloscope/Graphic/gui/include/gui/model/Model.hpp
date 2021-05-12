@@ -108,8 +108,6 @@ protected:
 	 * Pointer to the currently active presenter.
 	 */
 	ModelListener* modelListener;
-
-	
 	
 private: 
 
