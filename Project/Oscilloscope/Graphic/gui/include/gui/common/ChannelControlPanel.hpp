@@ -167,8 +167,8 @@ public:
 	
 	void SetChannelPanelCallback(GenericCallback <const uint8_t > &callback);
 
-	void setup(int width, int height, uint16_t buttonOn, uint16_t buttonOff,
-	           uint16_t upArrowOn, uint16_t upArrowOff, uint16_t downArrowOn, uint16_t downArrowOff);
+	void setup(int y0, int width, int height, uint16_t buttonOn, uint16_t buttonOff,
+	           uint16_t upArrowOn, uint16_t upArrowOff, uint16_t downArrowOn, uint16_t downArrowOff, int xoffset, int yoffset);
 
 	void SetTriggerButtonOn(void);
 	void SetMarkerButtonOn(void);
@@ -268,6 +268,8 @@ protected:
 
 	int y_offset;
 	int x_offset;
+
+	int y_graph;
 
 	enum  SlideDirection
 	{

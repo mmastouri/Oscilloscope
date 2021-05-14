@@ -40,6 +40,8 @@
 
 #include <touchgfx/hal/Types.hpp>
 #include <gui\common\main_header.h>
+#include <gui/common/AppContext.h>
+
 class ModelListener;
 
 /**
@@ -103,6 +105,8 @@ public:
 	float GetTimeScale2Pixel(int channel);
 	int GetVoltageScale2Pixel(int channel);
 
+	
+
 protected:
 	/**
 	 * Pointer to the currently active presenter.
@@ -110,7 +114,7 @@ protected:
 	ModelListener* modelListener;
 	
 private: 
-
+    Context appContext;
 	struct GraphData
 	{
 		uint16_t raw_data[1000];

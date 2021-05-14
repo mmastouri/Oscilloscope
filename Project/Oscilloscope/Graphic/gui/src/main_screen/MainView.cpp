@@ -128,14 +128,16 @@ void MainView::setupScreen()
 								 BITMAP_RIGHTBUTTONPRESS_ID,
 								 BITMAP_RIGHTBUTTONUNPRESS_ID);
 
-	panelChn[0].setup(controlPanelBackground.getWidth(),
+	panelChn[0].setup(presenter->p_GetYOffset(CHANNEL_1),
+		
+		              controlPanelBackground.getWidth(),
 					  controlPanelBackground.getHeight(),
 					  BITMAP_CHNCONTROLBUTTONON_ID,
 					  BITMAP_CHNCONTROLBUTTONOFF_ID,
 					  BITMAP_BUTTONUPOFF_ID,
 					  BITMAP_BUTTONUPON_ID,
 					  BITMAP_BUTTONDOWNOFF_ID,
-					  BITMAP_BUTTONDOWNON_ID);
+					  BITMAP_BUTTONDOWNON_ID, presenter->p_GetXOffset(0), presenter->p_GetYOffset(0) );
 
 	panelChn[0].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
 	panelChn[0].associatedChannel = 0;
@@ -149,14 +151,16 @@ void MainView::setupScreen()
 		                         BITMAP_RIGHTBUTTONPRESS_ID,
 		                         BITMAP_RIGHTBUTTONUNPRESS_ID);
 
-	panelChn[1].setup(controlPanelBackground.getWidth(),
+	
+	panelChn[1].setup(presenter->p_GetYOffset(CHANNEL_2),
+		controlPanelBackground.getWidth(),
 		controlPanelBackground.getHeight(),
 		BITMAP_CHNCONTROLBUTTONON_ID,
 		BITMAP_CHNCONTROLBUTTONOFF_ID,
 		BITMAP_BUTTONUPOFF_ID,
 		BITMAP_BUTTONUPON_ID,
 		BITMAP_BUTTONDOWNOFF_ID,
-		BITMAP_BUTTONDOWNON_ID);
+		BITMAP_BUTTONDOWNON_ID, presenter->p_GetXOffset(1), presenter->p_GetYOffset(1));
 
 	panelChn[1].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
 
@@ -201,7 +205,7 @@ void MainView::setupScreen()
 	* Graph section: setup the graph
 	*/
 
-	chan_1_graph.setPosition(3, 
+	chan_1_graph.setPosition(3, 0,
 		                     presenter->p_GetYOffset(CHANNEL_1),
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
@@ -209,7 +213,7 @@ void MainView::setupScreen()
 	chan_1_graph.SetGraphColor(Color::getColorFrom24BitRGB(255, 128, 0));
 	chan_1_graph.SetGraphData(presenter->p_GetTriggerData(CHANNEL_1));
 
-	chan_2_graph.setPosition(3, 
+	chan_2_graph.setPosition(3, 0,
 		                     presenter->p_GetYOffset(CHANNEL_2),
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
@@ -246,32 +250,36 @@ void MainView::setupScreen()
 	/*
 	* Trigger Line: Setup the Trigger Line
 	*/
-	triggLine1.setPosition(0,
-		                   -5,
+	triggLineCh2.setPosition(0,
+		                   0,
 		                   chan_2_graph.getWidth(),
 		                   chan_2_graph.getHeight() + 10);
 
-	triggLine1.setup(0, chan_2_graph.getY(),
-		                 chan_2_graph.getWidth(),
-		                 chan_2_graph.getHeight(),
+	triggLineCh2.setup(   BITMAP_CHANNEL1_ID,
+		                 chan_2_graph.getY(),
+		                 presenter->p_GetTriggerValue(CHANNEL_2),
 		                 Color::getColorFrom24BitRGB(102, 178, 255));
 
-	add(triggLine1);
+	add(triggLineCh2);
 
-	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine1.TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLineCh2.TriggerPosition());
 
-	triggLine2.setPosition (0,
-		                    -5,
+	triggLineCh1.setPosition (0,
+		                    0,
 		                    chan_1_graph.getWidth(),
 		                    chan_1_graph.getHeight() + 10);
 		                    
-	triggLine2.setup(1, chan_1_graph.getY(),
-		                 chan_1_graph.getWidth(),
-		                 chan_1_graph.getHeight(),
+	triggLineCh1.setup(BITMAP_CHANNEL2_ID,
+		                 chan_1_graph.getY(),
+		                 presenter->p_GetTriggerValue(CHANNEL_1),
 					     Color::getColorFrom24BitRGB(255, 128, 0));
 
 	
-	add(triggLine2);
+
+
+	presenter->p_SetTriggerValue(CHANNEL_1, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLineCh1.TriggerPosition());
+
+	add(triggLineCh1);
 
 	/*
 	 *  Display Value section
@@ -412,13 +420,13 @@ void MainView::buttonClicked(const AbstractButton &source)
 		control_menu.resetExpandedStateTimer();
 		if (chn1_enable.getState() == true)
 		{
-			remove(triggLine2);
-			add(triggLine2);
+			remove(triggLineCh1);
+			add(triggLineCh1);
 			graph_container.add(chan_1_graph);
 		}
 		else
 		{
-			remove(triggLine2);
+			remove(triggLineCh1);
 			graph_container.remove(chan_1_graph);
 
 		}
@@ -428,13 +436,13 @@ void MainView::buttonClicked(const AbstractButton &source)
 		control_menu.resetExpandedStateTimer();
 		if (chn2_enable.getState() == true)
 		{
-			remove(triggLine1);
-			add(triggLine1);
+			remove(triggLineCh2);
+			add(triggLineCh2);
 			graph_container.add(chan_2_graph);
 		}
 		else
 		{
-			remove(triggLine1);
+			remove(triggLineCh2);
 			graph_container.remove(chan_2_graph);
 		}
 	}
@@ -555,25 +563,31 @@ void MainView::handleTickEvent()
 		presenter->p_SetTimeScale(ch_idx, panelChn[ch_idx].GetTimeBaseIndex());
 		presenter->p_SetVoltageScale(ch_idx, panelChn[ch_idx].GetVoltBaseIndex());
 		presenter->p_SetRawData(ch_idx);
-		presenter->p_SetYOffset(ch_idx, panelChn[ch_idx].GetYOffset());
+		presenter->p_SetYOffset(ch_idx, panelChn[ch_idx].GetYOffset()); // TBD NOT UPDATED CORRECTLY!!!!
 		presenter->p_SetXOffset(ch_idx, panelChn[ch_idx].GetXOffset());
+		presenter->p_SetTrigger(ch_idx, panelChn[ch_idx].isTriggerButtonClicked());
+		presenter->p_SetTriggerType(ch_idx, panelChn[ch_idx].isFallingButtonClicked());
+		chan_1_graph.invalidate();
 	}
 
-	
-	triggLine2.EnableLine(panelChn[0].isMarkerButtonClicked());
-	triggLine1.EnableLine(panelChn[1].isMarkerButtonClicked());
+	chan_2_graph.setY(presenter->p_GetYOffset(CHANNEL_2));
+	chan_2_graph.invalidate();
+
+	chan_1_graph.setY(presenter->p_GetYOffset(CHANNEL_1));
+	chan_1_graph.invalidate();
+
+	triggLineCh1.EnableLine(panelChn[0].isMarkerButtonClicked());
+	triggLineCh2.EnableLine(panelChn[1].isMarkerButtonClicked());
+
+	presenter->p_SetTriggerValue(CHANNEL_2, triggLineCh2.TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_1, triggLineCh1.TriggerPosition());
 
 	if (selectedChnIndex == 0)
 	{
 
-		//triggLine1.EnableLine(false);
+		//triggLineCh2.EnableLine(false);
 		marker1.EnableLine(panelChn[0].isMarkerAButtonClicked());
 		marker2.EnableLine(panelChn[0].isMarkerBButtonClicked());
-
-		presenter->p_SetTrigger(CHANNEL_1, panelChn[0].isTriggerButtonClicked());
-
-		presenter->p_SetTriggerType(CHANNEL_1, panelChn[0].isFallingButtonClicked());
-
 		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
 		temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_1);
@@ -585,23 +599,15 @@ void MainView::handleTickEvent()
 		cursor_value_wildcard.invalidate();
 
 
-		chan_1_graph.setY(panelChn[0].GetYOffset());
-		presenter->p_SetYOffset(CHANNEL_1, panelChn[0].GetYOffset());
-		presenter->p_SetXOffset(CHANNEL_1, panelChn[0].GetXOffset());
-		chan_1_graph.invalidate();
 	}
 	else
 	{
 		
 		
-		//triggLine2.EnableLine(false);
+		//triggLineCh1.EnableLine(false);
 
 		marker1.EnableLine(panelChn[1].isMarkerAButtonClicked());
 		marker2.EnableLine(panelChn[1].isMarkerBButtonClicked());
-		
-		presenter->p_SetTrigger(CHANNEL_2, panelChn[1].isTriggerButtonClicked());
-		presenter->p_SetTriggerType(CHANNEL_2, panelChn[1].isFallingButtonClicked());
-
 		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
 		temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_2);
@@ -610,11 +616,6 @@ void MainView::handleTickEvent()
 
 		Unicode::snprintfFloat(cursor_buff, 10, "%.2f", temp_value);
 		cursor_value_wildcard.invalidate();
-
-		chan_2_graph.setY(panelChn[1].GetYOffset());
-		presenter->p_SetYOffset(CHANNEL_2, panelChn[1].GetYOffset());
-		presenter->p_SetXOffset(CHANNEL_2, panelChn[1].GetXOffset());
-		chan_2_graph.invalidate();
 	}
 
 
@@ -623,26 +624,24 @@ void MainView::handleTickEvent()
 	if (presenter->p_GetVoltageScale(CHANNEL_1) > 5)
 		temp_value = temp_value / 1000;
 
-	presenter->p_SetTriggerValue(CHANNEL_1, triggLine2.TriggerPosition());
 	Unicode::snprintfFloat(trig2_buff, 5, "%.2f", temp_value);
 	trig2_value_wildcard.invalidate();
 
 
-
-	triggLine2.SetYOffset(chan_1_graph.getY());
-	triggLine2.invalidate();
+	triggLineCh1.setYoffset(presenter->p_GetYOffset(CHANNEL_1));
+	triggLineCh1.invalidate();
 
 	temp_value = presenter->p_GetTriggerValue(CHANNEL_2) * presenter->p_VoltagePerPixel(CHANNEL_2);
 	if (presenter->p_GetVoltageScale(CHANNEL_2) > 5)
 		temp_value = temp_value / 1000;
 
-	presenter->p_SetTriggerValue(CHANNEL_2, triggLine1.TriggerPosition());
+
+
 	Unicode::snprintfFloat(trig1_buff, 5, "%.2f", temp_value);
 	trig1_value_wildcard.invalidate();
 
-
-	triggLine1.SetYOffset(chan_2_graph.getY());
-	triggLine1.invalidate();
+	triggLineCh2.setYoffset( presenter->p_GetYOffset(CHANNEL_2));
+	triggLineCh2.invalidate();
 
 	tickCounter++;
 	if (tickCounter % 1 == 0)

@@ -15,6 +15,7 @@
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\hal\simulator\sdl2\HALSDL2.cpp" />
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\hal\simulator\sdl2\HALSDL2_icon.cpp" />
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\hal\simulator\sdl2\OSWrappers.cpp" />
+    <ClCompile Include="..\..\gui\src\common\AppContext.cpp" />
     <ClCompile Include="..\..\gui\src\common\ChannelControlPanel.cpp" />
     <ClCompile Include="..\..\gui\src\common\CustomListElement.cpp" />
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <ClInclude Include="$(TouchGFXReleasePath)\framework\include\platform\driver\touch\SDL2TouchController.hpp" />
     <ClInclude Include="$(TouchGFXReleasePath)\framework\include\platform\hal\simulator\sdl2\HALSDL2.hpp" />
+    <ClInclude Include="..\..\gui\include\gui\common\AppContext.h" />
     <ClInclude Include="..\..\gui\include\gui\common\ChannelControlPanel.hpp" />
     <ClInclude Include="..\..\gui\include\gui\common\CustomListElement.hpp" />
     <ClInclude Include="..\..\gui\include\gui\common\FrontendApplication.hpp" />

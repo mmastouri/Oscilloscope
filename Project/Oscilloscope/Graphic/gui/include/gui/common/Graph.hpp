@@ -63,9 +63,9 @@ public:
 
 	virtual void draw(const Rect& invalidatedArea) const;
 	virtual void handleTickEvent();
-	virtual void setPosition(int16_t x, int16_t y, int16_t width, int16_t height);
+	virtual void setPosition(int16_t x, int16_t y, int offset, int16_t width, int16_t height);
 	virtual void setY(int16_t y);
-
+	virtual void setOffset(int16_t y);
 	virtual Rect getSolidRect() const;
 	
 	void SetGraphColor(colortype color);

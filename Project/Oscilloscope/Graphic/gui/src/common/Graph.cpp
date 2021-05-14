@@ -134,7 +134,7 @@ void Graph::drawCurve(uint16_t* frameBuffer, const Rect& invalidatedArea) const
 	{
 		CurveSegment curveSegment = curveSegments[GetCurrentIndex(index++)];
 
-		y = absoluteRect.height/2  + absoluteRect.y - curveSegment.y;
+		y = absoluteRect.height/2  + y_offset + absoluteRect.y - curveSegment.y;
 
 		alphas = &curveSegment.alphas[0];
 
@@ -186,13 +186,19 @@ uint16_t Graph::GetCurrentIndex(int16_t offset) const
 
 void Graph::setY(int16_t y)
 {
-
-	Widget::setY(y + y_offset);
+	y_offset = y;
+	//Widget::setY(y);
 }
 
-void Graph::setPosition(int16_t x, int16_t y, int16_t width, int16_t height)
+
+void Graph::setOffset(int16_t y)
 {
 	y_offset = y;
+}
+
+void Graph::setPosition(int16_t x, int16_t y, int offset, int16_t width, int16_t height)
+{
+	y_offset = offset;
 	Widget::setPosition(x, y, width, height);
 	for (int i = 0; i < graphPointsInGraph; i++)
 	{

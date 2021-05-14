@@ -95,23 +95,13 @@ ChannelControlPanel::~ChannelControlPanel()
 * RETURNS:  void                                                                         *
 *                                                                                        *
 *****************************************************************************************/
-void ChannelControlPanel::setup(int width, int height, uint16_t buttonOn, uint16_t buttonOff,
-			uint16_t upArrowOn, uint16_t upArrowOff, uint16_t downArrowOn, uint16_t downArrowOff)
+void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn, uint16_t buttonOff,
+			uint16_t upArrowOn, uint16_t upArrowOff, uint16_t downArrowOn, uint16_t downArrowOff, int xoffset, int yoffset)
 {
 
-#define TMP_OFFSET 80
-
-
-
-	if (associatedChannel == 0)
-	{
-		y_offset = 0;
-	}
-	else
-	{
-		y_offset = 115;
-	}
-	x_offset = 0;
+	y_graph = y0;
+	y_offset = yoffset;
+	x_offset = xoffset;
 
 	/*
 	* Flag to nofify which button is pressed to call the according event handling function
@@ -254,7 +244,7 @@ void ChannelControlPanel::setup(int width, int height, uint16_t buttonOn, uint16
 
 	markerLabel.setTypedText(TypedText(T_MARKERTXTLABEL));
 	markerLabel.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	markerLabel.setXY((chnControlPanel.getWidth() - markerLabel.getWidth()) / 2, 345 + TMP_OFFSET);
+	markerLabel.setXY((chnControlPanel.getWidth() - markerLabel.getWidth()) / 2, 345 + 80);
 
 	/*
 	* Text label: setup the text label for each control section or button
@@ -282,11 +272,11 @@ void ChannelControlPanel::setup(int width, int height, uint16_t buttonOn, uint16
 
 	markerAButton.setTypedText(TypedText(T_MARKERA));
 	markerAButton.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	markerAButton.setXY(chnControlPanel.getWidth() / 3 - markerAButton.getWidth() / 2 - 10, 370 + TMP_OFFSET);
+	markerAButton.setXY(chnControlPanel.getWidth() / 3 - markerAButton.getWidth() / 2 - 10, 370 + 80);
 
 	markerBButton.setTypedText(TypedText(T_MARKERB));
 	markerBButton.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	markerBButton.setXY(2 * chnControlPanel.getWidth() / 3 - markerAButton.getWidth() / 2 + 10, 370 + TMP_OFFSET);
+	markerBButton.setXY(2 * chnControlPanel.getWidth() / 3 - markerAButton.getWidth() / 2 + 10, 370 + 80);
 
 	position_vertical_txt.setTypedText(TypedText(T_POSITION));
 	position_vertical_txt.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
@@ -326,11 +316,11 @@ void ChannelControlPanel::setup(int width, int height, uint16_t buttonOn, uint16
 	verticalDown.setAction(buttonClickedCallback);
 
 	aButton.setBitmaps(Bitmap(controlButtonOff), Bitmap(controlButtonOn));
-	aButton.setXY(chnControlPanel.getWidth() / 3 - aButton.getWidth() / 2 - 10, 390 + TMP_OFFSET);
+	aButton.setXY(chnControlPanel.getWidth() / 3 - aButton.getWidth() / 2 - 10, 390 + 80);
 	aButton.setAction(buttonClickedCallback);
 
 	bButton.setBitmaps(Bitmap(controlButtonOff), Bitmap(controlButtonOn));
-	bButton.setXY(2 * chnControlPanel.getWidth() / 3 - bButton.getWidth() / 2 + 10, 390 + TMP_OFFSET);
+	bButton.setXY(2 * chnControlPanel.getWidth() / 3 - bButton.getWidth() / 2 + 10, 390 + 80);
 	bButton.setAction(buttonClickedCallback);
 
 
@@ -358,7 +348,7 @@ void ChannelControlPanel::setup(int width, int height, uint16_t buttonOn, uint16
 	line3.setPainter(linePainter);
 
 	line4.setLineWidth(3);
-	line4.setPosition(0, 335 + TMP_OFFSET, width, 5);
+	line4.setPosition(0, 335 + 80, width, 5);
 	line4.setStart(15, 0);
 	line4.setEnd(width - 15, 0);
 	line4.setPainter(linePainter);	
@@ -551,19 +541,18 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 
 	else if (&source == &move_down_button)
 	{
-		y_offset++;
-		if (y_offset > 115)
+		if (y_offset < getHeight()/2)
 		{
-			y_offset = 115;
+			y_offset++;
 		}
 	}
 	
 	else if (&source == &move_up_button)
 	{
-		y_offset--;
-		if (y_offset < -115)
+
+		if (y_offset > - getHeight() / 2 + 5)
 		{
-			y_offset = -115;
+			y_offset--;
 		}
 	}
 	else if (&source == &move_left_button)

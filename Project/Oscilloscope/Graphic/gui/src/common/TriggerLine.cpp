@@ -82,48 +82,27 @@ TriggerLine::TriggerLine():markerDraggedCallback(this, &TriggerLine::handleMarke
 
 #define X_OFFSET 306
 
-void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color)
+void TriggerLine::setup(int bmchannel, int offset,  int trigger_level, uint16_t marker_color)
 {
-	/* LOCAL VARIABLES:
-	*
-	* Variable      Type      Description
-	* ------------- -------   -------------------------------------
-	* height_limit  int       Copy the value of graph_height
-	* y_marker      int       Copy the value of y_position
-	*/
-	height_limit = graph_height;
-	y_marker = offset;
-
-
-	if (y_marker < 10)
-		y_marker = 10;
-
-	length = marker_length;
-	trigger_position = height_limit/2 - y_marker;
-	/*
-	* Configure the width, height, color and position of the trigger line
-	* Enable touchable
-	* Add to the screen
-	*/
+	trigger_position = trigger_level;
+	marker = offset + 115; //getHeight() - trigger_position;
+	
+	y_offset = offset;
 	line_painter.setColor(marker_color);
 	line.setLineWidth(1);
-	line.setPosition(-X_OFFSET, y_marker, marker_length +  2 * X_OFFSET, 50 );
+	line.setPosition(-X_OFFSET, marker - 1, getWidth() +  2 * X_OFFSET, 50 );
 	line.setStart(0, 0);
-	line.setEnd(marker_length + 2 * X_OFFSET, 0);
+	line.setEnd(getWidth() + 2 * X_OFFSET, 0);
 	line.setPainter(line_painter);
 	line.setDragAction(markerDraggedCallback);
 	line.setSnappedAction(markerSnappedCallback);
 	line.setTouchable(true);
 	line.setAlpha(128);
+
 	add(line);
 
-	if(channel == 0)
-	    channel_idx.setBitmap(Bitmap(BITMAP_CHANNEL1_ID));
-
-	if (channel== 1)
-		channel_idx.setBitmap(Bitmap(BITMAP_CHANNEL2_ID));
-
-	channel_idx.setXY(286, y_marker - 5);
+    channel_idx.setBitmap(Bitmap(bmchannel));
+	channel_idx.setXY(286, marker - 5);
 	channel_idx.setAlpha(250);
 	add(channel_idx);
 }
@@ -160,7 +139,7 @@ TriggerLine::~TriggerLine()
 *****************************************************************************************/
 void TriggerLine::handleMarkerSnappedEvent(void)
 {
-	channel_idx.setY(y_marker + y_offset - 5);
+	//channel_idx.setY(y_marker - 5);
 }
 /*****************************************************************************************
 *                                                                                        *
@@ -177,27 +156,20 @@ void TriggerLine::handleMarkerSnappedEvent(void)
 *****************************************************************************************/
 void TriggerLine::handleMarkerDragEvent(const DragEvent& evt)
 {
-	/*
-	 *  Check if the Displacement of DragEvent is exceed the boundary or not
-	 *  If yes, keep it at the boundary
-	 *  If no, move to the new position
-	 */
+	channel_idx.setY(marker + evt.getDeltaY() - 5);
 
-	channel_idx.setY(line.getY() + evt.getDeltaY()- 5);
-
-    if (y_marker + evt.getDeltaY() < 0)
-		y_marker = 0;
-	else if (y_marker + evt.getDeltaY() > height_limit / 2)
-		y_marker = height_limit / 2;
+    if (marker  + getY() + evt.getDeltaY()  < 10) // OK
+		   marker =  - getY() + 10;
+	else if (marker + evt.getDeltaY() > 115 + y_offset) //fail
+		   marker = 115 + y_offset;
 	else
 	{
-		y_marker = y_marker + evt.getDeltaY();
+		   marker = marker + evt.getDeltaY();
 	}
+	trigger_position = 230 - marker;
 
-	trigger_position = height_limit / 2 - y_marker;
-	
-	line.setSnapPosition(-X_OFFSET, y_marker + y_offset);
-	
+	line.setSnapPosition(-X_OFFSET, marker);
+
 	invalidate();
 }
 
@@ -227,24 +199,11 @@ int TriggerLine::TriggerPosition(void)
 	return trigger_position;
 }
 
-void TriggerLine::SetYOffset(int y)
+void TriggerLine::setYoffset(int offset)
 {
-	if (y_offset != y)
-	{
-		y_offset = y;
+	y_offset = offset;
 
-		if ((y_marker + y_offset) < 10)
-			y_offset = -y_marker + 10;
-
-		else if ((y_marker + y_offset) > height_limit)
-			y_offset = height_limit - y_marker;
-
-
-		line.setY(y_marker + y_offset);
-		channel_idx.setY(y_marker + y_offset - 5);
-
-		trigger_position = height_limit / 2 - y_marker;
-
-		invalidate();
-	}
+	marker = offset + 115; //getHeight() - trigger_position;
+	line.setY(marker);
+	channel_idx.setY(marker - 5);
 }

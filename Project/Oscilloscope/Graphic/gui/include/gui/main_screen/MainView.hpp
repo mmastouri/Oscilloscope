@@ -149,8 +149,8 @@ private:
 	Marker marker1;
 	Marker marker2;
 
-	TriggerLine triggLine1;
-	TriggerLine triggLine2;
+	TriggerLine triggLineCh2;
+	TriggerLine triggLineCh1;
 
 	Graph chan_1_graph;
 	Graph chan_2_graph;

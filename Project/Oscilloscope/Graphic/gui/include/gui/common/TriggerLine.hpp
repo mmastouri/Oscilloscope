@@ -67,24 +67,17 @@ public:
 	virtual ~TriggerLine();
 
 
-	void TriggerLine::setup(int channel, int offset, int marker_length, int graph_height, uint16_t marker_color);
+	void setup(int bmchannel, int offset, int trigger_level, uint16_t marker_color);
 	void handleMarkerDragEvent(const DragEvent&);
 	void handleMarkerSnappedEvent(void);
 	void EnableLine(bool enable);
 	int TriggerPosition(void);
-	void SetYOffset(int y);
+	void setYoffset(int offset);
 
 private:
-
+	int y_offset; 
+	int marker;
 	int trigger_position; 
-	int y_marker;
-	int y_offset;
-	int height_limit;
-	int length;
-	int volt_offset;
-	int associated_channel;
-
-
 	Image channel_idx;
 	Snapper<Line> line;
 	PainterRGB565 line_painter;
