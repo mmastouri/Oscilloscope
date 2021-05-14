@@ -128,3 +128,4 @@ firmware\mainview.o: ..\..\Graphic\generated\images\include\BitmapDatabase.hpp
 firmware\mainview.o: ..\..\Graphic\generated\texts\include\texts/TextKeysAndLanguages.hpp
 firmware\mainview.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 firmware\mainview.o: ..\..\Graphic\gui\include\gui\model\Model.hpp
+firmware\mainview.o: ..\..\Graphic\gui\include\gui/common/AppContext.h

@@ -125,6 +125,7 @@ firmware\mainpresenter.o: ..\..\Graphic\gui\include\gui\common\TriggerLine.hpp
 firmware\mainpresenter.o: ..\..\Graphic\gui\include\gui\common\Graph.hpp
 firmware\mainpresenter.o: ..\..\..\..\touchgfx\framework\include\touchgfx/Color.hpp
 firmware\mainpresenter.o: ..\..\Graphic\gui\include\gui/model/Model.hpp
+firmware\mainpresenter.o: ..\..\Graphic\gui\include\gui/common/AppContext.h
 firmware\mainpresenter.o: ..\..\Graphic\gui\include\gui/common/FrontendApplication.hpp
 firmware\mainpresenter.o: ..\..\..\..\touchgfx\framework\include\mvp/MVPApplication.hpp
 firmware\mainpresenter.o: ..\..\..\..\touchgfx\framework\include\common/Meta.hpp

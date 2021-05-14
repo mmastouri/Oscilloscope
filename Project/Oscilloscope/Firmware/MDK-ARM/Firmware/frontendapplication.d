@@ -89,6 +89,7 @@ firmware\frontendapplication.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ha
 firmware\frontendapplication.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 firmware\frontendapplication.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
 firmware\frontendapplication.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
+firmware\frontendapplication.o: ..\..\Graphic\gui\include\gui/common/AppContext.h
 firmware\frontendapplication.o: ..\..\..\..\touchgfx\framework\include\touchgfx/transitions/NoTransition.hpp
 firmware\frontendapplication.o: ..\..\Graphic\gui\include\gui/main_screen/MainView.hpp
 firmware\frontendapplication.o: ..\..\Graphic\gui\include\gui/main_screen/MainPresenter.hpp

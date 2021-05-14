@@ -78,6 +78,7 @@ firmware\main.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h
 firmware\main.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 firmware\main.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
 firmware\main.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
+firmware\main.o: ..\..\Graphic\gui\include\gui/common/AppContext.h
 firmware\main.o: ..\..\Graphic\gui\include\gui\model\ModelListener.hpp
 firmware\main.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h
 firmware\main.o: ..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\include\FreeRTOS.h

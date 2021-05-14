@@ -100,6 +100,7 @@ firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal
 firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
 firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
+firmware\boardconfiguration.o: ..\..\Graphic\gui\include\gui/common/AppContext.h
 firmware\boardconfiguration.o: ..\..\Graphic\gui\include\gui/main_screen/MainView.hpp
 firmware\boardconfiguration.o: ..\..\Graphic\gui\include\gui/main_screen/MainPresenter.hpp
 firmware\boardconfiguration.o: ..\..\Graphic\gui\include\gui/model/ModelListener.hpp

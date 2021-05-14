@@ -438,6 +438,11 @@
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\gui\src\model\Model.cpp</FilePath>
             </File>
+            <File>
+              <FileName>AppContext.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\gui\src\common\AppContext.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
