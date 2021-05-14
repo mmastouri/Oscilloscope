@@ -78,7 +78,7 @@ private:
 	int y_offset; 
 	int marker;
 	int trigger_position; 
-	Image channel_idx;
+	Image channelbmp;
 	Snapper<Line> line;
 	PainterRGB565 line_painter;
 	Callback< TriggerLine, const DragEvent& > markerDraggedCallback;

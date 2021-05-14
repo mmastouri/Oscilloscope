@@ -61,7 +61,7 @@ Model::Model() : modelListener(0)
 	chan2.trigger_level = 0;
 
 	chan1.y_offset = 115;
-	chan2.y_offset = 0;
+	chan2.y_offset = 230;
 
 	chan1.x_offset = 0;
 	chan2.x_offset = 0;

@@ -134,7 +134,7 @@ void Graph::drawCurve(uint16_t* frameBuffer, const Rect& invalidatedArea) const
 	{
 		CurveSegment curveSegment = curveSegments[GetCurrentIndex(index++)];
 
-		y = absoluteRect.height/2  + y_offset + absoluteRect.y - curveSegment.y;
+		y = y_offset + absoluteRect.y - curveSegment.y;
 
 		alphas = &curveSegment.alphas[0];
 
