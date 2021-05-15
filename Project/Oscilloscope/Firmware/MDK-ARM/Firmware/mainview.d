@@ -124,8 +124,8 @@ firmware\mainview.o: ..\..\..\..\touchgfx\framework\include\touchgfx\widgets\Rep
 firmware\mainview.o: ..\..\Graphic\gui\include\gui\common\TriggerLine.hpp
 firmware\mainview.o: ..\..\Graphic\gui\include\gui\common\Graph.hpp
 firmware\mainview.o: ..\..\..\..\touchgfx\framework\include\touchgfx/Color.hpp
+firmware\mainview.o: ..\..\Graphic\gui\include\gui/common/AppContext.h
 firmware\mainview.o: ..\..\Graphic\generated\images\include\BitmapDatabase.hpp
 firmware\mainview.o: ..\..\Graphic\generated\texts\include\texts/TextKeysAndLanguages.hpp
 firmware\mainview.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 firmware\mainview.o: ..\..\Graphic\gui\include\gui\model\Model.hpp
-firmware\mainview.o: ..\..\Graphic\gui\include\gui/common/AppContext.h

@@ -70,6 +70,23 @@ void MainView::setupScreen()
 	panelChn[0].associatedChannel = 0;
 	panelChn[1].associatedChannel = 1;
 
+
+	// Init model from default / saved settings 
+	appContext.Restore();
+
+	presenter->p_SetYOffset(CHANNEL_1, 115);
+	presenter->p_SetYOffset(CHANNEL_2, 230);
+	presenter->p_SetTrigger(CHANNEL_1, true);
+	presenter->p_SetTrigger(CHANNEL_2, true);
+	presenter->p_SetTriggerType(CHANNEL_1, RISING);
+	presenter->p_SetTriggerType(CHANNEL_2, RISING);
+
+	presenter->p_SetTriggerValue(CHANNEL_1, 20);
+	presenter->p_SetTriggerValue(CHANNEL_2, 50);
+	presenter->p_SetTimeScale(CHANNEL_1, DIV_100uS);
+	presenter->p_SetTimeScale(CHANNEL_2, DIV_50uS);
+	presenter->p_SetVoltageScale(CHANNEL_1, DIV_2V);
+	presenter->p_SetVoltageScale(CHANNEL_2, DIV_1V);
 	/*
 	* Background configuration: add application,
 	*   grid, control panel and channel background
@@ -379,12 +396,12 @@ void MainView::setupScreen()
 	// Init Panel from default / saved settings 
 	for (int i = 0; i < 2; i++)
 	{
-		panelChn[i].SetTriggerButton(true);
-		panelChn[i].SetFallingButton(true);
-		panelChn[i].SetMarkerButton(true);
-		panelChn[i].SetMarkerAButton(true);
-		panelChn[i].SetMarkerBButton(true);
-		panelChn[i].setScaleSettings(presenter->p_GetTimeScale(1), presenter->p_GetVoltageScale(1));
+		panelChn[i].SetTriggerButton(presenter->p_GetTrigger(i));
+		panelChn[i].SetFallingButton(presenter->p_GetTriggerType(i));
+		panelChn[i].SetMarkerButton(presenter->p_GetTrigger(i));
+		panelChn[i].SetMarkerAButton(false);
+		panelChn[i].SetMarkerBButton(false);
+		panelChn[i].setScaleSettings(presenter->p_GetTimeScale(i), presenter->p_GetVoltageScale(i));
 	}
 	Intro();
 }

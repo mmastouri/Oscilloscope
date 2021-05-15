@@ -47,6 +47,5 @@ firmware\model.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h
 firmware\model.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 firmware\model.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
 firmware\model.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
-firmware\model.o: ..\..\Graphic\gui\include\gui/common/AppContext.h
 firmware\model.o: ..\..\Graphic\gui\include\gui/model/ModelListener.hpp
 firmware\model.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

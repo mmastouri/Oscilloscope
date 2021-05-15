@@ -40,7 +40,7 @@
 
 #include <touchgfx/hal/Types.hpp>
 #include <gui\common\main_header.h>
-#include <gui/common/AppContext.h>
+
 
 class ModelListener;
 
@@ -114,7 +114,7 @@ protected:
 	ModelListener* modelListener;
 	
 private: 
-    Context appContext;
+
 	struct GraphData
 	{
 		uint16_t raw_data[1000];

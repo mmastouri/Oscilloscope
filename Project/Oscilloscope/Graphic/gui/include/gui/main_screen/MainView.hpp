@@ -91,6 +91,7 @@
 #include <gui\common\main_header.h>
 
 #include <touchgfx\mixins\MoveAnimator.hpp>
+#include <gui/common/AppContext.h>
 
 
 using namespace touchgfx;
@@ -186,6 +187,8 @@ private:
 
 	int cursor_value;
 	int alpha;
+
+	Context appContext;
 };
 
 #endif // MAIN_VIEW_HPP

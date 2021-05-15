@@ -119,4 +119,3 @@ firmware\channelcontrolpanel.o: ..\..\Graphic\generated\images\include\BitmapDat
 firmware\channelcontrolpanel.o: ..\..\Graphic\generated\texts\include\texts/TextKeysAndLanguages.hpp
 firmware\channelcontrolpanel.o: ..\..\..\..\touchgfx\framework\include\touchgfx\Color.hpp
 firmware\channelcontrolpanel.o: ..\..\Graphic\gui\include\gui/model/Model.hpp
-firmware\channelcontrolpanel.o: ..\..\Graphic\gui\include\gui/common/AppContext.h

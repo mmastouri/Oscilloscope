@@ -55,31 +55,29 @@
 Model::Model() : modelListener(0)
 {
 	
-	appContext.Restore();
-
 	chan1.trigger_level = 20;
 	chan2.trigger_level = 20;
 
-	chan1.y_offset = 115;
-	chan2.y_offset = 230;
+	chan1.y_offset = 0;
+	chan2.y_offset = 0;
 
 	chan1.x_offset = 0;
 	chan2.x_offset = 0;
 	
-	chan1.trigger_found = false;
-	chan2.trigger_found = false;
-
-	chan1.is_triggered = false;
-	chan2.is_triggered = false;
-	
-	chan1.triger_type = RISING;
-	chan2.triger_type = RISING;
-
 	chan1.voltage_scale = DIV_2V;
 	chan2.voltage_scale = DIV_2V;
 
 	chan1.time_scale = DIV_100uS;
 	chan2.time_scale = DIV_100uS;
+
+	chan1.trigger_found = false;
+	chan2.trigger_found = false;
+
+	chan1.is_triggered = false;
+	chan2.is_triggered = false;
+
+	chan1.triger_type = RISING;
+	chan2.triger_type = RISING;
 
 
 }
