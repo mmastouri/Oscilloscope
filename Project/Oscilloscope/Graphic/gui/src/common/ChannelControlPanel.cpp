@@ -472,7 +472,7 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 	{
 		slideHorizotalText(UP);
 #ifndef  SIMULATOR
-		GetDataFromModel(associatedChannel, selectedHorizontalTextIndex);
+		UpdateHWTimeScale(associatedChannel, selectedHorizontalTextIndex);
 #endif // ! SIMULATOR	
 	}
 	
@@ -480,7 +480,7 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 	{
 		slideHorizotalText(DOWN);
 #ifndef  SIMULATOR
-		GetDataFromModel(associatedChannel, selectedHorizontalTextIndex);
+		UpdateHWTimeScale(associatedChannel, selectedHorizontalTextIndex);
 #endif // ! SIMULATOR	
 	}
 
@@ -790,7 +790,7 @@ void ChannelControlPanel::setScaleSettings(int timeScale, int voltageScale)
 	slideVerticalText(DOWN);
 
 #ifndef SIMULATOR
-	GetDataFromModel(associatedChannel, selectedHorizontalTextIndex);
+	UpdateHWTimeScale(associatedChannel, selectedHorizontalTextIndex);
 #endif
 }
 

@@ -62,7 +62,7 @@ enum TimeScale
 #ifndef SIMULATOR
 uint16_t * PushDaTaToModel_1(void);
 uint16_t * PushDaTaToModel_2(void);
-void GetDataFromModel(int channel, int value);
+void UpdateHWTimeScale(int channel, int value);
 #endif // !SIMULATOR
 
 #endif

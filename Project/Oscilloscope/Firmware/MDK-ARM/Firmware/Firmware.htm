@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat May 15 18:01:35 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat May 15 18:07:11 2021
 <BR><P>
 <H3>Maximum Stack Usage =        652 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2437,19 +2437,19 @@ Global Symbols
 <LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_CheckIdleState
 </UL>
 
-<P><STRONG><a name="[284]"></a>GetDataFromModel(int, int)</STRONG> (Thumb, 144 bytes, Stack size 20 bytes, main.o(i._Z16GetDataFromModelii))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GetDataFromModel(int, int)
-</UL>
-<BR>[Called By]<UL><LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setScaleSettings(int, int)
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&)
-</UL>
-
 <P><STRONG><a name="[265]"></a>PushDaTaToModel_1()</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(i._Z17PushDaTaToModel_1v))
 <BR><BR>[Called By]<UL><LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetRawData(int)
 </UL>
 
 <P><STRONG><a name="[262]"></a>PushDaTaToModel_2()</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(i._Z17PushDaTaToModel_2v))
 <BR><BR>[Called By]<UL><LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_SetRawData(int)
+</UL>
+
+<P><STRONG><a name="[284]"></a>UpdateHWTimeScale(int, int)</STRONG> (Thumb, 144 bytes, Stack size 20 bytes, main.o(i._Z17UpdateHWTimeScaleii))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = UpdateHWTimeScale(int, int)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setScaleSettings(int, int)
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&)
 </UL>
 
 <P><STRONG><a name="[23e]"></a>getFont_Asap_Regular_12_4bpp()</STRONG> (Thumb, 78 bytes, Stack size 40 bytes, fontgetters.o(i._Z28getFont_Asap_Regular_12_4bppv))
@@ -2864,7 +2864,7 @@ Global Symbols
 <P><STRONG><a name="[9f]"></a>ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 320 bytes, Stack size 8 bytes, channelcontrolpanel.o(i._ZN19ChannelControlPanel13buttonClickedERKN8touchgfx14AbstractButtonE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&) &rArr; ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDataFromModel(int, int)
+<BR>[Calls]<UL><LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateHWTimeScale(int, int)
 <LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
 <LI><a href="#[285]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideVerticalText(ChannelControlPanel::SlideDirection)
 </UL>
@@ -2927,7 +2927,7 @@ Global Symbols
 <P><STRONG><a name="[28c]"></a>ChannelControlPanel::setScaleSettings(int, int)</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, channelcontrolpanel.o(i._ZN19ChannelControlPanel16setScaleSettingsEii))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = ChannelControlPanel::setScaleSettings(int, int) &rArr; ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDataFromModel(int, int)
+<BR>[Calls]<UL><LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateHWTimeScale(int, int)
 <LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
 <LI><a href="#[285]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideVerticalText(ChannelControlPanel::SlideDirection)
 </UL>

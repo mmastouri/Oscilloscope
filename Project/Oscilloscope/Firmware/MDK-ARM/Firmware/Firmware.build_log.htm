@@ -59,11 +59,16 @@ Note: source file '..\..\Graphic\generated\images\src\EdgeDown.cpp' - object fil
 Note: source file '..\..\Graphic\generated\images\src\EdgeUp.cpp' - object file renamed from 'Firmware\EdgeUp.o' to 'Firmware\edgeup_1.o'.
 Note: source file '..\..\Graphic\generated\images\src\channel1.cpp' - object file renamed from 'Firmware\channel1.o' to 'Firmware\channel1_1.o'.
 Note: source file '..\..\Graphic\generated\images\src\channel2.cpp' - object file renamed from 'Firmware\channel2.o' to 'Firmware\channel2_1.o'.
-compiling Model.cpp...
+compiling main.cpp...
+main.cpp(621): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.cpp(422): warning:  #177-D: function "MX_USART2_UART_Init"  was declared but never referenced
+  static void MX_USART2_UART_Init(void)
+main.cpp: 2 warnings, 0 errors
 linking...
 Program Size: Code=79380 RO-data=940616 RW-data=456 ZI-data=184800  
 FromELF: creating hex file...
-"Firmware\Firmware.axf" - 0 Error(s), 0 Warning(s).
+"Firmware\Firmware.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 

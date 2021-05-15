@@ -507,7 +507,7 @@ extern "C"
 }
 
 
-void GetDataFromModel(int channel, int value)
+void UpdateHWTimeScale(int channel, int value)
 {
 	int period;
 	int pulse;
