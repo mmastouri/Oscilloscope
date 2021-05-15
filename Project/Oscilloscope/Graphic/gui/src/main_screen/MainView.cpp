@@ -126,67 +126,8 @@ void MainView::setupScreen()
 	* Text section:  Configure Text label "Channel 1, channel 2"
 	*/
 	channelTxT[CHANNEL_1].setTypedText(TypedText(T_CHN1));
-	channelTxT[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
-	channelTxT[CHANNEL_1].setWidth(channelBackground.getWidth());
-	channelTxT[CHANNEL_1].setHeight(channelBackground.getHeight());
-
 	channelTxT[CHANNEL_2].setTypedText(TypedText(T_CHN2));
-	channelTxT[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
-	channelTxT[CHANNEL_2].setWidth(channelBackground.getWidth());
-	channelTxT[CHANNEL_2].setHeight(channelBackground.getHeight());
 
-	/*
-	* Control pannel section: setup control pannel for 2 channels, setup viewport for slide transition
-	*                         between two channels
-	*/
-	panelChn[CHANNEL_1].SetUpButtonImage(BITMAP_BUTTONUPON_ID,
-								 BITMAP_BUTTONUPOFF_ID,
-								 BITMAP_BUTTONDOWNON_ID,
-								 BITMAP_BUTTONDOWNOFF_ID,
-								 BITMAP_LEFTBUTTONPRESS_ID,
-								 BITMAP_LEFTBUTTONUNPRESS_ID,
-								 BITMAP_RIGHTBUTTONPRESS_ID,
-								 BITMAP_RIGHTBUTTONUNPRESS_ID);
-
-	panelChn[CHANNEL_1].setup(presenter->p_GetYOffset(CHANNEL_1),
-		
-		              controlPanelBackground.getWidth(),
-					  controlPanelBackground.getHeight(),
-					  BITMAP_CHNCONTROLBUTTONON_ID,
-					  BITMAP_CHNCONTROLBUTTONOFF_ID,
-					  BITMAP_BUTTONUPOFF_ID,
-					  BITMAP_BUTTONUPON_ID,
-					  BITMAP_BUTTONDOWNOFF_ID,
-					  BITMAP_BUTTONDOWNON_ID, presenter->p_GetXOffset(0), presenter->p_GetYOffset(0) );
-
-
-	
-	
-
-	panelChn[CHANNEL_1].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
-	
-	
-	panelChn[CHANNEL_2].SetUpButtonImage(BITMAP_BUTTONUPON_ID,
-		                         BITMAP_BUTTONUPOFF_ID,
-		                         BITMAP_BUTTONDOWNON_ID,
-		                         BITMAP_BUTTONDOWNOFF_ID,
-		                         BITMAP_LEFTBUTTONPRESS_ID,
-		                         BITMAP_LEFTBUTTONUNPRESS_ID,
-		                         BITMAP_RIGHTBUTTONPRESS_ID,
-		                         BITMAP_RIGHTBUTTONUNPRESS_ID);
-
-	
-	panelChn[CHANNEL_2].setup(presenter->p_GetYOffset(CHANNEL_2),
-		controlPanelBackground.getWidth(),
-		controlPanelBackground.getHeight(),
-		BITMAP_CHNCONTROLBUTTONON_ID,
-		BITMAP_CHNCONTROLBUTTONOFF_ID,
-		BITMAP_BUTTONUPOFF_ID,
-		BITMAP_BUTTONUPON_ID,
-		BITMAP_BUTTONDOWNOFF_ID,
-		BITMAP_BUTTONDOWNON_ID, presenter->p_GetXOffset(1), presenter->p_GetYOffset(1));
-
-	panelChn[CHANNEL_2].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
 
 	chnTextViewPort.setPosition( channelBackground.getX(),
 								 channelBackground.getY(),
@@ -198,8 +139,40 @@ void MainView::setupScreen()
 		                                 controlPanelBackground.getWidth(),
 		                                 controlPanelBackground.getHeight());
 
+	add(chnControlPanelViewPort);
+
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
 	{
+		channelTxT[i].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
+		channelTxT[i].setWidth(channelBackground.getWidth());
+		channelTxT[i].setHeight(channelBackground.getHeight());
+
+		/*
+		* Control pannel section: setup control pannel for 2 channels, setup viewport for slide transition
+		*                         between two channels
+		*/
+		panelChn[i].SetUpButtonImage(BITMAP_BUTTONUPON_ID,
+			BITMAP_BUTTONUPOFF_ID,
+			BITMAP_BUTTONDOWNON_ID,
+			BITMAP_BUTTONDOWNOFF_ID,
+			BITMAP_LEFTBUTTONPRESS_ID,
+			BITMAP_LEFTBUTTONUNPRESS_ID,
+			BITMAP_RIGHTBUTTONPRESS_ID,
+			BITMAP_RIGHTBUTTONUNPRESS_ID);
+
+		panelChn[i].setup(presenter->p_GetYOffset(i),
+
+			controlPanelBackground.getWidth(),
+			controlPanelBackground.getHeight(),
+			BITMAP_CHNCONTROLBUTTONON_ID,
+			BITMAP_CHNCONTROLBUTTONOFF_ID,
+			BITMAP_BUTTONUPOFF_ID,
+			BITMAP_BUTTONUPON_ID,
+			BITMAP_BUTTONDOWNOFF_ID,
+			BITMAP_BUTTONDOWNON_ID, presenter->p_GetXOffset(i), presenter->p_GetYOffset(i));
+
+		panelChn[i].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
+
 		/*
 		* Add control pannels and channel text lable into the viewport for sliding animation
 		*/
@@ -217,8 +190,6 @@ void MainView::setupScreen()
 	}
 
 	add(chnTextViewPort);
-
-	add(chnControlPanelViewPort);
 	selectedChnIndex = CHANNEL_2;
 	slideTexts(LEFT);
 
@@ -395,7 +366,7 @@ void MainView::setupScreen()
 
 
 	// Init Panel from default / saved settings 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
 	{
 		panelChn[i].SetTriggerButton(presenter->p_GetTrigger(i));
 		panelChn[i].SetFallingButton(presenter->p_GetTriggerType(i));
@@ -591,36 +562,29 @@ void MainView::handleTickEvent()
 
 
 	/* Update model according to HMI update */ 
-	for (int ch_idx = 0; ch_idx < 2; ch_idx++)
+	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
 	{
-		presenter->p_SetTimeScale(ch_idx, panelChn[ch_idx].GetTimeBaseIndex());
-		presenter->p_SetVoltageScale(ch_idx, panelChn[ch_idx].GetVoltBaseIndex());
-		presenter->p_SetRawData(ch_idx);
-		presenter->p_SetYOffset(ch_idx, panelChn[ch_idx].GetYOffset());
-		presenter->p_SetXOffset(ch_idx, panelChn[ch_idx].GetXOffset());
-		presenter->p_SetTrigger(ch_idx, panelChn[ch_idx].isTriggerButtonClicked());
-		presenter->p_SetTriggerType(ch_idx, panelChn[ch_idx].isFallingButtonClicked());
+		presenter->p_SetTimeScale(i, panelChn[i].GetTimeBaseIndex());
+		presenter->p_SetVoltageScale(i, panelChn[i].GetVoltBaseIndex());
+		presenter->p_SetRawData(i);
+		presenter->p_SetYOffset(i, panelChn[i].GetYOffset());
+		presenter->p_SetXOffset(i, panelChn[i].GetXOffset());
+		presenter->p_SetTrigger(i, panelChn[i].isTriggerButtonClicked());
+		presenter->p_SetTriggerType(i, panelChn[i].isFallingButtonClicked());
+
+
+		presenter->p_SetTriggerValue(i, triggLine[i].TriggerPosition());
+
+		/* Update GUI according to HMI update */
+		graph[i].setY(presenter->p_GetYOffset(i));
+		graph[i].invalidate();
+
+		triggLine[i].EnableLine(panelChn[i].isMarkerButtonClicked());
 	}
-
-	presenter->p_SetTriggerValue(CHANNEL_2, triggLine[CHANNEL_2].TriggerPosition());
-	presenter->p_SetTriggerValue(CHANNEL_1, triggLine[CHANNEL_1].TriggerPosition());
-
-	/* Update GUI according to HMI update */
-	graph[CHANNEL_2].setY(presenter->p_GetYOffset(CHANNEL_2));
-	graph[CHANNEL_2].invalidate();
-
-	graph[CHANNEL_1].setY(presenter->p_GetYOffset(CHANNEL_1));
-	graph[CHANNEL_1].invalidate();
-
-	triggLine[CHANNEL_1].EnableLine(panelChn[CHANNEL_1].isMarkerButtonClicked());
-	triggLine[CHANNEL_2].EnableLine(panelChn[CHANNEL_2].isMarkerButtonClicked());
-
 
 
 	if (selectedChnIndex == 0)
 	{
-
-		//triggLine[CHANNEL_2].EnableLine(false);
 		marker1.EnableLine(panelChn[CHANNEL_1].isMarkerAButtonClicked());
 		marker2.EnableLine(panelChn[CHANNEL_1].isMarkerBButtonClicked());
 		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
@@ -637,10 +601,6 @@ void MainView::handleTickEvent()
 	}
 	else
 	{
-		
-		
-		//triggLine[CHANNEL_1].EnableLine(false);
-
 		marker1.EnableLine(panelChn[CHANNEL_2].isMarkerAButtonClicked());
 		marker2.EnableLine(panelChn[CHANNEL_2].isMarkerBButtonClicked());
 		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
@@ -653,31 +613,19 @@ void MainView::handleTickEvent()
 		cursor_value_wildcard.invalidate();
 	}
 
+	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
+	{
+		temp_value = presenter->p_GetTriggerValue(i) * presenter->p_VoltagePerPixel(i);
+		if (presenter->p_GetVoltageScale(i) > 5)
+			temp_value = temp_value / 1000;
+
+		Unicode::snprintfFloat(trig_buff[i], 5, "%.2f", temp_value);
+		trig_value_wildcard[i].invalidate();
 
 
-	temp_value = presenter->p_GetTriggerValue(CHANNEL_1) * presenter->p_VoltagePerPixel(CHANNEL_1);
-	if (presenter->p_GetVoltageScale(CHANNEL_1) > 5)
-		temp_value = temp_value / 1000;
-
-	Unicode::snprintfFloat(trig_buff[CHANNEL_2], 5, "%.2f", temp_value);
-	trig_value_wildcard[CHANNEL_2].invalidate();
-
-
-	triggLine[CHANNEL_1].setYoffset(presenter->p_GetYOffset(CHANNEL_1));
-	triggLine[CHANNEL_1].invalidate();
-
-	temp_value = presenter->p_GetTriggerValue(CHANNEL_2) * presenter->p_VoltagePerPixel(CHANNEL_2);
-	if (presenter->p_GetVoltageScale(CHANNEL_2) > 5)
-		temp_value = temp_value / 1000;
-
-
-
-	Unicode::snprintfFloat(trig_buff[CHANNEL_1], 5, "%.2f", temp_value);
-	trig_value_wildcard[CHANNEL_1].invalidate();
-
-	triggLine[CHANNEL_2].setYoffset( presenter->p_GetYOffset(CHANNEL_2));
-	triggLine[CHANNEL_2].invalidate();
-
+		triggLine[i].setYoffset(presenter->p_GetYOffset(i));
+		triggLine[i].invalidate();
+	}
 	tickCounter++;
 	if (tickCounter % 1 == 0)
 	{
