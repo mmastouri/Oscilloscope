@@ -67,8 +67,8 @@
 void MainView::setupScreen()
 {
 	tickCounter = 0;
-	panelChn[0].associatedChannel = 0;
-	panelChn[1].associatedChannel = 1;
+	panelChn[CHANNEL_1].associatedChannel = 0;
+	panelChn[CHANNEL_2].associatedChannel = 1;
 
 
 	// overide default model settings from savedones
@@ -104,7 +104,7 @@ void MainView::setupScreen()
 	controlPanelBackground.setXY(314, 3);
 	add(controlPanelBackground);
 
-	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_ID));
+	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_CH1_ID));
 	channelBackground.setXY(349, 240);
 	add(channelBackground);
 
@@ -125,21 +125,21 @@ void MainView::setupScreen()
 	/*
 	* Text section:  Configure Text label "Channel 1, channel 2"
 	*/
-	channelTxT[0].setTypedText(TypedText(T_CHN2));
-	channelTxT[0].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
-	channelTxT[0].setWidth(channelBackground.getWidth());
-	channelTxT[0].setHeight(channelBackground.getHeight());
+	channelTxT[CHANNEL_1].setTypedText(TypedText(T_CHN1));
+	channelTxT[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
+	channelTxT[CHANNEL_1].setWidth(channelBackground.getWidth());
+	channelTxT[CHANNEL_1].setHeight(channelBackground.getHeight());
 
-	channelTxT[1].setTypedText(TypedText(T_CHN1));
-	channelTxT[1].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
-	channelTxT[1].setWidth(channelBackground.getWidth());
-	channelTxT[1].setHeight(channelBackground.getHeight());
+	channelTxT[CHANNEL_2].setTypedText(TypedText(T_CHN2));
+	channelTxT[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
+	channelTxT[CHANNEL_2].setWidth(channelBackground.getWidth());
+	channelTxT[CHANNEL_2].setHeight(channelBackground.getHeight());
 
 	/*
 	* Control pannel section: setup control pannel for 2 channels, setup viewport for slide transition
 	*                         between two channels
 	*/
-	panelChn[0].SetUpButtonImage(BITMAP_BUTTONUPON_ID,
+	panelChn[CHANNEL_1].SetUpButtonImage(BITMAP_BUTTONUPON_ID,
 								 BITMAP_BUTTONUPOFF_ID,
 								 BITMAP_BUTTONDOWNON_ID,
 								 BITMAP_BUTTONDOWNOFF_ID,
@@ -148,7 +148,7 @@ void MainView::setupScreen()
 								 BITMAP_RIGHTBUTTONPRESS_ID,
 								 BITMAP_RIGHTBUTTONUNPRESS_ID);
 
-	panelChn[0].setup(presenter->p_GetYOffset(CHANNEL_1),
+	panelChn[CHANNEL_1].setup(presenter->p_GetYOffset(CHANNEL_1),
 		
 		              controlPanelBackground.getWidth(),
 					  controlPanelBackground.getHeight(),
@@ -163,10 +163,10 @@ void MainView::setupScreen()
 	
 	
 
-	panelChn[0].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
+	panelChn[CHANNEL_1].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
 	
 	
-	panelChn[1].SetUpButtonImage(BITMAP_BUTTONUPON_ID,
+	panelChn[CHANNEL_2].SetUpButtonImage(BITMAP_BUTTONUPON_ID,
 		                         BITMAP_BUTTONUPOFF_ID,
 		                         BITMAP_BUTTONDOWNON_ID,
 		                         BITMAP_BUTTONDOWNOFF_ID,
@@ -176,7 +176,7 @@ void MainView::setupScreen()
 		                         BITMAP_RIGHTBUTTONUNPRESS_ID);
 
 	
-	panelChn[1].setup(presenter->p_GetYOffset(CHANNEL_2),
+	panelChn[CHANNEL_2].setup(presenter->p_GetYOffset(CHANNEL_2),
 		controlPanelBackground.getWidth(),
 		controlPanelBackground.getHeight(),
 		BITMAP_CHNCONTROLBUTTONON_ID,
@@ -186,7 +186,7 @@ void MainView::setupScreen()
 		BITMAP_BUTTONDOWNOFF_ID,
 		BITMAP_BUTTONDOWNON_ID, presenter->p_GetXOffset(1), presenter->p_GetYOffset(1));
 
-	panelChn[1].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
+	panelChn[CHANNEL_2].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
 
 	chnTextViewPort.setPosition( channelBackground.getX(),
 								 channelBackground.getY(),
@@ -219,7 +219,7 @@ void MainView::setupScreen()
 	add(chnTextViewPort);
 
 	add(chnControlPanelViewPort);
-	selectedChnIndex = 0;
+	selectedChnIndex = CHANNEL_2;
 	slideTexts(LEFT);
 
 	/*
@@ -231,7 +231,7 @@ void MainView::setupScreen()
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
 
-	chan_1_graph.SetGraphColor(Color::getColorFrom24BitRGB(255, 128, 0));
+	chan_1_graph.SetGraphColor(Color::getColorFrom24BitRGB(102, 178, 255));
 	chan_1_graph.SetGraphData(presenter->p_GetTriggerData(CHANNEL_1));
 
 	chan_2_graph.setPosition(3, 0,
@@ -239,7 +239,7 @@ void MainView::setupScreen()
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
 
-	chan_2_graph.SetGraphColor(Color::getColorFrom24BitRGB(102, 178, 255)); 
+	chan_2_graph.SetGraphColor(Color::getColorFrom24BitRGB(255, 128, 0));
 	chan_2_graph.SetGraphData(presenter->p_GetTriggerData(CHANNEL_2));
 
 	graph_container.setPosition(oziBackground.getX(),
@@ -263,7 +263,6 @@ void MainView::setupScreen()
 	add(marker1);
 
 	marker2.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
-
 	marker2.setup( oziBackground.getWidth() - 50, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(60, 232, 23));
 
 	add(marker2);
@@ -276,10 +275,10 @@ void MainView::setupScreen()
 		                   chan_2_graph.getWidth(),
 		                   chan_2_graph.getHeight() + 10);
 
-	triggLineCh2.setup(   BITMAP_CHANNEL1_ID,
+	triggLineCh2.setup(   BITMAP_CHANNEL2_ID,
 		                 chan_2_graph.getY(),
 		                 presenter->p_GetTriggerValue(CHANNEL_2),
-		                 Color::getColorFrom24BitRGB(102, 178, 255));
+		                 Color::getColorFrom24BitRGB(255, 128, 0));
 
 	add(triggLineCh2);
 
@@ -290,10 +289,10 @@ void MainView::setupScreen()
 		                    chan_1_graph.getWidth(),
 		                    chan_1_graph.getHeight() + 10);
 		                    
-	triggLineCh1.setup(BITMAP_CHANNEL2_ID,
+	triggLineCh1.setup(BITMAP_CHANNEL1_ID,
 		                 chan_1_graph.getY(),
 		                 presenter->p_GetTriggerValue(CHANNEL_1),
-					     Color::getColorFrom24BitRGB(255, 128, 0));
+		                 Color::getColorFrom24BitRGB(102, 178, 255));
 
 	
 
@@ -370,9 +369,9 @@ void MainView::setupScreen()
 	control_menu.add(txt_ch1_ctrl_menu);
 
 	chn1_enable.setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	chn1_enable.setXY(120, 7);
+	chn1_enable.setXY(40, 7);
 	chn1_enable.setAction(buttonClickedCallback);
-	control_menu.add(chn1_enable);
+	
 	
 	chn1_enable.forceState(true);
 
@@ -382,15 +381,17 @@ void MainView::setupScreen()
 	control_menu.add(txt_ch2_ctrl_menu);
 
 	chn2_enable.setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	chn2_enable.setXY(40, 7);
+	chn2_enable.setXY(120, 7);
 	chn2_enable.setAction(buttonClickedCallback);
 
 	chn2_enable.forceState(true);
 	
+	graph_container.add(chan_1_graph);
 	graph_container.add(chan_2_graph);
+	control_menu.add(chn1_enable);
 	control_menu.add(chn2_enable);
 
-	graph_container.add(chan_1_graph);
+	
 
 
 	// Init Panel from default / saved settings 
@@ -565,10 +566,10 @@ void MainView::slideTexts(SlideDirection direction)
 
 	selectedChnIndex = nextSelectedText;
 
-	if(selectedChnIndex)
-	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_ID));
-	else
+	if(selectedChnIndex == CHANNEL_2)
 	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_CH2_ID));
+	else
+	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_CH1_ID));
 	
 }
 
@@ -611,8 +612,8 @@ void MainView::handleTickEvent()
 	chan_1_graph.setY(presenter->p_GetYOffset(CHANNEL_1));
 	chan_1_graph.invalidate();
 
-	triggLineCh1.EnableLine(panelChn[0].isMarkerButtonClicked());
-	triggLineCh2.EnableLine(panelChn[1].isMarkerButtonClicked());
+	triggLineCh1.EnableLine(panelChn[CHANNEL_1].isMarkerButtonClicked());
+	triggLineCh2.EnableLine(panelChn[CHANNEL_2].isMarkerButtonClicked());
 
 
 
@@ -620,8 +621,8 @@ void MainView::handleTickEvent()
 	{
 
 		//triggLineCh2.EnableLine(false);
-		marker1.EnableLine(panelChn[0].isMarkerAButtonClicked());
-		marker2.EnableLine(panelChn[0].isMarkerBButtonClicked());
+		marker1.EnableLine(panelChn[CHANNEL_1].isMarkerAButtonClicked());
+		marker2.EnableLine(panelChn[CHANNEL_1].isMarkerBButtonClicked());
 		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
 		temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_1);
@@ -640,8 +641,8 @@ void MainView::handleTickEvent()
 		
 		//triggLineCh1.EnableLine(false);
 
-		marker1.EnableLine(panelChn[1].isMarkerAButtonClicked());
-		marker2.EnableLine(panelChn[1].isMarkerBButtonClicked());
+		marker1.EnableLine(panelChn[CHANNEL_2].isMarkerAButtonClicked());
+		marker2.EnableLine(panelChn[CHANNEL_2].isMarkerBButtonClicked());
 		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
 		temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_2);
