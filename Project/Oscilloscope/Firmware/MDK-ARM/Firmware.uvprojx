@@ -529,11 +529,6 @@
               <FilePath>..\..\Graphic\generated\images\src\BitmapDatabase.cpp</FilePath>
             </File>
             <File>
-              <FileName>channelInfo.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\Graphic\generated\images\src\channelInfo.cpp</FilePath>
-            </File>
-            <File>
               <FileName>controlPanel.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\controlPanel.cpp</FilePath>
@@ -682,6 +677,11 @@
               <FileName>channel2.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\channel2.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>channelInfo_ch1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\channelInfo_ch1.cpp</FilePath>
             </File>
           </Files>
         </Group>
