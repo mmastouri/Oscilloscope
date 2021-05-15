@@ -136,42 +136,36 @@ private:
 	Image controlPanelBackground;
 	Image channelBackground;
 	Image cursor_txt_background;
-	Image trig1_txt_background;
-	Image trig2_txt_background;
+	Image trig_txt_background[NUMBER_OF_CHANNEL];
 	Image arrow;
 	Image heroes;
 
 	Button rightButton;
 	Button leftButton;
 
-	ToggleButton chn1_enable;
-	ToggleButton chn2_enable;
+	ToggleButton chn_enable[NUMBER_OF_CHANNEL];
+	
 
 	Marker marker1;
 	Marker marker2;
 
-	TriggerLine triggLineCh2;
-	TriggerLine triggLineCh1;
+	TriggerLine triggLine[NUMBER_OF_CHANNEL];
 
-	Graph chan_1_graph;
-	Graph chan_2_graph;
+	Graph graph[NUMBER_OF_CHANNEL];
 
 	Container graph_container;
 
 	TextArea cursor_text;
-	TextArea trigger_1_lvl;
-	TextArea trigger_2_lvl;
-	TextArea txt_ch1_ctrl_menu;
-	TextArea txt_ch2_ctrl_menu;
+	TextArea trigger_lvl[NUMBER_OF_CHANNEL];
+
+	TextArea txt_ctrl_menu[NUMBER_OF_CHANNEL];
+
 
 	TextAreaWithOneWildcard cursor_value_wildcard;
 	Unicode::UnicodeChar cursor_buff[10];
 
-	TextAreaWithOneWildcard trig1_value_wildcard;
-	Unicode::UnicodeChar trig1_buff[5];
-
-	TextAreaWithOneWildcard trig2_value_wildcard;
-	Unicode::UnicodeChar trig2_buff[5];
+	TextAreaWithOneWildcard trig_value_wildcard[NUMBER_OF_CHANNEL];
+	Unicode::UnicodeChar trig_buff[NUMBER_OF_CHANNEL][5];
 
 	enum SlideDirection
 	{

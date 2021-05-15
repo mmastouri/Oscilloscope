@@ -226,21 +226,21 @@ void MainView::setupScreen()
 	* Graph section: setup the graph
 	*/
 
-	chan_1_graph.setPosition(3, 0,
+	graph[CHANNEL_1].setPosition(3, 0,
 		                     presenter->p_GetYOffset(CHANNEL_1),
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
 
-	chan_1_graph.SetGraphColor(Color::getColorFrom24BitRGB(102, 178, 255));
-	chan_1_graph.SetGraphData(presenter->p_GetTriggerData(CHANNEL_1));
+	graph[CHANNEL_1].SetGraphColor(Color::getColorFrom24BitRGB(102, 178, 255));
+	graph[CHANNEL_1].SetGraphData(presenter->p_GetTriggerData(CHANNEL_1));
 
-	chan_2_graph.setPosition(3, 0,
+	graph[CHANNEL_2].setPosition(3, 0,
 		                     presenter->p_GetYOffset(CHANNEL_2),
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
 
-	chan_2_graph.SetGraphColor(Color::getColorFrom24BitRGB(255, 128, 0));
-	chan_2_graph.SetGraphData(presenter->p_GetTriggerData(CHANNEL_2));
+	graph[CHANNEL_2].SetGraphColor(Color::getColorFrom24BitRGB(255, 128, 0));
+	graph[CHANNEL_2].SetGraphData(presenter->p_GetTriggerData(CHANNEL_2));
 
 	graph_container.setPosition(oziBackground.getX(),
 								oziBackground.getY(),
@@ -249,8 +249,8 @@ void MainView::setupScreen()
 	
 	add(graph_container);
 
-	Application::getInstance()->registerTimerWidget(&chan_1_graph);
-	Application::getInstance()->registerTimerWidget(&chan_2_graph);
+	Application::getInstance()->registerTimerWidget(&graph[CHANNEL_1]);
+	Application::getInstance()->registerTimerWidget(&graph[CHANNEL_2]);
 
 
 	/*
@@ -270,36 +270,36 @@ void MainView::setupScreen()
 	/*
 	* Trigger Line: Setup the Trigger Line
 	*/
-	triggLineCh2.setPosition(0,
+	triggLine[CHANNEL_2].setPosition(0,
 		                   0,
-		                   chan_2_graph.getWidth(),
-		                   chan_2_graph.getHeight() + 10);
+		                   graph[CHANNEL_2].getWidth(),
+		                   graph[CHANNEL_2].getHeight() + 10);
 
-	triggLineCh2.setup(   BITMAP_CHANNEL2_ID,
-		                 chan_2_graph.getY(),
+	triggLine[CHANNEL_2].setup(   BITMAP_CHANNEL2_ID,
+		                 graph[CHANNEL_2].getY(),
 		                 presenter->p_GetTriggerValue(CHANNEL_2),
 		                 Color::getColorFrom24BitRGB(255, 128, 0));
 
-	add(triggLineCh2);
+	add(triggLine[CHANNEL_2]);
 
-	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLineCh2.TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine[CHANNEL_2].TriggerPosition());
 
-	triggLineCh1.setPosition (0,
+	triggLine[CHANNEL_1].setPosition (0,
 		                    0,
-		                    chan_1_graph.getWidth(),
-		                    chan_1_graph.getHeight() + 10);
+		                    graph[CHANNEL_1].getWidth(),
+		                    graph[CHANNEL_1].getHeight() + 10);
 		                    
-	triggLineCh1.setup(BITMAP_CHANNEL1_ID,
-		                 chan_1_graph.getY(),
+	triggLine[CHANNEL_1].setup(BITMAP_CHANNEL1_ID,
+		                 graph[CHANNEL_1].getY(),
 		                 presenter->p_GetTriggerValue(CHANNEL_1),
 		                 Color::getColorFrom24BitRGB(102, 178, 255));
 
 	
 
 
-	presenter->p_SetTriggerValue(CHANNEL_1, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLineCh1.TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_1, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine[CHANNEL_1].TriggerPosition());
 
-	add(triggLineCh1);
+	add(triggLine[CHANNEL_1]);
 
 	/*
 	 *  Display Value section
@@ -313,23 +313,23 @@ void MainView::setupScreen()
 	cursor_txt_background.setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
 	add(cursor_txt_background);
 
-	trigger_1_lvl.setTypedText(TypedText(T_TRIG1_LEVEL));
-	trigger_1_lvl.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	trigger_1_lvl.setXY(125, 245);
-	add(trigger_1_lvl);
+	trigger_lvl[CHANNEL_1].setTypedText(TypedText(T_TRIG1_LEVEL));
+	trigger_lvl[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	trigger_lvl[CHANNEL_1].setXY(125, 245);
+	add(trigger_lvl[CHANNEL_1]);
 
-	trig1_txt_background.setXY(165, 243);
-	trig1_txt_background.setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
-	add(trig1_txt_background);
+	trig_txt_background[CHANNEL_1].setXY(165, 243);
+	trig_txt_background[CHANNEL_1].setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
+	add(trig_txt_background[CHANNEL_1]);
 
-	trigger_2_lvl.setTypedText(TypedText(T_TRIG2_LEVEL));
-	trigger_2_lvl.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	trigger_2_lvl.setXY(220, 245);
-	add(trigger_2_lvl);
+	trigger_lvl[CHANNEL_2].setTypedText(TypedText(T_TRIG2_LEVEL));
+	trigger_lvl[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	trigger_lvl[CHANNEL_2].setXY(220, 245);
+	add(trigger_lvl[CHANNEL_2]);
 
-	trig2_txt_background.setXY(260, 243);
-	trig2_txt_background.setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
-	add(trig2_txt_background);
+	trig_txt_background[CHANNEL_2].setXY(260, 243);
+	trig_txt_background[CHANNEL_2].setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
+	add(trig_txt_background[CHANNEL_2]);
 
 	Unicode::snprintf(cursor_buff, 10, "%d", 0);
 	cursor_value_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
@@ -339,21 +339,21 @@ void MainView::setupScreen()
 	add(cursor_value_wildcard);
 
 
-	Unicode::snprintf(trig1_buff, 5, "%d", 0);
-	trig1_value_wildcard.setTypedText(TypedText(T_TRIGG1_VALUE));
-	trig1_value_wildcard.setWildcard(trig1_buff);
-	trig1_value_wildcard.setPosition(160, 244, 50, 20);
-	trig1_value_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
-	add(trig1_value_wildcard);
-	trig1_value_wildcard.invalidate();
+	Unicode::snprintf(trig_buff[CHANNEL_1], 5, "%d", 0);
+	trig_value_wildcard[CHANNEL_1].setTypedText(TypedText(T_TRIGG1_VALUE));
+	trig_value_wildcard[CHANNEL_1].setWildcard(trig_buff[CHANNEL_1]);
+	trig_value_wildcard[CHANNEL_1].setPosition(160, 244, 50, 20);
+	trig_value_wildcard[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(255, 255, 255));
+	add(trig_value_wildcard[CHANNEL_1]);
+	trig_value_wildcard[CHANNEL_1].invalidate();
 
-	Unicode::snprintf(trig2_buff, 5, "%d", 0);
-	trig2_value_wildcard.setTypedText(TypedText(T_TRIGG2_VALUE));
-	trig2_value_wildcard.setWildcard(trig2_buff);
-	trig2_value_wildcard.setPosition(255, 244, 50, 20);
-	trig2_value_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
-	add(trig2_value_wildcard);
-	trig2_value_wildcard.invalidate();
+	Unicode::snprintf(trig_buff[CHANNEL_2], 5, "%d", 0);
+	trig_value_wildcard[CHANNEL_2].setTypedText(TypedText(T_TRIGG2_VALUE));
+	trig_value_wildcard[CHANNEL_2].setWildcard(trig_buff[CHANNEL_2]);
+	trig_value_wildcard[CHANNEL_2].setPosition(255, 244, 50, 20);
+	trig_value_wildcard[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 255, 255));
+	add(trig_value_wildcard[CHANNEL_2]);
+	trig_value_wildcard[CHANNEL_2].invalidate();
 
 	/*
      * Control Menu section	
@@ -363,33 +363,33 @@ void MainView::setupScreen()
 	control_menu.setVisiblePixelsWhenCollapsed(15);
 	add(control_menu);
 
-	txt_ch1_ctrl_menu.setTypedText(TypedText(T_CHN1_CTRL_MENU));
-	txt_ch1_ctrl_menu.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	txt_ch1_ctrl_menu.setXY(5,8);
-	control_menu.add(txt_ch1_ctrl_menu);
+	txt_ctrl_menu[CHANNEL_1].setTypedText(TypedText(T_CHN1_CTRL_MENU));
+	txt_ctrl_menu[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	txt_ctrl_menu[CHANNEL_1].setXY(5,8);
+	control_menu.add(txt_ctrl_menu[CHANNEL_1]);
 
-	chn1_enable.setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	chn1_enable.setXY(40, 7);
-	chn1_enable.setAction(buttonClickedCallback);
+	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
+	chn_enable[CHANNEL_1].setXY(40, 7);
+	chn_enable[CHANNEL_1].setAction(buttonClickedCallback);
 	
 	
-	chn1_enable.forceState(true);
+	chn_enable[CHANNEL_1].forceState(true);
 
-	txt_ch2_ctrl_menu.setTypedText(TypedText(T_CHN2_CTRL_MENU));
-	txt_ch2_ctrl_menu.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	txt_ch2_ctrl_menu.setXY(85, 8);
-	control_menu.add(txt_ch2_ctrl_menu);
+	txt_ctrl_menu[CHANNEL_2].setTypedText(TypedText(T_CHN2_CTRL_MENU));
+	txt_ctrl_menu[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	txt_ctrl_menu[CHANNEL_2].setXY(85, 8);
+	control_menu.add(txt_ctrl_menu[CHANNEL_2]);
 
-	chn2_enable.setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	chn2_enable.setXY(120, 7);
-	chn2_enable.setAction(buttonClickedCallback);
+	chn_enable[CHANNEL_2].setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
+	chn_enable[CHANNEL_2].setXY(120, 7);
+	chn_enable[CHANNEL_2].setAction(buttonClickedCallback);
 
-	chn2_enable.forceState(true);
+	chn_enable[CHANNEL_2].forceState(true);
 	
-	graph_container.add(chan_1_graph);
-	graph_container.add(chan_2_graph);
-	control_menu.add(chn1_enable);
-	control_menu.add(chn2_enable);
+	graph_container.add(graph[CHANNEL_1]);
+	graph_container.add(graph[CHANNEL_2]);
+	control_menu.add(chn_enable[CHANNEL_1]);
+	control_menu.add(chn_enable[CHANNEL_2]);
 
 	
 
@@ -451,35 +451,35 @@ void MainView::buttonClicked(const AbstractButton &source)
 		
 		slideTexts(RIGHT);
 	}
-	else if (&source == &chn1_enable)
+	else if (&source == &chn_enable[CHANNEL_1])
 	{
 		control_menu.resetExpandedStateTimer();
-		if (chn1_enable.getState() == true)
+		if (chn_enable[CHANNEL_1].getState() == true)
 		{
-			remove(triggLineCh1);
-			add(triggLineCh1);
-			graph_container.add(chan_1_graph);
+			remove(triggLine[CHANNEL_1]);
+			add(triggLine[CHANNEL_1]);
+			graph_container.add(graph[CHANNEL_1]);
 		}
 		else
 		{
-			remove(triggLineCh1);
-			graph_container.remove(chan_1_graph);
+			remove(triggLine[CHANNEL_1]);
+			graph_container.remove(graph[CHANNEL_1]);
 
 		}
 	}
-	else if (&source == &chn2_enable)
+	else if (&source == &chn_enable[CHANNEL_2])
 	{
 		control_menu.resetExpandedStateTimer();
-		if (chn2_enable.getState() == true)
+		if (chn_enable[CHANNEL_2].getState() == true)
 		{
-			remove(triggLineCh2);
-			add(triggLineCh2);
-			graph_container.add(chan_2_graph);
+			remove(triggLine[CHANNEL_2]);
+			add(triggLine[CHANNEL_2]);
+			graph_container.add(graph[CHANNEL_2]);
 		}
 		else
 		{
-			remove(triggLineCh2);
-			graph_container.remove(chan_2_graph);
+			remove(triggLine[CHANNEL_2]);
+			graph_container.remove(graph[CHANNEL_2]);
 		}
 	}
 }
@@ -602,25 +602,25 @@ void MainView::handleTickEvent()
 		presenter->p_SetTriggerType(ch_idx, panelChn[ch_idx].isFallingButtonClicked());
 	}
 
-	presenter->p_SetTriggerValue(CHANNEL_2, triggLineCh2.TriggerPosition());
-	presenter->p_SetTriggerValue(CHANNEL_1, triggLineCh1.TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_2, triggLine[CHANNEL_2].TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_1, triggLine[CHANNEL_1].TriggerPosition());
 
 	/* Update GUI according to HMI update */
-	chan_2_graph.setY(presenter->p_GetYOffset(CHANNEL_2));
-	chan_2_graph.invalidate();
+	graph[CHANNEL_2].setY(presenter->p_GetYOffset(CHANNEL_2));
+	graph[CHANNEL_2].invalidate();
 
-	chan_1_graph.setY(presenter->p_GetYOffset(CHANNEL_1));
-	chan_1_graph.invalidate();
+	graph[CHANNEL_1].setY(presenter->p_GetYOffset(CHANNEL_1));
+	graph[CHANNEL_1].invalidate();
 
-	triggLineCh1.EnableLine(panelChn[CHANNEL_1].isMarkerButtonClicked());
-	triggLineCh2.EnableLine(panelChn[CHANNEL_2].isMarkerButtonClicked());
+	triggLine[CHANNEL_1].EnableLine(panelChn[CHANNEL_1].isMarkerButtonClicked());
+	triggLine[CHANNEL_2].EnableLine(panelChn[CHANNEL_2].isMarkerButtonClicked());
 
 
 
 	if (selectedChnIndex == 0)
 	{
 
-		//triggLineCh2.EnableLine(false);
+		//triggLine[CHANNEL_2].EnableLine(false);
 		marker1.EnableLine(panelChn[CHANNEL_1].isMarkerAButtonClicked());
 		marker2.EnableLine(panelChn[CHANNEL_1].isMarkerBButtonClicked());
 		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
@@ -639,7 +639,7 @@ void MainView::handleTickEvent()
 	{
 		
 		
-		//triggLineCh1.EnableLine(false);
+		//triggLine[CHANNEL_1].EnableLine(false);
 
 		marker1.EnableLine(panelChn[CHANNEL_2].isMarkerAButtonClicked());
 		marker2.EnableLine(panelChn[CHANNEL_2].isMarkerBButtonClicked());
@@ -659,12 +659,12 @@ void MainView::handleTickEvent()
 	if (presenter->p_GetVoltageScale(CHANNEL_1) > 5)
 		temp_value = temp_value / 1000;
 
-	Unicode::snprintfFloat(trig2_buff, 5, "%.2f", temp_value);
-	trig2_value_wildcard.invalidate();
+	Unicode::snprintfFloat(trig_buff[CHANNEL_2], 5, "%.2f", temp_value);
+	trig_value_wildcard[CHANNEL_2].invalidate();
 
 
-	triggLineCh1.setYoffset(presenter->p_GetYOffset(CHANNEL_1));
-	triggLineCh1.invalidate();
+	triggLine[CHANNEL_1].setYoffset(presenter->p_GetYOffset(CHANNEL_1));
+	triggLine[CHANNEL_1].invalidate();
 
 	temp_value = presenter->p_GetTriggerValue(CHANNEL_2) * presenter->p_VoltagePerPixel(CHANNEL_2);
 	if (presenter->p_GetVoltageScale(CHANNEL_2) > 5)
@@ -672,11 +672,11 @@ void MainView::handleTickEvent()
 
 
 
-	Unicode::snprintfFloat(trig1_buff, 5, "%.2f", temp_value);
-	trig1_value_wildcard.invalidate();
+	Unicode::snprintfFloat(trig_buff[CHANNEL_1], 5, "%.2f", temp_value);
+	trig_value_wildcard[CHANNEL_1].invalidate();
 
-	triggLineCh2.setYoffset( presenter->p_GetYOffset(CHANNEL_2));
-	triggLineCh2.invalidate();
+	triggLine[CHANNEL_2].setYoffset( presenter->p_GetYOffset(CHANNEL_2));
+	triggLine[CHANNEL_2].invalidate();
 
 	tickCounter++;
 	if (tickCounter % 1 == 0)
