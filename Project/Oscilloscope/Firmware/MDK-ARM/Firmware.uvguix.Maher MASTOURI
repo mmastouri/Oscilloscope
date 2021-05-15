@@ -3606,7 +3606,7 @@
       <ActiveTab>4</ActiveTab>
       <Doc>
         <Name>..\..\Graphic\gui\src\main_screen\MainView.cpp</Name>
-        <ColumnNumber>5</ColumnNumber>
+        <ColumnNumber>8</ColumnNumber>
         <TopLine>146</TopLine>
         <CurrentLine>166</CurrentLine>
         <Folding>1</Folding>
@@ -3642,9 +3642,9 @@
       </Doc>
       <Doc>
         <Name>..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\tasks.c</Name>
-        <ColumnNumber>33</ColumnNumber>
+        <ColumnNumber>0</ColumnNumber>
         <TopLine>2945</TopLine>
-        <CurrentLine>2969</CurrentLine>
+        <CurrentLine>2967</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

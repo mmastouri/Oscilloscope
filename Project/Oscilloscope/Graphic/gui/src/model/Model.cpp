@@ -133,11 +133,11 @@ void Model::ConvertToTriggerData(int channel)
 			chan1.trigger_found = false;
 			if (chan1.is_triggered == true)
 			{
-				if (chan1.triger_type == FALLING)
+				if (chan1.triger_type == RISING)
 				{
 					for (i = 99 ; i < 1000 - 305; i++)
 					{
-						if ((chan1.raw_data[i]  < chan1.trigger_level) &&
+						if ((chan1.raw_data[i]  <= chan1.trigger_level) &&
 							(chan1.raw_data[i + 1] > chan1.trigger_level) &&
 							(chan1.raw_data[i + 2] > chan1.trigger_level) &&
 							(chan1.raw_data[i + 3] > chan1.trigger_level))
@@ -164,7 +164,7 @@ void Model::ConvertToTriggerData(int channel)
 				{
 					for (i = 99 ; i < 1000 - 305 ; i++)
 					{
-						if ((chan1.raw_data[i]  > chan1.trigger_level) &&
+						if ((chan1.raw_data[i]  >= chan1.trigger_level) &&
 							(chan1.raw_data[i + 1] < chan1.trigger_level) &&
 							(chan1.raw_data[i + 2] < chan1.trigger_level) &&
 							(chan1.raw_data[i + 3] < chan1.trigger_level))
@@ -204,7 +204,7 @@ void Model::ConvertToTriggerData(int channel)
 			chan2.trigger_found = false;
 			if (chan2.is_triggered == true)
 			{
-				if (chan2.triger_type == FALLING)
+				if (chan2.triger_type == RISING)
 				{
 					for (i = 99; i < 1000 - 305; i++)
 					{

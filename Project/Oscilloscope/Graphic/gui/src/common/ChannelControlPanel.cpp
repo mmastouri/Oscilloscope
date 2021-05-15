@@ -283,7 +283,7 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 	TriggerButton.setXY(15, 35);
 	TriggerButton.setAction(buttonClickedCallback);
 
-	FallingButton.setBitmaps(Bitmap(BITMAP_EDGEUP_ID), Bitmap(BITMAP_EDGEDOWN_ID));
+	FallingButton.setBitmaps(Bitmap(BITMAP_EDGEDOWN_ID), Bitmap(BITMAP_EDGEUP_ID));
 	FallingButton.setXY(width / 3 + 8, 35);
 	FallingButton.setAction(buttonClickedCallback);
 

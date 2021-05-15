@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat May 15 16:45:54 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat May 15 18:01:35 2021
 <BR><P>
 <H3>Maximum Stack Usage =        652 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1301,8 +1301,8 @@ Global Symbols
 
 <P><STRONG><a name="[1f0]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[37d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::drawCurve(unsigned short*, const touchgfx::Rect&) const
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F7DMA::setupDataFill(const touchgfx::BlitOp&)
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_LTDC_ConfigLayer
 <LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::LockFreeDMA_Queue::pushCopyOf(const touchgfx::BlitOp&)
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleClickEvent(const touchgfx::ClickEvent&)
@@ -2547,8 +2547,8 @@ Global Symbols
 <P><STRONG><a name="[3cf]"></a>STM32F7DMA::STM32F7DMA__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, stm32f7dma.o(i._ZN10STM32F7DMAC1Ev), UNUSED)
 
 <P><STRONG><a name="[95]"></a>STM32F7DMA::~STM32F7DMA()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f7dma.o(i._ZN10STM32F7DMAD1Ev))
-<BR>[Address Reference Count : 2]<UL><LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
-<LI> stm32f7dma.o(.constdata__ZTV10STM32F7DMA)
+<BR>[Address Reference Count : 2]<UL><LI> stm32f7dma.o(.constdata__ZTV10STM32F7DMA)
+<LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
 </UL>
 <P><STRONG><a name="[3d0]"></a>STM32F7DMA::~STM32F7DMA__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, stm32f7dma.o(i._ZN10STM32F7DMAD1Ev), UNUSED)
 
@@ -3564,10 +3564,10 @@ Global Symbols
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::moveRelative(short, short)
 <LI><a href="#[3b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep()
 <LI><a href="#[28d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::tick()
 <LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::~SlideMenu()
 <LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::tick()
 <LI><a href="#[2f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL& touchgfx::touchgfx_generic_init&lang;STM32F7HAL&rang;(touchgfx::DMA_Interface&, touchgfx::LCD&, touchgfx::TouchController&, short, short, unsigned short*, unsigned, unsigned)
 <LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::RepeatButton::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[3b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::Container&rang;::nextMoveAnimationStep()
@@ -4347,8 +4347,8 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> stm32f7instrumentation.o(.constdata__ZTVN8touchgfx22STM32F7InstrumentationE)
 </UL>
 <P><STRONG><a name="[97]"></a>touchgfx::STM32F7Instrumentation::~STM32F7Instrumentation()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, boardconfiguration.o(i._ZN8touchgfx22STM32F7InstrumentationD1Ev))
-<BR>[Address Reference Count : 2]<UL><LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
-<LI> stm32f7instrumentation.o(.constdata__ZTVN8touchgfx22STM32F7InstrumentationE)
+<BR>[Address Reference Count : 2]<UL><LI> stm32f7instrumentation.o(.constdata__ZTVN8touchgfx22STM32F7InstrumentationE)
+<LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
 </UL>
 <P><STRONG><a name="[3f5]"></a>touchgfx::STM32F7Instrumentation::~STM32F7Instrumentation__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, boardconfiguration.o(i._ZN8touchgfx22STM32F7InstrumentationD1Ev), UNUSED)
 
@@ -4388,8 +4388,8 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> stm32f746gtouchcontroller.o(.constdata__ZTVN8touchgfx25STM32F746GTouchControllerE)
 </UL>
 <P><STRONG><a name="[96]"></a>touchgfx::STM32F746GTouchController::~STM32F746GTouchController()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, boardconfiguration.o(i._ZN8touchgfx25STM32F746GTouchControllerD1Ev))
-<BR>[Address Reference Count : 2]<UL><LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
-<LI> stm32f746gtouchcontroller.o(.constdata__ZTVN8touchgfx25STM32F746GTouchControllerE)
+<BR>[Address Reference Count : 2]<UL><LI> stm32f746gtouchcontroller.o(.constdata__ZTVN8touchgfx25STM32F746GTouchControllerE)
+<LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
 </UL>
 <P><STRONG><a name="[3f7]"></a>touchgfx::STM32F746GTouchController::~STM32F746GTouchController__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, boardconfiguration.o(i._ZN8touchgfx25STM32F746GTouchControllerD1Ev), UNUSED)
 

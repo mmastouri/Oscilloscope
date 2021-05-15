@@ -71,22 +71,22 @@ void MainView::setupScreen()
 	panelChn[1].associatedChannel = 1;
 
 
-	// Init model from default / saved settings 
+	// overide default model settings from savedones
 	appContext.Restore();
 
-	presenter->p_SetYOffset(CHANNEL_1, 115);
-	presenter->p_SetYOffset(CHANNEL_2, 230);
+	presenter->p_SetYOffset(CHANNEL_1, 115 - 38);
+	presenter->p_SetYOffset(CHANNEL_2, 230 - 38);
 	presenter->p_SetTrigger(CHANNEL_1, true);
 	presenter->p_SetTrigger(CHANNEL_2, true);
-	presenter->p_SetTriggerType(CHANNEL_1, RISING);
-	presenter->p_SetTriggerType(CHANNEL_2, RISING);
+	presenter->p_SetTriggerType(CHANNEL_1, FALLING);
+	presenter->p_SetTriggerType(CHANNEL_2, FALLING);
 
 	presenter->p_SetTriggerValue(CHANNEL_1, 20);
-	presenter->p_SetTriggerValue(CHANNEL_2, 50);
+	presenter->p_SetTriggerValue(CHANNEL_2, 20);
 	presenter->p_SetTimeScale(CHANNEL_1, DIV_100uS);
-	presenter->p_SetTimeScale(CHANNEL_2, DIV_50uS);
+	presenter->p_SetTimeScale(CHANNEL_2, DIV_100uS);
 	presenter->p_SetVoltageScale(CHANNEL_1, DIV_2V);
-	presenter->p_SetVoltageScale(CHANNEL_2, DIV_1V);
+	presenter->p_SetVoltageScale(CHANNEL_2, DIV_2V);
 	/*
 	* Background configuration: add application,
 	*   grid, control panel and channel background
