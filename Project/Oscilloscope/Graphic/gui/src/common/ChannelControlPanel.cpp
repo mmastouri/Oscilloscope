@@ -203,10 +203,6 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 			-timeTxt[i].getHeight());
 	}
 
-	selectedHorizontalTextIndex = 2;
-
-	slideHorizotalText(DOWN);
-
 	verticalTxtContainer.setPosition(verticalBkgndTxt.getX(), verticalBkgndTxt.getY(),
 		verticalBkgndTxt.getWidth(), verticalBkgndTxt.getHeight());
 
@@ -237,10 +233,6 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 		voltTxt[i].setXY(verticalTxtContainer.getWidth() / 2 - voltTxt[i].getWidth() / 2,
 			-voltTxt[i].getHeight());
 	}
-
-	selectedVerticalTextIndex = 7;
-
-	slideVerticalText(DOWN);
 
 	markerLabel.setTypedText(TypedText(T_MARKERTXTLABEL));
 	markerLabel.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
@@ -415,23 +407,8 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 	chnControlPanel.add(move_left_button);
 	chnControlPanel.add(move_right_button);
 
-
 	add(chnControlPanel);
-#ifndef SIMULATOR
-	GetDataFromModel(associatedChannel, selectedHorizontalTextIndex);
-#endif
-}
 
-void ChannelControlPanel::SetTriggerButtonOn(void)
-{
-	triggerButtonClicked = true;
-	TriggerButton.forceState(true);
-}
-
-void ChannelControlPanel::SetMarkerButtonOn(void)
-{
-	markerButtonClicked = true;
-	MarkerButton.forceState(true);
 }
 
 /*****************************************************************************************
@@ -693,6 +670,17 @@ void ChannelControlPanel::slideVerticalText(SlideDirection direction)
 * RETURNS: bool                                                                          *
 *                                                                                        *
 *****************************************************************************************/
+
+void ChannelControlPanel::SetTriggerButton(bool state)
+{
+	triggerButtonClicked = state;
+
+
+	markerButtonClicked = state;
+	TriggerButton.forceState(state);
+}
+
+
 bool ChannelControlPanel::isTriggerButtonClicked(void)
 {
 	return triggerButtonClicked;
@@ -701,6 +689,12 @@ bool ChannelControlPanel::isTriggerButtonClicked(void)
 bool ChannelControlPanel::isFallingButtonClicked(void)
 {
 	return fallingButtonClicked;
+}
+
+void ChannelControlPanel::SetFallingButton(bool state)
+{
+	fallingButtonClicked = state;
+	FallingButton.forceState(state);
 }
 
 /*****************************************************************************************
@@ -716,6 +710,13 @@ bool ChannelControlPanel::isFallingButtonClicked(void)
 * RETURNS: bool                                                                          *
 *                                                                                        *
 *****************************************************************************************/
+
+void ChannelControlPanel::SetMarkerButton(bool state)
+{
+	markerButtonClicked = state;
+	MarkerButton.forceState(state);
+}
+
 bool ChannelControlPanel::isMarkerButtonClicked(void)
 {
 	return markerButtonClicked;
@@ -739,6 +740,11 @@ bool ChannelControlPanel::isMarkerAButtonClicked(void)
 	return markerAButtonClicked;
 }
 
+void ChannelControlPanel::SetMarkerAButton(bool state)
+{
+	markerAButtonClicked = state;
+	aButton.forceState(state);
+}
 /*****************************************************************************************
 *                                                                                        *
 * FUNCTION NAME:  isMarkerBButtonClicked                                                 *
@@ -757,6 +763,14 @@ bool ChannelControlPanel::isMarkerBButtonClicked(void)
 	return markerBButtonClicked;
 }
 
+
+void ChannelControlPanel::SetMarkerBButton(bool state)
+{
+
+	markerBButtonClicked = state;
+	bButton.forceState(state);
+}
+
 int ChannelControlPanel::GetTimeBaseIndex(void)
 {
 	return selectedHorizontalTextIndex;
@@ -767,6 +781,18 @@ int ChannelControlPanel::GetVoltBaseIndex(void)
 	return selectedVerticalTextIndex;
 }
 
+void ChannelControlPanel::setScaleSettings(int timeScale, int voltageScale)
+{
+
+	selectedVerticalTextIndex = voltageScale + 1;
+	selectedHorizontalTextIndex = timeScale + 1;
+	slideHorizotalText(DOWN);
+	slideVerticalText(DOWN);
+
+#ifndef SIMULATOR
+	GetDataFromModel(associatedChannel, selectedHorizontalTextIndex);
+#endif
+}
 
 /*****************************************************************************************
 *                                                                                        *

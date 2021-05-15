@@ -170,17 +170,21 @@ public:
 	void setup(int y0, int width, int height, uint16_t buttonOn, uint16_t buttonOff,
 	           uint16_t upArrowOn, uint16_t upArrowOff, uint16_t downArrowOn, uint16_t downArrowOff, int xoffset, int yoffset);
 
-	void SetTriggerButtonOn(void);
-	void SetMarkerButtonOn(void);
+	void SetTriggerButton(bool state);
+	void SetFallingButton(bool state);
+	void SetMarkerButton(bool state);
+	void SetMarkerAButton(bool state);
+	void SetMarkerBButton(bool state);
+	void setScaleSettings(int timeScale, int voltageScale);
 
 	bool isTriggerButtonClicked(void);
 	bool isFallingButtonClicked(void);
 	bool isMarkerButtonClicked(void);
 	bool isMarkerAButtonClicked(void);
 	bool isMarkerBButtonClicked(void);
-
 	int GetTimeBaseIndex(void);
 	int GetVoltBaseIndex(void);
+
 
 	void SetUpButtonImage( uint16_t up_on, uint16_t up_off, uint16_t down_on, uint16_t down_off,
 	                       uint16_t left_on, uint16_t left_off, uint16_t right_on, uint16_t right_off);

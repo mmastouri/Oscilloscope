@@ -59,16 +59,74 @@ Note: source file '..\..\Graphic\generated\images\src\EdgeDown.cpp' - object fil
 Note: source file '..\..\Graphic\generated\images\src\EdgeUp.cpp' - object file renamed from 'Firmware\EdgeUp.o' to 'Firmware\edgeup_1.o'.
 Note: source file '..\..\Graphic\generated\images\src\channel1.cpp' - object file renamed from 'Firmware\channel1.o' to 'Firmware\channel1_1.o'.
 Note: source file '..\..\Graphic\generated\images\src\channel2.cpp' - object file renamed from 'Firmware\channel2.o' to 'Firmware\channel2_1.o'.
-compiling AppContext.cpp...
+compiling MainPresenter.cpp...
+..\..\Graphic\gui\include\gui\common\Marker.hpp(80): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\ChannelControlPanel.hpp(292): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(89): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\Graph.hpp(66): warning:  #997-D: function "touchgfx::Drawable::setPosition(std::int16_t, std::int16_t, std::int16_t, std::int16_t)"  is hidden by "Graph::setPosition"  -- virtual function override intended?
+  	virtual void setPosition(int16_t x, int16_t y, int offset, int16_t width, int16_t height);
 ..\..\Graphic\gui\include\gui/common/AppContext.h(9): warning:  #1-D: last line of file ends without a newline
   };
-..\..\Graphic\gui\src\common\AppContext.cpp(19): warning:  #1-D: last line of file ends without a newline
+..\..\Graphic\gui\src\main_screen\MainPresenter.cpp: 5 warnings, 0 errors
+compiling FrontendApplication.cpp...
+..\..\Graphic\gui\include\gui/common/AppContext.h(9): warning:  #1-D: last line of file ends without a newline
+  };
+..\..\Graphic\gui\include\gui\common\Marker.hpp(80): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\ChannelControlPanel.hpp(292): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(89): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\Graph.hpp(66): warning:  #997-D: function "touchgfx::Drawable::setPosition(std::int16_t, std::int16_t, std::int16_t, std::int16_t)"  is hidden by "Graph::setPosition"  -- virtual function override intended?
+  	virtual void setPosition(int16_t x, int16_t y, int offset, int16_t width, int16_t height);
+..\..\Graphic\gui\src\common\FrontendApplication.cpp: 5 warnings, 0 errors
+compiling ChannelControlPanel.cpp...
+..\..\Graphic\gui\include\gui\common\ChannelControlPanel.hpp(292): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui/common/AppContext.h(9): warning:  #1-D: last line of file ends without a newline
+  };
+..\..\Graphic\gui\src\common\ChannelControlPanel.cpp(856): warning:  #1-D: last line of file ends without a newline
   }
-..\..\Graphic\gui\src\common\AppContext.cpp: 2 warnings, 0 errors
+..\..\Graphic\gui\src\common\ChannelControlPanel.cpp: 3 warnings, 0 errors
+compiling Model.cpp...
+..\..\Graphic\gui\include\gui/common/AppContext.h(9): warning:  #1-D: last line of file ends without a newline
+  };
+..\..\Graphic\gui\src\model\Model.cpp: 1 warning, 0 errors
+compiling BoardConfiguration.cpp...
+..\..\Graphic\gui\include\gui/common/AppContext.h(9): warning:  #1-D: last line of file ends without a newline
+  };
+..\..\Graphic\gui\include\gui\common\Marker.hpp(80): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\ChannelControlPanel.hpp(292): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(89): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\Graph.hpp(66): warning:  #997-D: function "touchgfx::Drawable::setPosition(std::int16_t, std::int16_t, std::int16_t, std::int16_t)"  is hidden by "Graph::setPosition"  -- virtual function override intended?
+  	virtual void setPosition(int16_t x, int16_t y, int offset, int16_t width, int16_t height);
+..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\BoardConfiguration.cpp: 5 warnings, 0 errors
+compiling MainView.cpp...
+..\..\Graphic\gui\include\gui\common\Marker.hpp(80): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\ChannelControlPanel.hpp(292): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\TriggerLine.hpp(89): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\Graphic\gui\include\gui\common\Graph.hpp(66): warning:  #997-D: function "touchgfx::Drawable::setPosition(std::int16_t, std::int16_t, std::int16_t, std::int16_t)"  is hidden by "Graph::setPosition"  -- virtual function override intended?
+  	virtual void setPosition(int16_t x, int16_t y, int offset, int16_t width, int16_t height);
+..\..\Graphic\gui\include\gui/common/AppContext.h(9): warning:  #1-D: last line of file ends without a newline
+  };
+..\..\Graphic\gui\src\main_screen\MainView.cpp(707): warning:  #1-D: last line of file ends without a newline
+  }
+..\..\Graphic\gui\src\main_screen\MainView.cpp(706): warning:  #177-D: variable "temp"  was declared but never referenced
+  	uint8_t temp = 0;
+..\..\Graphic\gui\src\main_screen\MainView.cpp: 7 warnings, 0 errors
 linking...
-Program Size: Code=78948 RO-data=940616 RW-data=456 ZI-data=184800  
+Program Size: Code=79184 RO-data=940616 RW-data=456 ZI-data=184800  
 FromELF: creating hex file...
-"Firmware\Firmware.axf" - 0 Error(s), 2 Warning(s).
+"Firmware\Firmware.axf" - 0 Error(s), 26 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -91,7 +149,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.4.0
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:11
 </pre>
 </body>
 </html>

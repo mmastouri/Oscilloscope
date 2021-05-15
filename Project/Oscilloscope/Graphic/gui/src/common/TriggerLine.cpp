@@ -138,7 +138,10 @@ TriggerLine::~TriggerLine()
 *****************************************************************************************/
 void TriggerLine::handleMarkerSnappedEvent(void)
 {
-	channelbmp.setY(marker - 5);
+	if (marker < 10)
+		channelbmp.setY(5);
+	else
+		channelbmp.setY(marker - 5);
 }
 /*****************************************************************************************
 *                                                                                        *
@@ -159,16 +162,22 @@ void TriggerLine::handleMarkerDragEvent(const DragEvent& evt)
 
 	if (marker + evt.getDeltaY() > (y_offset - 5))
 		marker = y_offset - 5;
-	else if (marker + evt.getDeltaY() < 5)
-		marker = 5;
+	else if (marker + evt.getDeltaY() < 10)
+		marker = 10;
 	else
 	{
 		marker = marker + evt.getDeltaY();
-
 	}
+
 	trigger_position = y_offset - marker;
 
-	line.setSnapPosition(-X_OFFSET, marker);
+	if(marker < 10)
+	{
+		channelbmp.setY(5);
+		line.setSnapPosition(-X_OFFSET, 10);
+	}
+	else
+	    line.setSnapPosition(-X_OFFSET, marker);
 
 	invalidate();
 }
@@ -205,7 +214,12 @@ void TriggerLine::setYoffset(int offset)
 	{
 		y_offset = offset;
 		marker = offset - trigger_position;
-		line.setY(marker);
-		channelbmp.setY(marker - 5);
+
+
+		if (marker >= 10)
+		{
+			line.setY(marker);
+			channelbmp.setY(marker - 5);
+		}
 	}
 }

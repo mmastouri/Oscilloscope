@@ -67,6 +67,9 @@
 void MainView::setupScreen()
 {
 	tickCounter = 0;
+	panelChn[0].associatedChannel = 0;
+	panelChn[1].associatedChannel = 1;
+
 	/*
 	* Background configuration: add application,
 	*   grid, control panel and channel background
@@ -139,9 +142,13 @@ void MainView::setupScreen()
 					  BITMAP_BUTTONDOWNOFF_ID,
 					  BITMAP_BUTTONDOWNON_ID, presenter->p_GetXOffset(0), presenter->p_GetYOffset(0) );
 
+
+	
+	
+
 	panelChn[0].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
-	panelChn[0].associatedChannel = 0;
-	panelChn[1].associatedChannel = 1;
+	
+	
 	panelChn[1].SetUpButtonImage(BITMAP_BUTTONUPON_ID,
 		                         BITMAP_BUTTONUPOFF_ID,
 		                         BITMAP_BUTTONDOWNON_ID,
@@ -163,9 +170,6 @@ void MainView::setupScreen()
 		BITMAP_BUTTONDOWNON_ID, presenter->p_GetXOffset(1), presenter->p_GetYOffset(1));
 
 	panelChn[1].SetChannelPanelCallback(CtrlPanelBtnPressCallback);
-
-	panelChn[1].SetMarkerButtonOn();
-	panelChn[1].SetTriggerButtonOn();
 
 	chnTextViewPort.setPosition( channelBackground.getX(),
 								 channelBackground.getY(),
@@ -353,6 +357,8 @@ void MainView::setupScreen()
 	chn1_enable.setAction(buttonClickedCallback);
 	control_menu.add(chn1_enable);
 	
+	chn1_enable.forceState(true);
+
 	txt_ch2_ctrl_menu.setTypedText(TypedText(T_CHN2_CTRL_MENU));
 	txt_ch2_ctrl_menu.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
 	txt_ch2_ctrl_menu.setXY(85, 8);
@@ -361,14 +367,26 @@ void MainView::setupScreen()
 	chn2_enable.setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
 	chn2_enable.setXY(40, 7);
 	chn2_enable.setAction(buttonClickedCallback);
+
 	chn2_enable.forceState(true);
+	
 	graph_container.add(chan_2_graph);
 	control_menu.add(chn2_enable);
 
+	graph_container.add(chan_1_graph);
+
+
+	// Init Panel from default / saved settings 
+	for (int i = 0; i < 2; i++)
+	{
+		panelChn[i].SetTriggerButton(true);
+		panelChn[i].SetFallingButton(true);
+		panelChn[i].SetMarkerButton(true);
+		panelChn[i].SetMarkerAButton(true);
+		panelChn[i].SetMarkerBButton(true);
+		panelChn[i].setScaleSettings(presenter->p_GetTimeScale(1), presenter->p_GetVoltageScale(1));
+	}
 	Intro();
-
-	
-
 }
 
 /***************************************************************************************************
@@ -551,25 +569,25 @@ void MainView::slideTexts(SlideDirection direction)
 ***************************************************************************************************/
 void MainView::handleTickEvent()
 {	
-	/*Used to store some temporary value for calculation*/
 	float temp_value;
-	/*
-	* For every tick, check which marker, trigger line is enabled/disabled
-	* For every ten ticks, the graph is invalidated
-	*/
 
+
+	/* Update model according to HMI update */ 
 	for (int ch_idx = 0; ch_idx < 2; ch_idx++)
 	{
 		presenter->p_SetTimeScale(ch_idx, panelChn[ch_idx].GetTimeBaseIndex());
 		presenter->p_SetVoltageScale(ch_idx, panelChn[ch_idx].GetVoltBaseIndex());
 		presenter->p_SetRawData(ch_idx);
-		presenter->p_SetYOffset(ch_idx, panelChn[ch_idx].GetYOffset()); // TBD NOT UPDATED CORRECTLY!!!!
+		presenter->p_SetYOffset(ch_idx, panelChn[ch_idx].GetYOffset());
 		presenter->p_SetXOffset(ch_idx, panelChn[ch_idx].GetXOffset());
 		presenter->p_SetTrigger(ch_idx, panelChn[ch_idx].isTriggerButtonClicked());
 		presenter->p_SetTriggerType(ch_idx, panelChn[ch_idx].isFallingButtonClicked());
-		chan_1_graph.invalidate();
 	}
 
+	presenter->p_SetTriggerValue(CHANNEL_2, triggLineCh2.TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_1, triggLineCh1.TriggerPosition());
+
+	/* Update GUI according to HMI update */
 	chan_2_graph.setY(presenter->p_GetYOffset(CHANNEL_2));
 	chan_2_graph.invalidate();
 
@@ -579,8 +597,7 @@ void MainView::handleTickEvent()
 	triggLineCh1.EnableLine(panelChn[0].isMarkerButtonClicked());
 	triggLineCh2.EnableLine(panelChn[1].isMarkerButtonClicked());
 
-	presenter->p_SetTriggerValue(CHANNEL_2, triggLineCh2.TriggerPosition());
-	presenter->p_SetTriggerValue(CHANNEL_1, triggLineCh1.TriggerPosition());
+
 
 	if (selectedChnIndex == 0)
 	{
