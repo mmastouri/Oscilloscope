@@ -1,47 +1,23 @@
-###############################################################################
+##############################################################################
+# This file is part of the TouchGFX 4.15.0 distribution.
 #
-# @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
+# <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+# All rights reserved.</center></h2>
 #
-# @author    Draupner Graphics A/S <http://www.touchgfx.com>
+# This software component is licensed by ST under Ultimate Liberty license
+# SLA0044, the "License"; You may not use this file except in compliance with
+# the License. You may obtain a copy of the License at:
+#                             www.st.com/SLA0044
 #
-###############################################################################
-#
-# @section Copyright
-#
-# Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
-# All rights reserved.
-#
-# TouchGFX is protected by international copyright laws and the knowledge of
-# this source code may not be used to write a similar product. This file may
-# only be used in accordance with a license and should not be re-
-# distributed in any way without the prior permission of Draupner Graphics.
-#
-# This is licensed software for evaluation use, any use must strictly comply
-# with the evaluation license agreement provided with delivery of the
-# TouchGFX software.
-#
-# The evaluation license agreement can be seen on www.touchgfx.com
-#
-# @section Disclaimer
-#
-# DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
-# no obligation to support this software. Draupner Graphics A/S is providing
-# the software "AS IS", with no express or implied warranties of any kind,
-# including, but not limited to, any implied warranties of merchantability
-# or fitness for any particular purpose or warranties against infringement
-# of any proprietary rights of a third party.
-#
-# Draupner Graphics A/S can not be held liable for any consequential,
-# incidental, or special damages, or any other relief, or for any claim by
-# any third party, arising from your use of this software.
-#
-###############################################################################
+##############################################################################
+
 require 'lib/excel_reader'
 
 class TextEntriesExcelReader
   attr_reader :reader
 
   def initialize(file_name)
+    #puts "Running TextEntriesExcelReader:init, #{Time.now.strftime("%H:%M:%S:%L")}"
     header_row_number = 3
     header_column_number = 2
     @reader = ExcelReader.new(file_name, "Translation", header_row_number, header_column_number)
@@ -49,6 +25,7 @@ class TextEntriesExcelReader
   end
 
   def run
+    #puts "Running TextEntriesExcelReader:run, #{Time.now.strftime("%H:%M:%S:%L")}"
     reader.read_header do |header|
       @alignments = header.select { |column| column.match(/^.*-ALIGNMENT$/i) }.map(&:capitalize)
       @directions = header.select { |column| column.match(/^.*-DIRECTION$/i) }.map(&:capitalize)
@@ -100,10 +77,10 @@ class TextEntriesExcelReader
         default_direction = row[:Direction]
       end
 
-      if text_id then text_id = text_id.strip end
-      if default_typography then default_typography = default_typography.strip end
-      if default_alignment then default_alignment = default_alignment.strip end
-      if default_direction then default_direction = default_direction.strip end
+      text_id = text_id.strip if text_id
+      default_typography = default_typography.strip if default_typography
+      default_alignment = default_alignment.strip if default_alignment
+      default_direction = default_direction.strip if default_direction
 
       if text_id && default_typography
         unless text_id.match(/^([0-9a-zA-Z_])*$/)
@@ -117,7 +94,7 @@ class TextEntriesExcelReader
           language, _ = typography.split('-')
           #puts "adding typography #{typography}"
           t = row[typography]
-          if t then t = t.strip end
+          t = t.strip if t
           text_entry.add_typography(language, t)
         end
 
@@ -125,7 +102,7 @@ class TextEntriesExcelReader
           language, _ = alignment.split('-')
           #puts "adding alignment #{alignment}"
           a = row[alignment]
-          if a then a = a.strip end
+          a = a.strip if a
           text_entry.add_alignment(language, a)
         end
 
@@ -133,15 +110,14 @@ class TextEntriesExcelReader
           language, _ = direction.split('-')
           #puts "adding direction #{direction}"
           d = row[direction]
-          if d then d = d.strip end
+          d = d.strip if d
           text_entry.add_direction(language, d)
         end
 
         @languages.each do |language|
-          lang, script = language.split('-')
           #puts "adding language #{language}"
           # Do *not* strip leading/trailing whitespace from translations.
-          text_entry.add_translation(lang, row[language])
+          text_entry.add_translation(language, row[language])
         end
 
         @text_entries.add(text_entry)

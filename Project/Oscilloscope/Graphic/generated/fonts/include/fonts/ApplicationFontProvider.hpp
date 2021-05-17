@@ -6,18 +6,35 @@
 
 #include <touchgfx/FontManager.hpp>
 
+namespace touchgfx
+{
+    class FlashDataReader;
+}
+
 struct Typography
 {
-  static const touchgfx::FontId NORMAL = 0;
-  static const touchgfx::FontId BUTTONLABEL = 1;
-  static const touchgfx::FontId LABELGENERAL = 2;
-  static const touchgfx::FontId LABELSMALL = 3;
+    static const touchgfx::FontId NORMAL = 0;
+    static const touchgfx::FontId BUTTONLABEL = 1;
+    static const touchgfx::FontId LABELGENERAL = 2;
+    static const touchgfx::FontId LABELSMALL = 3;
+};
+
+struct TypographyFontIndex
+{
+    static const touchgfx::FontId NORMAL = 0;       // Asap_Regular_18_4bpp
+    static const touchgfx::FontId BUTTONLABEL = 1;  // Asap_Regular_12_4bpp
+    static const touchgfx::FontId LABELGENERAL = 2; // Asap_Regular_14_8bpp
+    static const touchgfx::FontId LABELSMALL = 3;   // Asap_Regular_13_4bpp
+    static const uint16_t NUMBER_OF_FONTS = 4;
 };
 
 class ApplicationFontProvider : public touchgfx::FontProvider
 {
 public:
-  virtual touchgfx::Font* getFont(touchgfx::FontId fontId);
+    virtual touchgfx::Font* getFont(touchgfx::FontId typography);
+
+    static void setFlashReader(touchgfx::FlashDataReader* /* flashReader */) { }
+    static touchgfx::FlashDataReader* getFlashReader() { return 0; }
 };
 
-#endif /* APPLICATIONFONTPROVIDER_HPP */
+#endif // APPLICATIONFONTPROVIDER_HPP

@@ -1,41 +1,23 @@
-/******************************************************************************
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
+/**
+ * @file touchgfx/widgets/canvas/CWRUtil.hpp
  *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+ * Declares the touchgfx:: class.
+ */
 #ifndef CWRUTIL_HPP
 #define CWRUTIL_HPP
 
@@ -44,22 +26,19 @@
 namespace touchgfx
 {
 /**
- * @struct CWRUtil CWRUtil.hpp touchgfx/widgets/canvas/CWRUtil.hpp
+ * Helper classes and functions for CanvasWidget. A handful of utility functions can be found
+ * here. These include helper functions for converting between float, int and Q5/Q10/Q15
+ * formats. There are also functions for calculating sin() and cos() in integers with a
+ * high number of bits (15) reserved for fraction. Having sin() and cos() pre-calculated
+ * in this way allows very fast drawing of circles without the need for floating point
+ * arithmetic.
  *
- * @brief Helper classes and functions for CanvasWidget.
+ * Using Q5, which uses 32 bit value internally, numbers from -67108865 to
+ * +67108864.96875 with a precision of 1/32 = 0.03125 can be represented, as described
+ * in http://en.wikipedia.org/wiki/Q_%28number_format%29.
  *
- *        Helper classes and functions for CanvasWidget. A handful of utility functions can be
- *        found here. These include helper functions for converting between float, int and
- *        Q5/Q10/Q15 format. There are also functions for calculating sin() and cos() in
- *        integers with a high number of bits reserved for fraction. Having sin() and cos() pre-
- *        calculated in this way allows very fast drawing of circles without the need for
- *        floating point arithmetic.
- *
- *        Using Q5, numbers from -1024.00000 to +1024.96875 with a precision of 1/32 = 0.03125
- *        can be represented.
- *
- * @see http://en.wikipedia.org/wiki/Q_%28number_format%29
- * @see Widget
+ * Doing arithmetic operations on Q5, Q10 and Q15 numbers is described in detail on
+ * http://en.wikipedia.org/wiki/Fixed-point_arithmetic.
  */
 struct CWRUtil
 {
@@ -67,62 +46,48 @@ struct CWRUtil
     class Q15;
 
     /**
-     * @class Q5 CWRUtil.hpp touchgfx/widgets/canvas/CWRUtil.hpp
+     * Defines a "floating point number" with 5 bits reserved for the fractional part of the
+     * decimal number. Q5 implements some simple arithmetic operations, most yielding a Q5
+     * number and some yielding a Q10 number as a result. Other operations also work with
+     * Q15 numbers.
      *
-     * @brief Defines a number with 5 bits reserved for fraction.
-     *
-     *        Defines a number with 5 bits reserved for the fractional part of the decimal
-     *        number. Q5 implements some simple arithmetic operations, most yielding a Q5
-     *        number and some yielding a Q10 number as a result. Other operations also work
-     *        with Q15 numbers.
-     *
-     * @see Q10
-     * @see Q15
-     * @see http://en.wikipedia.org/wiki/Q_%28number_format%29
-     * @see http://en.wikipedia.org/wiki/Fixed-point_arithmetic
+     * @see Q10, Q15
      */
     class Q5
     {
     public:
+        /** Initializes a new instance of the Q5 class. */
+        Q5()
+            : v(0)
+        {
+        }
 
         /**
-         * @fn Q5::Q5()
+         * Constructor from integer. No conversion is done - the integer is assumed to already
+         * be in Q5 format.
          *
-         * @brief Default constructor.
+         * @param  i Integer pre-formattet in Q5 format.
          */
-        Q5() : v(0) { }
+        explicit Q5(int i)
+            : v(i)
+        {
+        }
 
         /**
-         * @fn explicit Q5::Q5(int i)
+         * Constructor from Q10. The Q10 is shifted down to convert it to Q5, thus the value is
+         * rounded down in the conversion.
          *
-         * @brief Constructor from integer.
-         *
-         *        Constructor from integer. No conversion is done - the integer is assumed to
-         *        already be in Q5 format.
-         *
-         * @param i Integer pre-formattet in Q5 format.
-         */
-        explicit Q5(int i) : v(i) { }
-
-        /**
-         * @fn Q5::Q5(const Q10 q10) : v(int(q10) / Rasterizer::POLY_BASE_SIZE)
-         *
-         * @brief Constructor from Q10.
-         *
-         *        Constructor from Q10. The Q10 is shifted down to convert it to Q5.
-         *
-         * @param q10 The Q10 value to convert to a Q5 value.
+         * @param  q10 The Q10 value to convert to a Q5 value.
          *
          * @see Q10
          */
-        Q5(const Q10 q10) : v(int(q10) / Rasterizer::POLY_BASE_SIZE) { }
+        Q5(const Q10 q10)
+            : v(int(q10) / Rasterizer::POLY_BASE_SIZE)
+        {
+        }
 
         /**
-         * @fn operator int() const
-         *
-         * @brief Gets the Q5 as an integer without conversion.
-         *
-         *        Gets the Q5 as an integer without conversion.
+         * Gets the Q5 as an integer without conversion.
          *
          * @return The unconverted Q5 value.
          */
@@ -132,11 +97,7 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q5 Q5::operator-() const
-         *
-         * @brief Negation operator.
-         *
-         *        Negation operator.
+         * Negation operator.
          *
          * @return The negative value of this.
          */
@@ -146,13 +107,9 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q5 Q5::operator+(const Q5& q5) const
+         * Addition operator.
          *
-         * @brief Addition operator.
-         *
-         *        Addition operator.
-         *
-         * @param q5 The Q5 to add to this.
+         * @param  q5 The Q5 to add to this.
          *
          * @return The result of the operation.
          */
@@ -162,13 +119,9 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q5 Q5::operator-(const Q5& q5) const
+         * Subtraction operator.
          *
-         * @brief Subtraction operator.
-         *
-         *        Subtraction operator.
-         *
-         * @param q5 The Q5 to subtract from this.
+         * @param  q5 The Q5 to subtract from this.
          *
          * @return The result of the operation.
          */
@@ -178,14 +131,9 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q10 Q5::operator*(const Q5& q5) const
+         * Multiplication operator. The result is a Q10, not a Q5, for increased precision.
          *
-         * @brief Multiplication operator.
-         *
-         *        Multiplication operator. The result is a Q10, not a Q5, for increased
-         *        precision.
-         *
-         * @param q5 The Q5 to multiply this with.
+         * @param  q5 The Q5 to multiply this with.
          *
          * @return The result of the operation.
          *
@@ -197,15 +145,11 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q5 Q5::operator*(const Q15& q15) const
+         * Multiplication operator. Often used in relation with sine and cosine calculation
+         * which are pre-calculated as Q15. As the result is needed as a Q5, this
+         * operator multiplies with the given Q15 and converts the result to a Q5.
          *
-         * @brief Multiplication operator.
-         *
-         *        Multiplication operator. Often used in relation with sine and cosine
-         *        calculation which are pre-calculated as Q15. As the result is needed as a Q5,
-         *        this operator multiplies with the given Q15 and converts the result to a Q5.
-         *
-         * @param q15 The Q15 to multiply this with.
+         * @param  q15 The Q15 to multiply this with.
          *
          * @return The result of the operation.
          *
@@ -213,17 +157,14 @@ struct CWRUtil
          */
         Q5 operator*(const Q15& q15) const
         {
-            return Q5((v * int(q15)) >> 15);
+            int32_t remainder;
+            return Q5(muldiv(v, int(q15), Rasterizer::POLY_BASE_SIZE * Rasterizer::POLY_BASE_SIZE * Rasterizer::POLY_BASE_SIZE, remainder));
         }
 
         /**
-         * @fn Q5 Q5::operator*(const int i) const
+         * Multiplication operator.
          *
-         * @brief Multiplication operator.
-         *
-         *        Multiplication operator.
-         *
-         * @param i The integer to multiply this with.
+         * @param  i The integer to multiply this with.
          *
          * @return The result of the operation.
          */
@@ -233,13 +174,9 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q5 Q5::operator/(const int i) const
+         * Division operator.
          *
-         * @brief Division operator.
-         *
-         *        Division operator.
-         *
-         * @param i The integer to divide this by.
+         * @param  i The integer to divide this by.
          *
          * @return The result of the operation.
          */
@@ -249,14 +186,10 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q5 Q5::operator/(const Q5 q5) const
+         * Division operator. Internally this Q5 is converted to Q10 before the division to
+         * increased precision.
          *
-         * @brief Division operator.
-         *
-         *        Division operator. Internally this Q5 is converted to Q10 before the division
-         *        to increased precision.
-         *
-         * @param q5 The Q5 to divide this by.
+         * @param  q5 The Q5 to divide this by.
          *
          * @return The result of the operation.
          *
@@ -264,79 +197,81 @@ struct CWRUtil
          */
         Q5 operator/(const Q5 q5) const
         {
-            return Q5(int(v) * Rasterizer::POLY_BASE_SIZE / q5.v);
+            return Q5(v * Rasterizer::POLY_BASE_SIZE / q5.v);
         }
 
         /**
-         * @fn template <class T> T Q5::to() const
-         *
-         * @brief Converts the Q5 value to an int or a float.
-         *
-         *        Convert the Q5 value to an integer by removing the 5 bits used for the
-         *        fraction, or to a floating point value by dividing by 32, depending on the
-         *        type specified as T.
+         * Convert the Q5 value to an integer by removing the 5 bits used for the fraction, or
+         * to a floating point value by dividing by 32, depending on the type specified as T.
          *
          * @tparam T Either int or float.
          *
          * @return Q5 value as a type T.
+         *
+         * @note Using "to<int16_t>()" result in loss of precision. Use "(int16_t)to<int>()" instead.
          */
-        template <class T>
+        template <typename T>
         T to() const
         {
-            return v / (T)Rasterizer::POLY_BASE_SIZE;
+            return (T)((T)v / (T)Rasterizer::POLY_BASE_SIZE);
+        }
+
+        /**
+         * Convert the Q5 value to an integer by removing the 5 bits used for the fraction. The
+         * number is rounded up to the nearest integer.
+         *
+         * @return The first integer value higher than (or equal to) the Q5 value.
+         */
+        int ceil() const
+        {
+            return v < 0 ? to<int>() : (v + (Rasterizer::POLY_BASE_SIZE - 1)) / Rasterizer::POLY_BASE_SIZE;
+        }
+
+        /**
+         * Round the Q5 value to the nearest integer value.
+         *
+         * @return The integer closest to the Q5 value.
+         */
+        int round() const
+        {
+            return v < 0 ? Q5((v + 1) - toQ5(1).v / 2).to<int>() : Q5(v + toQ5(1).v / 2).to<int>();
         }
 
     private:
-        int16_t v;
+        int32_t v;
     };
 
     /**
-     * @class Q10 CWRUtil.hpp touchgfx/widgets/canvas/CWRUtil.hpp
+     * Defines a "floating point number" with 10 bits reserved for the fractional part of
+     * the decimal number. Q10 implements some simple arithmetic operations, most yielding a
+     * Q10 number and some yielding a Q5 number or a Q15 number as a result.
      *
-     * @brief Defines a number with 10 bits reserved for fraction.
+     * Q5*Q5=Q10, Q10/Q5=Q5, ...
      *
-     *        Defines a number with 10 bits reserved for the fractional part of the decimal
-     *        number. Q10 implements some simple arithmetic operations, most yielding a Q10
-     *        number and some yielding a Q5 number or a Q15 number as a result.
-     *
-     *        Q5*Q5=Q10, Q10/Q5=Q5, ...
-     *
-     * @see Q5
-     * @see Q15
-     * @see http://en.wikipedia.org/wiki/Q_%28number_format%29
-     * @see http://en.wikipedia.org/wiki/Fixed-point_arithmetic
+     * @see Q5, Q15
      */
     class Q10
     {
     public:
+        /** Initializes a new instance of the Q10 class. */
+        Q10()
+            : v(0)
+        {
+        }
 
         /**
-         * @fn Q10::Q10()
+         * Constructor from integer. No conversion is done - the integer is assumed to already
+         * be in Q10 format.
          *
-         * @brief Default constructor.
-         *
-         *        Default constructor.
+         * @param  i int pre-formattet in Q10 format.
          */
-        Q10() : v(0) { }
+        explicit Q10(int i)
+            : v(i)
+        {
+        }
 
         /**
-         * @fn explicit Q10::Q10(int i)
-         *
-         * @brief Constructor from integer.
-         *
-         *        Constructor from integer. No conversion is done - the integer is assumed to
-         *        already be in Q10 format.
-         *
-         * @param i int pre-formattet in Q10 format.
-         */
-        explicit Q10(int i) : v(i) { }
-
-        /**
-         * @fn operator int() const
-         *
-         * @brief Gets the Q10 as an integer without conversion.
-         *
-         *        Gets the Q10 as an integer without conversion.
+         * Gets the Q10 as an integer without conversion.
          *
          * @return The unconverted Q10 value.
          */
@@ -346,13 +281,9 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q10 Q10::operator-() const
+         * Negation operator.
          *
-         * @brief Negation operator.
-         *
-         *        Negation operator.
-         *
-         * @return The negative value of thisw.
+         * @return The negative value of this.
          */
         Q10 operator-() const
         {
@@ -360,13 +291,9 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q10 Q10::operator+(const Q10& q10) const
+         * Addition operator.
          *
-         * @brief Addition operator.
-         *
-         *        Addition operator.
-         *
-         * @param q10 The Q10 to add to this.
+         * @param  q10 The Q10 to add to this.
          *
          * @return The result of the operation.
          */
@@ -376,14 +303,9 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q15 Q10::operator*(const Q5& q5) const
+         * Multiplication operator. The result is a Q15, not a Q10, for increased precision.
          *
-         * @brief Multiplication operator.
-         *
-         *        Multiplication operator. The result is a Q15, not a Q10, for increased
-         *        precision.
-         *
-         * @param q5 The Q5 to multiply this with.
+         * @param  q5 The Q5 to multiply this with.
          *
          * @return The result of the operation.
          */
@@ -393,13 +315,9 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q5 Q10::operator/(const Q5& q5) const
+         * Division operator.
          *
-         * @brief Division operator.
-         *
-         *        Division operator.
-         *
-         * @param q5 The Q5 to divide this by.
+         * @param  q5 The Q5 to divide this by.
          *
          * @return The result of the operation.
          */
@@ -408,49 +326,52 @@ struct CWRUtil
             return Q5(v / int(q5));
         }
 
+        /**
+         * Converts the Q10 value to an int or a float.
+         *
+         * Convert the Q10 value to an integer by removing the 10 bits used for the
+         * fraction, or to a floating point value by dividing by 32 * 32, depending on
+         * the type specified as T.
+         *
+         * @tparam T Either int or float.
+         *
+         * @return Q10 value as a type T.
+         */
+        template <typename T>
+        T to() const
+        {
+            return (T)(v / (Rasterizer::POLY_BASE_SIZE * Rasterizer::POLY_BASE_SIZE));
+        }
+
     private:
         int32_t v;
     };
 
     /**
-     * @class Q15 CWRUtil.hpp touchgfx/widgets/canvas/CWRUtil.hpp
+     * Defines a "floating point number" with 15 bits reserved for the fractional part of
+     * the decimal number. Q15 is only used for sine/cosine and for intermediate
+     * calculations when multiplying.
      *
-     * @brief Defines a number with 15 bits reserved for fraction.
+     * Q5*Q5=Q10, Q10/Q5=Q5, ...
      *
-     *        Defines a number with 15 bits reserved for the fractional part of the decimal
-     *        number. Q15 is only used for sine/cosine and for intermediate calculations when
-     *        multiplying.
-     *
-     *        Q5*Q5=Q10, Q10/Q5=Q5, ...
-     *
-     * @see Q5
-     * @see Q10
-     * @see http://en.wikipedia.org/wiki/Q_%28number_format%29
-     * @see http://en.wikipedia.org/wiki/Fixed-point_arithmetic
+     * @see Q5, Q10
      */
     class Q15
     {
     public:
-
         /**
-         * @fn explicit Q15::Q15(int i)
+         * Constructor from integer. No conversion is done - the integer is assumed to already
+         * be in Q15 format.
          *
-         * @brief Constructor from integer. No conversion is done - the integer is assumed to
-         *        already be in Q15 format.
-         *
-         *        Constructor from integer. No conversion is done - the integer is assumed to
-         *        already be in Q15 format.
-         *
-         * @param i int pre-formattet in Q15 format.
+         * @param  i int pre-formattet in Q15 format.
          */
-        explicit Q15(int i) : v(i) { }
+        explicit Q15(int i)
+            : v(i)
+        {
+        }
 
         /**
-         * @fn operator int() const
-         *
-         * @brief Gets the Q15 as an integer without conversion.
-         *
-         *        Gets the Q15 as an integer without conversion.
+         * Gets the Q15 as an integer without conversion.
          *
          * @return The unconverted Q15 value.
          */
@@ -460,13 +381,31 @@ struct CWRUtil
         }
 
         /**
-         * @fn Q10 Q15::operator/(const Q5& q5) const
+         * Negation operator.
          *
-         * @brief Q5 / Q5 which requires the result of a Q15 / Q5 to be calculated.
+         * @return The negative value of this.
+         */
+        Q15 operator-() const
+        {
+            return Q15(-v);
+        }
+
+        /**
+         * Addition operator.
          *
-         *        Q5 / Q5 which requires the result of a Q15 / Q5 to be calculated.
+         * @param  q15 The Q15 to add to this.
          *
-         * @param q5 The Q5 to divide this by.
+         * @return The result of the operation.
+         */
+        Q15 operator+(const Q15& q15) const
+        {
+            return Q15(v + q15.v);
+        }
+
+        /**
+         * Calculate Q15 / Q5 as a Q10.
+         *
+         * @param  q5 The Q5 to divide this by.
          *
          * @return The result of the operation.
          */
@@ -480,13 +419,20 @@ struct CWRUtil
     };
 
     /**
-     * @fn template <class T> FORCE_INLINE_FUNCTION static Q5 toQ5(T value)
+     * Convert a Q5 to itself. Allows toQ5 to be called with a variable that is already Q5.
      *
-     * @brief Convert an integer to a fixed point number.
+     * @param  value the Q5.
      *
-     *        Convert an integer to a fixed point number. This is done by shifting the integer
-     *        value 5 places to the left, or multiplying the floating point value by (1 &lt;&lt;
-     *        5)
+     * @return the value passed.
+     */
+    FORCE_INLINE_FUNCTION static Q5 toQ5(Q5 value)
+    {
+        return value;
+    }
+
+    /**
+     * Convert an integer to a fixed point number. This is done by multiplying
+     * the floating point value by (1 << 5)
      *
      * @tparam T Should be either int or float.
      * @param value the integer to convert.
@@ -495,25 +441,19 @@ struct CWRUtil
      */
 #ifdef __ICCARM__
     FORCE_INLINE_FUNCTION
-#endif
-    template <class T>
-#ifndef  __ICCARM__
+    template <typename T>
+#else
+    template <typename T>
     FORCE_INLINE_FUNCTION
 #endif
-    static  Q5 toQ5(T value)
+    static Q5 toQ5(T value)
     {
         return Q5(int(value * Rasterizer::POLY_BASE_SIZE));
     }
 
     /**
-     * @fn template <class T> FORCE_INLINE_FUNCTION static Q10 toQ10(T value)
-     *
-     * @brief Convert an integer to a fixed point number.
-     *
-     *        Convert an integer to a fixed point number. This is done by shifting the integer
-     *        value 10 places to the left, or multiplying the floating point value by (1 &lt;
-     *        &lt;
-     *        510.
+     * Convert an integer to a fixed point number. This is done by multiplying
+     * the floating point value by (1 << 10).
      *
      * @tparam T Should be either int or float.
      * @param value the integer to convert.
@@ -522,9 +462,9 @@ struct CWRUtil
      */
 #ifdef __ICCARM__
     FORCE_INLINE_FUNCTION
-#endif
-    template <class T>
-#ifndef  __ICCARM__
+    template <typename T>
+#else
+    template <typename T>
     FORCE_INLINE_FUNCTION
 #endif
     static Q10 toQ10(T value)
@@ -533,17 +473,13 @@ struct CWRUtil
     }
 
     /**
-     * @fn static Q15 sine(int i)
+     * Find the value of sin(i) with 15 bits precision. The returned value can be converted
+     * to a floating point number and divided by (1<<15) to get the rounded value
+     * of sin(i). By using this function, a complete circle can be drawn without
+     * the need for using floating point math.
      *
-     * @brief Find the value of sin(i) with 15 bits precision.
-     *
-     *        Find the value of sin(i) with 15 bits precision. The returned value can be
-     *        converted to a floating point number and divided by (1&lt;&lt;15) to get the
-     *        rounded value of of sin(i). By using this function, a complete circle can be
-     *        drawn without the need for using floating point math.
-     *
-     * @param i the angle in degrees. The angle follows the angles of the clock, 0 being straight
-     *          up and 90 being 3 o'clock.
+     * @param  i the angle in degrees. The angle follows the angles of the clock, 0 being
+     *           straight up and 90 being 3 o'clock.
      *
      * @return the value of sin(i) with 15 bits precision on the fractional part.
      */
@@ -578,19 +514,43 @@ struct CWRUtil
     }
 
     /**
-     * @fn static Q15 cosine(int i)
+     * Find the value of sin(i) with 15 bits precision. The returned value can be converted
+     * to a floating point number and divided by (1<<15) to get the rounded value
+     * of sin(i). By using this function, a complete circle can be drawn without
+     * the need for using floating point math.
      *
-     * @brief Find the value of cos(i) with 15 bits precision.
+     * If the given degree is not an integer, the value is approximated by interpolation
+     * between sin(floor(i)) and sin(ceil(i)).
      *
-     *        Find the value of cos(i) with 15 bits precision using the fact that cos(i)=sin(90-
-     *        i).
+     * @param  i the angle in degrees. The angle follows the angles of the clock, 0 being
+     *           straight up and 90 being 3 o'clock.
      *
-     * @param i the angle in degrees. The angle follows the angles of the clock, 0 being straight
-     *          up and 90 being 3 o'clock.
+     * @return the value of sin(i) with 15 bits precision on the fractional part.
+     */
+    static Q15 sine(Q5 i)
+    {
+        Q5 _360 = toQ5<int>(360);
+        i = Q5(((i % _360) + _360) % _360);
+        int16_t fraction = i % Rasterizer::POLY_BASE_SIZE;
+        Q15 sineLow = sine(i.to<int>());
+        if (fraction == 0)
+        {
+            return sineLow;
+        }
+        Q15 sineHigh = sine(i.to<int>() + 1);
+        int32_t remainder;
+        return Q15(muldiv(int(sineHigh - sineLow), fraction, Rasterizer::POLY_BASE_SIZE, remainder)) + sineLow;
+    }
+
+    /**
+     * Find the value of cos(i) with 15 bits precision using the fact that cos(i)=sin(90-i).
+     *
+     * @param  i the angle in degrees. The angle follows the angles of the clock, 0 being
+     *           straight up and 90 being 3 o'clock.
      *
      * @return the value of cos(i) with 15 bits precision on the fractional part.
      *
-     * @see sine()
+     * @see sine
      */
     static Q15 cosine(int i)
     {
@@ -598,15 +558,26 @@ struct CWRUtil
     }
 
     /**
-     * @fn static int8_t arcsine(Q10 q10)
+     * Find the value of cos(i) with 15 bits precision using the fact that cos(i)=sin(90-i).
      *
-     * @brief Gets the arcsine of the given fraction (given as Q10).
+     * @param  i the angle in degrees. The angle follows the angles of the clock, 0 being
+     *           straight up and 90 being 3 o'clock.
      *
-     *        Gets the arcsine of the given fraction (given as Q10). The function is most
-     *        precise for angles 0-45. To limit memory requirements, values above sqrt(1/2) is
-     *        calculated as 90-arcsine(sqrt(1-q10^2)). Internally.
+     * @return the value of cos(i) with 15 bits precision on the fractional part.
      *
-     * @param q10 The 10.
+     * @see sine
+     */
+    static Q15 cosine(Q5 i)
+    {
+        return sine(CWRUtil::toQ5<int>(90) - i);
+    }
+
+    /**
+     * Gets the arcsine of the given fraction (given as Q10). The function is most precise
+     * for angles 0-45. To limit memory requirements, values above sqrt(1/2) is calculated
+     * as 90-arcsine(sqrt(1-q10^2)). Internally.
+     *
+     * @param  q10 The 10.
      *
      * @return An int8_t.
      */
@@ -627,7 +598,7 @@ struct CWRUtil
         }
         if (q10 > toQ10<int>(1))
         {
-            return 0;    // error
+            return 0; // error
         }
         // sqrt(1/2) as Q10 is "724" so if q10>724 calculate 90-arcsine(sqrt(1-q10^2))
         if (int(q10) > 724)
@@ -639,17 +610,15 @@ struct CWRUtil
     }
 
     /**
-     * @fn template <class T> static int angle(T x, T y)
-     *
-     * @brief Find angle of a coordinate.
+     * Find angle of a coordinate relative to (0,0).
      *
      * @tparam T Generic type parameter (int or float).
-     * @param x The x coordinate.
-     * @param y The y coordinate.
+     * @param  x The x coordinate.
+     * @param  y The y coordinate.
      *
      * @return The angle of the coordinate.
      */
-    template <class T>
+    template <typename T>
     static int angle(T x, T y)
     {
         Q5 dist;
@@ -657,18 +626,16 @@ struct CWRUtil
     }
 
     /**
-     * @fn template <class T> static int angle(T x, T y, T& d)
-     *
-     * @brief Find angle of a coordinate.
+     * Find angle of a coordinate relative to (0,0).
      *
      * @tparam T Generic type parameter (int or float).
-     * @param x       The x coordinate.
-     * @param y       The y coordinate.
+     * @param       x The x coordinate.
+     * @param       y The y coordinate.
      * @param [out] d The distance from (0,0) to (x,y).
      *
      * @return The angle of the coordinate.
      */
-    template <class T>
+    template <typename T>
     static int angle(T x, T y, T& d)
     {
         Q5 dist;
@@ -678,12 +645,10 @@ struct CWRUtil
     }
 
     /**
-     * @fn static int angle(Q5 x, Q5 y)
+     * Find angle of a coordinate relative to (0,0).
      *
-     * @brief Find angle of a coordinate.
-     *
-     * @param x The x coordinate.
-     * @param y The y coordinate.
+     * @param  x The x coordinate.
+     * @param  y The y coordinate.
      *
      * @return The angle of the coordinate.
      */
@@ -694,12 +659,10 @@ struct CWRUtil
     }
 
     /**
-     * @fn static int angle(Q5 x, Q5 y, Q5& d)
+     * Find the angle of the coordinate (x, y) relative to (0, 0).
      *
-     * @brief Find the angle of the coordinate (x, y).
-     *
-     * @param x       The x coordinate.
-     * @param y       The y coordinate.
+     * @param       x The x coordinate.
+     * @param       y The y coordinate.
      * @param [out] d The distance from (0,0) to (x,y).
      *
      * @return The angle.
@@ -707,31 +670,30 @@ struct CWRUtil
     static int angle(Q5 x, Q5 y, Q5& d)
     {
         // Map to quadrant 1
-        if (x >= 0 && y >= 0)
+        if (x >= 0)
         {
-            return 90 + _angle(x, y, d);
+            if (y >= 0)
+            {
+                return 90 + _angle(x, y, d);
+            }
+            else // y < 0
+            {
+                return 90 - _angle(x, -y, d);
+            }
         }
-        if (x >= 0 && y <= 0)
-        {
-            return 90 - _angle(x, -y, d);
-        }
-        if (x <= 0 && y <= 0)
-        {
-            return 270 + _angle(-x, -y, d);
-        }
-        if (x <= 0 && y >= 0)
+        // x < 0
+        if (y >= 0)
         {
             return 270 - _angle(-x, y, d);
         }
-        return 0;
+        // y < 0
+        return 270 + _angle(-x, -y, d);
     }
 
     /**
-     * @fn static Q5 sqrtQ10(Q10 value)
+     * Find the square root of the given value.
      *
-     * @brief Find the square root of the given value.
-     *
-     * @param value The value to find the square root of.
+     * @param  value The value to find the square root of.
      *
      * @return The square root of the given value.
      */
@@ -740,19 +702,85 @@ struct CWRUtil
         return Q5(isqrt(uint32_t(int(value))));
     }
 
-private:
+    /**
+     * Multiply two Q5's and divide by a Q5 without overflowing the multiplication (assuming
+     * that the final result can be stored in a Q5).
+     *
+     * @param  factor1 The first factor.
+     * @param  factor2 The second factor.
+     * @param  divisor The divisor.
+     *
+     * @return factor1 * factor2 / divisor.
+     */
+    static Q5 muldivQ5(Q5 factor1, Q5 factor2, Q5 divisor)
+    {
+        return Q5(muldiv(int(factor1), int(factor2), int(divisor)));
+    }
 
     /**
-     * @fn static int _angle(Q5 x, Q5 y, Q5& d)
+     * Multiply two integers and divide by an integer without overflowing the multiplication.
+     * The result is returned in a Q5 thus allowing a more precise calculation to be performed.
      *
-     * @brief Find the angle of coordinate (x,y) where both x and y are positive.
+     * @param  factor1 The first factor.
+     * @param  factor2 The second factor.
+     * @param  divisor The divisor.
      *
-     * @param x       The x coordinate.
-     * @param y       The y coordinate.
-     * @param [out] d The distance from (0,0) to (x,y).
-     *
-     * @return The angle.
+     * @return factor1 * factor2 / divisor as a Q5
      */
+    static Q5 muldiv_toQ5(int32_t factor1, int32_t factor2, int32_t divisor)
+    {
+        int32_t remainder;
+        int32_t result = muldiv(factor1, factor2, divisor, remainder);
+        if (result >= 0)
+        {
+            return toQ5(result) + muldivQ5(Q5(Rasterizer::POLY_BASE_SIZE), Q5(remainder), Q5(divisor));
+        }
+        return toQ5(result) - muldivQ5(Q5(Rasterizer::POLY_BASE_SIZE), Q5(remainder), Q5(divisor));
+    }
+
+    /**
+     * Multiply two Q5's and divide by a Q5 without overflowing the multiplication (assuming
+     * that the final result can be stored in a Q5).
+     *
+     * @param  factor1 The first factor.
+     * @param  factor2 The second factor.
+     * @param  divisor The divisor.
+     *
+     * @return factor1 * factor2 / divisor.
+     */
+    static Q5 muldivQ10(Q10 factor1, Q10 factor2, Q10 divisor)
+    {
+        int32_t remainder;
+        return Q5(muldiv(int(factor1), int(factor2), int(divisor), remainder) / Rasterizer::POLY_BASE_SIZE);
+    }
+
+    /**
+     * Multiply two Q5's returning a new Q5 without overflowing.
+     *
+     * @param  factor1 The first factor.
+     * @param  factor2 The second factor.
+     *
+     * @return factor1 * factor2.
+     */
+    static Q5 mulQ5(Q5 factor1, Q5 factor2)
+    {
+        return muldivQ5(factor1, factor2, CWRUtil::toQ5<int>(1));
+    }
+
+    /**
+     * Multiply one Q5 by a Q10 returning a new Q5 without overflowing.
+     *
+     * @param  factor1 The first factor.
+     * @param  factor2 The second factor.
+     *
+     * @return factor1 * factor2.
+     */
+    static Q5 mulQ5(Q5 factor1, Q10 factor2)
+    {
+        return muldivQ10(Q10(int(factor1) * Rasterizer::POLY_BASE_SIZE), factor2, CWRUtil::toQ10<int>(1));
+    }
+
+private:
     static int _angle(Q5 x, Q5 y, Q5& d)
     {
         assert(x >= 0 && y >= 0);
@@ -766,21 +794,13 @@ private:
         d = sqrtQ10(x * x + y * y);
         if (d == 0)
         {
-            return 0;    // Error
+            return 0; // Error
         }
-        Q10 dy = (y * _1 * _1) / d;
+        int32_t remainder;
+        Q10 dy = Q10(muldiv(int(y), int(_1 * _1), int(d), remainder));
         return arcsine(dy);
     }
 
-    /**
-     * @fn static uint32_t isqrt(uint32_t n)
-     *
-     * @brief Find the square root of the given value (n).
-     *
-     * @param n The value to find the square root of.
-     *
-     * @return The square root of the given value.
-     */
     static uint32_t isqrt(uint32_t n)
     {
         uint32_t root = 0, bit, trial;
@@ -795,11 +815,9 @@ private:
             }
             root >>= 1;
             bit >>= 2;
-        }
-        while (bit);
+        } while (bit);
         return root;
     }
-
 };
 
 } // namespace touchgfx

@@ -1,162 +1,62 @@
-/******************************************************************************
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
+/**
+ * @file touchgfx/widgets/TextAreaWithWildcard.hpp
  *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+ * Declares the touchgfx::TextAreaWithOneWildcard and touchgfx::TextAreaWithTwoWildcards classes.
+ */
 #ifndef TEXTAREAWITHWILDCARD_HPP
 #define TEXTAREAWITHWILDCARD_HPP
 
 #include <touchgfx/TextProvider.hpp>
+#include <touchgfx/hal/HAL.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 
 namespace touchgfx
 {
 /**
- * @class TextAreaWithWildcardBase TextAreaWithWildcard.hpp touchgfx/widgets/TextAreaWithWildcard.hpp
+ * TextArea with one wildcard. The format string (i.e. the TypedText set in setTypedText()) is
+ * expected to contain a wildcard &lt;placeholder> from the text.
  *
- * @brief Base class for TextAreas displaying texts with one or more wildcards.
- *
- *        Base class for TextAreas displaying texts with one or more wildcards.
- *
- * @see TextAreaWithOneWildcard
- * @see TextAreaWithTwoWildcards
+ * @note the text converter tool converts the <...> to ascii value 2 which is then being
+ *       replaced by a wildcard text.
  */
-class TextAreaWithWildcardBase : public TextArea
+class TextAreaWithOneWildcard : public TextArea
 {
 public:
-    /**
-     * @fn TextAreaWithWildcardBase::TextAreaWithWildcardBase()
-     *
-     * @brief Create an empty text area.
-     *
-     *        Create an empty text area.
-     *
-     * @note No text can be displayed until a font is set. Default color is black.
-     */
-    TextAreaWithWildcardBase() : TextArea() {  }
-
-    /**
-     * @fn int16_t TextAreaWithWildcardBase::calculateTextHeight(const Unicode::UnicodeChar* format, ...) const;
-     *
-     * @brief Gets the total height needed by the text.
-     *
-     *        Gets the total height needed by the text. Determined by number of lines and
-     *        linespace. The number of wildcards in the text should match the number of values
-     *        for the wildcards.
-     *
-     * @param format The text containing %s wildcards.
-     * @param ...    Variable arguments providing additional information.
-     *
-     * @return the total height needed by the text.
-     */
-    int16_t calculateTextHeight(const Unicode::UnicodeChar* format, ...) const;
-};
-
-/**
- * @class TextAreaWithOneWildcard TextAreaWithWildcard.hpp touchgfx/widgets/TextAreaWithWildcard.hpp
- *
- * @brief TextArea with one wildcard.
- *
- *        TextArea with one wildcard. The format string (i.e. the text pointer set in
- *        TextArea::setText) is expected to contain a wildcard %s.
- *
- * @see TextAreaWithWildcardBase
- */
-class TextAreaWithOneWildcard : public TextAreaWithWildcardBase
-{
-public:
-
-    /**
-     * @fn TextAreaWithOneWildcard::TextAreaWithOneWildcard()
-     *
-     * @brief Default constructor.
-     *
-     *        Create an empty text area.
-     *
-     * @note No text can be displayed until a font is set. Default color is black.
-     */
-    TextAreaWithOneWildcard() : TextAreaWithWildcardBase(), wildcard(0)
+    TextAreaWithOneWildcard()
+        : TextArea(), wildcard(0)
     {
     }
 
-    /**
-     * @fn virtual int16_t TextAreaWithOneWildcard::getTextHeight()
-     *
-     * @brief Gets text height.
-     *
-     *        Gets text height.
-     *
-     * @return The text height.
-     */
     virtual int16_t getTextHeight()
     {
-        return typedText.hasValidId() ? calculateTextHeight(typedText.getText(), wildcard) : 0;
+        return typedText.hasValidId() ? calculateTextHeight(typedText.getText(), wildcard, 0) : 0;
     }
 
-    /**
-     * @fn virtual void TextAreaWithOneWildcard::draw(const Rect& area) const
-     *
-     * @brief Draws TextArea and its text.
-     *
-     *        Draws TextArea and its text if a Font is set and the TypedText associated with
-     *        the TextArea is valid.
-     *
-     * @param area The invalidated area.
-     */
-    virtual void draw(const Rect& area) const
-    {
-        if (typedText.hasValidId())
-        {
-            const Font* fontToDraw = typedText.getFont();
-            if (fontToDraw != 0)
-            {
-                LCD::StringVisuals visuals(fontToDraw, color, alpha, typedText.getAlignment(), linespace, rotation, typedText.getTextDirection(), indentation, wideTextAction);
-                HAL::lcd().drawString(getAbsoluteRect(), area, visuals, typedText.getText(), wildcard);
-            }
-        }
-    }
+    virtual void draw(const Rect& area) const;
 
     /**
-     * @fn void TextAreaWithOneWildcard::setWildcard(const Unicode::UnicodeChar* value)
+     * Sets the wildcard used in the TypedText where &lt;placeholder> is placed. Wildcard
+     * string must be a null-terminated UnicodeChar array.
      *
-     * @brief Sets the wildcard in the text.
+     * @param  value A pointer to the UnicodeChar to set the wildcard to.
      *
-     *        Sets the wildcard in the text.Must be a zero-terminated UnicodeChar array.
-     *
-     * @param value A pointer to the UnicodeChar to set the wildcard to.
+     * @note The pointer passed is saved, and must be accessible whenever TextAreaWithOneWildcard
+     *       may need it.
      */
     void setWildcard(const Unicode::UnicodeChar* value)
     {
@@ -164,11 +64,7 @@ public:
     }
 
     /**
-     * @fn const Unicode::UnicodeChar* TextAreaWithOneWildcard::getWildcard() const
-     *
-     * @brief Gets the wildcard in the text.
-     *
-     *        Gets the wildcard in the text.
+     * Gets the wildcard used in the TypedText as previously set using setWildcard().
      *
      * @return The wildcard used in the text.
      */
@@ -177,111 +73,46 @@ public:
         return wildcard;
     }
 
-    /**
-     * @fn virtual uint16_t TextAreaWithOneWildcard::getTextWidth() const
-     *
-     * @brief Gets the width in pixels of the current associated text.
-     *
-     *         Gets the width in pixels of the current associated text in the current selected
-     *         language. In case of multi-lined text the width of the widest line is returned.
-     *
-     * @return The width in pixels of the current text.
-     */
     virtual uint16_t getTextWidth() const
     {
-        return typedText.hasValidId() ? typedText.getFont()->getStringWidth(typedText.getTextDirection(), typedText.getText(), wildcard) : 0;
-    }
-
-    /**
-     * @fn virtual uint16_t TextAreaWithOneWildcard::getType() const
-     *
-     * @brief For GUI testing only.
-     *
-     *        For GUI testing only. Returns type of this drawable.
-     *
-     * @return TYPE_TEXTAREAWITHONEWILDCARD.
-     */
-    virtual uint16_t getType() const
-    {
-        return (uint16_t)TYPE_TEXTAREAWITHONEWILDCARD;
+        return typedText.hasValidId() ? typedText.getFont()->getStringWidth(typedText.getTextDirection(), typedText.getText(), wildcard, 0) : 0;
     }
 
 protected:
-    const Unicode::UnicodeChar* wildcard; ///< Pointer to the wildcard string. Must be zero-terminated.
+    const Unicode::UnicodeChar* wildcard; ///< Pointer to the wildcard string. Must be null-terminated.
 };
 
 /**
- * @class TextAreaWithTwoWildcards TextAreaWithWildcard.hpp touchgfx/widgets/TextAreaWithWildcard.hpp
+ * TextArea with two wildcards. The format string (i.e. the TypedText set in setTypedText()) is
+ * expected to contain two wildcards &lt;placeholders> from the text.
  *
- * @brief TextArea with two wildcards.
  *
- *        TextArea with two wildcards. The format string (i.e. the text pointer set in
- *        TextArea::setText) is expected to contain two wildcards %s.
- *
- * @see TextAreaWithWildcardBase
+ * @note the text converter tool converts the <...> to ascii value 2 which is what is
+ *       being replaced by a wildcard text.
  */
-class TextAreaWithTwoWildcards : public TextAreaWithWildcardBase
+class TextAreaWithTwoWildcards : public TextArea
 {
 public:
-
-    /**
-     * @fn TextAreaWithTwoWildcards::TextAreaWithTwoWildcards()
-     *
-     * @brief Default constructor.
-     *
-     *        Create an empty text area.
-     *
-     * @note No text can be displayed until a font is set. Default color is black.
-     */
-    TextAreaWithTwoWildcards() : TextAreaWithWildcardBase(), wc1(0), wc2(0)
+    TextAreaWithTwoWildcards()
+        : TextArea(), wc1(0), wc2(0)
     {
     }
 
-    /**
-     * @fn virtual int16_t TextAreaWithTwoWildcards::getTextHeight()
-     *
-     * @brief Gets text height.
-     *
-     *        Gets text height.
-     *
-     * @return The text height.
-     */
     virtual int16_t getTextHeight()
     {
         return typedText.hasValidId() ? calculateTextHeight(typedText.getText(), wc1, wc2) : 0;
     }
 
-    /**
-     * @fn virtual void TextAreaWithTwoWildcards::draw(const Rect& area) const
-     *
-     * @brief Draws TextArea and its text.
-     *
-     *        Draws TextArea and its text if a Font is set and the TypedText associated with
-     *        the TextArea is valid.
-     *
-     * @param area The invalidated area.
-     */
-    virtual void draw(const Rect& area) const
-    {
-        if (typedText.hasValidId())
-        {
-            const Font* fontToDraw = typedText.getFont();
-            if (fontToDraw != 0)
-            {
-                LCD::StringVisuals visuals(fontToDraw, color, alpha, typedText.getAlignment(), linespace, rotation, typedText.getTextDirection(), indentation, wideTextAction);
-                HAL::lcd().drawString(getAbsoluteRect(), area, visuals, typedText.getText(), wc1, wc2);
-            }
-        }
-    }
+    virtual void draw(const Rect& area) const;
 
     /**
-     * @fn void TextAreaWithTwoWildcards::setWildcard1(const Unicode::UnicodeChar* value)
+     * Sets the wildcard used in the TypedText where first &lt;placeholder> is placed.
+     * Wildcard string must be a null-terminated UnicodeChar array.
      *
-     * @brief Sets the first wildcard in the text.
+     * @param  value A pointer to the UnicodeChar to set the wildcard to.
      *
-     *        Sets the first wildcard in the text. Must be a zero-terminated UnicodeChar array.
-     *
-     * @param value A pointer to the UnicodeChar to set the wildcard to.
+     * @note The pointer passed is saved, and must be accessible whenever TextAreaWithTwoWildcard
+     *       may need it.
      */
     void setWildcard1(const Unicode::UnicodeChar* value)
     {
@@ -289,13 +120,9 @@ public:
     }
 
     /**
-     * @fn const Unicode::UnicodeChar* TextAreaWithTwoWildcards::getWildcard1() const
+     * Gets the first wildcard used in the TypedText as previously set using setWildcard1().
      *
-     * @brief Gets the first wildcard in the text.
-     *
-     *        Gets the first wildcard in the text.
-     *
-     * @return The first wildcard from a TextArea with two wildcards.
+     * @return The first wildcard used in the text.
      */
     const Unicode::UnicodeChar* getWildcard1() const
     {
@@ -303,13 +130,13 @@ public:
     }
 
     /**
-     * @fn void TextAreaWithTwoWildcards::setWildcard2(const Unicode::UnicodeChar* value)
+     * Sets the wildcard used in the TypedText where second &lt;placeholder> is placed.
+     * Wildcard string must be a null-terminated UnicodeChar array.
      *
-     * @brief Sets the second wildcard in the text.
+     * @param  value A pointer to the UnicodeChar to set the wildcard to.
      *
-     *        Sets the second wildcard in the text. Must be a zero-terminated UnicodeChar array.
-     *
-     * @param value A pointer to the UnicodeChar to set the wildcard to.
+     * @note The pointer passed is saved, and must be accessible whenever TextAreaWithTwoWildcard
+     *       may need it.
      */
     void setWildcard2(const Unicode::UnicodeChar* value)
     {
@@ -317,51 +144,23 @@ public:
     }
 
     /**
-     * @fn const Unicode::UnicodeChar* TextAreaWithTwoWildcards::getWildcard2() const
+     * Gets the second wildcard used in the TypedText as previously set using setWildcard1().
      *
-     * @brief Gets the second wildcard in the text.
-     *
-     *        Gets the second wildcard in the text.
-     *
-     * @return The second wildcard from a TextArea with two wildcards.
+     * @return The second wildcard used in the text.
      */
     const Unicode::UnicodeChar* getWildcard2() const
     {
         return wc2;
     }
 
-    /**
-     * @fn virtual uint16_t TextAreaWithTwoWildcards::getTextWidth() const
-     *
-     * @brief Gets the width in pixels of the current associated text.
-     *
-     *           Gets the width in pixels of the current associated text in the current
-     *           selected language. In case of multi-lined text the width of the widest line is
-     *           returned.
-     *
-     * @return The width in pixels of the current text.
-     */
     virtual uint16_t getTextWidth() const
     {
         return typedText.hasValidId() ? typedText.getFont()->getStringWidth(typedText.getTextDirection(), typedText.getText(), wc1, wc2) : 0;
     }
 
-    /**
-     * @fn virtual uint16_t TextAreaWithTwoWildcards::getType() const
-     *
-     * @brief For GUI testing only.
-     *
-     *        For GUI testing only. Returns type of this drawable.
-     *
-     * @return TYPE_TEXTAREAWITHTWOWILDCARDS.
-     */
-    virtual uint16_t getType() const
-    {
-        return (uint16_t)TYPE_TEXTAREAWITHTWOWILDCARDS;
-    }
 protected:
-    const Unicode::UnicodeChar* wc1; ///< Pointer to the first wildcard string. Must be zero-terminated.
-    const Unicode::UnicodeChar* wc2; ///< Pointer to the second wildcard string. Must be zero-terminated.
+    const Unicode::UnicodeChar* wc1; ///< Pointer to the first wildcard string. Must be null-terminated.
+    const Unicode::UnicodeChar* wc2; ///< Pointer to the second wildcard string. Must be null-terminated.
 };
 
 } // namespace touchgfx

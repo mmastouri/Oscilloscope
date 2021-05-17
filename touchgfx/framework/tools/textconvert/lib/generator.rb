@@ -1,51 +1,35 @@
-###############################################################################
+##############################################################################
+# This file is part of the TouchGFX 4.15.0 distribution.
 #
-# @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
+# <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+# All rights reserved.</center></h2>
 #
-# @author    Draupner Graphics A/S <http://www.touchgfx.com>
+# This software component is licensed by ST under Ultimate Liberty license
+# SLA0044, the "License"; You may not use this file except in compliance with
+# the License. You may obtain a copy of the License at:
+#                             www.st.com/SLA0044
 #
-###############################################################################
-#
-# @section Copyright
-#
-# Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
-# All rights reserved.
-#
-# TouchGFX is protected by international copyright laws and the knowledge of
-# this source code may not be used to write a similar product. This file may
-# only be used in accordance with a license and should not be re-
-# distributed in any way without the prior permission of Draupner Graphics.
-#
-# This is licensed software for evaluation use, any use must strictly comply
-# with the evaluation license agreement provided with delivery of the
-# TouchGFX software.
-#
-# The evaluation license agreement can be seen on www.touchgfx.com
-#
-# @section Disclaimer
-#
-# DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
-# no obligation to support this software. Draupner Graphics A/S is providing
-# the software "AS IS", with no express or implied warranties of any kind,
-# including, but not limited to, any implied warranties of merchantability
-# or fitness for any particular purpose or warranties against infringement
-# of any proprietary rights of a third party.
-#
-# Draupner Graphics A/S can not be held liable for any consequential,
-# incidental, or special damages, or any other relief, or for any claim by
-# any third party, arising from your use of this software.
-#
-###############################################################################
+##############################################################################
+
 require 'lib/text_entries_excel_reader'
 require 'lib/typographies_excel_reader'
 require 'lib/sanitizer'
+require 'lib/string_collector'
 require 'lib/outputter'
 
 class Generator
-  def run(file_name, output_path, text_output_path, font_asset_path, data_format)
+  def run(file_name, output_path, text_output_path, font_asset_path, data_format, remap_identical_texts, generate_binary_language_files, generate_binary_font_files, framebuffer_bpp, generate_font_format)
+    #puts "Running TextEntriesExcelReader, #{Time.now.strftime("%H:%M:%S:%L")}"
     text_entries = TextEntriesExcelReader.new(file_name).run
+    #puts "Running TypoEntriesExcelReader, #{Time.now.strftime("%H:%M:%S:%L")}"
     typographies = TypographiesExcelReader.new(file_name).run
-    Sanitizer.new(text_entries, typographies).run
-    Outputter.new(text_entries, typographies, text_output_path, output_path, font_asset_path, data_format).run
+    #puts "Running Sanitizer, #{Time.now.strftime("%H:%M:%S:%L")}"
+    Sanitizer.new(text_entries, typographies, framebuffer_bpp).run
+    #puts "Running StringCollector, #{Time.now.strftime("%H:%M:%S:%L")}"
+    if remap_identical_texts=='yes'
+      string_indices, characters = StringCollector.new(text_entries, typographies).run
+    end
+    #puts "Running Outputter, #{Time.now.strftime("%H:%M:%S:%L")}"
+    Outputter.new(string_indices, characters, text_entries, typographies, text_output_path, output_path, font_asset_path, data_format, remap_identical_texts, generate_binary_language_files, generate_binary_font_files, generate_font_format).run
   end
 end

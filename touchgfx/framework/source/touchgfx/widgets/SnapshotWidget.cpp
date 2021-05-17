@@ -1,81 +1,61 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <touchgfx/widgets/SnapshotWidget.hpp>
+#include <touchgfx/hal/HAL.hpp>
 
 namespace touchgfx
 {
-
-SnapshotWidget::SnapshotWidget() : Widget(), fbCopy(0), alpha(255)
-{
-}
-
-SnapshotWidget::~SnapshotWidget()
+SnapshotWidget::SnapshotWidget() : Widget(), bitmapId(BITMAP_INVALID), alpha(255)
 {
 }
 
 void SnapshotWidget::draw(const Rect& invalidatedArea) const
 {
-    if (!fbCopy)
+    if (alpha == 0 || bitmapId == BITMAP_INVALID)
     {
         return;
     }
 
-    Rect absRect;
+    Rect absRect(0, 0, Bitmap(bitmapId).getWidth(), rect.height);
     translateRectToAbsolute(absRect);
-    absRect.width = rect.width;
-    absRect.height = rect.height;
-    HAL::lcd().blitCopy(fbCopy, absRect, invalidatedArea, alpha, false);
+    HAL::lcd().blitCopy((const uint16_t*)Bitmap(bitmapId).getData(), absRect, invalidatedArea, alpha, false);
 }
 
 Rect SnapshotWidget::getSolidRect() const
 {
-    if (alpha < 255)
+    if (alpha < 255 || bitmapId == BITMAP_INVALID)
     {
         return Rect(0, 0, 0, 0);
     }
-
-    return Rect(0, 0, getWidth(), getHeight());
+    else
+    {
+        return Rect(0, 0, getWidth(), getHeight());
+    }
 }
 
 void SnapshotWidget::makeSnapshot()
 {
-    fbCopy = reinterpret_cast<uint16_t*>(HAL::lcd().copyFrameBufferRegionToMemory(rect));
+    makeSnapshot(BITMAP_ANIMATION_STORAGE);
 }
 
+void SnapshotWidget::makeSnapshot(const BitmapId bmp)
+{
+    Rect visRect(0, 0, rect.width, rect.height);
+    getVisibleRect(visRect);
+    Rect absRect = getAbsoluteRect();
+    bitmapId = (HAL::lcd().copyFrameBufferRegionToMemory(visRect, absRect, bmp)) ? bmp : BITMAP_INVALID;
+}
 } // namespace touchgfx

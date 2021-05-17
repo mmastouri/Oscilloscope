@@ -1,46 +1,22 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <platform/hal/simulator/sdl2/HALSDL2.hpp>
 
 namespace touchgfx
 {
-
 uint16_t HALSDL2::icon[] =
 {
     0x0000, 0x0AC1, 0x0AC9, 0x0ACD, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACE, 0x0ACD, 0x0AC9, 0x0AC1, 0x0000,
@@ -76,5 +52,4 @@ uint16_t HALSDL2::icon[] =
     0x08A1, 0x08AE, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x089F, 0x089F, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x08AF, 0x079F, 0x079E, 0x0791,
     0x0000, 0x07A1, 0x08A9, 0x08AD, 0x09BD, 0x08AD, 0x08AD, 0x079D, 0x079D, 0x079D, 0x079D, 0x08AD, 0x08AD, 0x08AD, 0x08AD, 0x089D, 0x079D, 0x079D, 0x08AD, 0x08AD, 0x08AD, 0x08AD, 0x08AD, 0x079D, 0x079D, 0x079D, 0x08AD, 0x08AD, 0x08AD, 0x0799, 0x0791, 0x0000
 };
-
 } // namespace touchgfx

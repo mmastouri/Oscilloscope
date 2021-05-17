@@ -124,6 +124,8 @@ void hw_init()
 
     SystemClock_Config(); //200MHz overdrive, FL6
 
+	  __HAL_RCC_CRC_CLK_ENABLE();
+	
     /* Initialize the QSPI */
     BSP_QSPI_Init();
     BSP_QSPI_MemoryMappedMode();

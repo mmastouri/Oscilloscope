@@ -1,42 +1,17 @@
-###############################################################################
+##############################################################################
+# This file is part of the TouchGFX 4.15.0 distribution.
 #
-# @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
+# <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+# All rights reserved.</center></h2>
 #
-# @author    Draupner Graphics A/S <http://www.touchgfx.com>
+# This software component is licensed by ST under Ultimate Liberty license
+# SLA0044, the "License"; You may not use this file except in compliance with
+# the License. You may obtain a copy of the License at:
+#                             www.st.com/SLA0044
 #
-###############################################################################
-#
-# @section Copyright
-#
-# Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
-# All rights reserved.
-#
-# TouchGFX is protected by international copyright laws and the knowledge of
-# this source code may not be used to write a similar product. This file may
-# only be used in accordance with a license and should not be re-
-# distributed in any way without the prior permission of Draupner Graphics.
-#
-# This is licensed software for evaluation use, any use must strictly comply
-# with the evaluation license agreement provided with delivery of the
-# TouchGFX software.
-#
-# The evaluation license agreement can be seen on www.touchgfx.com
-#
-# @section Disclaimer
-#
-# DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
-# no obligation to support this software. Draupner Graphics A/S is providing
-# the software "AS IS", with no express or implied warranties of any kind,
-# including, but not limited to, any implied warranties of merchantability
-# or fitness for any particular purpose or warranties against infringement
-# of any proprietary rights of a third party.
-#
-# Draupner Graphics A/S can not be held liable for any consequential,
-# incidental, or special damages, or any other relief, or for any claim by
-# any third party, arising from your use of this software.
-#
-###############################################################################
-TextEntrySanitizer = Struct.new(:text_entries, :typographies)
+##############################################################################
+
+TextEntrySanitizer = Struct.new(:text_entries, :typographies, :framebuffer_bpp)
 
 $warning_prefix = "\nWARNING (TextConverter): "
 
@@ -50,9 +25,10 @@ class Sanitizer < TextEntrySanitizer
       RemoveTextEntriesWithInvalidTypography,
       RemoveTextEntriesWithInvalidAlignment,
       RemoveTextEntriesWithInvalidDirection,
-      CheckSizeAndBpp
+      CheckSizeAndBpp,
+      DowngradeFontsBitDepth
     ].each do |sanitizer|
-      sanitizer.new(text_entries, typographies).run
+      sanitizer.new(text_entries, typographies, framebuffer_bpp).run
     end
   end
 end
@@ -174,6 +150,39 @@ class CheckSizeAndBpp < TextEntrySanitizer
 
       if ( (not typography.font_size.integer?) or (typography.font_size < 1) )
         raise "#{$warning_prefix} Typography named '#{typography.name}' has font size value '#{typography.font_size}', which is not a valid value"
+      end
+    end
+  end
+end
+
+class DowngradeFontsBitDepth < TextEntrySanitizer
+  def run
+    if (not framebuffer_bpp.nil?)
+      m = framebuffer_bpp.match(/BPP(\d+)/)
+      bpp = m.nil? ? 24 : m[1].to_i
+      typographies.each do |typography|
+        case bpp
+        when 8
+          if typography.bpp > 2
+            puts "Downgrading typography #{typography.name} from #{typography.bpp.to_s}bpp to 2bpp"
+            typography.bpp = 2
+          end
+        when 4
+          if typography.bpp > 4
+            puts "Downgrading typography #{typography.name} from #{typography.bpp.to_s}bpp to 4bpp"
+            typography.bpp = 4
+          end
+        when 2
+          if typography.bpp > 2
+            puts "Downgrading typography #{typography.name} from #{typography.bpp.to_s}bpp to 2bpp"
+            typography.bpp = 2
+          end
+        when 1
+          if typography.bpp > 1
+            puts "Downgrading typography #{typography.name} from #{typography.bpp.to_s}bpp to 1bpp"
+            typography.bpp = 1
+          end
+        end
       end
     end
   end

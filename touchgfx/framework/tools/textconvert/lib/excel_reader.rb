@@ -1,41 +1,16 @@
-###############################################################################
+##############################################################################
+# This file is part of the TouchGFX 4.15.0 distribution.
 #
-# @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
+# <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+# All rights reserved.</center></h2>
 #
-# @author    Draupner Graphics A/S <http://www.touchgfx.com>
+# This software component is licensed by ST under Ultimate Liberty license
+# SLA0044, the "License"; You may not use this file except in compliance with
+# the License. You may obtain a copy of the License at:
+#                             www.st.com/SLA0044
 #
-###############################################################################
-#
-# @section Copyright
-#
-# Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
-# All rights reserved.
-#
-# TouchGFX is protected by international copyright laws and the knowledge of
-# this source code may not be used to write a similar product. This file may
-# only be used in accordance with a license and should not be re-
-# distributed in any way without the prior permission of Draupner Graphics.
-#
-# This is licensed software for evaluation use, any use must strictly comply
-# with the evaluation license agreement provided with delivery of the
-# TouchGFX software.
-#
-# The evaluation license agreement can be seen on www.touchgfx.com
-#
-# @section Disclaimer
-#
-# DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
-# no obligation to support this software. Draupner Graphics A/S is providing
-# the software "AS IS", with no express or implied warranties of any kind,
-# including, but not limited to, any implied warranties of merchantability
-# or fitness for any particular purpose or warranties against infringement
-# of any proprietary rights of a third party.
-#
-# Draupner Graphics A/S can not be held liable for any consequential,
-# incidental, or special damages, or any other relief, or for any claim by
-# any third party, arising from your use of this software.
-#
-###############################################################################
+##############################################################################
+
 require 'roo'
 require 'lib/text_entries'
 
@@ -53,25 +28,22 @@ class ExcelRow
   end
 
   def exists?(name)
-    column_index = @header.find_index { |val| val.downcase == name.to_s.downcase }
-    !column_index.nil?
+    !@header[name.to_s.downcase].nil?
   end
 
   private
 
   def column_number(name)
-    column_index = @header.find_index { |val| val.downcase == name.downcase }
-    if column_index.nil?
-      raise "#{name} column not found in excel file"
-    end
+    column_index = @header[name.downcase]
+    raise "#{name} column not found in excel file" if column_index.nil?
     column_index + @first_column
   end
 
   def value_at(row, col)
-    if @excel_file.empty?(row,col)
+    value = @excel_file.cell(row,col).to_s
+    if value.empty?
       nil
     else
-      value = @excel_file.cell(row,col).to_s
       check_encoding(value)
       value
     end
@@ -91,6 +63,10 @@ class ExcelReader
     @excel_file.default_sheet = sheet
     @header_row = header_row
     @first_column = first_column
+    @header = {}
+    header.each_with_index do |cell, ix|
+      @header[cell.downcase] = ix
+    end
   end
 
   def read_header
@@ -114,7 +90,7 @@ class ExcelReader
   end
 
   def row(row_number)
-    ExcelRow.new(@excel_file, header, row_number, @first_column)
+    ExcelRow.new(@excel_file, @header, row_number, @first_column)
   end
 
 end

@@ -1,106 +1,66 @@
-/******************************************************************************
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
+/**
+ * @file touchgfx/widgets/RadioButtonGroup.hpp
  *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+ * Declares the touchgfx::RadioButtonGroup class.
+ */
 #ifndef RADIOBUTTONGROUP_HPP
 #define RADIOBUTTONGROUP_HPP
 
-#include <touchgfx/widgets/RadioButton.hpp>
-#include <touchgfx/Callback.hpp>
 #include <cassert>
+#include <touchgfx/Callback.hpp>
+#include <touchgfx/widgets/RadioButton.hpp>
 
 namespace touchgfx
 {
 /**
- * @class RadioButtonGroup RadioButtonGroup.hpp touchgfx/widgets/RadioButtonGroup.hpp
+ * Class for handling a collection of RadioButton objects. The RadioButtonGroup handles the
+ * automatic deselection of other radio buttons when a new RadioButton is selected. A
+ * callback is executed when a new selection occurs reporting the newly selected
+ * RadioButton.
  *
- * @brief Class for handling a collection of RadioButtons.
- *
- *        Class for handling a collection of RadioButtons. The RadioButtonGroup handles the
- *        de-selection of radio buttons when a new selection occurs. A callback is executed when
- *        a new selection occurs reporting the newly selected RadioButton.
- *
- *        Template class: specify a CAPACITY, that is the number of RadioButtons to store.
- *
- * @tparam CAPACITY Type of the capacity.
+ * @tparam CAPACITY The number of RadioButtons to store in the RadioButtonGroup.
  *
  * @see RadioButton
  */
-template<uint16_t CAPACITY>
+template <uint16_t CAPACITY>
 class RadioButtonGroup
 {
 public:
-
-    /**
-     * @fn RadioButtonGroup::RadioButtonGroup() : size(0), radioButtonClicked(this, &RadioButtonGroup::radioButtonClickedHandler), radioButtonUnselected(this, &RadioButtonGroup::radioButtonDeselectedHandler), radioButtonSelectedCallback(0), radioButtonDeselectedCallback(0)
-     *
-     * @brief Default constructor.
-     *
-     *        Default constructor.
-     */
-    RadioButtonGroup() :
-        size(0),
-        radioButtonClicked(this, &RadioButtonGroup::radioButtonClickedHandler),
-        radioButtonUnselected(this, &RadioButtonGroup::radioButtonDeselectedHandler),
-        radioButtonSelectedCallback(0),
-        radioButtonDeselectedCallback(0)
+    /** Initializes a new instance of the RadioButtonGroup class. */
+    RadioButtonGroup()
+        : size(0),
+          radioButtonClicked(this, &RadioButtonGroup::radioButtonClickedHandler),
+          radioButtonUnselected(this, &RadioButtonGroup::radioButtonDeselectedHandler),
+          radioButtonSelectedCallback(0),
+          radioButtonDeselectedCallback(0)
     {
     }
 
-    /**
-     * @fn virtual RadioButtonGroup::~RadioButtonGroup()
-     *
-     * @brief Destructor.
-     *
-     *        Destructor.
-     */
+    /** Finalizes an instance of the RadioButtonGroup class. */
     virtual ~RadioButtonGroup()
     {
     }
 
     /**
-     * @fn virtual void RadioButtonGroup::add(RadioButton& radioButton)
+     * Add the RadioButton to the RadioButtonGroup. Adding more radio buttons than the
+     * \a CAPACITY of the RadioButtonGroup raises an assert.
      *
-     * @brief Add the RadioButton to the RadioButtonGroup.
-     *
-     *        Add the RadioButton to the RadioButtonGroup. Only add as many RadioButtons as the
-     *        stated CAPACITY. Checked by an assert.
-     *
-     * @param [in] radioButton the RadioButton that is to be added.
+     * @param [in] radioButton The RadioButton to add.
      */
     virtual void add(RadioButton& radioButton)
     {
@@ -111,15 +71,11 @@ public:
     }
 
     /**
-     * @fn virtual RadioButton* RadioButtonGroup::getRadioButton(uint16_t index) const
+     * Gets the RadioButton at the specified index.
      *
-     * @brief Gets the RadioButton at the specified index.
+     * @param  index the index of the RadioButton to return.
      *
-     *        Gets the RadioButton at the specified index.
-     *
-     * @param index the index of the RadioButton to return.
-     *
-     * @return the RadioButton at the specified index. Returns 0 if illegal index.
+     * @return the RadioButton at the specified index. Returns 0 if the index is illegal.
      */
     virtual RadioButton* getRadioButton(uint16_t index) const
     {
@@ -127,13 +83,10 @@ public:
     }
 
     /**
-     * @fn virtual int32_t RadioButtonGroup::getSelectedRadioButtonIndex() const
+     * Gets the index of the currently selected RadioButton.
      *
-     * @brief Gets the index of the selected RadioButton.
-     *
-     *        Gets the index of the selected RadioButton.
-     *
-     * @return the index of the selected RadioButton. Returns -1 if no RadioButton is selected.
+     * @return the index of the selected RadioButton. Returns -1 if no RadioButton is
+     *         selected.
      */
     virtual int32_t getSelectedRadioButtonIndex() const
     {
@@ -148,13 +101,10 @@ public:
     }
 
     /**
-     * @fn virtual RadioButton* RadioButtonGroup::getSelectedRadioButton() const
+     * Gets the currently selected RadioButton
      *
-     * @brief Gets the selected RadioButton.
-     *
-     *        Gets the selected RadioButton.
-     *
-     * @return a pointer to the selected RadioButton. Returns 0 if no RadioButton is selected.
+     * @return a pointer to the selected RadioButton. Returns 0 if no RadioButton is
+     *         selected.
      */
     virtual RadioButton* getSelectedRadioButton() const
     {
@@ -163,13 +113,11 @@ public:
     }
 
     /**
-     * @fn virtual void RadioButtonGroup::setSelected(RadioButton& radioButton)
+     * Sets the specified RadioButton to be selected.
      *
-     * @brief Sets the specified RadioButton to be selected.
-     *
-     *        Sets the specified RadioButton to be selected and deselects all other. Do not
-     *        call before all RadioButtons have been added to the RadioButtonGroup. Will call
-     *        the radioButtonSelected callback.
+     * Sets the specified RadioButton to be selected and all other radio buttons to be
+     * deselected. Do not call this function before all RadioButton objects have been added
+     * to the RadioButtonGroup. Will call the radioButtonSelected callback.
      *
      * @param [in] radioButton the RadioButton to be selected.
      */
@@ -180,15 +128,14 @@ public:
     }
 
     /**
-     * @fn virtual void RadioButtonGroup::setDeselectionEnabled(bool deselectionEnabled)
+     * Sets whether or not it is possible to deselect RadioButtons by clicking them when
+     * they are selected. If deselection is enabled, it will be possible to select a
+     * RadioButton (and as a result deselect all other radio buttons) and the push the same
+     * RadioButton again to deselect it. The result is that no RadioButton is selected.
      *
-     * @brief Sets whether or not it is possible to deselect RadioButtons by clicking them when
-     *        they are selected.
+     * @param  deselectionEnabled true if it should be possible to deselect by click.
      *
-     *        Sets whether or not it is possible to deselect RadioButtons by clicking them when
-     *        they are selected.
-     *
-     * @param deselectionEnabled true if it should be possible to deselect by click.
+     * @see getDeselectionEnabled
      */
     virtual void setDeselectionEnabled(bool deselectionEnabled)
     {
@@ -199,13 +146,11 @@ public:
     }
 
     /**
-     * @fn virtual bool RadioButtonGroup::getDeselectionEnabled() const
-     *
-     * @brief Gets the current deselectionEnabled state.
-     *
-     *        Gets the current deselectionEnabled state.
+     * Gets the current deselectionEnabled state.
      *
      * @return The current deselectionEnabled state.
+     *
+     * @see setDeselectionEnabled
      */
     virtual bool getDeselectionEnabled() const
     {
@@ -213,60 +158,48 @@ public:
     }
 
     /**
-     * @fn void RadioButtonGroup::setRadioButtonSelectedHandler(GenericCallback< const AbstractButton& >& callback)
+     * Associates an action to be performed when a radio button belonging to this group is
+     * selected.
      *
-     * @brief Associate an action with a radio button.
-     *
-     *        Associates an action to be performed when a radio button belonging to this group
-     *        is selected.
-     *
-     * @param callback The callback to be executed. The callback will be given a reference to
-     *                 the RadioButton that was selected.
+     * @param  callback The callback to be executed. The callback will be given a reference
+     *                  to the RadioButton that was selected.
      *
      * @see GenericCallback
      */
-    void setRadioButtonSelectedHandler(GenericCallback< const AbstractButton& >& callback)
+    void setRadioButtonSelectedHandler(GenericCallback<const AbstractButton&>& callback)
     {
         radioButtonSelectedCallback = &callback;
     }
 
     /**
-     * @fn void RadioButtonGroup::setRadioButtonDeselectedHandler(GenericCallback< const AbstractButton& >& callback)
+     * Associates an action to be performed when a radio button belonging to this group
+     * transition from selected to unselected.
      *
-     * @brief Associate an action with a radio button.
-     *
-     *        Associates an action to be performed when a radio button belonging to this group
-     *        transition from selected to unselected.
-     *
-     * @param callback The callback to be executed. The callback will be given a reference to
-     *                 the RadioButton that was selected.
+     * @param  callback The callback to be executed. The callback will be given a reference
+     *                  to the RadioButton that was selected.
      *
      * @see GenericCallback
      */
-    void setRadioButtonDeselectedHandler(GenericCallback< const AbstractButton& >& callback)
+    void setRadioButtonDeselectedHandler(GenericCallback<const AbstractButton&>& callback)
     {
         radioButtonDeselectedCallback = &callback;
     }
 
 protected:
     RadioButton* radioButtons[CAPACITY]; ///< The list of added RadioButtons.
-    uint16_t     size;                   ///< The current number of added RadioButtons.
+    uint16_t size;                       ///< The current number of added RadioButtons.
 
-    Callback<RadioButtonGroup, const AbstractButton& > radioButtonClicked;    ///< Callback that is attached to the RadioButtons.
-    Callback<RadioButtonGroup, const AbstractButton& > radioButtonUnselected; ///< Callback that is attached to the RadioButtons.
+    Callback<RadioButtonGroup, const AbstractButton&> radioButtonClicked;    ///< Callback that is attached to the RadioButtons.
+    Callback<RadioButtonGroup, const AbstractButton&> radioButtonUnselected; ///< Callback that is attached to the RadioButtons.
 
-    GenericCallback<const AbstractButton& >* radioButtonSelectedCallback;   ///< The callback to be executed when a radio button belonging to this group is selected.
-    GenericCallback<const AbstractButton& >* radioButtonDeselectedCallback; ///< The callback to be executed when a radio button belonging to this group is deselected.
+    GenericCallback<const AbstractButton&>* radioButtonSelectedCallback;   ///< The callback to be executed when a radio button belonging to this group is selected.
+    GenericCallback<const AbstractButton&>* radioButtonDeselectedCallback; ///< The callback to be executed when a radio button belonging to this group is deselected.
 
     /**
-     * @fn virtual void RadioButtonGroup::radioButtonClickedHandler(const AbstractButton& radioButton)
+     * Handles the event that a RadioButton has been selected. deselects all other
+     * RadioButtons.
      *
-     * @brief Handles the event that a RadioButton has been selected.
-     *
-     *        Handles the event that a RadioButton has been selected. deselects all other
-     *        RadioButtons.
-     *
-     * @param radioButton the RadioButton that has been selected.
+     * @param  radioButton the RadioButton that has been selected.
      */
     virtual void radioButtonClickedHandler(const AbstractButton& radioButton)
     {
@@ -289,13 +222,9 @@ protected:
     }
 
     /**
-     * @fn virtual void RadioButtonGroup::radioButtonDeselectedHandler(const AbstractButton& radioButton)
+     * Handles the event that a RadioButton has been deselected.
      *
-     * @brief Handles the event that a RadioButton has been deselected.
-     *
-     *        Handles the event that a RadioButton has been deselected.
-     *
-     * @param radioButton the RadioButton that has been deselected.
+     * @param  radioButton the RadioButton that has been deselected.
      */
     virtual void radioButtonDeselectedHandler(const AbstractButton& radioButton)
     {
@@ -304,7 +233,6 @@ protected:
             radioButtonDeselectedCallback->execute(radioButton);
         }
     }
-
 };
 
 } // namespace touchgfx

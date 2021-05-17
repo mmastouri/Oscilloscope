@@ -1,49 +1,25 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/Keyboard.hpp>
 
 namespace touchgfx
 {
-
 Keyboard::Keyboard()
-    : Container(), keyListener(0), bufferSize(0), bufferPosition(0), highlightImage()
+    : Container(), keyListener(0), bufferSize(0), bufferPosition(0), highlightImage(), cancelIsEmitted(false)
 {
     setTouchable(true);
 
@@ -204,10 +180,17 @@ void Keyboard::handleClickEvent(const ClickEvent& evt)
 
         if ((type == ClickEvent::RELEASED) && callbackArea.callback->isValid())
         {
-            callbackArea.callback->execute();
-            if (keyListener)
+            if (cancelIsEmitted)
             {
-                keyListener->execute(0);
+                cancelIsEmitted = false;
+            }
+            else
+            {
+                callbackArea.callback->execute();
+                if (keyListener)
+                {
+                    keyListener->execute(0);
+                }
             }
         }
     }
@@ -228,23 +211,30 @@ void Keyboard::handleClickEvent(const ClickEvent& evt)
 
             if (type == ClickEvent::RELEASED)
             {
-                if (buffer)
+                if (cancelIsEmitted)
                 {
-                    Unicode::UnicodeChar c = getCharForKey(key.keyId);
-                    if (c != 0)
+                    cancelIsEmitted = false;
+                }
+                else
+                {
+                    if (buffer)
                     {
-                        uint16_t prevBufferPosition = bufferPosition;
-                        if (bufferPosition < (bufferSize - 1))
+                        Unicode::UnicodeChar c = getCharForKey(key.keyId);
+                        if (c != 0)
                         {
-                            buffer[bufferPosition++] = c;
-                            buffer[bufferPosition] = 0;
-                        }
-                        if (prevBufferPosition != bufferPosition)
-                        {
-                            enteredText.invalidate();
-                            if (keyListener)
+                            uint16_t prevBufferPosition = bufferPosition;
+                            if (bufferPosition < (bufferSize - 1))
                             {
-                                keyListener->execute(c);
+                                buffer[bufferPosition++] = c;
+                                buffer[bufferPosition] = 0;
+                            }
+                            if (prevBufferPosition != bufferPosition)
+                            {
+                                enteredText.invalidate();
+                                if (keyListener)
+                                {
+                                    keyListener->execute(c);
+                                }
                             }
                         }
                     }
@@ -258,6 +248,21 @@ void Keyboard::handleClickEvent(const ClickEvent& evt)
         toDraw = highlightImage.getRect();
         highlightImage.setVisible(false);
         invalidateRect(toDraw);
+
+        if (type == ClickEvent::CANCEL)
+        {
+            cancelIsEmitted = true;
+        }
+    }
+}
+
+void Keyboard::handleDragEvent(const DragEvent& evt)
+{
+    if (highlightImage.isVisible() && (!highlightImage.getRect().intersect(static_cast<int16_t>(evt.getNewX()), static_cast<int16_t>(evt.getNewY()))) && (!cancelIsEmitted))
+    {
+        // Send a CANCEL click event, if user has dragged out of currently pressed/highlighted key.
+        touchgfx::ClickEvent cancelEvent(touchgfx::ClickEvent::CANCEL, static_cast<int16_t>(evt.getOldX()), static_cast<int16_t>(evt.getOldY()));
+        handleClickEvent(cancelEvent);
     }
 }
 
@@ -300,5 +305,4 @@ void Keyboard::setKeymappingList(const KeyMappingList* newKeyMappingList)
     keyMappingList = newKeyMappingList;
     invalidate();
 }
-
 } // namespace touchgfx

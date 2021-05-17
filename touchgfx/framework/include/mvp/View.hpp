@@ -1,86 +1,53 @@
-/******************************************************************************
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
+/**
+ * @file mvp/View.hpp
  *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+ * Declares the touchgfx::View class.
+ */
 #ifndef VIEW_HPP
 #define VIEW_HPP
 
-#include <touchgfx/Screen.hpp>
 #include <mvp/Presenter.hpp>
+#include <touchgfx/Screen.hpp>
 
 namespace touchgfx
 {
 /**
- * @class View View.hpp mvp/View.hpp
- *
- * @brief This is a generic touchgfx::Screen specialization for normal applications.
- *
- *        This is a generic touchgfx::Screen specialization for normal applications. It
- *        provides a link to the Presenter class.
- *
- * @note All views in the application must be a subclass of this type.
+ * This is a generic touchgfx::Screen specialization for normal applications. It provides a link
+ * to the Presenter class.
  *
  * @tparam T The type of Presenter associated with this view.
  *
  * @see Screen
+ *
+ * @note All views in the application must be a subclass of this type.
  */
-template<class T>
+template <class T>
 class View : public Screen
 {
 public:
-
-    /**
-     * @fn View::View()
-     *
-     * @brief Default constructor.
-     *
-     *        Default constructor.
-     */
-    View() : presenter(0)
+    View()
+        : presenter(0)
     {
     }
 
     /**
-     * @fn void View::bind(T& presenter)
-     *
-     * @brief Binds an instance of a specific Presenter type (subclass) to the View instance.
-     *
-     *        Binds an instance of a specific Presenter type (subclass) to the View instance.
-     *        This function is called automatically when a new presenter/view pair is activated.
+     * Binds an instance of a specific Presenter type (subclass) to the View instance. This
+     * function is called automatically when a new presenter/view pair is activated.
      *
      * @param [in] presenter The specific Presenter to be associated with the View.
      */
@@ -90,8 +57,9 @@ public:
     }
 
 protected:
-    T* presenter;   ///< Pointer to the Presenter associated with this view.
+    T* presenter; ///< Pointer to the Presenter associated with this view.
 };
 
 } // namespace touchgfx
+
 #endif // VIEW_HPP

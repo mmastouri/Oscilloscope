@@ -1,60 +1,110 @@
-###############################################################################
+##############################################################################
+# This file is part of the TouchGFX 4.15.0 distribution.
 #
-# @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
+# <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+# All rights reserved.</center></h2>
 #
-# @author    Draupner Graphics A/S <http://www.touchgfx.com>
+# This software component is licensed by ST under Ultimate Liberty license
+# SLA0044, the "License"; You may not use this file except in compliance with
+# the License. You may obtain a copy of the License at:
+#                             www.st.com/SLA0044
 #
-###############################################################################
-#
-# @section Copyright
-#
-# Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
-# All rights reserved.
-#
-# TouchGFX is protected by international copyright laws and the knowledge of
-# this source code may not be used to write a similar product. This file may
-# only be used in accordance with a license and should not be re-
-# distributed in any way without the prior permission of Draupner Graphics.
-#
-# This is licensed software for evaluation use, any use must strictly comply
-# with the evaluation license agreement provided with delivery of the
-# TouchGFX software.
-#
-# The evaluation license agreement can be seen on www.touchgfx.com
-#
-# @section Disclaimer
-#
-# DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
-# no obligation to support this software. Draupner Graphics A/S is providing
-# the software "AS IS", with no express or implied warranties of any kind,
-# including, but not limited to, any implied warranties of merchantability
-# or fitness for any particular purpose or warranties against infringement
-# of any proprietary rights of a third party.
-#
-# Draupner Graphics A/S can not be held liable for any consequential,
-# incidental, or special damages, or any other relief, or for any claim by
-# any third party, arising from your use of this software.
-#
-###############################################################################
+##############################################################################
+
+require 'json'
 
 class LanguagesCpp
-  def initialize(text_entries, typographies, output_directory)
+  def initialize(string_indices, text_entries, output_directory, remap_identical_texts, generate_binary_language_files)
+    @string_indices = string_indices #dictionary of all string indices into the characters array
     @text_entries = text_entries
     @output_directory = output_directory
+    @remap_identical_texts = remap_identical_texts
+    @generate_binary_language_files = generate_binary_language_files
   end
   def run
     @text_entries.languages.each do |language|
-      LanguageXxCpp.new(@text_entries, @output_directory, language).run
+      LanguageXxCpp.new(@string_indices, @text_entries, @output_directory, @remap_identical_texts, @generate_binary_language_files, language).run
     end
+
+    #remove any unused LanguageXX.cpp files
+    Dir.glob("#{@output_directory}/src/Language*.cpp").each do |file|
+      m = /Language(.*).cpp/.match(file)
+      if !@text_entries.languages.include?(m[1])
+        File.delete(file) if File.exist?(file)
+      end
+    end
+
   end
 end
 
 class LanguageXxCpp < Template
-  Presenter = Struct.new(:text_id, :translation, :unicodes)
+  Presenter = Struct.new(:text_id, :int_array)
 
-  def initialize(text_entries, output_directory, language)
+  def initialize(string_indices, text_entries, output_directory, remap_identical_texts, generate_binary_language_files, language)
+    @string_indices = string_indices #dictionary of all string indices into the characters array
+    @remap_identical_texts = remap_identical_texts
+    @generate_binary_language_files = generate_binary_language_files
     @language = language
     super(text_entries, [], output_directory)
+    @cache = {}
+  end
+
+  def cache_file
+    File.join(@output_directory, "cache/LanguageCpp_#{@language}.cache")
+  end
+  def output_filename
+    File.join(@output_directory, output_path)
+  end
+  def texts
+    @text_entries.entries.map(&:cpp_text_id)
+  end
+  def run
+    #build cache dictionary
+    @cache["remap"] = @remap_identical_texts
+    @cache["language"] = @language
+    @cache["language_index"] = @text_entries.languages.index(@language)
+    if remap_strings?
+      #save text ids and index
+      list = [] #list of index,textid
+      entries.each_with_index do |entry, index|
+        list[index] = [string_index(entry), entry.text_id]
+      end
+      @cache["indices"] = list
+    else
+      #save texts
+      texts = []
+      entries.each_with_index do |entry, index|
+        texts << [entry.text_id, entry.int_array]
+      end
+      @cache["texts"] = texts
+    end
+
+    new_cache_file = false
+    if not File::exists?(cache_file)
+      new_cache_file = true
+    else
+        #cache file exists, compare data with cache file
+        old_cache = JSON.parse(File.read(cache_file))
+        new_cache_file = (old_cache != @cache)
+    end
+
+    if new_cache_file
+      #write new cache file
+      FileIO.write_file_silent(cache_file, @cache.to_json)
+    end
+
+    if (!File::exists?(output_filename)) || new_cache_file
+      #generate LanguageXX.cpp
+      super
+    end
+  end
+
+  def remap_strings?
+    @remap_identical_texts=="yes"
+  end
+
+  def generate_binary_files?
+    @generate_binary_language_files=="yes"
   end
 
   def language
@@ -62,14 +112,22 @@ class LanguageXxCpp < Template
   end
 
   def entries
-    entries = text_entries
-
-    entries = handle_no_entries(entries, "DO_NOT_USE")
-    present(entries)
+    #only generate entries once
+    @cached_entries ||=
+      begin
+        entries = text_entries
+        entries = handle_no_entries(entries, "DO_NOT_USE")
+        present(entries)
+      end
   end
 
   def entries_texts_const_initialization
     entries.map { |entry| "    #{entry.text_id}_#{language}" }.join(",\n")
+  end
+
+  def string_index(entry)
+    index = @string_indices[entry.int_array]
+    index.to_s
   end
 
 #  def entries_s
@@ -93,7 +151,7 @@ class LanguageXxCpp < Template
 # end
 
   def input_path
-    'Templates/LanguageXX.cpp.temp'
+    File.join(root_dir,'Templates','LanguageXX.cpp.temp')
   end
 
   def output_path
@@ -114,7 +172,7 @@ class LanguageXxCpp < Template
 
   def present(entries)
     entries.map do |entry|
-      Presenter.new(entry.cpp_text_id, entry.translation_in(language).to_cpp, ( entry.translation_in(language).unicodes.map { |u| '0x' + u.to_s(16) } << '0x0' ) .join(', ') )
+      Presenter.new(entry.cpp_text_id, entry.translation_in(language).unicodes) 
     end
   end
 

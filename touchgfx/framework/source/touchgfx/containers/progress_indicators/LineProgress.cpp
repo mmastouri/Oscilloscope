@@ -1,55 +1,27 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <touchgfx/containers/progress_indicators/LineProgress.hpp>
 
 namespace touchgfx
 {
-
 LineProgress::LineProgress()
     : AbstractProgressIndicator(), line(), endX(0), endY(0)
 {
     progressIndicatorContainer.add(line);
     line.setPosition(0, 0, getWidth(), getHeight());
-}
-
-LineProgress::~LineProgress()
-{
 }
 
 void LineProgress::setProgressIndicatorPosition(int16_t x, int16_t y, int16_t width, int16_t height)
@@ -66,8 +38,8 @@ void LineProgress::setPainter(AbstractPainter& painter)
 
 void LineProgress::setStart(int x, int y)
 {
-    startX = CWRUtil::toQ5(x);
-    startY = CWRUtil::toQ5(y);
+    startX = CWRUtil::toQ5<int>(x);
+    startY = CWRUtil::toQ5<int>(y);
     line.setStart(x, y);
 }
 
@@ -79,8 +51,8 @@ void LineProgress::getStart(int& x, int& y) const
 
 void LineProgress::setEnd(int x, int y)
 {
-    endX = CWRUtil::toQ5(x);
-    endY = CWRUtil::toQ5(y);
+    endX = CWRUtil::toQ5<int>(x);
+    endY = CWRUtil::toQ5<int>(y);
 }
 
 void LineProgress::getEnd(int& x, int& y) const
@@ -111,9 +83,9 @@ touchgfx::Line::LINE_ENDING_STYLE LineProgress::getLineEndingStyle() const
     return line.getLineEndingStyle();
 }
 
-void LineProgress::setAlpha(uint8_t alpha)
+void LineProgress::setAlpha(uint8_t newAlpha)
 {
-    line.setAlpha(alpha);
+    line.setAlpha(newAlpha);
 }
 
 uint8_t LineProgress::getAlpha() const
@@ -127,10 +99,11 @@ void LineProgress::setValue(int value)
     {
         AbstractProgressIndicator::setValue(value);
         int progress = (int)AbstractProgressIndicator::getProgress(rangeSteps);
-        CWRUtil::Q5 x = startX + (endX - startX) / (int)rangeSteps * progress;
-        CWRUtil::Q5 y = startY + (endY - startY) / (int)rangeSteps * progress;
+        CWRUtil::Q5 r(rangeSteps);
+        CWRUtil::Q5 p(progress);
+        CWRUtil::Q5 x = startX + (endX - startX) / r * p;
+        CWRUtil::Q5 y = startY + (endY - startY) / r * p;
         line.updateEnd(x, y);
     }
 }
-
-}
+} // namespace touchgfx

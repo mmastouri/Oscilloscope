@@ -1,55 +1,34 @@
-/******************************************************************************
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
+/**
+ * @file touchgfx/canvas_widget_renderer/Cell.hpp
  *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+ * Declares the touchgfx::Cell struct. Used internally by CanvasWidgetRenderer.
+ */
 #ifndef CELL_HPP
 #define CELL_HPP
 
 #include <touchgfx/hal/Types.hpp>
 
+/// @cond
 namespace touchgfx
 {
 /**
- * @struct Cell Cell.hpp touchgfx/canvas_widget_renderer/Cell.hpp
- *
- * @brief A pixel cell.
- *
- *        A pixel cell. There are no constructors defined and it was done intentionally in
- *        order to avoid extra overhead when allocating an array of cells.
+ * A pixel cell. There are no constructors defined and it was done intentionally in order to
+ * avoid extra overhead when allocating an array of cells.
  */
 struct Cell
 {
@@ -59,16 +38,12 @@ struct Cell
     int16_t area;  ///< The area (see http://projects.tuxee.net/cl-vectors/section-the-cl-aa-algorithm for further information).
 
     /**
-     * @fn void set(int _x, int _y, int _cover, int _area)
+     * Sets all the Cell parameters.
      *
-     * @brief Sets all the Cell parameters.
-     *
-     *        Sets all the Cell parameters.
-     *
-     * @param _x     The x coordinate.
-     * @param _y     The y coordinate.
-     * @param _cover The cover.
-     * @param _area  The area.
+     * @param  _x     The x coordinate.
+     * @param  _y     The y coordinate.
+     * @param  _cover The cover.
+     * @param  _area  The area.
      */
     void set(int _x, int _y, int _cover, int _area)
     {
@@ -77,14 +52,10 @@ struct Cell
     }
 
     /**
-     * @fn void setCoord(int _x, int _y)
+     * Sets the coordinate of the Cell.
      *
-     * @brief Sets the coordinate of the Cell.
-     *
-     *        Sets the coordinate of the Cell.
-     *
-     * @param _x The Cell's x coordinate.
-     * @param _y The Cell's y coordinate.
+     * @param  _x The Cell's x coordinate.
+     * @param  _y The Cell's y coordinate.
      */
     void setCoord(int _x, int _y)
     {
@@ -93,14 +64,10 @@ struct Cell
     }
 
     /**
-     * @fn void setCover(int _cover, int _area)
+     * Sets the cover of area cell.
      *
-     * @brief Sets the cover of area cell.
-     *
-     *        Sets the cover of area cell.
-     *
-     * @param _cover The cover.
-     * @param _area  The area.
+     * @param  _cover The cover.
+     * @param  _area  The area.
      */
     void setCover(int _cover, int _area)
     {
@@ -109,14 +76,10 @@ struct Cell
     }
 
     /**
-     * @fn void addCover(int _cover, int _area)
+     * Adds a cover to a Cell.
      *
-     * @brief Adds a cover to a Cell.
-     *
-     *        Adds a cover to a Cell.
-     *
-     * @param _cover The cover to add to the Cell.
-     * @param _area  The area to add to the Cell.
+     * @param  _cover The cover to add to the Cell.
+     * @param  _area  The area to add to the Cell.
      */
     void addCover(int _cover, int _area)
     {
@@ -125,12 +88,8 @@ struct Cell
     }
 
     /**
-     * @fn int packedCoord() const
-     *
-     * @brief Packed coordinates of the Cell.
-     *
-     *        Packed coordinates of the Cell. By packing the x coordinate and y coordinate into
-     *        one int, it is possible to sort Cells using a single comparison.
+     * Packed coordinates of the Cell. By packing the x coordinate and y coordinate into one
+     * int, it is possible to sort Cells using a single comparison.
      *
      * @return The packed coordinates with y in the high part and x in the low part.
      */
@@ -141,5 +100,6 @@ struct Cell
 }; // struct Cell
 
 } // namespace touchgfx
+/// @endcond
 
 #endif // CELL_HPP

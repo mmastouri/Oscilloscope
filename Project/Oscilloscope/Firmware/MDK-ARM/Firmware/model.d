@@ -1,8 +1,8 @@
 firmware\model.o: ..\..\Graphic\gui\src\model\Model.cpp
 firmware\model.o: ..\..\Graphic\gui\include\gui/model/Model.hpp
 firmware\model.o: ..\..\..\..\touchgfx\framework\include\touchgfx/hal/Types.hpp
-firmware\model.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 firmware\model.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+firmware\model.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 firmware\model.o: ..\..\..\..\touchgfx\framework\include\touchgfx/hal/Config.hpp
 firmware\model.o: ..\..\Graphic\gui\include\gui\common\main_header.h
 firmware\model.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

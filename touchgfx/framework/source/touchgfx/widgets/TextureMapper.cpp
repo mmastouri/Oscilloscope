@@ -1,84 +1,56 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
-#include <touchgfx/widgets/TextureMapper.hpp>
-#include <touchgfx/transforms/DisplayTransformation.hpp>
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <touchgfx/Math3D.hpp>
 #include <touchgfx/TextureMapTypes.hpp>
+#include <touchgfx/hal/HAL.hpp>
+#include <touchgfx/transforms/DisplayTransformation.hpp>
+#include <touchgfx/widgets/TextureMapper.hpp>
 
 namespace touchgfx
 {
-
-TextureMapper::TextureMapper() :
-    Widget(),
-    currentRenderingAlgorithm(NEAREST_NEIGHBOR),
-    alpha(255),
-    xBitmapPosition(0.0f),
-    yBitmapPosition(0.0f),
-    xAngle(0.0f),
-    yAngle(0.0f),
-    zAngle(0.0f),
-    scale(1.0f),
-    xOrigo(0.0f),
-    yOrigo(0.0f),
-    zOrigo(1000.0f),
-    xCamera(0.0f),
-    yCamera(0.0f),
-    cameraDistance(1000.0f),
-    imageX0(0.0f),
-    imageY0(0.0f),
-    imageZ0(1.0f),
-    imageX1(0.0f),
-    imageY1(0.0f),
-    imageZ1(1.0f),
-    imageX2(0.0f),
-    imageY2(0.0f),
-    imageZ2(1.0f),
-    imageX3(0.0f),
-    imageY3(0.0f),
-    imageZ3(1.0f),
-    subDivisionSize(12)
+TextureMapper::TextureMapper()
+    : Widget(),
+      currentRenderingAlgorithm(NEAREST_NEIGHBOR),
+      alpha(255),
+      xBitmapPosition(0.0f),
+      yBitmapPosition(0.0f),
+      xAngle(0.0f),
+      yAngle(0.0f),
+      zAngle(0.0f),
+      scale(1.0f),
+      xOrigo(0.0f),
+      yOrigo(0.0f),
+      zOrigo(1000.0f),
+      xCamera(0.0f),
+      yCamera(0.0f),
+      cameraDistance(1000.0f),
+      imageX0(0.0f),
+      imageY0(0.0f),
+      imageZ0(1.0f),
+      imageX1(0.0f),
+      imageY1(0.0f),
+      imageZ1(1.0f),
+      imageX2(0.0f),
+      imageY2(0.0f),
+      imageZ2(1.0f),
+      imageX3(0.0f),
+      imageY3(0.0f),
+      imageZ3(1.0f),
+      subDivisionSize(12)
 {
-}
-
-TextureMapper::~TextureMapper()
-{
-
 }
 
 void TextureMapper::setBitmap(const Bitmap& bmp)
@@ -89,20 +61,19 @@ void TextureMapper::setBitmap(const Bitmap& bmp)
     applyTransformation();
 }
 
-
 void TextureMapper::applyTransformation()
 {
     const uint8_t n = 4;
 
-    int imgWidth = Bitmap(bitmap).getWidth();
-    int imgHeight = Bitmap(bitmap).getHeight();
+    int imgWidth = Bitmap(bitmap).getWidth() + 1;
+    int imgHeight = Bitmap(bitmap).getHeight() + 1;
 
     touchgfx::Point4 vertices[n] =
     {
-        touchgfx::Point4(xBitmapPosition,          yBitmapPosition,           cameraDistance),
-        touchgfx::Point4(xBitmapPosition + imgWidth, yBitmapPosition,           cameraDistance),
-        touchgfx::Point4(xBitmapPosition + imgWidth, yBitmapPosition + imgHeight, cameraDistance),
-        touchgfx::Point4(xBitmapPosition,          yBitmapPosition + imgHeight, cameraDistance),
+        touchgfx::Point4(xBitmapPosition - 1, yBitmapPosition - 1, cameraDistance),
+        touchgfx::Point4(xBitmapPosition - 1 + imgWidth, yBitmapPosition - 1, cameraDistance),
+        touchgfx::Point4(xBitmapPosition - 1 + imgWidth, yBitmapPosition - 1 + imgHeight, cameraDistance),
+        touchgfx::Point4(xBitmapPosition - 1, yBitmapPosition - 1 + imgHeight, cameraDistance),
     };
     touchgfx::Point4 transformed[n];
 
@@ -154,8 +125,6 @@ void TextureMapper::applyTransformation()
     imageX3 = ((float)transformed[3].getX() * cameraDistance / (float)transformed[3].getZ());
     imageY3 = ((float)transformed[3].getY() * cameraDistance / (float)transformed[3].getZ());
     imageZ3 = ((float)transformed[3].getZ());
-
-
 }
 
 Rect TextureMapper::getBoundingRect() const
@@ -169,7 +138,8 @@ Rect TextureMapper::getBoundingRect() const
     float maxXf = MAX(imageX0, imageX1);
     maxXf = MAX(maxXf, imageX2);
     maxXf = ceilf(MAX(maxXf, imageX3));
-    int16_t maxX = (int16_t)(MIN(getWidth(), maxXf));
+    int16_t maxX = getWidth();
+    maxX = (int16_t)(MIN(maxX, maxXf));
 
     float minYf = MIN(imageY0, imageY1);
     minYf = MIN(minYf, imageY2);
@@ -179,7 +149,8 @@ Rect TextureMapper::getBoundingRect() const
     float maxYf = MAX(imageY0, imageY1);
     maxYf = MAX(maxYf, imageY2);
     maxYf = ceilf(MAX(maxYf, imageY3));
-    int16_t maxY = (int16_t)(MIN(getHeight(), maxYf));
+    int16_t maxY = getHeight();
+    maxY = (int16_t)(MIN(maxY, maxYf));
 
     return Rect(minX, minY, maxX - minX, maxY - minY);
 }
@@ -206,7 +177,6 @@ void TextureMapper::setScale(float _scale)
     applyTransformation();
 }
 
-
 void TextureMapper::draw(const Rect& invalidatedArea) const
 {
     if (!alpha)
@@ -216,24 +186,24 @@ void TextureMapper::draw(const Rect& invalidatedArea) const
     uint16_t* fb = HAL::getInstance()->lockFrameBuffer();
 
     // Setup texture coordinates
-    float right = (float)(bitmap.getWidth() - 1);
-    float bottom = (float)(bitmap.getHeight() - 1);
-    float textureU0 = 0.0f;
-    float textureV0 = 0.0f;
+    float right = (float)(bitmap.getWidth());
+    float bottom = (float)(bitmap.getHeight());
+    float textureU0 = -1.0f;
+    float textureV0 = -1.0f;
     float textureU1 = right;
-    float textureV1 = 0.0f;
+    float textureV1 = -1.0f;
     float textureU2 = right;
     float textureV2 = bottom;
-    float textureU3 = 0.0f;
+    float textureU3 = -1.0f;
     float textureV3 = bottom;
     if (HAL::DISPLAY_ROTATION == rotate90)
     {
-        textureU0 = 0.0f;
+        textureU0 = -1.0f;
         textureV0 = right;
-        textureU1 = 0.0f;
-        textureV1 = 0.0f;
+        textureU1 = -1.0f;
+        textureV1 = -1.0f;
         textureU2 = bottom;
-        textureV2 = 0.0f;
+        textureV2 = -1.0f;
         textureU3 = bottom;
         textureV3 = right;
     }
@@ -353,7 +323,7 @@ void TextureMapper::drawTriangle(const Rect& invalidatedArea, uint16_t* fb, cons
     DisplayTransformation::transformDisplayToFrameBuffer(dirtyAreaAbsolute);
 
     // Get a pointer to the bitmap data, return if no bitmap found
-    const uint16_t* textmap = (const uint16_t*) bitmap.getData();
+    const uint16_t* textmap = (const uint16_t*)bitmap.getData();
     if (!textmap)
     {
         return;
@@ -371,18 +341,23 @@ void TextureMapper::drawTriangle(const Rect& invalidatedArea, uint16_t* fb, cons
     DisplayTransformation::transformDisplayToFrameBuffer(x2, y2, this->getRect());
 
     Point3D vertices[3];
-    Point3D point0 = {floatToFixed28_4(x0), floatToFixed28_4(y0), (float)(triangleZs[0]), (float)(triangleUs[0]), (float)(triangleVs[0])};
-    Point3D point1 = {floatToFixed28_4(x1), floatToFixed28_4(y1), (float)(triangleZs[1]), (float)(triangleUs[1]), (float)(triangleVs[1])};
-    Point3D point2 = {floatToFixed28_4(x2), floatToFixed28_4(y2), (float)(triangleZs[2]), (float)(triangleUs[2]), (float)(triangleVs[2])};
+    Point3D point0 = { floatToFixed28_4(x0), floatToFixed28_4(y0), (float)(triangleZs[0]), (float)(triangleUs[0]), (float)(triangleVs[0]) };
+    Point3D point1 = { floatToFixed28_4(x1), floatToFixed28_4(y1), (float)(triangleZs[1]), (float)(triangleUs[1]), (float)(triangleVs[1]) };
+    Point3D point2 = { floatToFixed28_4(x2), floatToFixed28_4(y2), (float)(triangleZs[2]), (float)(triangleUs[2]), (float)(triangleVs[2]) };
 
     vertices[0] = point0;
     vertices[1] = point1;
     vertices[2] = point2;
 
-    DrawingSurface dest = { fb, HAL::FRAME_BUFFER_WIDTH};
-    TextureSurface src = { textmap, bitmap.getAlphaData(), bitmap.getWidth(), bitmap.getHeight(), bitmap.getWidth()};
+    DrawingSurface dest = { fb, HAL::FRAME_BUFFER_WIDTH };
+    TextureSurface src = { textmap, bitmap.getExtraData(), bitmap.getWidth(), bitmap.getHeight(), bitmap.getWidth() };
 
-    HAL::lcd().drawTextureMapTriangle(dest, vertices, src, absoluteRect, dirtyAreaAbsolute, lookupRenderVariant(), alpha, subDivisionSize);
+    uint16_t subDivs = subDivisionSize;
+    if (point0.Z == point1.Z && point1.Z == point2.Z)
+    {
+        subDivs = 0xFFFF; // Max: One sweep
+    }
+    HAL::lcd().drawTextureMapTriangle(dest, vertices, src, absoluteRect, dirtyAreaAbsolute, lookupRenderVariant(), alpha, subDivs);
 }
 
 RenderingVariant TextureMapper::lookupRenderVariant() const
@@ -401,11 +376,6 @@ RenderingVariant TextureMapper::lookupRenderVariant() const
 
 Rect TextureMapper::getSolidRect() const
 {
-    if (alpha < 255)
-    {
-        return Rect(0, 0, 0, 0);
-    }
     return Rect(0, 0, 0, 0);
 }
-
 } // namespace touchgfx

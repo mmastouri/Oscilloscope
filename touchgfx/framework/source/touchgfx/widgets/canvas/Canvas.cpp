@@ -1,47 +1,25 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <touchgfx/widgets/canvas/Canvas.hpp>
 
 namespace touchgfx
 {
-Canvas::Canvas(const CanvasWidget* _widget, const Rect& invalidatedArea) : widget(_widget),
-    enoughMemory(false), penUp(true), penHasBeenDown(false), previousOutside(0), penDownOutside(0)
+Canvas::Canvas(const CanvasWidget* _widget, const Rect& invalidatedArea)
+    : widget(_widget),
+      enoughMemory(false), penUp(true), penHasBeenDown(false), previousOutside(0), penDownOutside(0)
 {
     assert(CanvasWidgetRenderer::hasBuffer() && "No buffer allocated for CanvasWidgetRenderer drawing");
     assert(Rasterizer::POLY_BASE_SHIFT == 5 && "CanvasWidget assumes Q5 but Rasterizer uses a different setting");
@@ -53,8 +31,8 @@ Canvas::Canvas(const CanvasWidget* _widget, const Rect& invalidatedArea) : widge
     Rect dirtyAreaAbsolute = dirtyArea;
     widget->translateRectToAbsolute(dirtyAreaAbsolute);
 
-    // Transform rects to match frame buffer coordinates
-    // This is needed if the display is rotated compared to the frame buffer
+    // Transform rects to match framebuffer coordinates
+    // This is needed if the display is rotated compared to the framebuffer
     DisplayTransformation::transformDisplayToFrameBuffer(dirtyArea, widget->getRect());
     DisplayTransformation::transformDisplayToFrameBuffer(dirtyAreaAbsolute);
 
@@ -64,35 +42,47 @@ Canvas::Canvas(const CanvasWidget* _widget, const Rect& invalidatedArea) : widge
 
     offsetX = dirtyArea.x;
     offsetY = dirtyArea.y;
-    invalidatedAreaX = CWRUtil::toQ5(dirtyArea.x);
-    invalidatedAreaY = CWRUtil::toQ5(dirtyArea.y);
-    invalidatedAreaWidth = CWRUtil::toQ5(dirtyArea.width);
-    invalidatedAreaHeight = CWRUtil::toQ5(dirtyArea.height);
+    invalidatedAreaX = CWRUtil::toQ5<int>(dirtyArea.x);
+    invalidatedAreaY = CWRUtil::toQ5<int>(dirtyArea.y);
+    invalidatedAreaWidth = CWRUtil::toQ5<int>(dirtyArea.width);
+    invalidatedAreaHeight = CWRUtil::toQ5<int>(dirtyArea.height);
 
     // Create the rendering buffer
     uint8_t* RESTRICT buf = reinterpret_cast<uint8_t*>(HAL::getInstance()->lockFrameBuffer());
-    int stride = 0;
+    int stride = HAL::lcd().framebufferStride();
     uint8_t offset = 0;
-    uint8_t bitDepth = HAL::lcd().bitDepth();
-    switch (bitDepth)
+    switch (HAL::lcd().framebufferFormat())
     {
-    case 1: // BW
-    case 2: // GRAY2
-    case 4: // GRAY4
-        {
-            uint8_t bitsPerByte = 8 / bitDepth;
-            stride = (HAL::FRAME_BUFFER_WIDTH + (bitsPerByte - 1)) / bitsPerByte;
-            buf += (dirtyAreaAbsolute.x / bitsPerByte) + dirtyAreaAbsolute.y * stride;
-            offset = dirtyAreaAbsolute.x % bitsPerByte;
-        }
+    case Bitmap::BW:
+        buf += (dirtyAreaAbsolute.x / 8) + dirtyAreaAbsolute.y * stride;
+        offset = dirtyAreaAbsolute.x % 8;
         break;
-    case 16: // RGB565
-    case 24: // RGB888
-    case 32: // ARGB8888
-        stride = HAL::FRAME_BUFFER_WIDTH * (bitDepth / 8);
-        buf += dirtyAreaAbsolute.x * (bitDepth / 8) + dirtyAreaAbsolute.y * stride;
+    case Bitmap::GRAY2:
+        buf += (dirtyAreaAbsolute.x / 4) + dirtyAreaAbsolute.y * stride;
+        offset = dirtyAreaAbsolute.x % 4;
         break;
-    default:
+    case Bitmap::GRAY4:
+        buf += (dirtyAreaAbsolute.x / 2) + dirtyAreaAbsolute.y * stride;
+        offset = dirtyAreaAbsolute.x % 2;
+        break;
+    case Bitmap::RGB565:
+        buf += dirtyAreaAbsolute.x * 2 + dirtyAreaAbsolute.y * stride;
+        break;
+    case Bitmap::RGB888:
+        buf += dirtyAreaAbsolute.x * 3 + dirtyAreaAbsolute.y * stride;
+        break;
+    case Bitmap::RGBA2222:
+    case Bitmap::BGRA2222:
+    case Bitmap::ARGB2222:
+    case Bitmap::ABGR2222:
+    case Bitmap::L8:
+        buf += dirtyAreaAbsolute.x + dirtyAreaAbsolute.y * stride;
+        break;
+    case Bitmap::ARGB8888:
+        buf += dirtyAreaAbsolute.x * 4 + dirtyAreaAbsolute.y * stride;
+        break;
+    case Bitmap::BW_RLE:
+    case Bitmap::A4:
         assert(0 && "Unsupported bit depth");
         break;
     }
@@ -121,7 +111,7 @@ void Canvas::moveTo(CWRUtil::Q5 x, CWRUtil::Q5 y)
     x = x - invalidatedAreaX;
     y = y - invalidatedAreaY;
 
-    uint8_t outside = isOutside(y, invalidatedAreaHeight);
+    uint8_t outside = isOutside(x, y, invalidatedAreaWidth, invalidatedAreaHeight);
 
     if (outside)
     {
@@ -154,7 +144,7 @@ void Canvas::lineTo(CWRUtil::Q5 x, CWRUtil::Q5 y)
     x = x - invalidatedAreaX;
     y = y - invalidatedAreaY;
 
-    uint8_t outside = isOutside(y, invalidatedAreaHeight);
+    uint8_t outside = isOutside(x, y, invalidatedAreaWidth, invalidatedAreaHeight);
 
     if (!previousOutside)
     {
@@ -164,7 +154,7 @@ void Canvas::lineTo(CWRUtil::Q5 x, CWRUtil::Q5 y)
     {
         if (!outside || !(previousOutside & outside))
         {
-            // x,y is inside, or on other side compared to previous
+            // x,y is inside, or on another side compared to previous
             if (penUp)
             {
                 penDownOutside = previousOutside;
@@ -178,13 +168,18 @@ void Canvas::lineTo(CWRUtil::Q5 x, CWRUtil::Q5 y)
             }
             ras.lineTo(x, y);
         }
+        else
+        {
+            // Restrict "outside" to the same side as previous point.
+            outside &= previousOutside;
+        }
     }
     previousX = x;
     previousY = y;
     previousOutside = outside;
 }
 
-bool Canvas::render()
+bool Canvas::render(uint8_t customAlpha)
 {
     // If the invalidated rect is too wide compared to the allocated buffer for CWR,
     // redrawing will not help. The CanvasWidget needs to know about this situation
@@ -195,35 +190,52 @@ bool Canvas::render()
         return true; // Redrawing a rect with fewer scanlines will not help, fake "ok" to move on
     }
 
+    if (ras.wasOutlineTooComplex())
+    {
+        return false; // Try again with fewer scanlines
+    }
+
     if (!penHasBeenDown)
     {
         return true; // Nothing drawn. Done
     }
 
-    if (widget->getAlpha() == 0)
+    const uint8_t alpha = LCD::div255(widget->getAlpha() * customAlpha);
+    if (alpha == 0)
     {
         return true; // Invisible. Done
     }
 
     close();
 
-    widget->getPainter().setOffset(offsetX/*+widget->getX()*/, offsetY/*+widget->getY()*/);
-    widget->getPainter().setWidgetAlpha(widget->getAlpha());
+    widget->getPainter().setOffset(offsetX /*+widget->getX()*/, offsetY /*+widget->getY()*/);
+    widget->getPainter().setWidgetAlpha(alpha);
     Renderer renderer(rbuf, widget->getPainter());
     return ras.render(renderer);
 }
 
-uint8_t Canvas::isOutside(const CWRUtil::Q5& y, const CWRUtil::Q5& height) const
+uint8_t Canvas::isOutside(const CWRUtil::Q5& x, const CWRUtil::Q5& y, const CWRUtil::Q5& width, const CWRUtil::Q5& height) const
 {
+    uint8_t outside = 0;
+    // Find out if (x,y) is above/below of current area
     if (y < 0)
     {
-        return POINT_IS_ABOVE;
+        outside = POINT_IS_ABOVE;
     }
-    if (y >= height)
+    else if (y >= height)
     {
-        return POINT_IS_BELOW;
+        outside = POINT_IS_BELOW;
     }
-    return 0;
+    // Find out if (x,y) is left/right of current area
+    if (x < 0)
+    {
+        outside |= POINT_IS_LEFT;
+    }
+    else if (x >= width)
+    {
+        outside |= POINT_IS_RIGHT;
+    }
+    return outside;
 }
 
 void Canvas::transformFrameBufferToDisplay(CWRUtil::Q5& x, CWRUtil::Q5& y) const
@@ -234,7 +246,7 @@ void Canvas::transformFrameBufferToDisplay(CWRUtil::Q5& x, CWRUtil::Q5& y) const
         break;
     case rotate90:
         CWRUtil::Q5 tmpY = y;
-        y = CWRUtil::toQ5(widget->getWidth()) - x;
+        y = CWRUtil::toQ5<int>(widget->getWidth()) - x;
         x = tmpY;
         break;
     }
@@ -261,4 +273,4 @@ void Canvas::close()
     }
     penUp = false;
 }
-}
+} // namespace touchgfx

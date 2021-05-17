@@ -1,9 +1,10 @@
 firmware\table_asap_regular_14_8bpp.o: ..\..\Graphic\generated\fonts\src\Table_Asap_Regular_14_8bpp.cpp
+firmware\table_asap_regular_14_8bpp.o: ..\..\Graphic\generated\fonts\include\fonts/GeneratedFont.hpp
+firmware\table_asap_regular_14_8bpp.o: ..\..\..\..\touchgfx\framework\include\touchgfx/ConstFont.hpp
 firmware\table_asap_regular_14_8bpp.o: ..\..\..\..\touchgfx\framework\include\touchgfx/Font.hpp
-firmware\table_asap_regular_14_8bpp.o: ..\..\..\..\touchgfx\framework\include\touchgfx/TextProvider.hpp
-firmware\table_asap_regular_14_8bpp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 firmware\table_asap_regular_14_8bpp.o: ..\..\..\..\touchgfx\framework\include\touchgfx/Unicode.hpp
+firmware\table_asap_regular_14_8bpp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 firmware\table_asap_regular_14_8bpp.o: ..\..\..\..\touchgfx\framework\include\touchgfx/hal/Types.hpp
-firmware\table_asap_regular_14_8bpp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 firmware\table_asap_regular_14_8bpp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+firmware\table_asap_regular_14_8bpp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 firmware\table_asap_regular_14_8bpp.o: ..\..\..\..\touchgfx\framework\include\touchgfx/hal/Config.hpp

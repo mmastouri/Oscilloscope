@@ -1,61 +1,41 @@
-/******************************************************************************
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
+/**
+ * @file touchgfx/TextureMapTypes.hpp
  *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+ * Declares the Gradients and Edge structs. Also declares functions for handling touchgfx::float28_4 types.
+ */
 #ifndef TEXTUREMAPTYPES_HPP
 #define TEXTUREMAPTYPES_HPP
 
 #include <touchgfx/hal/Types.hpp>
+
 namespace touchgfx
 {
 /**
- * @struct Gradients TextureMapTypes.hpp touchgfx/TextureMapTypes.hpp
- *
- * @brief Gradients contains all the data to interpolate u,v texture coordinates and z coordinates
- *        across a planar surface.
+ * Gradients contains all the data to interpolate u,v texture coordinates and z coordinates
+ * across a planar surface.
  */
 struct Gradients
 {
     /**
-     * @fn Gradients(const Point3D* vertices);
+     * Initializes a new instance of the TextureMapTypes class. Construct the gradients
+     * using three 3D vertices.
      *
-     * @brief Constructor. Construct the gradients using 3 3D vertices.
-     *
-     * @param vertices The vertices.
+     * @param  vertices The vertices.
      *
      * @see Point3D
      */
@@ -75,38 +55,28 @@ struct Gradients
 };
 
 /**
- * @struct Edge TextureMapTypes.hpp touchgfx/TextureMapTypes.hpp
- *
- * @brief An edge contains information about one edge, between two points, of a triangle, as well
- *        as information about how to interpolate values when moving in the vertical direction.
+ * An edge contains information about one edge, between two points, of a triangle, as well as
+ * information about how to interpolate values when moving in the vertical direction.
  */
 struct Edge
 {
     /**
-     * @fn Edge(const Gradients& gradients, const Point3D* vertices, int top, int bottom);
+     * Initializes a new instance of the TextureMapTypes class. Construct the edge between
+     * two vertices and uses the gradients for calculating the interpolation values.
      *
-     * @brief Constructor.
-     *
-     *        Construct the edge between two vertices and using the gradients for calculating
-     *        the interpolation values.
-     *
-     * @param gradients The gradients for the triangle.
-     * @param vertices  The vertices for the triangle.
-     * @param top       The index in the vertices array of the top vertex of this edge.
-     * @param bottom    The index in the vertices array of the bottom vertex of this edge.
+     * @param  gradients The gradients for the triangle.
+     * @param  vertices  The vertices for the triangle.
+     * @param  top       The index in the vertices array of the top vertex of this edge.
+     * @param  bottom    The index in the vertices array of the bottom vertex of this edge.
      */
     Edge(const Gradients& gradients, const Point3D* vertices, int top, int bottom);
 
     /**
-     * @fn inline int step()
+     * Perform a step along the edge. Increase the Y and decrease the height.
      *
-     * @brief Perform a step along the edge.
-     *
-     *        Perform a step along the edge.
-     *
-     * @return the Height.
+     * @return The remaining height.
      */
-    inline int step()
+    FORCE_INLINE_FUNCTION int step()
     {
         X += XStep;
         Y++;
@@ -129,19 +99,15 @@ struct Edge
     }
 
     /**
-     * @fn inline int step(int steps)
+     * Performs a number of steps along the edge.
      *
-     * @brief Performs a number of steps along the edge.
+     * @param  steps The number of steps the perform.
      *
-     *        Performs a number of steps along the edge.
-     *
-     * @param steps The number of steps the perform.
-     *
-     * @return height.
+     * @return The remaining height.
      */
-    inline int step(int steps)
+    FORCE_INLINE_FUNCTION int step(int steps)
     {
-        for (int i = 0; i < steps; i++)
+        while (steps-- > 0)
         {
             step();
         }
@@ -167,11 +133,9 @@ struct Edge
 };
 
 /**
- * @fn inline float fixed28_4ToFloat(fixed28_4 value)
+ * Convert fixed28_4 to float.
  *
- * @brief Fixed 28 4 to float.
- *
- * @param value The value.
+ * @param  value The fixed28_4 value.
  *
  * @return The value as float.
  */
@@ -181,11 +145,9 @@ inline float fixed28_4ToFloat(fixed28_4 value)
 }
 
 /**
- * @fn inline fixed28_4 floatToFixed28_4(float value)
+ * Convert float to fixed28_4.
  *
- * @brief Float to fixed 28 4.
- *
- * @param value The value.
+ * @param  value The float value.
  *
  * @return The value as fixed28_4.
  */
@@ -195,11 +157,9 @@ inline fixed28_4 floatToFixed28_4(float value)
 }
 
 /**
- * @fn inline fixed16_16 floatToFixed16_16(float value)
+ * Convert float to fixed16_16.
  *
- * @brief Float to fixed 16.
- *
- * @param value The value.
+ * @param  value The float value.
  *
  * @return The value as fixed16_16.
  */
@@ -209,12 +169,10 @@ inline fixed16_16 floatToFixed16_16(float value)
 }
 
 /**
- * @fn inline fixed28_4 fixed28_4Mul(fixed28_4 a, fixed28_4 b)
+ * Multiply two fixed28_4 numbers.
  *
- * @brief Fixed 28 4 mul.
- *
- * @param a The fixed28_4 to process.
- * @param b The fixed28_4 to process.
+ * @param  a The fixed28_4 to process.
+ * @param  b The fixed28_4 to process.
  *
  * @return the result.
  */
@@ -247,8 +205,8 @@ inline fixed28_4 fixed28_4Mul(fixed28_4 a, fixed28_4 b)
         a = b;
         b = tmp;
     }
-    int32_t max_b = 0x7FFFFFFF / a; // Max b value that can be multiplied with a without overflow
-    int32_t num_max_b = b / max_b; // How many times do we have to multiply with "max_b" to get to "b"
+    int32_t max_b = 0x7FFFFFFF / a;        // Max b value that can be multiplied with a without overflow
+    int32_t num_max_b = b / max_b;         // How many times do we have to multiply with "max_b" to get to "b"
     int32_t rem_b = b - max_b * num_max_b; // plus some remainder.
     int32_t max_prod = a * max_b;
     int32_t result = sign * (num_max_b * (max_prod / 16) + (num_max_b * (max_prod % 16) + rem_b * a) / 16);
@@ -256,11 +214,9 @@ inline fixed28_4 fixed28_4Mul(fixed28_4 a, fixed28_4 b)
 }
 
 /**
- * @fn inline int32_t ceil28_4(fixed28_4 value)
+ * Round up a fixed28_4 value.
  *
- * @brief Ceiling 28 4.
- *
- * @param value The value.
+ * @param  value The fixed28_4 value.
  *
  * @return The ceil result.
  */
@@ -282,18 +238,16 @@ inline int32_t ceil28_4(fixed28_4 value)
 }
 
 /**
- * @fn inline void floorDivMod(int32_t numerator, int32_t denominator, int32_t& floor, int32_t& mod)
+ * Divides two fixed28_4 numbers and returns the result as well as the remainder.
  *
- * @brief Floor div modifier.
- *
- * @param numerator      The numerator.
- * @param denominator    The denominator.
- * @param [in,out] floor The floor.
- * @param [in,out] mod   The modifier.
+ * @param       numerator   The numerator.
+ * @param       denominator The denominator.
+ * @param [out] floor       numerator/denominator.
+ * @param [out] mod         numerator\%denominator.
  */
 inline void floorDivMod(int32_t numerator, int32_t denominator, int32_t& floor, int32_t& mod)
 {
-    assert(denominator > 0);        // we assume it's positive
+    assert(denominator > 0); // we assume it's positive
     if (numerator >= 0)
     {
         // positive case, C is okay
@@ -313,7 +267,6 @@ inline void floorDivMod(int32_t numerator, int32_t denominator, int32_t& floor, 
         }
     }
 }
-
 } //namespace touchgfx
 
 #endif // TEXTUREMAPTYPES_HPP

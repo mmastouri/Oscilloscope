@@ -2,8 +2,8 @@ firmware\stm32f746gtouchcontroller.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-D
 firmware\stm32f746gtouchcontroller.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\include\bsp/STM32F746GTouchController.hpp
 firmware\stm32f746gtouchcontroller.o: ..\..\..\..\touchgfx\framework\include\platform/driver/touch/TouchController.hpp
 firmware\stm32f746gtouchcontroller.o: ..\..\..\..\touchgfx\framework\include\touchgfx/hal/Types.hpp
-firmware\stm32f746gtouchcontroller.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 firmware\stm32f746gtouchcontroller.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+firmware\stm32f746gtouchcontroller.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 firmware\stm32f746gtouchcontroller.o: ..\..\..\..\touchgfx\framework\include\touchgfx/hal/Config.hpp
 firmware\stm32f746gtouchcontroller.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery_lcd.h
 firmware\stm32f746gtouchcontroller.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\../Components/rk043fn48h/rk043fn48h.h

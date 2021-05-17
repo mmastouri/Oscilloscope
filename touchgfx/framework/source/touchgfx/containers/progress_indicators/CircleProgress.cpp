@@ -1,56 +1,28 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <touchgfx/containers/progress_indicators/CircleProgress.hpp>
 
 namespace touchgfx
 {
-
 CircleProgress::CircleProgress()
     : AbstractProgressIndicator(), circle()
 {
     progressIndicatorContainer.add(circle);
     circle.setPosition(0, 0, getWidth(), getHeight());
     CircleProgress::setStartEndAngle(0, 360);
-}
-
-CircleProgress::~CircleProgress()
-{
 }
 
 void CircleProgress::setProgressIndicatorPosition(int16_t x, int16_t y, int16_t width, int16_t height)
@@ -109,6 +81,7 @@ void CircleProgress::setStartEndAngle(int startAngle, int endAngle)
     assert(startAngle != endAngle);
     circle.setArc(startAngle, endAngle);
     circleEndAngle = endAngle;
+    CircleProgress::setValue(CircleProgress::getValue());
 }
 
 int CircleProgress::getStartAngle() const
@@ -133,18 +106,19 @@ uint8_t CircleProgress::getAlpha() const
 
 void CircleProgress::setValue(int value)
 {
-    int startAngle = circle.getArcStart();
+    CWRUtil::Q5 startAngle;
+    CWRUtil::Q5 endAngle = CWRUtil::toQ5(circleEndAngle);
+    circle.getArcStart<CWRUtil::Q5>(startAngle);
     AbstractProgressIndicator::setValue(value);
-    uint16_t rangeAngleSteps = circleEndAngle < startAngle ? startAngle - circleEndAngle : circleEndAngle - startAngle;
-    uint16_t progress = AbstractProgressIndicator::getProgress(rangeAngleSteps);
-    if (circleEndAngle < startAngle)
+    uint16_t rangeAngleSteps = endAngle < startAngle ? (int)(startAngle - endAngle) : (int)(endAngle - startAngle);
+    CWRUtil::Q5 progress = CWRUtil::Q5(AbstractProgressIndicator::getProgress(rangeAngleSteps));
+    if (endAngle < startAngle)
     {
-        circle.updateArcEnd(startAngle - progress);
+        circle.updateArcEnd<CWRUtil::Q5>(startAngle - progress);
     }
     else
     {
-        circle.updateArcEnd(startAngle + progress);
+        circle.updateArcEnd<CWRUtil::Q5>(startAngle + progress);
     }
 }
-
-}
+} // namespace touchgfx

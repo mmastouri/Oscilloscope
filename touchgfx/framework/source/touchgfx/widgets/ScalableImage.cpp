@@ -1,58 +1,30 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
-#include <touchgfx/widgets/ScalableImage.hpp>
-#include <touchgfx/transforms/DisplayTransformation.hpp>
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <touchgfx/TextureMapTypes.hpp>
+#include <touchgfx/hal/HAL.hpp>
+#include <touchgfx/transforms/DisplayTransformation.hpp>
+#include <touchgfx/widgets/ScalableImage.hpp>
 
 namespace touchgfx
 {
-
-ScalableImage::ScalableImage() :
-    Widget(),
-    currentScalingAlgorithm(BILINEAR_INTERPOLATION),
-    alpha(255)
+ScalableImage::ScalableImage()
+    : Widget(),
+      currentScalingAlgorithm(BILINEAR_INTERPOLATION),
+      alpha(255)
 {
-}
-
-ScalableImage::~ScalableImage()
-{
-
 }
 
 void ScalableImage::setBitmap(const Bitmap& bmp)
@@ -72,7 +44,6 @@ ScalableImage::ScalingAlgorithm ScalableImage::getScalingAlgorithm()
     return currentScalingAlgorithm;
 }
 
-
 void ScalableImage::drawTriangle(const Rect& invalidatedArea, uint16_t* fb, const float* triangleXs, const float* triangleYs, const float* triangleZs, const float* triangleUs, const float* triangleVs) const
 {
     // Area to redraw. Relative to the scalableImage.
@@ -91,7 +62,7 @@ void ScalableImage::drawTriangle(const Rect& invalidatedArea, uint16_t* fb, cons
     DisplayTransformation::transformDisplayToFrameBuffer(dirtyAreaAbsolute);
 
     // Get a pointer to the bitmap data, return if no bitmap found
-    const uint16_t* textmap = (const uint16_t*) bitmap.getData();
+    const uint16_t* textmap = (const uint16_t*)bitmap.getData();
     if (!textmap)
     {
         return;
@@ -109,16 +80,16 @@ void ScalableImage::drawTriangle(const Rect& invalidatedArea, uint16_t* fb, cons
     DisplayTransformation::transformDisplayToFrameBuffer(x2, y2, this->getRect());
 
     Point3D vertices[3];
-    Point3D point0 = {floatToFixed28_4(x0), floatToFixed28_4(y0), (float)(triangleZs[0]), (float)(triangleUs[0]), (float)(triangleVs[0])};
-    Point3D point1 = {floatToFixed28_4(x1), floatToFixed28_4(y1), (float)(triangleZs[1]), (float)(triangleUs[1]), (float)(triangleVs[1])};
-    Point3D point2 = {floatToFixed28_4(x2), floatToFixed28_4(y2), (float)(triangleZs[2]), (float)(triangleUs[2]), (float)(triangleVs[2])};
+    Point3D point0 = { floatToFixed28_4(x0), floatToFixed28_4(y0), (float)(triangleZs[0]), (float)(triangleUs[0]), (float)(triangleVs[0]) };
+    Point3D point1 = { floatToFixed28_4(x1), floatToFixed28_4(y1), (float)(triangleZs[1]), (float)(triangleUs[1]), (float)(triangleVs[1]) };
+    Point3D point2 = { floatToFixed28_4(x2), floatToFixed28_4(y2), (float)(triangleZs[2]), (float)(triangleUs[2]), (float)(triangleVs[2]) };
 
     vertices[0] = point0;
     vertices[1] = point1;
     vertices[2] = point2;
 
     DrawingSurface dest = { fb, HAL::FRAME_BUFFER_WIDTH };
-    TextureSurface src = { textmap, bitmap.getAlphaData(), bitmap.getWidth(), bitmap.getHeight(), bitmap.getWidth() };
+    TextureSurface src = { textmap, bitmap.getExtraData(), bitmap.getWidth(), bitmap.getHeight(), bitmap.getWidth() };
 
     HAL::lcd().drawTextureMapTriangle(dest, vertices, src, absoluteRect, dirtyAreaAbsolute, lookupRenderVariant(), alpha, 0xFFFF);
 }
@@ -165,8 +136,8 @@ void ScalableImage::draw(const Rect& invalidatedArea) const
     triangleZs[2] = 100.f;
 
     // Setup texture coordinates
-    float right = (float)(bitmap.getWidth() - 1);
-    float bottom = (float)(bitmap.getHeight() - 1);
+    float right = (float)(bitmap.getWidth());
+    float bottom = (float)(bitmap.getHeight());
     float textureU0 = 0.0f;
     float textureV0 = 0.0f;
     float textureU1 = right;
@@ -203,7 +174,6 @@ void ScalableImage::draw(const Rect& invalidatedArea) const
 
     drawTriangle(invalidatedArea, fb, triangleXs, triangleYs, triangleZs, triangleUs, triangleVs);
 
-
     triangleXs[0] = imageX0;
     triangleXs[1] = imageX2;
     triangleXs[2] = imageX3;
@@ -237,6 +207,4 @@ Rect ScalableImage::getSolidRect() const
     }
     return Rect(0, 0, 0, 0);
 }
-
-
 } // namespace touchgfx

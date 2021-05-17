@@ -1,41 +1,16 @@
-###############################################################################
+##############################################################################
+# This file is part of the TouchGFX 4.15.0 distribution.
 #
-# @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
+# <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+# All rights reserved.</center></h2>
 #
-# @author    Draupner Graphics A/S <http://www.touchgfx.com>
+# This software component is licensed by ST under Ultimate Liberty license
+# SLA0044, the "License"; You may not use this file except in compliance with
+# the License. You may obtain a copy of the License at:
+#                             www.st.com/SLA0044
 #
-###############################################################################
-#
-# @section Copyright
-#
-# Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
-# All rights reserved.
-#
-# TouchGFX is protected by international copyright laws and the knowledge of
-# this source code may not be used to write a similar product. This file may
-# only be used in accordance with a license and should not be re-
-# distributed in any way without the prior permission of Draupner Graphics.
-#
-# This is licensed software for evaluation use, any use must strictly comply
-# with the evaluation license agreement provided with delivery of the
-# TouchGFX software.
-#
-# The evaluation license agreement can be seen on www.touchgfx.com
-#
-# @section Disclaimer
-#
-# DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
-# no obligation to support this software. Draupner Graphics A/S is providing
-# the software "AS IS", with no express or implied warranties of any kind,
-# including, but not limited to, any implied warranties of merchantability
-# or fitness for any particular purpose or warranties against infringement
-# of any proprietary rights of a third party.
-#
-# Draupner Graphics A/S can not be held liable for any consequential,
-# incidental, or special damages, or any other relief, or for any claim by
-# any third party, arising from your use of this software.
-#
-###############################################################################
+##############################################################################
+
 class TextEntries
   include Enumerable
 
@@ -260,18 +235,25 @@ class Translation
   def empty?
     @text.nil? || @text.empty?
   end
+  def length
+    @text.length
+  end
   def number_of_substitutions
-    @text.scan(/<.*?>/).length
+    to_cpp.count("\2")
   end
   def unicodes
-    numbers.map { |number| number.to_s.gsub(/\[|\]/,'').to_i }
+    @unicodes ||=
+      begin
+        numbers.map { |number| number.to_s.gsub(/\[|\]/,'').to_i }
+      end
   end
   def to_cpp
-    @text.
-      # Remove all ascii(2) from the string
-      gsub("\2", "").
-      # Convert '<foo>' to '\u0002' and '\<bar\>' to '<bar>'
-      gsub(/([^\\]|^)<.+?>/, '\1'+"\2").gsub('\\<', '<').gsub('\\>', '>')
+    cpp_text = @text.gsub("\2", '') # Remove all existing placeholders
+    regex = Regexp.new(/([^\\]|^)<(|.*?[^\\])>/) # Avoid matching \< and \>
+    while cpp_text.match(regex)
+      cpp_text.gsub!(regex, '\1'+"\2")
+    end
+    cpp_text.gsub('\\<', '<').gsub('\\>', '>') # Remove \ before < and >
   end
   private
   def numbers

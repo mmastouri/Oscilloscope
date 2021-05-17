@@ -1,41 +1,23 @@
-/******************************************************************************
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
+/**
+ * @file touchgfx/widgets/SnapshotWidget.hpp
  *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+ * Declares the touchgfx::SnapshotWidget class.
+ */
 #ifndef SNAPSHOTWIDGET_HPP
 #define SNAPSHOTWIDGET_HPP
 
@@ -44,115 +26,58 @@
 namespace touchgfx
 {
 /**
- * @class SnapshotWidget SnapshotWidget.hpp touchgfx/widgets/SnapshotWidget.hpp
- *
- * @brief A widget that is able to make a snapshot of the area the SnapshotWidget covers.
- *
- *        A widget that is able to make a snapshot of the area the SnapshotWidget covers. The
- *        SnapshotWidget will show the snapshot captured when it is drawn.
- *
- * @see Widget
+ * A widget that is able to make a snapshot of the area the SnapshotWidget covers into either a
+ * Bitmap or into animation storage (if this available). Once the snapshot has been
+ * taken using SnapshowWidget::makeSnapshot(), the SnapshotWidget will show the captured
+ * snapshot when it is subsequently drawn.
  */
 class SnapshotWidget : public Widget
 {
 public:
-
-    /**
-     * @fn SnapshotWidget::SnapshotWidget();
-     *
-     * @brief Default constructor.
-     *
-     *        Default constructor.
-     */
     SnapshotWidget();
 
-    /**
-     * @fn virtual SnapshotWidget::~SnapshotWidget();
-     *
-     * @brief Destructor.
-     *
-     *        Destructor.
-     */
-    virtual ~SnapshotWidget();
-
-    /**
-     * @fn virtual void SnapshotWidget::draw(const Rect& invalidatedArea) const;
-     *
-     * @brief Draws the SnapshotWidget.
-     *
-     *        Draws the SnapshotWidget. It supports partial drawing, so it only redraws the
-     *        area described by invalidatedArea.
-     *
-     * @param invalidatedArea The rectangle to draw, with coordinates relative to this drawable.
-     */
     virtual void draw(const Rect& invalidatedArea) const;
 
-    /**
-     * @fn virtual Rect SnapshotWidget::getSolidRect() const;
-     *
-     * @brief Gets solid rectangle.
-     *
-     *        Gets solid rectangle.
-     *
-     * @return The solid rectangle.
-     */
     virtual Rect getSolidRect() const;
 
     /**
-     * @fn virtual void SnapshotWidget::makeSnapshot();
+     * Makes a snapshot of the area the SnapshotWidget currently covers. This area is
+     * defined by setting the dimensions and the position of the SnapshotWidget. The
+     * snapshot is stored in Animation Storage.
      *
-     * @brief Makes a snapshot of the area the SnapshotWidget currently covers.
-     *
-     *        Makes a snapshot of the area the SnapshotWidget currently covers. This area is
-     *        defined by setting the dimensions and the position of the SnapshotWidget.
+     * @see setPosition
      */
     virtual void makeSnapshot();
 
     /**
-     * @fn void SnapshotWidget::setAlpha(const uint8_t a)
+     * Makes a snapshot of the area the SnapshotWidget currently covers. This area is
+     * defined by setting the dimensions and the position of the SnapshotWidget. The
+     * snapshot is stored in the provided dynamic bitmap. The format of the Bitmap must
+     * match the format of the display.
      *
-     * @brief Sets the alpha value.
-     *
-     *        Sets the alpha value.
-     *
-     * @param a The alpha value.
+     * @param  bmp The target dynamic bitmap.
      */
-    void setAlpha(const uint8_t a)
+    virtual void makeSnapshot(const BitmapId bmp);
+
+    /**
+     * @copydoc Image::setAlpha
+     */
+    void setAlpha(const uint8_t newAlpha)
     {
-        alpha = a;
+        alpha = newAlpha;
     }
 
     /**
-     * @fn uint8_t SnapshotWidget::getAlpha() const
-     *
-     * @brief Gets the current alpha value.
-     *
-     *        Gets the current alpha value.
-     *
-     * @return The alpha value.
+     * @copydoc Image::getAlpha
      */
     uint8_t getAlpha() const
     {
         return alpha;
     }
 
-    /**
-     * @fn virtual uint16_t SnapshotWidget::getType() const
-     *
-     * @brief For GUI testing only.
-     *
-     *        For GUI testing only. Returns type of this drawable.
-     *
-     * @return TYPE_SNAPSHOTWIDGET.
-     */
-    virtual uint16_t getType() const
-    {
-        return (uint16_t)TYPE_SNAPSHOTWIDGET;
-    }
-
 protected:
-    uint16_t* fbCopy; ///< Pointer to the animation storage in which the pixel data for this snapshot is stored. Zero if no snapshot has been made.
-    uint8_t   alpha;  ///< The alpha with which to draw this snapshot.
+    BitmapId bitmapId; ///< BitmapId where copy is stored s copied to.
+    uint8_t alpha;     ///< The alpha with which to draw this snapshot.
 };
 
 } // namespace touchgfx

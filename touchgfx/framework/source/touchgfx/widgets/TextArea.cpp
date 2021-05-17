@@ -1,61 +1,31 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/hal/HAL.hpp>
 
 namespace touchgfx
 {
-
 int16_t TextArea::getTextHeight()
 {
-    if (typedText.hasValidId())
-    {
-        return getTextHeightInternal(typedText.getText());
-    }
-    else
-    {
-        return 0;
-    }
+    return typedText.hasValidId() ? calculateTextHeight(typedText.getText(), 0, 0) : 0;
 }
 
 uint16_t TextArea::getTextWidth() const
 {
-    return typedText.hasValidId() ? typedText.getFont()->getStringWidth(typedText.getTextDirection(), typedText.getText()) : 0;
+    return typedText.hasValidId() ? typedText.getFont()->getStringWidth(typedText.getTextDirection(), typedText.getText(), 0, 0) : 0;
 }
 
 void TextArea::draw(const Rect& area) const
@@ -66,7 +36,7 @@ void TextArea::draw(const Rect& area) const
         if (fontToDraw != 0)
         {
             LCD::StringVisuals visuals(fontToDraw, color, alpha, typedText.getAlignment(), linespace, rotation, typedText.getTextDirection(), indentation, wideTextAction);
-            HAL::lcd().drawString(getAbsoluteRect(), area, visuals, typedText.getText());
+            HAL::lcd().drawString(getAbsoluteRect(), area, visuals, typedText.getText(), 0, 0);
         }
     }
 }
@@ -86,8 +56,78 @@ void TextArea::resizeToCurrentText()
 {
     if (typedText.hasValidId())
     {
-        setWidth(getTextWidth());
-        setHeight(getTextHeight());
+        uint16_t w = getTextWidth();
+        uint16_t h = getTextHeight();
+        if (rotation == TEXT_ROTATE_0 || rotation == TEXT_ROTATE_180)
+        {
+            setWidth(w);
+            setHeight(h);
+        }
+        else
+        {
+            setWidth(h);
+            setHeight(w);
+        }
+    }
+}
+
+void TextArea::resizeToCurrentTextWithAlignment()
+{
+    if (typedText.hasValidId())
+    {
+        Alignment alignment = typedText.getAlignment();
+        uint16_t text_width = getTextWidth();
+        uint16_t text_height = getTextHeight();
+        if (rotation == TEXT_ROTATE_0 || rotation == TEXT_ROTATE_180)
+        {
+            // (rotate-0 && left-align) or (rotate-180 && right-align) places text to the left
+            if (!((rotation == TEXT_ROTATE_0 && alignment == LEFT) || (rotation == TEXT_ROTATE_180 && alignment == RIGHT)))
+            {
+                uint16_t old_width = getWidth();
+                uint16_t old_x = getX();
+                if (alignment == CENTER)
+                {
+                    setX(old_x + (old_width - text_width) / 2);
+                }
+                else
+                {
+                    setX(old_x + (old_width - text_width));
+                }
+            }
+            if (rotation == TEXT_ROTATE_180)
+            {
+                uint16_t old_height = getHeight();
+                uint16_t old_y = getY();
+                setY(old_y + (old_height - text_height));
+            }
+            setWidth(text_width);
+            setHeight(text_height);
+        }
+        else
+        {
+            // 90+left or 270+right places text at the same y coordinate
+            if (!((rotation == TEXT_ROTATE_90 && alignment == LEFT) || (rotation == TEXT_ROTATE_270 && alignment == RIGHT)))
+            {
+                uint16_t old_height = getHeight();
+                uint16_t old_y = getY();
+                if (alignment == CENTER)
+                {
+                    setY(old_y + (old_height - text_width) / 2);
+                }
+                else
+                {
+                    setY(old_y + (old_height - text_width));
+                }
+            }
+            if (rotation == TEXT_ROTATE_90)
+            {
+                uint16_t old_width = getWidth();
+                uint16_t old_x = getX();
+                setX(old_x + (old_width - text_height));
+            }
+            setWidth(text_height);
+            setHeight(text_width);
+        }
     }
 }
 
@@ -95,24 +135,37 @@ void TextArea::resizeHeightToCurrentText()
 {
     if (typedText.hasValidId())
     {
-        setHeight(getTextHeight());
+        uint16_t h = getTextHeight();
+        if (rotation == TEXT_ROTATE_0 || rotation == TEXT_ROTATE_180)
+        {
+            setHeight(h);
+        }
+        else
+        {
+            setWidth(h);
+        }
     }
 }
 
-int16_t TextArea::getTextHeightInternal(const Unicode::UnicodeChar* format, ...) const
+int16_t TextArea::calculateTextHeight(const Unicode::UnicodeChar* format, ...) const
 {
+    if (!typedText.hasValidId())
+    {
+        return 0;
+    }
+
     va_list pArg;
     va_start(pArg, format);
-    TextProvider textProvider;
-    textProvider.initialize(format, pArg);
-
-    int16_t numLines = HAL::lcd().getNumLines(textProvider, wideTextAction, typedText.getTextDirection(), typedText.getFont(), getWidth());
 
     const Font* fontToDraw = typedText.getFont();
     int16_t textHeight = fontToDraw->getMinimumTextHeight();
 
-    va_end(pArg);
-    return numLines * textHeight;
-}
+    TextProvider textProvider;
+    textProvider.initialize(format, pArg, fontToDraw->getGSUBTable());
 
+    int16_t numLines = LCD::getNumLines(textProvider, wideTextAction, typedText.getTextDirection(), typedText.getFont(), getWidth());
+
+    va_end(pArg);
+    return (textHeight + linespace > 0) ? (numLines * textHeight + (numLines - 1) * linespace) : (numLines > 0) ? (textHeight) : 0;
+}
 } // namespace touchgfx

@@ -1,41 +1,23 @@
-/******************************************************************************
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
+/**
+ * @file touchgfx/containers/progress_indicators/AbstractDirectionProgress.hpp
  *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+ * Declares the touchgfx::AbstractDirectionProgress class.
+ */
 #ifndef ABSTRACTDIRECTIONPROGRESS_HPP
 #define ABSTRACTDIRECTIONPROGRESS_HPP
 
@@ -43,77 +25,47 @@
 
 namespace touchgfx
 {
-
 /**
- * @class AbstractDirectionProgress AbstractDirectionProgress.hpp touchgfx/containers/progress_indicators/AbstractDirectionProgress.hpp
- *
- * @brief An abstract direction progress.
- *
- *        An abstract direction progress for progress indicators that need a direction to be specified.
+ * An abstract class for progress indicators that need a horizontal or vertical direction to be
+ * specified.
  */
 class AbstractDirectionProgress : public AbstractProgressIndicator
 {
 public:
-
-    /**
-     * @typedef enum DirectionType
-     *
-     * @brief Values that represent directions.
-     *
-     *        Values that represent directions.
-     */
+    /** Values that represent directions. */
     typedef enum
     {
-        RIGHT,
-        LEFT,
-        DOWN,
-        UP
+        RIGHT, ///< Progress should be from left to right
+        LEFT,  ///< Progress should be from right to left
+        DOWN,  ///< Progress should be down (top to bottom)
+        UP     ///< Progress should be up (bottom to top)
     } DirectionType;
 
-    /**
-     * @fn AbstractDirectionProgress::AbstractDirectionProgress();
-     *
-     * @brief Default constructor.
-     *
-     *        Default constructor.
-     */
     AbstractDirectionProgress();
 
     /**
-     * @fn virtual AbstractDirectionProgress::~AbstractDirectionProgress();
+     * Sets a direction for the progress indicator. This will re-calculate the current value
+     * according to the new direction.
      *
-     * @brief Destructor.
+     * @param  direction The direction.
      *
-     *        Destructor.
-     */
-    virtual ~AbstractDirectionProgress();
-
-    /**
-     * @fn virtual void AbstractDirectionProgress::setDirection(DirectionType direction);
-     *
-     * @brief Sets a direction.
-     *
-     *        Sets a direction.
-     *
-     * @param direction The direction.
+     * @see getDirection
      */
     virtual void setDirection(DirectionType direction);
 
     /**
-     * @fn virtual DirectionType AbstractDirectionProgress::getDirection() const;
-     *
-     * @brief Gets the direction.
-     *
-     *        Gets the direction.
+     * Gets the current direction for the progress indicator.
      *
      * @return The direction.
+     *
+     * @see setDirection
      */
     virtual DirectionType getDirection() const;
 
 protected:
-    DirectionType progressDirection;    ///< The progress direction
+    DirectionType progressDirection; ///< The progress direction
 };
 
-}
+} // namespace touchgfx
 
 #endif // ABSTRACTDIRECTIONPROGRESS_HPP

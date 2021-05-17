@@ -1,46 +1,22 @@
-/******************************************************************************
- *
- * @brief     This file is part of the TouchGFX 4.7.0 evaluation distribution.
- *
- * @author    Draupner Graphics A/S <http://www.touchgfx.com>
- *
- ******************************************************************************
- *
- * @section Copyright
- *
- * Copyright (C) 2014-2016 Draupner Graphics A/S <http://www.touchgfx.com>.
- * All rights reserved.
- *
- * TouchGFX is protected by international copyright laws and the knowledge of
- * this source code may not be used to write a similar product. This file may
- * only be used in accordance with a license and should not be re-
- * distributed in any way without the prior permission of Draupner Graphics.
- *
- * This is licensed software for evaluation use, any use must strictly comply
- * with the evaluation license agreement provided with delivery of the
- * TouchGFX software.
- *
- * The evaluation license agreement can be seen on www.touchgfx.com
- *
- * @section Disclaimer
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Draupner Graphics A/S has
- * no obligation to support this software. Draupner Graphics A/S is providing
- * the software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Draupner Graphics A/S can not be held liable for any consequential,
- * incidental, or special damages, or any other relief, or for any claim by
- * any third party, arising from your use of this software.
- *
- *****************************************************************************/
+/**
+  ******************************************************************************
+  * This file is part of the TouchGFX 4.15.0 distribution.
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+
 #include <touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp>
 
 namespace touchgfx
 {
-
 AbstractProgressIndicator::AbstractProgressIndicator()
     : Container(), rangeMin(0), rangeMax(100), currentValue(0), rangeSteps(100), rangeStepsMin(0)
 {
@@ -48,10 +24,6 @@ AbstractProgressIndicator::AbstractProgressIndicator()
     Container::add(background);
 
     Container::add(progressIndicatorContainer);
-}
-
-touchgfx::AbstractProgressIndicator::~AbstractProgressIndicator()
-{
 }
 
 void AbstractProgressIndicator::setBackground(const Bitmap& bmpBackground)
@@ -153,13 +125,11 @@ uint16_t AbstractProgressIndicator::getProgress(uint16_t range /*= 100*/) const
     {
         return 0;
     }
-    uint16_t progress = ((currentValue - rangeMin) * range) / (rangeMax - rangeMin);
-    // Calculate range/rangeSteps as "intpart+fracpart/rangeSteps"
-    uint16_t intpart = range / rangeSteps;
-    uint16_t fracpart = range % rangeSteps;
-    // Now "progress/(intpart+fracpart/rangeSteps)" = "(progress*rangeSteps)/(intpart*rangeSteps+fracpart)"
-    uint16_t count = rangeStepsMin + (progress * (rangeSteps - rangeStepsMin)) / range;
-    return (count * intpart + (count * fracpart) / rangeSteps);
+    int32_t remainder; // Not used here
+    // Find out at what step the current value is.
+    int32_t step = rangeStepsMin + muldiv(currentValue - rangeMin, rangeSteps - rangeStepsMin, rangeMax - rangeMin, remainder);
+    // Scale the step up to [0..range]
+    int32_t prog = muldiv(step, range, rangeSteps, remainder);
+    return (uint16_t)prog;
 }
-
-}
+} // namespace touchgfx
