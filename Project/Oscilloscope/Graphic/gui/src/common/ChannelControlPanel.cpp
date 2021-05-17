@@ -438,10 +438,23 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 	{
 		if (triggerButtonClicked == FALSE)
 		{
+			if (fallingButtonClicked == FALSE)
+				FallingButton.setBitmaps(Bitmap(BITMAP_EDGEDOWN_ID), Bitmap(BITMAP_EDGEUP_ID));
+			else
+				FallingButton.setBitmaps(Bitmap(BITMAP_EDGEUP_ID), Bitmap(BITMAP_EDGEDOWN_ID));
+
 			triggerButtonClicked = TRUE;
 		}
 		else
 		{
+			if (fallingButtonClicked == FALSE)
+				
+			FallingButton.setBitmaps(Bitmap(BITMAP_EDGEDOWN_OFF_ID), Bitmap(BITMAP_EDGEUP_OFF_ID));
+			else
+				FallingButton.setBitmaps(Bitmap(BITMAP_EDGEUP_OFF_ID), Bitmap(BITMAP_EDGEDOWN_OFF_ID));
+				
+
+
 			triggerButtonClicked = FALSE;
 		}
 	}

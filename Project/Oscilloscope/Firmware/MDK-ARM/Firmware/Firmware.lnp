@@ -113,6 +113,8 @@
 "firmware\image_text_background.o"
 "firmware\image_vchncontrolbuttonoff.o"
 "firmware\image_vchncontrolbuttonon.o"
+"firmware\image_edgedown_off.o"
+"firmware\image_edgeup_off.o"
 --library_type=microlib --strict --scatter "..\Flash_QSPI.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

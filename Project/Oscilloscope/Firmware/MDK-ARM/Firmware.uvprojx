@@ -998,6 +998,16 @@
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_VChnControlButtonOn.cpp</FilePath>
             </File>
+            <File>
+              <FileName>image_EdgeDown_off.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_EdgeDown_off.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_EdgeUp_off.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_EdgeUp_off.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
