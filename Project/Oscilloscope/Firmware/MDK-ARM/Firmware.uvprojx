@@ -859,11 +859,6 @@
               <FilePath>..\..\Graphic\generated\images\src\image_appBackground.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_Arrow.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\Graphic\generated\images\src\image_Arrow.cpp</FilePath>
-            </File>
-            <File>
               <FileName>image_button_background.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_button_background.cpp</FilePath>
@@ -1007,6 +1002,11 @@
               <FileName>image_EdgeUp_off.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_EdgeUp_off.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_intro.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_intro.cpp</FilePath>
             </File>
           </Files>
         </Group>

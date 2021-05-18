@@ -85,7 +85,6 @@
 "firmware\unmappeddatafont.o"
 "firmware\bitmapdatabase.o"
 "firmware\image_appbackground.o"
-"firmware\image_arrow.o"
 "firmware\image_button_background.o"
 "firmware\image_buttondownoff.o"
 "firmware\image_buttondownon.o"
@@ -115,6 +114,7 @@
 "firmware\image_vchncontrolbuttonon.o"
 "firmware\image_edgedown_off.o"
 "firmware\image_edgeup_off.o"
+"firmware\image_intro.o"
 --library_type=microlib --strict --scatter "..\Flash_QSPI.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

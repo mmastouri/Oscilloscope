@@ -496,10 +496,10 @@ void MainView::Intro(void)
 	back_ground.setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
 	add(back_ground);
 
-	arrow.setBitmap(Bitmap(BITMAP_ARROW_ID));
-	arrow.setXY(0, 0);
-	arrow.setAlpha(0);
-	add(arrow);
+	intro.setBitmap(Bitmap(BITMAP_INTRO_ID));
+	intro.setXY(0, 0);
+	intro.setAlpha(0);
+	add(intro);
 }
 
 /***************************************************************************************************
@@ -615,7 +615,19 @@ void MainView::handleTickEvent()
 		graph[i].invalidate();
 
 		triggLine[i].EnableLine(panelChn[i].isMarkerButtonClicked());
+
+		temp_value = presenter->p_GetTriggerValue(i) * presenter->p_VoltagePerPixel(i);
+		if (presenter->p_GetVoltageScale(i) > 5)
+			temp_value = temp_value / 1000;
+
+		Unicode::snprintfFloat(trig_buff[i], 5, "%.2f", temp_value);
+		trig_value_wildcard[i].invalidate();
+
+
+		triggLine[i].setYoffset(presenter->p_GetYOffset(i));
+		triggLine[i].invalidate();
 	}
+
 
 	marker1.EnableLine(isMeasButtonClicked());
 	marker2.EnableLine(isMeasButtonClicked());
@@ -628,30 +640,17 @@ void MainView::handleTickEvent()
 	Unicode::snprintfFloat(cursor_buff, 10, "%.2f", temp_value);
 	cursor_value_wildcard.invalidate();
 
-	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
-	{
-		temp_value = presenter->p_GetTriggerValue(i) * presenter->p_VoltagePerPixel(i);
-		if (presenter->p_GetVoltageScale(i) > 5)
-			temp_value = temp_value / 1000;
-
-		Unicode::snprintfFloat(trig_buff[i], 5, "%.2f", temp_value);
-		trig_value_wildcard[i].invalidate();
-
-
-		triggLine[i].setYoffset(presenter->p_GetYOffset(i));
-		triggLine[i].invalidate();
-	}
 	tickCounter++;
 	if (tickCounter % 1 == 0)
 	{
 		alpha++;
-		arrow.setAlpha(alpha);
-		arrow.invalidate();
+		intro.setAlpha(alpha);
+		intro.invalidate();
 	}
 	if (alpha == 255)
 	{
 		tickCounter = 0;
-		remove(arrow);
+		remove(intro);
 		remove(back_ground);
 	}
 

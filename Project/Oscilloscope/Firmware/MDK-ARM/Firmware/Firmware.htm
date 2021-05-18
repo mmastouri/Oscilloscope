@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue May 18 22:47:43 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue May 18 23:24:35 2021
 <BR><P>
 <H3>Maximum Stack Usage =        848 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1356,9 +1356,9 @@ Global Symbols
 
 <P><STRONG><a name="[20b]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[3b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::drawCurve(unsigned short*, const touchgfx::Rect&) const
-<LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_LTDC_ConfigLayer
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F7DMA::setupDataFill(const touchgfx::BlitOp&)
+<LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_LTDC_ConfigLayer
 <LI><a href="#[34a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::LCD::drawStringLTR(const touchgfx::Rect&, const touchgfx::Rect&, const touchgfx::LCD::StringVisuals&, const unsigned short*, std::__va_list)
 <LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::LockFreeDMA_Queue::pushCopyOf(const touchgfx::BlitOp&)
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleClickEvent(const touchgfx::ClickEvent&)
@@ -1416,8 +1416,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[1b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_ddtor_pointer_addr
 <LI><a href="#[1b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[323]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL& touchgfx::touchgfx_generic_init&lang;STM32F7HAL&rang;(touchgfx::DMA_Interface&, touchgfx::LCD&, touchgfx::TouchController&, short, short, unsigned short*, unsigned, unsigned)
-<LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___22_BoardConfiguration_cpp_dceb80ee
+<BR>[Called By]<UL><LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___22_BoardConfiguration_cpp_dceb80ee
+<LI><a href="#[323]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL& touchgfx::touchgfx_generic_init&lang;STM32F7HAL&rang;(touchgfx::DMA_Interface&, touchgfx::LCD&, touchgfx::TouchController&, short, short, unsigned short*, unsigned, unsigned)
 <LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getFont_Asap_Regular_18_4bpp()
 <LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getFont_Asap_Regular_14_8bpp()
 <LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getFont_Asap_Regular_13_4bpp()
@@ -1473,13 +1473,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[33b]"></a>BSP_LCD_GetXSize</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32746g_discovery_lcd.o(i.BSP_LCD_GetXSize))
-<BR><BR>[Called By]<UL><LI><a href="#[39c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::STM32F746GTouchController::init()
+<BR><BR>[Called By]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::STM32F746GTouchController::init()
+<LI><a href="#[39c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
 </UL>
 
 <P><STRONG><a name="[33a]"></a>BSP_LCD_GetYSize</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32746g_discovery_lcd.o(i.BSP_LCD_GetYSize))
-<BR><BR>[Called By]<UL><LI><a href="#[39c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::STM32F746GTouchController::init()
+<BR><BR>[Called By]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::STM32F746GTouchController::init()
+<LI><a href="#[39c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
 </UL>
 
 <P><STRONG><a name="[1bf]"></a>BSP_LCD_Init</STRONG> (Thumb, 136 bytes, Stack size 24 bytes, stm32746g_discovery_lcd.o(i.BSP_LCD_Init))
@@ -1869,8 +1869,8 @@ Global Symbols
 <P><STRONG><a name="[1c4]"></a>HAL_GPIO_Init</STRONG> (Thumb, 418 bytes, Stack size 40 bytes, stm32f7xx_hal_gpio.o(i.HAL_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HAL_GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
-<LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
+<BR>[Called By]<UL><LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
+<LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
 <LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
 <LI><a href="#[1c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_MspInit
 <LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
@@ -2359,10 +2359,10 @@ Global Symbols
 <P><STRONG><a name="[74]"></a>LTDC_IRQHandler</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, stm32f7hal.o(i.LTDC_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = LTDC_IRQHandler &rArr; touchgfx::OSWrappers::signalVSync() &rArr; xQueueGenericSendFromISR &rArr; prvCopyDataToQueue &rArr; xTaskPriorityDisinherit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[245]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::GPIO::clear(touchgfx::GPIO::GPIO_ID)
-<LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::GPIO::set(touchgfx::GPIO::GPIO_ID)
-<LI><a href="#[243]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::swapFrameBuffers()
+<BR>[Calls]<UL><LI><a href="#[243]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::swapFrameBuffers()
 <LI><a href="#[242]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::OSWrappers::signalVSync()
+<LI><a href="#[245]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::GPIO::clear(touchgfx::GPIO::GPIO_ID)
+<LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::GPIO::set(touchgfx::GPIO::GPIO_ID)
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f746xx.o(RESET)
 </UL>
@@ -2572,13 +2572,13 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = STM32F7DMA::setupDataCopy(const touchgfx::BlitOp&) &rArr; HAL_DMA2D_Start_IT &rArr; DMA2D_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::lcd()
-<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_DisableIRQ(IRQn_Type)
-<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EnableIRQ(IRQn_Type)
 <LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA2D_Start_IT
 <LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA2D_Init
 <LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA2D_DeInit
 <LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA2D_ConfigLayer
 <LI><a href="#[1ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA2D_BlendingStart_IT
+<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_DisableIRQ(IRQn_Type)
+<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EnableIRQ(IRQn_Type)
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> stm32f7dma.o(.constdata__ZTV10STM32F7DMA)
 </UL>
@@ -2586,12 +2586,12 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = STM32F7DMA::setupDataFill(const touchgfx::BlitOp&) &rArr; HAL_DMA2D_Start_IT &rArr; DMA2D_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::lcd()
-<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_DisableIRQ(IRQn_Type)
-<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EnableIRQ(IRQn_Type)
 <LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA2D_Start_IT
 <LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA2D_Init
 <LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA2D_DeInit
 <LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA2D_ConfigLayer
+<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_DisableIRQ(IRQn_Type)
+<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EnableIRQ(IRQn_Type)
 <LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> stm32f7dma.o(.constdata__ZTV10STM32F7DMA)
@@ -2675,7 +2675,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[2db]"></a>TriggerLine::setYoffset(int)</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, triggerline.o(i._ZN11TriggerLine10setYoffsetEi))
+<P><STRONG><a name="[2da]"></a>TriggerLine::setYoffset(int)</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, triggerline.o(i._ZN11TriggerLine10setYoffsetEi))
 <BR><BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
@@ -2733,8 +2733,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrontendApplication::FrontendApplication(Model&, FrontendHeap&)
 <LI><a href="#[277]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrontendApplication::gotoMainScreen()
-<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::AbstractPartition::AbstractPartition__sub_object()
 <LI><a href="#[276]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::Model()
+<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::AbstractPartition::AbstractPartition__sub_object()
 <LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[323]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL& touchgfx::touchgfx_generic_init&lang;STM32F7HAL&rang;(touchgfx::DMA_Interface&, touchgfx::LCD&, touchgfx::TouchController&, short, short, unsigned short*, unsigned, unsigned)
@@ -3089,7 +3089,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> frontendapplication.o(.constdata__ZTV19FrontendApplication)
 </UL>
 <P><STRONG><a name="[a8]"></a>FrontendApplication::gotoMainScreenImpl()</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, frontendapplication.o(i._ZN19FrontendApplication18gotoMainScreenImplEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = FrontendApplication::gotoMainScreenImpl() &rArr; T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*) &rArr; MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = FrontendApplication::gotoMainScreenImpl() &rArr; T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*) &rArr; MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*)
 </UL>
@@ -3286,7 +3286,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[2d9]"></a>Marker::MarkerPosition()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, marker.o(i._ZN6Marker14MarkerPositionEv))
+<P><STRONG><a name="[2db]"></a>Marker::MarkerPosition()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, marker.o(i._ZN6Marker14MarkerPositionEv))
 <BR><BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
@@ -3424,14 +3424,14 @@ Global Symbols
 <P><STRONG><a name="[111]"></a>MainView::tearDownScreen()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, mainview.o(i._ZN8MainView14tearDownScreenEv))
 <BR>[Address Reference Count : 1]<UL><LI> mainview.o(.constdata__ZTV8MainView)
 </UL>
-<P><STRONG><a name="[115]"></a>MainView::handleTickEvent()</STRONG> (Thumb, 578 bytes, Stack size 40 bytes, mainview.o(i._ZN8MainView15handleTickEventEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 472<LI>Call Chain = MainView::handleTickEvent() &rArr; touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const char*, const float*) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
+<P><STRONG><a name="[115]"></a>MainView::handleTickEvent()</STRONG> (Thumb, 562 bytes, Stack size 48 bytes, mainview.o(i._ZN8MainView15handleTickEventEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 480<LI>Call Chain = MainView::handleTickEvent() &rArr; touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const char*, const float*) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::setY(short)
 <LI><a href="#[2cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerPosition()
-<LI><a href="#[2db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setYoffset(int)
+<LI><a href="#[2da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setYoffset(int)
 <LI><a href="#[2d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::EnableLine(bool)
-<LI><a href="#[2d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::MarkerPosition()
+<LI><a href="#[2db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::MarkerPosition()
 <LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::EnableLine(bool)
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::invalidate() const
 <LI><a href="#[2d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::isTriggerButtonClicked()
@@ -3441,7 +3441,7 @@ Global Symbols
 <LI><a href="#[2d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::GetTimeBaseIndex()
 <LI><a href="#[2d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::GetYOffset()
 <LI><a href="#[2d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::GetXOffset()
-<LI><a href="#[2da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float)
+<LI><a href="#[2d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float)
 <LI><a href="#[2d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::remove(touchgfx::Drawable&)
 <LI><a href="#[29c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_GetTimeScale2Pixel(int)
 <LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::p_VoltagePerPixel(int)
@@ -3475,8 +3475,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[2dc]"></a>MainView::MainView()</STRONG> (Thumb, 604 bytes, Stack size 56 bytes, frontendapplication.o(i._ZN8MainViewC1Ev))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
+<P><STRONG><a name="[2dc]"></a>MainView::MainView()</STRONG> (Thumb, 580 bytes, Stack size 48 bytes, frontendapplication.o(i._ZN8MainViewC1Ev))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
 <LI><a href="#[2dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::Screen()
@@ -3495,9 +3495,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*)
 </UL>
 
-<P><STRONG><a name="[425]"></a>MainView::MainView__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 56 bytes, frontendapplication.o(i._ZN8MainViewC1Ev), UNUSED)
+<P><STRONG><a name="[425]"></a>MainView::MainView__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, frontendapplication.o(i._ZN8MainViewC1Ev), UNUSED)
 
-<P><STRONG><a name="[10d]"></a>MainView::~MainView()</STRONG> (Thumb, 364 bytes, Stack size 8 bytes, mainview.o(i._ZN8MainViewD1Ev))
+<P><STRONG><a name="[10d]"></a>MainView::~MainView()</STRONG> (Thumb, 342 bytes, Stack size 8 bytes, mainview.o(i._ZN8MainViewD1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = MainView::~MainView() &rArr; __aeabi_vec_dtor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::~Marker()
@@ -3623,11 +3623,11 @@ Global Symbols
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::moveRelative(short, short)
 <LI><a href="#[3f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep()
 <LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
-<LI><a href="#[323]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL& touchgfx::touchgfx_generic_init&lang;STM32F7HAL&rang;(touchgfx::DMA_Interface&, touchgfx::LCD&, touchgfx::TouchController&, short, short, unsigned short*, unsigned, unsigned)
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::~SlideMenu()
 <LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::tick()
+<LI><a href="#[323]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL& touchgfx::touchgfx_generic_init&lang;STM32F7HAL&rang;(touchgfx::DMA_Interface&, touchgfx::LCD&, touchgfx::TouchController&, short, short, unsigned short*, unsigned, unsigned)
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleTickEvent()
@@ -4619,9 +4619,9 @@ Global Symbols
 <P><STRONG><a name="[161]"></a>touchgfx::STM32F746GTouchController::init()</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, stm32f746gtouchcontroller.o(i._ZN8touchgfx25STM32F746GTouchController4initEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = touchgfx::STM32F746GTouchController::init() &rArr; BSP_TS_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[33a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_GetYSize
+<BR>[Calls]<UL><LI><a href="#[33c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_TS_Init
+<LI><a href="#[33a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_GetYSize
 <LI><a href="#[33b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_GetXSize
-<LI><a href="#[33c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_TS_Init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> stm32f746gtouchcontroller.o(.constdata__ZTVN8touchgfx25STM32F746GTouchControllerE)
 </UL>
@@ -5076,9 +5076,9 @@ Global Symbols
 <P><STRONG><a name="[245]"></a>touchgfx::GPIO::clear(touchgfx::GPIO::GPIO_ID)</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gpio.o(i._ZN8touchgfx4GPIO5clearENS0_7GPIO_IDE))
 <BR><BR>[Calls]<UL><LI><a href="#[1c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Off
 </UL>
-<BR>[Called By]<UL><LI><a href="#[356]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::GPIO::init()
-<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::tick()
+<BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::tick()
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LTDC_IRQHandler
+<LI><a href="#[356]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::GPIO::init()
 </UL>
 
 <P><STRONG><a name="[342]"></a>touchgfx::GPIO::toggle(touchgfx::GPIO::GPIO_ID)</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, gpio.o(i._ZN8touchgfx4GPIO6toggleENS0_7GPIO_IDE))
@@ -5765,7 +5765,7 @@ Global Symbols
 <LI><a href="#[393]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const char*, const float*)
 </UL>
 
-<P><STRONG><a name="[2da]"></a>touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float)</STRONG> (Thumb, 16 bytes, Stack size 24 bytes, mainview.o(i._ZN8touchgfx7Unicode13snprintfFloatEPttPKcf))
+<P><STRONG><a name="[2d9]"></a>touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float)</STRONG> (Thumb, 16 bytes, Stack size 24 bytes, mainview.o(i._ZN8touchgfx7Unicode13snprintfFloatEPttPKcf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 432<LI>Call Chain = touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const char*, const float*) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[392]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*)
@@ -5778,7 +5778,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[393]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const char*, const float*)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float)
+<BR>[Called By]<UL><LI><a href="#[2d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintfFloat(unsigned short*, unsigned short, const char*, float)
 </UL>
 
 <P><STRONG><a name="[393]"></a>touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const char*, const float*)</STRONG> (Thumb, 720 bytes, Stack size 336 bytes, unicode.o(i._ZN8touchgfx7Unicode14snprintfFloatsEPttPKtPKcPKf))
@@ -7773,10 +7773,10 @@ Global Symbols
 <P><STRONG><a name="[7e]"></a>main</STRONG> (Thumb, 182 bytes, Stack size 24 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 380<LI>Call Chain = main &rArr; touchgfx::hw_init() &rArr; BSP_QSPI_Init &rArr; QSPI_DummyCyclesCfg &rArr; QSPI_WriteEnable &rArr; HAL_QSPI_Command &rArr; QSPI_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[39c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
-<LI><a href="#[322]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::touchgfx_init()
-<LI><a href="#[3ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
+<BR>[Calls]<UL><LI><a href="#[3ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
 <LI><a href="#[3cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
+<LI><a href="#[39c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
+<LI><a href="#[322]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::touchgfx_init()
 <LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
 <LI><a href="#[1d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
 <LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
@@ -8094,8 +8094,8 @@ Global Symbols
 <LI><a href="#[3e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
 <LI><a href="#[3d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
 </UL>
-<BR>[Called By]<UL><LI><a href="#[246]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_SysTick
-<LI><a href="#[3d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
+<BR>[Called By]<UL><LI><a href="#[3d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
+<LI><a href="#[246]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_SysTick
 </UL>
 
 <P><STRONG><a name="[3db]"></a>xTaskPriorityDisinherit</STRONG> (Thumb, 130 bytes, Stack size 16 bytes, tasks.o(i.xTaskPriorityDisinherit))
@@ -8287,7 +8287,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2b8]"></a>T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*)</STRONG> (Thumb, 278 bytes, Stack size 32 bytes, frontendapplication.o(t._ZN8touchgfx14makeTransitionI8MainView13MainPresenterNS_12NoTransitionE5ModelEEPT0_PPNS_6ScreenEPPNS_9PresenterERNS_7MVPHeapEPPNS_10TransitionEPT2_))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*) &rArr; MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*) &rArr; MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::bindTransition(touchgfx::Transition&)
 <LI><a href="#[2ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::clearAllTimerWidgets()

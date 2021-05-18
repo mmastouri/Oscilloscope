@@ -139,8 +139,7 @@ private:
 	Image channelBackground;
 	Image cursor_txt_background;
 	Image trig_txt_background[NUMBER_OF_CHANNEL];
-	Image arrow;
-	Image heroes;
+	Image intro;
 
 	Button rightButton;
 	Button leftButton;
