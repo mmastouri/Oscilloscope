@@ -606,15 +606,15 @@ void MainView::handleTickEvent()
 		presenter->p_SetXOffset(i, panelChn[i].GetXOffset());
 		presenter->p_SetTrigger(i, panelChn[i].isTriggerButtonClicked());
 		presenter->p_SetTriggerType(i, panelChn[i].isFallingButtonClicked());
-
-
 		presenter->p_SetTriggerValue(i, triggLine[i].TriggerPosition());
 
 		/* Update GUI according to HMI update */
 		graph[i].setY(presenter->p_GetYOffset(i));
 		graph[i].invalidate();
 
+		triggLine[i].setYoffset(presenter->p_GetYOffset(i));
 		triggLine[i].EnableLine(panelChn[i].isMarkerButtonClicked());
+		triggLine[i].invalidate();
 
 		temp_value = presenter->p_GetTriggerValue(i) * presenter->p_VoltagePerPixel(i);
 		if (presenter->p_GetVoltageScale(i) > 5)
@@ -622,10 +622,6 @@ void MainView::handleTickEvent()
 
 		Unicode::snprintfFloat(trig_buff[i], 5, "%.2f", temp_value);
 		trig_value_wildcard[i].invalidate();
-
-
-		triggLine[i].setYoffset(presenter->p_GetYOffset(i));
-		triggLine[i].invalidate();
 	}
 
 
