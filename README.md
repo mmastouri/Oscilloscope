@@ -1,4 +1,4 @@
-# Oscilloscope on STM32F746 Discovery kit
+# PocketOZ on STM32F746 Discovery kit
   
 ![oscilloscope](Document/Picture/osc.jpg)
 
