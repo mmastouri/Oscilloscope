@@ -15,11 +15,11 @@ the following project use the ST touch GFX with no Evaluation watermark
 * voltage level and time scale control
 
 
-## Hardware
+# Hardware
 
 * STM32F746-DISCO Kit [link](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html)
 
-## Software
+# Software
 
 These tools are used for developing the application
 
