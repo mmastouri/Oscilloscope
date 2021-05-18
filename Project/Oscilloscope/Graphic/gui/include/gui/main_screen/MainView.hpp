@@ -116,6 +116,8 @@ public:
 	int selectedChnIndex;
 
 	void Intro(void);
+	void MainView::SetMeasureButton(bool state);
+	bool MainView::isMeasButtonClicked(void);
 
 private:
 	Box back_ground;
@@ -144,6 +146,8 @@ private:
 	Button leftButton;
 
 	ToggleButton chn_enable[NUMBER_OF_CHANNEL];
+	ToggleButton meas_enable;
+
 	
 
 	Marker marker1;
@@ -159,7 +163,7 @@ private:
 	TextArea trigger_lvl[NUMBER_OF_CHANNEL];
 
 	TextArea txt_ctrl_menu[NUMBER_OF_CHANNEL];
-
+	TextArea meas_ctrl_menu;
 
 	TextAreaWithOneWildcard cursor_value_wildcard;
 	Unicode::UnicodeChar cursor_buff[10];
@@ -181,6 +185,8 @@ private:
 
 	int cursor_value;
 	int alpha;
+
+	bool MeasureButtonClicked;
 
 	Context appContext;
 };

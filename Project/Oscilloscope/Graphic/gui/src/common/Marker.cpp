@@ -101,6 +101,7 @@ void Marker::setup(int x_position, int marker_height, int graph_width, uint16_t 
 	marker.setPainter(marker_painter);
 	marker.setDragAction(markerDraggedCallback);
 	marker.setTouchable(true);
+	marker.setAlpha(255);
 	add(marker);
 }
 

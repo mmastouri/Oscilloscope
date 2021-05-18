@@ -138,7 +138,7 @@ void Model::ConvertToTriggerData(int channel)
 					for (i = 99 ; i < 1000 - 305; i++)
 					{
 						if ((chan1.raw_data[i]  <= chan1.trigger_level) &&
-							(chan1.raw_data[i + 1] > chan1.trigger_level) &&
+							(chan1.raw_data[i + 1] <= chan1.trigger_level) &&
 							(chan1.raw_data[i + 2] > chan1.trigger_level) &&
 							(chan1.raw_data[i + 3] > chan1.trigger_level))
 						{
@@ -165,7 +165,7 @@ void Model::ConvertToTriggerData(int channel)
 					for (i = 99 ; i < 1000 - 305 ; i++)
 					{
 						if ((chan1.raw_data[i]  >= chan1.trigger_level) &&
-							(chan1.raw_data[i + 1] < chan1.trigger_level) &&
+							(chan1.raw_data[i + 1] >= chan1.trigger_level) &&
 							(chan1.raw_data[i + 2] < chan1.trigger_level) &&
 							(chan1.raw_data[i + 3] < chan1.trigger_level))
 						{
@@ -208,8 +208,8 @@ void Model::ConvertToTriggerData(int channel)
 				{
 					for (i = 99; i < 1000 - 305; i++)
 					{
-						if ((chan2.raw_data[i]< chan2.trigger_level) &&
-							(chan2.raw_data[i + 1] > chan2.trigger_level) &&
+						if ((chan2.raw_data[i] <= chan2.trigger_level) &&
+							(chan2.raw_data[i + 1] <= chan2.trigger_level) &&
 							(chan2.raw_data[i + 2]  > chan2.trigger_level) &&
 							(chan2.raw_data[i + 3]  > chan2.trigger_level))
 						{
@@ -235,8 +235,8 @@ void Model::ConvertToTriggerData(int channel)
 				{
 					for (i = 99 ; i < 1000 - 305; i++)
 					{
-						if ((chan2.raw_data[i]> chan2.trigger_level) &&
-							(chan2.raw_data[i + 1] < chan2.trigger_level) &&
+						if ((chan2.raw_data[i] >= chan2.trigger_level) &&
+							(chan2.raw_data[i + 1] >= chan2.trigger_level) &&
 							(chan2.raw_data[i + 2]  < chan2.trigger_level) &&
 							(chan2.raw_data[i + 3]  < chan2.trigger_level))
 						{

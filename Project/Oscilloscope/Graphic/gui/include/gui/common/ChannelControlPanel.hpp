@@ -173,15 +173,11 @@ public:
 	void SetTriggerButton(bool state);
 	void SetFallingButton(bool state);
 	void SetMarkerButton(bool state);
-	void SetMarkerAButton(bool state);
-	void SetMarkerBButton(bool state);
 	void setScaleSettings(int timeScale, int voltageScale);
 
 	bool isTriggerButtonClicked(void);
 	bool isFallingButtonClicked(void);
 	bool isMarkerButtonClicked(void);
-	bool isMarkerAButtonClicked(void);
-	bool isMarkerBButtonClicked(void);
 	int GetTimeBaseIndex(void);
 	int GetVoltBaseIndex(void);
 
@@ -198,8 +194,7 @@ protected:
 	bool triggerButtonClicked;
 	bool fallingButtonClicked;
 	bool markerButtonClicked;
-	bool markerAButtonClicked;
-	bool markerBButtonClicked;
+
 	
 	int selectedHorizontalTextIndex;
 	int selectedVerticalTextIndex;

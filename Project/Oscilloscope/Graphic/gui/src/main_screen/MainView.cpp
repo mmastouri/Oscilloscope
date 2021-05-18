@@ -69,7 +69,7 @@ void MainView::setupScreen()
 	tickCounter = 0;
 	panelChn[CHANNEL_1].associatedChannel = 0;
 	panelChn[CHANNEL_2].associatedChannel = 1;
-
+	MeasureButtonClicked = FALSE;
 
 	// overide default model settings from savedones
 	appContext.Restore();
@@ -229,12 +229,12 @@ void MainView::setupScreen()
 	*/
 
 	marker1.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
-	marker1.setup(marker1.getX(), marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(60, 232, 23));
+	marker1.setup(marker1.getX(), marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(99, 215, 121));
 
 	add(marker1);
 
 	marker2.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
-	marker2.setup( oziBackground.getWidth() - 50, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(60, 232, 23));
+	marker2.setup( oziBackground.getWidth() - 50, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(99, 215, 121));
 
 	add(marker2);
 
@@ -275,37 +275,37 @@ void MainView::setupScreen()
 	/*
 	 *  Display Value section
 	 */
-	cursor_text.setTypedText(TypedText(T_CURSOR));
+	cursor_text.setTypedText(TypedText(T_CURSOR_US));
 	cursor_text.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
 	cursor_text.setXY(25, 245);
 	add(cursor_text);
 
-	cursor_txt_background.setXY(70, 243);
+	/*cursor_txt_background.setXY(70, 243);
 	cursor_txt_background.setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
-	add(cursor_txt_background);
+	add(cursor_txt_background);*/
 
 	trigger_lvl[CHANNEL_1].setTypedText(TypedText(T_TRIG1_LEVEL));
 	trigger_lvl[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
 	trigger_lvl[CHANNEL_1].setXY(125, 245);
 	add(trigger_lvl[CHANNEL_1]);
 
-	trig_txt_background[CHANNEL_1].setXY(165, 243);
-	trig_txt_background[CHANNEL_1].setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
-	add(trig_txt_background[CHANNEL_1]);
+	//trig_txt_background[CHANNEL_1].setXY(165, 243);
+	//trig_txt_background[CHANNEL_1].setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
+	//add(trig_txt_background[CHANNEL_1]);
 
 	trigger_lvl[CHANNEL_2].setTypedText(TypedText(T_TRIG2_LEVEL));
 	trigger_lvl[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
 	trigger_lvl[CHANNEL_2].setXY(220, 245);
 	add(trigger_lvl[CHANNEL_2]);
 
-	trig_txt_background[CHANNEL_2].setXY(260, 243);
-	trig_txt_background[CHANNEL_2].setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
-	add(trig_txt_background[CHANNEL_2]);
+	//trig_txt_background[CHANNEL_2].setXY(260, 243);
+	//trig_txt_background[CHANNEL_2].setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
+	//add(trig_txt_background[CHANNEL_2]);
 
 	Unicode::snprintf(cursor_buff, 10, "%d", 0);
 	cursor_value_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
 	cursor_value_wildcard.setWildcard(cursor_buff);
-	cursor_value_wildcard.setPosition(70, 244,50,20);
+	cursor_value_wildcard.setPosition(57, 245,50,20);
 	cursor_value_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
 	add(cursor_value_wildcard);
 
@@ -332,6 +332,7 @@ void MainView::setupScreen()
 	control_menu.setup(SlideMenu::EAST, Bitmap(BITMAP_SLIDEMENU_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_PRESS_ID), 0, 0, 291, 0);
 	control_menu.setXY(3, 235);
 	control_menu.setVisiblePixelsWhenCollapsed(15);
+	control_menu.setExpandedStateTimeout(500);
 	add(control_menu);
 
 	txt_ctrl_menu[CHANNEL_1].setTypedText(TypedText(T_CHN1_CTRL_MENU));
@@ -357,11 +358,23 @@ void MainView::setupScreen()
 
 	chn_enable[CHANNEL_2].forceState(true);
 	
+
+	meas_enable.setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
+	meas_enable.setXY(225, 7);
+	meas_enable.setAction(buttonClickedCallback);
+	meas_enable.forceState(false);
+
+	meas_ctrl_menu.setTypedText(TypedText(T_MEAS_CTRL_MENU));
+	meas_ctrl_menu.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	meas_ctrl_menu.setXY(165, 8);
+	control_menu.add(meas_ctrl_menu);
+
+
 	graph_container.add(graph[CHANNEL_1]);
 	graph_container.add(graph[CHANNEL_2]);
 	control_menu.add(chn_enable[CHANNEL_1]);
 	control_menu.add(chn_enable[CHANNEL_2]);
-
+	control_menu.add(meas_enable);
 	
 
 
@@ -371,8 +384,6 @@ void MainView::setupScreen()
 		panelChn[i].SetTriggerButton(presenter->p_GetTrigger(i));
 		panelChn[i].SetFallingButton(presenter->p_GetTriggerType(i));
 		panelChn[i].SetMarkerButton(presenter->p_GetTrigger(i));
-		panelChn[i].SetMarkerAButton(false);
-		panelChn[i].SetMarkerBButton(false);
 		panelChn[i].setScaleSettings(presenter->p_GetTimeScale(i), presenter->p_GetVoltageScale(i));
 	}
 	Intro();
@@ -394,6 +405,17 @@ void MainView::tearDownScreen()
 {
 }
 
+void MainView::SetMeasureButton(bool state)
+{
+	MeasureButtonClicked = state;
+	meas_enable.forceState(state);
+}
+
+
+bool MainView::isMeasButtonClicked(void)
+{
+	return MeasureButtonClicked;
+}
 
 /***************************************************************************************************
 *                                                                                                  *
@@ -408,7 +430,7 @@ void MainView::tearDownScreen()
 * RETURNS:   void                                                                                  *
 *                                                                                                  *
 ***************************************************************************************************/
-void MainView::buttonClicked(const AbstractButton &source)
+void MainView::buttonClicked(const AbstractButton& source)
 {
 	/*Chenking which button is pressed then call the approriate event handler function*/
 
@@ -419,7 +441,7 @@ void MainView::buttonClicked(const AbstractButton &source)
 
 	else if (&source == &rightButton)
 	{
-		
+
 		slideTexts(RIGHT);
 	}
 	else if (&source == &chn_enable[CHANNEL_1])
@@ -451,6 +473,19 @@ void MainView::buttonClicked(const AbstractButton &source)
 		{
 			remove(triggLine[CHANNEL_2]);
 			graph_container.remove(graph[CHANNEL_2]);
+		}
+	}
+
+	else if (&source == &meas_enable)
+	{
+		control_menu.resetExpandedStateTimer();
+		if (MeasureButtonClicked == FALSE)
+		{
+			MeasureButtonClicked = TRUE;
+		}
+		else
+		{
+			MeasureButtonClicked = FALSE;
 		}
 	}
 }
@@ -582,36 +617,16 @@ void MainView::handleTickEvent()
 		triggLine[i].EnableLine(panelChn[i].isMarkerButtonClicked());
 	}
 
+	marker1.EnableLine(isMeasButtonClicked());
+	marker2.EnableLine(isMeasButtonClicked());
+	cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
-	if (selectedChnIndex == 0)
-	{
-		marker1.EnableLine(panelChn[CHANNEL_1].isMarkerAButtonClicked());
-		marker2.EnableLine(panelChn[CHANNEL_1].isMarkerBButtonClicked());
-		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
+	temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_2);
+	if (presenter->p_GetTimeScale(CHANNEL_2) > 3)
+		temp_value = (temp_value / 1000);
 
-		temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_1);
-
-		if (presenter->p_GetTimeScale(CHANNEL_1) > 3)
-			temp_value = (temp_value / 1000);
-
-		Unicode::snprintfFloat(cursor_buff, 10, "%.2f", temp_value);
-		cursor_value_wildcard.invalidate();
-
-
-	}
-	else
-	{
-		marker1.EnableLine(panelChn[CHANNEL_2].isMarkerAButtonClicked());
-		marker2.EnableLine(panelChn[CHANNEL_2].isMarkerBButtonClicked());
-		cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
-
-		temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_2);
-		if (presenter->p_GetTimeScale(CHANNEL_2) > 3)
-			temp_value = (temp_value / 1000);
-
-		Unicode::snprintfFloat(cursor_buff, 10, "%.2f", temp_value);
-		cursor_value_wildcard.invalidate();
-	}
+	Unicode::snprintfFloat(cursor_buff, 10, "%.2f", temp_value);
+	cursor_value_wildcard.invalidate();
 
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
 	{
