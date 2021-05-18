@@ -2,17 +2,11 @@
   
 ![oscilloscope](Document/Picture/osc.jpg)
 
-## Official version of TouchGFX
+# Official version of TouchGFX
 
 the following project use the ST touch GFX with no Evaluation watermark
 
-## Motivation
-
-This oscilloscope is built based on the STM32F746-DISCO kit from STMicroelectronics to demonstrate the processing capability of a Cortex-M7 Microcontroller.
-
-The two main blocks of the application are ADC peripheral, which sampling data from the input and graphcal interface, which displays the data and provides a HMI. The graphical interface is built based on TouchGFX grpahical stack, which provide a mordern look and smartphone feel interface.
-
-## Features
+# Features
 
 * 2 input channel
 * Sampling rate 1 mega-sample/s per channel
@@ -21,13 +15,13 @@ The two main blocks of the application are ADC peripheral, which sampling data f
 * Adjust voltage level, time scale
 * Marker for signal mesurement
 
-## Requirements
+# Requirements
 
-### Hardware
+## Hardware
 
 * STM32F746-DISCO Kit [link](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html)
 
-### Software
+## Software
 
 These tools are used for developing the application
 
@@ -35,14 +29,14 @@ These tools are used for developing the application
 * Keil (Embedded firmware development)
 * STM32 ST-Link Utility (This tool is used for flasing the application)
 
-## Flashing the application
+# Flashing the application
 
 * Start STM32 ST-Link utility, connect the board to PC, press **Connect to the target** button
 * Drag and drop the binary file into ST-Link. Binary file is located in folder *Project/Oscilloscope/Binary*
 * On the top menu bar, choose *External Loader -> Add External Loader -> Choose N25Q128A_STM32F746G-DISCO -> Click Validate*
 * Click **Program verify**, click **Start**
 
-## Project struture
+# Project struture
 
 * Project: source code of the project
 
@@ -51,6 +45,6 @@ These tools are used for developing the application
     * Graphic: source code of the graphical interface
 * touchgfx: TouchGFX stack
 
-## Contact
+# Contact
 
 email: maher.mastouri@gmail.com
