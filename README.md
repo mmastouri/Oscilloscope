@@ -2,9 +2,9 @@
   
 ![oscilloscope](Document/Picture/osc.jpg)
 
-## Update
+## Official version of TouchGFX
 
-Since STMicroelectronics bought TouchGFX and integrate the graphical stack into the toolchain STM32CubeIDE, this application must be updated to the new toolchain.
+the following project use the ST touch GFX with no Evaluation watermark
 
 ## Motivation
 
@@ -47,12 +47,10 @@ These tools are used for developing the application
 * Project: source code of the project
 
   * Oscilloscope
-
-    * Binary: binary file of the application
     * Firmware: source code of the firmware
     * Graphic: source code of the graphical interface
 * touchgfx: TouchGFX stack
 
 ## Contact
 
-For any information or feedback, please use Issues or drop me an email: maher.mastouri@gmail.com
+email: maher.mastouri@gmail.com
