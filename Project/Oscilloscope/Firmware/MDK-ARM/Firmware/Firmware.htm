@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed May 19 23:55:34 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu May 20 00:17:06 2021
 <BR><P>
 <H3>Maximum Stack Usage =        848 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2927,7 +2927,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 
-<P><STRONG><a name="[a7]"></a>ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 352 bytes, Stack size 24 bytes, channelcontrolpanel.o(i._ZN19ChannelControlPanel13buttonClickedERKN8touchgfx14AbstractButtonE))
+<P><STRONG><a name="[a7]"></a>ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 350 bytes, Stack size 24 bytes, channelcontrolpanel.o(i._ZN19ChannelControlPanel13buttonClickedERKN8touchgfx14AbstractButtonE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = ChannelControlPanel::buttonClicked(const touchgfx::AbstractButton&) &rArr; ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateHWTimeScale(int, int)

@@ -3633,9 +3633,9 @@
       </Doc>
       <Doc>
         <Name>..\..\Graphic\gui\src\common\ChannelControlPanel.cpp</Name>
-        <ColumnNumber>30</ColumnNumber>
+        <ColumnNumber>0</ColumnNumber>
         <TopLine>472</TopLine>
-        <CurrentLine>477</CurrentLine>
+        <CurrentLine>478</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3678,9 +3678,9 @@
       </Doc>
       <Doc>
         <Name>..\..\Graphic\gui\src\main_screen\MainView.cpp</Name>
-        <ColumnNumber>34</ColumnNumber>
+        <ColumnNumber>61</ColumnNumber>
         <TopLine>640</TopLine>
-        <CurrentLine>668</CurrentLine>
+        <CurrentLine>655</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
