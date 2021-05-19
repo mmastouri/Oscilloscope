@@ -57,7 +57,7 @@ KEEP extern const touchgfx::Unicode::UnicodeChar textsGb[] TEXT_LOCATION_FLASH_A
     67,72,32,50,58,32,0, // T_chn2_ctrl_menu
     115,116,111,112,47,114,117,110,58,32,0, // T_stop_ctrl_menu
     46,44,58,59,45,95,0, // T_sign
-    70,114,101,113,32,58,0, // T_Cursor_hz
+    70,114,101,113,32,32,58,0, // T_Cursor_hz
     77,101,97,115,117,114,101,32,58,32,0  // T_meas_ctrl_menu
 };
 
@@ -110,5 +110,5 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE =
     292, // T_stop_ctrl_menu
     303, // T_sign
     310, // T_Cursor_hz
-    317  // T_meas_ctrl_menu
+    318  // T_meas_ctrl_menu
 };
