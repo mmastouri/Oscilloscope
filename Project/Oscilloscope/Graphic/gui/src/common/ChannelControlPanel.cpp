@@ -507,7 +507,7 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 
 	else if (&source == &move_down_button)
 	{
-		if (y_offset < getHeight())
+		if (y_offset < getHeight()-20)
 		{
 			y_offset++;
 		}

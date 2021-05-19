@@ -128,7 +128,7 @@ void MainView::setupScreen()
 	channelTxT[CHANNEL_1].setTypedText(TypedText(T_CHN1));
 	channelTxT[CHANNEL_2].setTypedText(TypedText(T_CHN2));
 	channelTxT[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
-	channelTxT[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 128, 0));
+	channelTxT[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
 
 	chnTextViewPort.setPosition( channelBackground.getX(),
 								 channelBackground.getY(),
@@ -211,7 +211,7 @@ void MainView::setupScreen()
 							 oziBackground.getWidth(), 
 							 oziBackground.getHeight());
 
-	graph[CHANNEL_2].SetGraphColor(Color::getColorFrom24BitRGB(255, 128, 0));
+	graph[CHANNEL_2].SetGraphColor(Color::getColorFrom24BitRGB(255, 133, 7));
 	graph[CHANNEL_2].SetGraphData(presenter->p_GetTriggerData(CHANNEL_2));
 
 	graph_container.setPosition(oziBackground.getX(),
@@ -230,12 +230,12 @@ void MainView::setupScreen()
 	*/
 
 	marker1.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
-	marker1.setup(marker1.getX(), marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(99, 215, 121));
+	marker1.setup(marker1.getX(), marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
 
 	add(marker1);
 
 	marker2.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
-	marker2.setup( oziBackground.getWidth() - 50, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(99, 215, 121));
+	marker2.setup( oziBackground.getWidth() - 50, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
 
 	add(marker2);
 
@@ -250,7 +250,7 @@ void MainView::setupScreen()
 	triggLine[CHANNEL_2].setup(   BITMAP_CHANNEL2_ID,
 		                 graph[CHANNEL_2].getY(),
 		                 presenter->p_GetTriggerValue(CHANNEL_2),
-		                 Color::getColorFrom24BitRGB(255, 128, 0));
+		                 Color::getColorFrom24BitRGB(255, 133, 7));
 
 	add(triggLine[CHANNEL_2]);
 
@@ -275,13 +275,13 @@ void MainView::setupScreen()
 
 
 	trigger_lvl[CHANNEL_1].setTypedText(TypedText(T_TRIG1_LEVEL));
-	trigger_lvl[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	trigger_lvl[CHANNEL_1].setXY(125, 245);
+	trigger_lvl[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
+	trigger_lvl[CHANNEL_1].setXY(125, 215);
 	add(trigger_lvl[CHANNEL_1]);
 
 	trigger_lvl[CHANNEL_2].setTypedText(TypedText(T_TRIG2_LEVEL));
-	trigger_lvl[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	trigger_lvl[CHANNEL_2].setXY(220, 245);
+	trigger_lvl[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
+	trigger_lvl[CHANNEL_2].setXY(220, 215);
 	add(trigger_lvl[CHANNEL_2]);
 
 	/*
@@ -289,25 +289,25 @@ void MainView::setupScreen()
 	 */
 	meas_delta.setTypedText(TypedText(T_CURSOR_US));
 	meas_delta.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	meas_delta.setXY(22, 237);
+	meas_delta.setXY(22, 200);
 	add(meas_delta);
 
 	Unicode::snprintf(cursor_buff, 15, "%d", 0);
 	time_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
 	time_wildcard.setWildcard(cursor_buff);
-	time_wildcard.setPosition(40, 237,100,20);
+	time_wildcard.setPosition(40, 200,100,20);
 	time_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
 	add(time_wildcard);
 
 	meas_freq.setTypedText(TypedText(T_CURSOR_HZ));
 	meas_freq.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	meas_freq.setXY(22, 252);
+	meas_freq.setXY(22, 215);
 	add(meas_freq);
 
 	Unicode::snprintf(freq_buff, 15, "%d", 0);
 	freq_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
 	freq_wildcard.setWildcard(freq_buff);
-	freq_wildcard.setPosition(40, 252, 100, 20);
+	freq_wildcard.setPosition(40, 215, 100, 20);
 	freq_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
 	add(freq_wildcard);
 
@@ -315,16 +315,16 @@ void MainView::setupScreen()
 	Unicode::snprintf(trig_buff[CHANNEL_1], 5, "%d", 0);
 	trig_value_wildcard[CHANNEL_1].setTypedText(TypedText(T_TRIGG1_VALUE));
 	trig_value_wildcard[CHANNEL_1].setWildcard(trig_buff[CHANNEL_1]);
-	trig_value_wildcard[CHANNEL_1].setPosition(160, 244, 50, 20);
-	trig_value_wildcard[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(255, 255, 255));
+	trig_value_wildcard[CHANNEL_1].setPosition(160, 215, 50, 20);
+	trig_value_wildcard[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
 	add(trig_value_wildcard[CHANNEL_1]);
 	trig_value_wildcard[CHANNEL_1].invalidate();
 
 	Unicode::snprintf(trig_buff[CHANNEL_2], 5, "%d", 0);
 	trig_value_wildcard[CHANNEL_2].setTypedText(TypedText(T_TRIGG2_VALUE));
 	trig_value_wildcard[CHANNEL_2].setWildcard(trig_buff[CHANNEL_2]);
-	trig_value_wildcard[CHANNEL_2].setPosition(255, 244, 50, 20);
-	trig_value_wildcard[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 255, 255));
+	trig_value_wildcard[CHANNEL_2].setPosition(255, 215, 50, 20);
+	trig_value_wildcard[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
 	add(trig_value_wildcard[CHANNEL_2]);
 	trig_value_wildcard[CHANNEL_2].invalidate();
 
@@ -335,15 +335,15 @@ void MainView::setupScreen()
 	control_menu.setXY(3, 235);
 	control_menu.setVisiblePixelsWhenCollapsed(15);
 	control_menu.setExpandedStateTimeout(500);
-	add(control_menu);
+	
 
 	txt_ctrl_menu[CHANNEL_1].setTypedText(TypedText(T_CHN1_CTRL_MENU));
 	txt_ctrl_menu[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	txt_ctrl_menu[CHANNEL_1].setXY(5,8);
-	control_menu.add(txt_ctrl_menu[CHANNEL_1]);
+	txt_ctrl_menu[CHANNEL_1].setXY(40,246);
+	/*control_menu.*/add(txt_ctrl_menu[CHANNEL_1]);
 
 	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	chn_enable[CHANNEL_1].setXY(40, 7);
+	chn_enable[CHANNEL_1].setXY(75, 242);
 	chn_enable[CHANNEL_1].setAction(buttonClickedCallback);
 	
 	
@@ -351,34 +351,34 @@ void MainView::setupScreen()
 
 	txt_ctrl_menu[CHANNEL_2].setTypedText(TypedText(T_CHN2_CTRL_MENU));
 	txt_ctrl_menu[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	txt_ctrl_menu[CHANNEL_2].setXY(85, 8);
-	control_menu.add(txt_ctrl_menu[CHANNEL_2]);
+	txt_ctrl_menu[CHANNEL_2].setXY(120, 246);
+	/*control_menu.*/add(txt_ctrl_menu[CHANNEL_2]);
 
 	chn_enable[CHANNEL_2].setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	chn_enable[CHANNEL_2].setXY(120, 7);
+	chn_enable[CHANNEL_2].setXY(155, 242);
 	chn_enable[CHANNEL_2].setAction(buttonClickedCallback);
 
 	chn_enable[CHANNEL_2].forceState(true);
 	
 
 	meas_enable.setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	meas_enable.setXY(225, 7);
+	meas_enable.setXY(260, 242);
 	meas_enable.setAction(buttonClickedCallback);
 	meas_enable.forceState(false);
 
 	meas_ctrl_menu.setTypedText(TypedText(T_MEAS_CTRL_MENU));
 	meas_ctrl_menu.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	meas_ctrl_menu.setXY(165, 8);
-	control_menu.add(meas_ctrl_menu);
+	meas_ctrl_menu.setXY(200, 246);
+	/*control_menu.*/add(meas_ctrl_menu);
 
 
 	graph_container.add(graph[CHANNEL_1]);
 	graph_container.add(graph[CHANNEL_2]);
-	control_menu.add(chn_enable[CHANNEL_1]);
-	control_menu.add(chn_enable[CHANNEL_2]);
-	control_menu.add(meas_enable);
+	/*control_menu.*/add(chn_enable[CHANNEL_1]);
+	/*control_menu.*/add(chn_enable[CHANNEL_2]);
+	/*control_menu.*/add(meas_enable);
 	
-
+	add(control_menu);
 
 	// Init Panel from default / saved settings 
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
@@ -595,6 +595,7 @@ void MainView::slideTexts(SlideDirection direction)
 ***************************************************************************************************/
 void MainView::handleTickEvent()
 {	
+	float float_value;
 	int temp_value;
 	int freq_value;
 
@@ -619,11 +620,11 @@ void MainView::handleTickEvent()
 		triggLine[i].EnableLine(panelChn[i].isMarkerButtonClicked());
 		triggLine[i].invalidate();
 
-		temp_value = presenter->p_GetTriggerValue(i) * presenter->p_VoltagePerPixel(i);
+		float_value = presenter->p_GetTriggerValue(i) * presenter->p_VoltagePerPixel(i);
 		if (presenter->p_GetVoltageScale(i) > 5)
-			temp_value = temp_value / 1000;
+			float_value = float_value / 1000;
 
-		Unicode::snprintfFloat(trig_buff[i], 5, "%.2f", temp_value);
+		Unicode::snprintfFloat(trig_buff[i], 5, "%.2f", float_value);
 		trig_value_wildcard[i].invalidate();
 	}
 

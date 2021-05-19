@@ -1008,6 +1008,31 @@
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_intro.cpp</FilePath>
             </File>
+            <File>
+              <FileName>image_channel_info.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_channel_info.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_chLeftButtonPress.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_chLeftButtonPress.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_chLeftButtonUnpress.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_chLeftButtonUnpress.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_chRightButtonPress.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_chRightButtonPress.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_chRightButtonUnpress.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_chRightButtonUnpress.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
