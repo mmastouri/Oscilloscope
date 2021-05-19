@@ -41,8 +41,7 @@ KEEP extern const touchgfx::GlyphNode glyphs_Asap_Regular_13_4bpp[] FONT_TABLE_L
     {   805, 0x0073,   5,   7,   7,   0,   5,   0,   0, 0x00 },
     {   823, 0x0074,   4,   9,   9,   0,   4,   0,   0, 0x00 },
     {   841, 0x0075,   6,   7,   7,   1,   7,   0,   0, 0x00 },
-    {   862, 0x0076,   6,   7,   7,   0,   6,   0,   0, 0x00 },
-    {   883, 0x007A,   6,   7,   7,   0,   6,   0,   0, 0x00 }
+    {   862, 0x007A,   6,   7,   7,   0,   6,   0,   0, 0x00 }
 };
 
 // Asap_Regular_13_4bpp
@@ -58,6 +57,6 @@ touchgfx::GeneratedFont& getFont_Asap_Regular_13_4bpp();
 
 touchgfx::GeneratedFont& getFont_Asap_Regular_13_4bpp()
 {
-    static touchgfx::GeneratedFont Asap_Regular_13_4bpp(glyphs_Asap_Regular_13_4bpp, 38, 13, 3, 4, 0, 1, 1, unicodes_Asap_Regular_13_4bpp, kerning_Asap_Regular_13_4bpp, 0, 0, 0);
+    static touchgfx::GeneratedFont Asap_Regular_13_4bpp(glyphs_Asap_Regular_13_4bpp, 37, 13, 3, 4, 0, 1, 1, unicodes_Asap_Regular_13_4bpp, kerning_Asap_Regular_13_4bpp, 0, 0, 0);
     return Asap_Regular_13_4bpp;
 }

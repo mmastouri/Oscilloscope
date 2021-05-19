@@ -49,7 +49,7 @@ KEEP extern const touchgfx::Unicode::UnicodeChar textsGb[] TEXT_LOCATION_FLASH_A
     84,105,109,101,32,58,0, // T_Cursor_us
     84,45,67,72,32,49,32,58,0, // T_Trig1_level
     84,45,67,72,32,50,32,58,0, // T_Trig2_level
-    49,50,51,52,53,54,55,56,57,48,46,32,58,32,45,32,44,32,117,109,118,72,122,115,86,0, // T_number_small
+    49,50,51,52,53,54,55,56,57,48,46,32,58,32,45,32,44,32,117,109,86,72,122,115,0, // T_number_small
     2,0, // T_Cursor_value
     2,0, // T_Trigg1_value
     2,0, // T_Trigg2_value
@@ -102,13 +102,13 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE =
     229, // T_Trig1_level
     238, // T_Trig2_level
     247, // T_number_small
-    273, // T_Cursor_value
-    275, // T_Trigg1_value
-    277, // T_Trigg2_value
-    279, // T_chn1_ctrl_menu
-    285, // T_chn2_ctrl_menu
-    292, // T_stop_ctrl_menu
-    303, // T_sign
-    310, // T_Cursor_hz
-    318  // T_meas_ctrl_menu
+    272, // T_Cursor_value
+    274, // T_Trigg1_value
+    276, // T_Trigg2_value
+    278, // T_chn1_ctrl_menu
+    284, // T_chn2_ctrl_menu
+    291, // T_stop_ctrl_menu
+    302, // T_sign
+    309, // T_Cursor_hz
+    317  // T_meas_ctrl_menu
 };

@@ -623,6 +623,7 @@ void MainView::slideTexts(SlideDirection direction)
 void MainView::handleTickEvent()
 {	
 	float float_value;
+	int int_value;
 	int temp_value;
 	int freq_value;
 
@@ -647,11 +648,17 @@ void MainView::handleTickEvent()
 		triggLine[i].EnableLine(panelChn[i].isMarkerButtonClicked());
 		triggLine[i].invalidate();
 
-		float_value = presenter->p_GetTriggerValue(i) * presenter->p_VoltagePerPixel(i);
-		if (presenter->p_GetVoltageScale(i) > 5)
-			float_value = float_value / 1000;
-
-		Unicode::snprintfFloat(trig_buff[i], 7, "%.2f V", float_value);
+		
+		if (presenter->p_GetVoltageScale(i) > DIV_500mV)
+		{
+			float_value = (presenter->p_GetTriggerValue(i) * presenter->p_VoltagePerPixel(i))/1000;
+			Unicode::snprintfFloat(trig_buff[i], 7, "%.2f V", float_value);
+		}
+		else
+		{
+			int_value = (presenter->p_GetTriggerValue(i) * presenter->p_VoltagePerPixel(i));
+			Unicode::snprintf(trig_buff[i], 7, "%d mV", int_value);
+		}
 		trig_value_wildcard[i].invalidate();
 	}
 
@@ -661,7 +668,7 @@ void MainView::handleTickEvent()
 	cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
 	temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(selectedChnIndex);
-	if (presenter->p_GetTimeScale(selectedChnIndex) > 3)
+	if (presenter->p_GetTimeScale(selectedChnIndex) > DIV_500uS)
 	{
 		temp_value = (temp_value / 1000);
 		if (temp_value == 0)  freq_value = 0; else freq_value = 1000 / temp_value;
