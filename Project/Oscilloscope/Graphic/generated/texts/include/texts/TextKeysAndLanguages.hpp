@@ -59,7 +59,7 @@ typedef enum
     T_CHN2_CTRL_MENU,
     T_STOP_CTRL_MENU,
     T_SIGN,
-    T_CURSOR_MS,
+    T_CURSOR_HZ,
     T_MEAS_CTRL_MENU,
     NUMBER_OF_TEXT_KEYS
 } TEXTS;

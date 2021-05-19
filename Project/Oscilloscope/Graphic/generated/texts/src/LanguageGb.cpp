@@ -46,10 +46,10 @@ KEEP extern const touchgfx::Unicode::UnicodeChar textsGb[] TEXT_LOCATION_FLASH_A
     67,117,114,115,111,114,32,66,0, // T_markerB
     80,111,115,105,116,105,111,110,0, // T_position
     77,101,110,117,0, // T_menu
-    68,101,108,116,97,32,58,0, // T_Cursor_us
+    84,105,109,101,32,58,0, // T_Cursor_us
     84,45,67,72,32,49,32,58,32,32,32,32,32,32,32,32,32,32,32,86,0, // T_Trig1_level
     84,45,67,72,32,50,32,58,32,32,32,32,32,32,32,32,32,32,32,86,0, // T_Trig2_level
-    49,50,51,52,53,54,55,56,57,48,46,32,58,32,45,32,44,32,0, // T_number_small
+    49,50,51,52,53,54,55,56,57,48,46,32,58,32,45,32,44,32,117,109,118,104,122,115,0, // T_number_small
     2,0, // T_Cursor_value
     2,0, // T_Trigg1_value
     2,0, // T_Trigg2_value
@@ -57,7 +57,7 @@ KEEP extern const touchgfx::Unicode::UnicodeChar textsGb[] TEXT_LOCATION_FLASH_A
     67,72,32,50,58,32,0, // T_chn2_ctrl_menu
     115,116,111,112,47,114,117,110,58,32,0, // T_stop_ctrl_menu
     46,44,58,59,45,95,0, // T_sign
-    68,101,108,116,97,32,58,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,117,83,0, // T_Cursor_ms
+    70,114,101,113,32,58,0, // T_Cursor_hz
     77,101,97,115,117,114,101,32,58,32,0  // T_meas_ctrl_menu
 };
 
@@ -99,16 +99,16 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE =
     208, // T_position
     217, // T_menu
     222, // T_Cursor_us
-    230, // T_Trig1_level
-    251, // T_Trig2_level
-    272, // T_number_small
-    291, // T_Cursor_value
-    293, // T_Trigg1_value
-    295, // T_Trigg2_value
-    297, // T_chn1_ctrl_menu
-    303, // T_chn2_ctrl_menu
-    310, // T_stop_ctrl_menu
-    321, // T_sign
-    328, // T_Cursor_ms
-    353  // T_meas_ctrl_menu
+    229, // T_Trig1_level
+    250, // T_Trig2_level
+    271, // T_number_small
+    296, // T_Cursor_value
+    298, // T_Trigg1_value
+    300, // T_Trigg2_value
+    302, // T_chn1_ctrl_menu
+    308, // T_chn2_ctrl_menu
+    315, // T_stop_ctrl_menu
+    326, // T_sign
+    333, // T_Cursor_hz
+    340  // T_meas_ctrl_menu
 };

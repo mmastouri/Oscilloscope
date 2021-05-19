@@ -104,21 +104,21 @@ void MainView::setupScreen()
 	controlPanelBackground.setXY(314, 3);
 	add(controlPanelBackground);
 
-	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_CH1_ID));
-	channelBackground.setXY(349, 240);
+	channelBackground.setBitmap(Bitmap(BITMAP_CHANNEL_INFO_ID));
+	channelBackground.setXY(314, 237);
 	add(channelBackground);
 
 	/*
 	* Button section:  Configure buttons for changing between two channels
 	*/
 
-	rightButton.setBitmaps(Bitmap(BITMAP_RIGHTBUTTONUNPRESS_ID), Bitmap(BITMAP_RIGHTBUTTONPRESS_ID));
-	rightButton.setXY(450, 240);
+	rightButton.setBitmaps(Bitmap(BITMAP_CHRIGHTBUTTONUNPRESS_ID), Bitmap(BITMAP_CHRIGHTBUTTONPRESS_ID));
+	rightButton.setXY(450, 239);
 	rightButton.setAction(buttonClickedCallback);
 	add(rightButton);
 
-	leftButton.setBitmaps(Bitmap(BITMAP_LEFTBUTTONUNPRESS_ID), Bitmap(BITMAP_LEFTBUTTONPRESS_ID));
-	leftButton.setXY(315, 240);
+	leftButton.setBitmaps(Bitmap(BITMAP_CHLEFTBUTTONUNPRESS_ID), Bitmap(BITMAP_CHLEFTBUTTONPRESS_ID));
+	leftButton.setXY(315, 239);
 	leftButton.setAction(buttonClickedCallback);
 	add(leftButton);
 
@@ -127,7 +127,8 @@ void MainView::setupScreen()
 	*/
 	channelTxT[CHANNEL_1].setTypedText(TypedText(T_CHN1));
 	channelTxT[CHANNEL_2].setTypedText(TypedText(T_CHN2));
-
+	channelTxT[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
+	channelTxT[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 128, 0));
 
 	chnTextViewPort.setPosition( channelBackground.getX(),
 								 channelBackground.getY(),
@@ -143,7 +144,7 @@ void MainView::setupScreen()
 
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
 	{
-		channelTxT[i].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
+
 		channelTxT[i].setWidth(channelBackground.getWidth());
 		channelTxT[i].setHeight(channelBackground.getHeight());
 
@@ -181,7 +182,7 @@ void MainView::setupScreen()
 		chnControlPanelViewPort.add(panelChn[i]);
 
 		channelTxT[i].setXY( -channelTxT[selectedChnIndex].getWidth(),
-			                 (chnTextViewPort.getHeight() - channelTxT[i].getHeight()) / 2 + 4);
+			                 (chnTextViewPort.getHeight() - channelTxT[i].getHeight()) / 2 + 1);
 
 		panelChn[i].setPosition( -panelChn[selectedChnIndex].getWidth(),
 			                     0,
@@ -272,42 +273,43 @@ void MainView::setupScreen()
 
 	add(triggLine[CHANNEL_1]);
 
-	/*
-	 *  Display Value section
-	 */
-	cursor_text.setTypedText(TypedText(T_CURSOR_US));
-	cursor_text.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	cursor_text.setXY(25, 245);
-	add(cursor_text);
-
-	/*cursor_txt_background.setXY(70, 243);
-	cursor_txt_background.setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
-	add(cursor_txt_background);*/
 
 	trigger_lvl[CHANNEL_1].setTypedText(TypedText(T_TRIG1_LEVEL));
 	trigger_lvl[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
 	trigger_lvl[CHANNEL_1].setXY(125, 245);
 	add(trigger_lvl[CHANNEL_1]);
 
-	//trig_txt_background[CHANNEL_1].setXY(165, 243);
-	//trig_txt_background[CHANNEL_1].setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
-	//add(trig_txt_background[CHANNEL_1]);
-
 	trigger_lvl[CHANNEL_2].setTypedText(TypedText(T_TRIG2_LEVEL));
 	trigger_lvl[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
 	trigger_lvl[CHANNEL_2].setXY(220, 245);
 	add(trigger_lvl[CHANNEL_2]);
 
-	//trig_txt_background[CHANNEL_2].setXY(260, 243);
-	//trig_txt_background[CHANNEL_2].setBitmap(Bitmap(BITMAP_TEXT_BACKGROUND_ID));
-	//add(trig_txt_background[CHANNEL_2]);
+	/*
+	 *  Display Value section
+	 */
+	meas_delta.setTypedText(TypedText(T_CURSOR_US));
+	meas_delta.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	meas_delta.setXY(22, 237);
+	add(meas_delta);
 
-	Unicode::snprintf(cursor_buff, 10, "%d", 0);
-	cursor_value_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
-	cursor_value_wildcard.setWildcard(cursor_buff);
-	cursor_value_wildcard.setPosition(57, 245,50,20);
-	cursor_value_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
-	add(cursor_value_wildcard);
+	Unicode::snprintf(cursor_buff, 15, "%d", 0);
+	time_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
+	time_wildcard.setWildcard(cursor_buff);
+	time_wildcard.setPosition(40, 237,100,20);
+	time_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
+	add(time_wildcard);
+
+	meas_freq.setTypedText(TypedText(T_CURSOR_HZ));
+	meas_freq.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	meas_freq.setXY(22, 252);
+	add(meas_freq);
+
+	Unicode::snprintf(freq_buff, 15, "%d", 0);
+	freq_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
+	freq_wildcard.setWildcard(freq_buff);
+	freq_wildcard.setPosition(40, 252, 100, 20);
+	freq_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
+	add(freq_wildcard);
 
 
 	Unicode::snprintf(trig_buff[CHANNEL_1], 5, "%d", 0);
@@ -572,10 +574,10 @@ void MainView::slideTexts(SlideDirection direction)
 
 	selectedChnIndex = nextSelectedText;
 
-	if(selectedChnIndex == CHANNEL_2)
+	/*if(selectedChnIndex == CHANNEL_2)
 	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_CH2_ID));
 	else
-	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_CH1_ID));
+	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_CH1_ID));*/
 	
 }
 
@@ -593,7 +595,8 @@ void MainView::slideTexts(SlideDirection direction)
 ***************************************************************************************************/
 void MainView::handleTickEvent()
 {	
-	float temp_value;
+	int temp_value;
+	int freq_value;
 
 
 	/* Update model according to HMI update */ 
@@ -629,12 +632,22 @@ void MainView::handleTickEvent()
 	marker2.EnableLine(isMeasButtonClicked());
 	cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
-	temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(CHANNEL_2);
-	if (presenter->p_GetTimeScale(CHANNEL_2) > 3)
+	temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(selectedChnIndex);
+	if (presenter->p_GetTimeScale(selectedChnIndex) > 3)
+	{
 		temp_value = (temp_value / 1000);
+		if (temp_value == 0)  freq_value = 0; else freq_value = 1000 / temp_value;
+		Unicode::snprintf(cursor_buff, 10, "%d ms", temp_value);
+		Unicode::snprintf(freq_buff, 10, "%d hz", freq_value);
+	}
+	else
+	{
+		if (temp_value == 0) freq_value = 0; else freq_value = 1000000 / temp_value;
+		Unicode::snprintf(cursor_buff, 10, "%d us", temp_value);
+		Unicode::snprintf(freq_buff, 10, "%d hz", freq_value);
+	}
 
-	Unicode::snprintfFloat(cursor_buff, 10, "%.2f", temp_value);
-	cursor_value_wildcard.invalidate();
+	time_wildcard.invalidate();
 
 	tickCounter++;
 	if (tickCounter % 1 == 0)

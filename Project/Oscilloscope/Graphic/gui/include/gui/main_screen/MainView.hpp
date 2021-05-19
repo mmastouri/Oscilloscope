@@ -158,14 +158,17 @@ private:
 
 	Container graph_container;
 
-	TextArea cursor_text;
+	TextArea meas_delta;
+	TextArea meas_freq;
 	TextArea trigger_lvl[NUMBER_OF_CHANNEL];
 
 	TextArea txt_ctrl_menu[NUMBER_OF_CHANNEL];
 	TextArea meas_ctrl_menu;
 
-	TextAreaWithOneWildcard cursor_value_wildcard;
-	Unicode::UnicodeChar cursor_buff[10];
+	TextAreaWithOneWildcard time_wildcard;
+	TextAreaWithOneWildcard freq_wildcard;
+	Unicode::UnicodeChar cursor_buff[15];
+	Unicode::UnicodeChar freq_buff[15];
 
 	TextAreaWithOneWildcard trig_value_wildcard[NUMBER_OF_CHANNEL];
 	Unicode::UnicodeChar trig_buff[NUMBER_OF_CHANNEL][5];
