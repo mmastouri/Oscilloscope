@@ -87,7 +87,7 @@ void Marker::setup(int x_position, int marker_height, int graph_width, uint16_t 
 
 	width_limit = graph_width;
 	x_marker = x_position;
-
+	marker_position = x_marker;
 	/*
 	* Configure the width, height, color and position of the trigger line
 	* Enable touchable

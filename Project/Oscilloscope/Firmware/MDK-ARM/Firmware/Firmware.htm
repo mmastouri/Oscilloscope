@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed May 19 20:52:30 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed May 19 21:23:28 2021
 <BR><P>
 <H3>Maximum Stack Usage =        848 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1381,12 +1381,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[270]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerLine()
-<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextArea::TextArea()
+<BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextArea::TextArea()
 <LI><a href="#[2b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Button::Button()
 <LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Image::Image(const touchgfx::Bitmap&)
+<LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerLine()
+<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
 <LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrontendHeap::FrontendHeap()
 <LI><a href="#[300]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::CanvasWidget::CanvasWidget__sub_object()
 <LI><a href="#[332]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Box::Box(unsigned short, unsigned short, touchgfx::colortype, unsigned char)
@@ -1485,12 +1485,12 @@ Global Symbols
 <P><STRONG><a name="[1bf]"></a>BSP_LCD_Init</STRONG> (Thumb, 136 bytes, Stack size 24 bytes, stm32746g_discovery_lcd.o(i.BSP_LCD_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = BSP_LCD_Init &rArr; BSP_SDRAM_Init &rArr; BSP_SDRAM_MspInit &rArr; HAL_DMA_Init &rArr; DMA_CheckFifoParam
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_Init
-<LI><a href="#[1c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_MspInit
+<BR>[Calls]<UL><LI><a href="#[1c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_MspInit
 <LI><a href="#[1bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_ClockConfig
 <LI><a href="#[1c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_LTDC_Init
 <LI><a href="#[1c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_LTDC_GetState
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[1c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[39b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
 </UL>
@@ -1869,10 +1869,10 @@ Global Symbols
 <P><STRONG><a name="[1c4]"></a>HAL_GPIO_Init</STRONG> (Thumb, 418 bytes, Stack size 40 bytes, stm32f7xx_hal_gpio.o(i.HAL_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HAL_GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
-<LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
-<LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
+<BR>[Called By]<UL><LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
 <LI><a href="#[1c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_MspInit
+<LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
+<LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
 <LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 <LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
 <LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_MspInit
@@ -1893,14 +1893,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1e4]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f7xx_hal.o(i.HAL_GetTick))
-<BR><BR>[Called By]<UL><LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
-<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
-<LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_PWREx_EnableOverDrive
-<LI><a href="#[1db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Init
+<BR><BR>[Called By]<UL><LI><a href="#[1db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Init
 <LI><a href="#[1bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_PeriphCLKConfig
 <LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Write
 <LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Read
 <LI><a href="#[1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
+<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
+<LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_PWREx_EnableOverDrive
 <LI><a href="#[204]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnTXISFlagUntilTimeout
 <LI><a href="#[201]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnSTOPFlagUntilTimeout
 <LI><a href="#[1fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnFlagUntilTimeout
@@ -2052,8 +2052,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1d3]"></a>HAL_NVIC_EnableIRQ</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f7xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ))
-<BR><BR>[Called By]<UL><LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
-<LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
+<BR><BR>[Called By]<UL><LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
+<LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 <LI><a href="#[1ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_QSPI_MspInit
@@ -2064,8 +2064,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[20e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 </UL>
-<BR>[Called By]<UL><LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
-<LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
+<BR>[Called By]<UL><LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_MspInit
+<LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init()
 <LI><a href="#[208]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspInit
@@ -2711,11 +2711,11 @@ Global Symbols
 <P><STRONG><a name="[8e]"></a>TriggerLine::TriggerLine()</STRONG> (Thumb, 162 bytes, Stack size 24 bytes, triggerline.o(i._ZN11TriggerLineC1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = TriggerLine::TriggerLine() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::AbstractPainterRGB565::AbstractPainterRGB565__sub_object()
-<LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::Drawable__sub_object()
+<BR>[Calls]<UL><LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::Drawable__sub_object()
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Image::setBitmap(const touchgfx::Bitmap&)
 <LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::Line()
 <LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::PainterRGB565::setColor(touchgfx::colortype)
+<LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::AbstractPainterRGB565::AbstractPainterRGB565__sub_object()
 <LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> frontendapplication.o(i._ZN8MainViewC1Ev)
@@ -3314,9 +3314,9 @@ Global Symbols
 <P><STRONG><a name="[2c1]"></a>Marker::Marker()</STRONG> (Thumb, 124 bytes, Stack size 24 bytes, marker.o(i._ZN6MarkerC1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::AbstractPainterRGB565::AbstractPainterRGB565__sub_object()
-<LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::Line()
+<BR>[Calls]<UL><LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::Line()
 <LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::PainterRGB565::setColor(touchgfx::colortype)
+<LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::AbstractPainterRGB565::AbstractPainterRGB565__sub_object()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
 </UL>
@@ -3351,16 +3351,10 @@ Global Symbols
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[10f]"></a>MainView::setupScreen()</STRONG> (Thumb, 2592 bytes, Stack size 144 bytes, mainview.o(i._ZN8MainView11setupScreenEv))
+<P><STRONG><a name="[10f]"></a>MainView::setupScreen()</STRONG> (Thumb, 2602 bytes, Stack size 144 bytes, mainview.o(i._ZN8MainView11setupScreenEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 468<LI>Call Chain = MainView::setupScreen() &rArr; ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int) &rArr; void touchgfx::Line::setStart&lang;int&rang;(T1, T1) &rArr; touchgfx::Line::setStart(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5) &rArr; touchgfx::Line::updateCachedShape() &rArr; touchgfx::CWRUtil::muldivQ5(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5) &rArr; touchgfx::muldiv(int, int, int)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::SetGraphColor(touchgfx::colortype)
-<LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::SetGraphData(int*)
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::setPosition(short, short, int, short, short)
-<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
-<LI><a href="#[2cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerPosition()
-<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::invalidate() const
+<BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::invalidate() const
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::add(touchgfx::Drawable&)
 <LI><a href="#[2ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextArea::setTypedText(touchgfx::TypedText)
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Button::setBitmaps(const touchgfx::Bitmap&, const touchgfx::Bitmap&)
@@ -3380,6 +3374,12 @@ Global Symbols
 <LI><a href="#[2a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::SetTriggerButton(bool)
 <LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::SetFallingButton(bool)
 <LI><a href="#[2a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::SetMarkerButton(bool)
+<LI><a href="#[2c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::SetGraphColor(touchgfx::colortype)
+<LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::SetGraphData(int*)
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::setPosition(short, short, int, short, short)
+<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
+<LI><a href="#[2cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerPosition()
+<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
 <LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::setup(touchgfx::SlideMenu::ExpandDirection, const touchgfx::Bitmap&, const touchgfx::Bitmap&, const touchgfx::Bitmap&, short, short, short, short)
 <LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::setVisiblePixelsWhenCollapsed(short)
 <LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::setExpandedStateTimeout(unsigned short)
@@ -3425,13 +3425,7 @@ Global Symbols
 <P><STRONG><a name="[115]"></a>MainView::handleTickEvent()</STRONG> (Thumb, 630 bytes, Stack size 48 bytes, mainview.o(i._ZN8MainView15handleTickEventEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = MainView::handleTickEvent() &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*) &rArr; touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const unsigned short*, const char*, const float*) &rArr; touchgfx::Unicode::itoa(int, unsigned short*, unsigned short, int) &rArr; touchgfx::Unicode::strncpy(unsigned short*, const char*, unsigned short)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::setY(short)
-<LI><a href="#[2cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerPosition()
-<LI><a href="#[2d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setYoffset(int)
-<LI><a href="#[2d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::EnableLine(bool)
-<LI><a href="#[2db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::MarkerPosition()
-<LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::EnableLine(bool)
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::invalidate() const
+<BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::invalidate() const
 <LI><a href="#[2d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::isTriggerButtonClicked()
 <LI><a href="#[2d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::isFallingButtonClicked()
 <LI><a href="#[2d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::isMarkerButtonClicked()
@@ -3439,6 +3433,12 @@ Global Symbols
 <LI><a href="#[2d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::GetTimeBaseIndex()
 <LI><a href="#[2d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::GetYOffset()
 <LI><a href="#[2d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::GetXOffset()
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::setY(short)
+<LI><a href="#[2cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerPosition()
+<LI><a href="#[2d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setYoffset(int)
+<LI><a href="#[2d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::EnableLine(bool)
+<LI><a href="#[2db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::MarkerPosition()
+<LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::EnableLine(bool)
 <LI><a href="#[2cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintf(unsigned short*, unsigned short, const char*, ...)
 <LI><a href="#[2da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Unicode::snprintfFloats(unsigned short*, unsigned short, const char*, const float*)
 <LI><a href="#[2d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::remove(touchgfx::Drawable&)
@@ -3477,17 +3477,17 @@ Global Symbols
 <P><STRONG><a name="[2dc]"></a>MainView::MainView()</STRONG> (Thumb, 610 bytes, Stack size 48 bytes, frontendapplication.o(i._ZN8MainViewC1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
-<LI><a href="#[2dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::Screen()
-<LI><a href="#[2e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Context::Context()
-<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::Marker()
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextAreaWithOneWildcard::TextAreaWithOneWildcard()
-<LI><a href="#[2b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::Container()
+<BR>[Calls]<UL><LI><a href="#[2b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::Container()
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextArea::TextArea()
 <LI><a href="#[2de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Widget::Widget__sub_object()
 <LI><a href="#[2b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Button::Button()
 <LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Image::Image(const touchgfx::Bitmap&)
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ToggleButton::ToggleButton()
+<LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
+<LI><a href="#[2dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::Screen()
+<LI><a href="#[2e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Context::Context()
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::Marker()
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextAreaWithOneWildcard::TextAreaWithOneWildcard()
 <LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_vec_ctor_nocookie_nodtor
 </UL>
@@ -3499,8 +3499,8 @@ Global Symbols
 <P><STRONG><a name="[10d]"></a>MainView::~MainView()</STRONG> (Thumb, 372 bytes, Stack size 8 bytes, mainview.o(i._ZN8MainViewD1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = MainView::~MainView() &rArr; __aeabi_vec_dtor
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::~Marker()
-<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextArea::~TextArea()
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextArea::~TextArea()
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::~Marker()
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::~SlideMenu()
 <LI><a href="#[2b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_vec_dtor
 </UL>
@@ -3614,14 +3614,14 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> frontendapplication.o(.constdata__ZTVN8touchgfx12NoTransitionE)
 </UL>
 <P><STRONG><a name="[2ca]"></a>touchgfx::Application::getInstance()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, application.o(i._ZN8touchgfx11Application11getInstanceEv))
-<BR><BR>[Called By]<UL><LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
-<LI><a href="#[2b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*)
-<LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep()
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Transition::invalidate()
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::invalidateRect(touchgfx::Rect&) const
+<BR><BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::invalidateRect(touchgfx::Rect&) const
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::moveRelative(short, short)
 <LI><a href="#[3f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep()
 <LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
+<LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
+<LI><a href="#[2b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*)
+<LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep()
+<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Transition::invalidate()
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::~SlideMenu()
 <LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
@@ -3700,8 +3700,8 @@ Global Symbols
 <P><STRONG><a name="[2cb]"></a>touchgfx::Application::registerTimerWidget(touchgfx::Drawable*)</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, application.o(i._ZN8touchgfx11Application19registerTimerWidgetEPNS_8DrawableE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = touchgfx::Application::registerTimerWidget(touchgfx::Drawable*)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
-<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
+<BR>[Called By]<UL><LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
+<LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
 <LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleGestureEvent(const touchgfx::GestureEvent&)
@@ -3717,8 +3717,8 @@ Global Symbols
 <P><STRONG><a name="[301]"></a>touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, application.o(i._ZN8touchgfx11Application21unregisterTimerWidgetEPKNS_8DrawableE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep()
-<LI><a href="#[3f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep()
+<BR>[Called By]<UL><LI><a href="#[3f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep()
+<LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep()
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::~SlideMenu()
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::handleTickEvent()
@@ -3752,8 +3752,8 @@ Global Symbols
 <P><STRONG><a name="[2b9]"></a>touchgfx::Application::Application()</STRONG> (Thumb, 96 bytes, Stack size 24 bytes, application.o(i._ZN8touchgfx11ApplicationC1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = touchgfx::Application::Application() &rArr; touchgfx::Screen::draw() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::clearAllTimerWidgets()
-<LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Rect::Rect(short, short, short, short)
+<BR>[Calls]<UL><LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Rect::Rect(short, short, short, short)
+<LI><a href="#[2ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::clearAllTimerWidgets()
 <LI><a href="#[2fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::draw()
 <LI><a href="#[2fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CRC_Lock
 <LI><a href="#[2f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Vector&lang;touchgfx::Rect, (unsigned short)8&rang;::Vector()
@@ -3768,9 +3768,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[11c]"></a>touchgfx::CanvasWidget::setPainter(touchgfx::AbstractPainter&)</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, canvaswidget.o(i._ZN8touchgfx12CanvasWidget10setPainterERNS_15AbstractPainterE))
-<BR><BR>[Called By]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
+<BR><BR>[Called By]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
+<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
 <LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
-<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
 </UL>
 <BR>[Address Reference Count : 3]<UL><LI> marker.o(.constdata__ZTVN8touchgfx7SnapperINS_4LineEEE)
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
@@ -4066,8 +4066,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Button::Button()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
-<LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
+<BR>[Called By]<UL><LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
+<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> frontendapplication.o(i._ZN8MainViewC1Ev)
 </UL>
@@ -4167,12 +4167,12 @@ Global Symbols
 <P><STRONG><a name="[26a]"></a>touchgfx::PainterRGB565::setColor(touchgfx::colortype)</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, channelcontrolpanel.o(i._ZN8touchgfx13PainterRGB5658setColorENS_9colortypeE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = touchgfx::PainterRGB565::setColor(touchgfx::colortype)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::Marker()
+<BR>[Called By]<UL><LI><a href="#[2b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::PainterRGB565::PainterRGB565(touchgfx::colortype, unsigned char)
+<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::Marker()
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerLine()
 <LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
 <LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
-<LI><a href="#[2b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::PainterRGB565::PainterRGB565(touchgfx::colortype, unsigned char)
-<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
 </UL>
 
 <P><STRONG><a name="[2b5]"></a>touchgfx::PainterRGB565::PainterRGB565(touchgfx::colortype, unsigned char)</STRONG> (Thumb, 98 bytes, Stack size 24 bytes, channelcontrolpanel.o(i._ZN8touchgfx13PainterRGB565C1ENS_9colortypeEh))
@@ -5099,11 +5099,11 @@ Global Symbols
 <LI><a href="#[35c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::CWRUtil::muldivQ5(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5)
 <LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::CWRUtil::sqrtQ10(touchgfx::CWRUtil::Q10)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
-<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
-<LI><a href="#[26d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::setStart(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5)
+<BR>[Called By]<UL><LI><a href="#[26d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::setStart(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5)
 <LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::setEnd(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5)
 <LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void touchgfx::Line::setLineWidth&lang;int&rang;(T1)
+<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
+<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
 </UL>
 
 <P><STRONG><a name="[26e]"></a>touchgfx::Line::setEnd(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, line.o(i._ZN8touchgfx4Line6setEndENS_7CWRUtil2Q5ES2_))
@@ -5111,9 +5111,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::updateCachedShape()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
+<BR>[Called By]<UL><LI><a href="#[2af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void touchgfx::Line::setEnd&lang;int&rang;(T1, T1)
+<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
 <LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
-<LI><a href="#[2af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void touchgfx::Line::setEnd&lang;int&rang;(T1, T1)
 </UL>
 
 <P><STRONG><a name="[26d]"></a>touchgfx::Line::setStart(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, line.o(i._ZN8touchgfx4Line8setStartENS_7CWRUtil2Q5ES2_))
@@ -5121,9 +5121,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::updateCachedShape()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
+<BR>[Called By]<UL><LI><a href="#[2ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void touchgfx::Line::setStart&lang;int&rang;(T1, T1)
+<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
 <LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
-<LI><a href="#[2ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void touchgfx::Line::setStart&lang;int&rang;(T1, T1)
 </UL>
 
 <P><STRONG><a name="[271]"></a>touchgfx::Line::Line()</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, line.o(i._ZN8touchgfx4LineC1Ev))
@@ -5133,9 +5133,9 @@ Global Symbols
 <LI><a href="#[300]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::CanvasWidget::CanvasWidget__sub_object()
 <LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_vec_ctor_nocookie_nodtor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::Marker()
+<BR>[Called By]<UL><LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::Marker()
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerLine()
-<LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
 </UL>
 
 <P><STRONG><a name="[43f]"></a>touchgfx::Line::Line__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, line.o(i._ZN8touchgfx4LineC1Ev), UNUSED)
@@ -5215,8 +5215,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::lcd()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::Graph()
-<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
+<BR>[Called By]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::Graph()
 <LI><a href="#[2ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::Intro()
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
@@ -5227,11 +5227,11 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[361]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Bitmap::getHeight() const
 <LI><a href="#[360]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Bitmap::getWidth() const
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
+<BR>[Called By]<UL><LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Image::Image(const touchgfx::Bitmap&)
+<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
+<LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerLine()
 <LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
-<LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Image::Image(const touchgfx::Bitmap&)
-<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
 <LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::setup(touchgfx::SlideMenu::ExpandDirection, const touchgfx::Bitmap&, const touchgfx::Bitmap&, const touchgfx::Bitmap&, short, short, short, short)
 <LI><a href="#[2ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::Intro()
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
@@ -5245,9 +5245,9 @@ Global Symbols
 <LI><a href="#[2de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Widget::Widget__sub_object()
 <LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;&lang;Func6&rang;
+<BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;&lang;Func6&rang;
 <LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
+<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
 </UL>
 
 <P><STRONG><a name="[442]"></a>touchgfx::Image::Image__sub_object(const touchgfx::Bitmap&)</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, channelcontrolpanel.o(i._ZN8touchgfx5ImageC1ERKNS_6BitmapE), UNUSED)
@@ -5318,10 +5318,10 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[2de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Widget::Widget__sub_object()
 <LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
-<LI><a href="#[2b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::RepeatButton::RepeatButton()
+<BR>[Called By]<UL><LI><a href="#[2b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::RepeatButton::RepeatButton()
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ToggleButton::ToggleButton()
 <LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
+<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
 </UL>
 
 <P><STRONG><a name="[445]"></a>touchgfx::Button::Button__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, channelcontrolpanel.o(i._ZN8touchgfx6ButtonC1Ev), UNUSED)
@@ -5543,8 +5543,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 </UL>
@@ -5553,11 +5553,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::Drawable__sub_object()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
-<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextArea::TextArea()
+<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextArea::TextArea()
 <LI><a href="#[2b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Button::Button()
 <LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Image::Image(const touchgfx::Bitmap&)
+<LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
+<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
 </UL>
 
 <P><STRONG><a name="[2bd]"></a>touchgfx::memset(void*, unsigned char, unsigned)</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, utils.o(i._ZN8touchgfx6memsetEPvhj))
@@ -5890,10 +5890,10 @@ Global Symbols
 <P><STRONG><a name="[e8]"></a>touchgfx::Drawable::setPosition(short, short, short, short)</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, channelcontrolpanel.o(i._ZN8touchgfx8Drawable11setPositionEssss))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = touchgfx::Drawable::setPosition(short, short, short, short)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::setPosition(short, short, int, short, short)
+<BR>[Called By]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::setPosition(short, short, int, short, short)
 <LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
 <LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
-<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
 <LI><a href="#[2ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::Intro()
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 <LI><a href="#[32d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::invalidateScrollbars()
@@ -5913,8 +5913,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -5943,8 +5943,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -5978,8 +5978,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 </UL>
@@ -5998,8 +5998,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
@@ -6017,8 +6017,8 @@ Global Symbols
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 </UL>
@@ -6057,8 +6057,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
@@ -6088,8 +6088,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -6111,8 +6111,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -6122,8 +6122,8 @@ Global Symbols
 <P><STRONG><a name="[eb]"></a>touchgfx::Drawable::setXY(short, short)</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, channelcontrolpanel.o(i._ZN8touchgfx8Drawable5setXYEss))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = touchgfx::Drawable::setXY(short, short)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
-<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
+<BR>[Called By]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
+<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
 <LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::setup(touchgfx::SlideMenu::ExpandDirection, const touchgfx::Bitmap&, const touchgfx::Bitmap&, const touchgfx::Bitmap&, short, short, short, short)
 <LI><a href="#[2ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::Intro()
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
@@ -6143,8 +6143,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -6152,11 +6152,11 @@ Global Symbols
 <LI> slidemenu.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_9ContainerEEE)
 </UL>
 <P><STRONG><a name="[f3]"></a>touchgfx::Drawable::moveTo(short, short)</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, box.o(i._ZN8touchgfx8Drawable6moveToEss))
-<BR><BR>[Called By]<UL><LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep()
-<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Snapper&lang;touchgfx::Line&rang;::handleClickEvent(const touchgfx::ClickEvent&)
-<LI><a href="#[3f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep()
+<BR><BR>[Called By]<UL><LI><a href="#[3f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::nextMoveAnimationStep()
 <LI><a href="#[2a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideHorizotalText(ChannelControlPanel::SlideDirection)
 <LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::slideVerticalText(ChannelControlPanel::SlideDirection)
+<LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep()
+<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Snapper&lang;touchgfx::Line&rang;::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::slideTexts(MainView::SlideDirection)
 <LI><a href="#[3f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::Container&rang;::nextMoveAnimationStep()
 <LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::setState(touchgfx::SlideMenu::State)
@@ -6176,8 +6176,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -6200,8 +6200,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -6224,8 +6224,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -6235,10 +6235,10 @@ Global Symbols
 <P><STRONG><a name="[26f]"></a>touchgfx::Drawable::Drawable__sub_object()</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, customlistelement.o(i._ZN8touchgfx8DrawableC2Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = touchgfx::Drawable::Drawable__sub_object()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerLine()
-<LI><a href="#[2b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::ScrollableContainer()
+<BR>[Called By]<UL><LI><a href="#[2b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::ScrollableContainer()
 <LI><a href="#[2b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::Container()
 <LI><a href="#[2de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Widget::Widget__sub_object()
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::TriggerLine()
 <LI><a href="#[332]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Box::Box(unsigned short, unsigned short, touchgfx::colortype, unsigned char)
 </UL>
 
@@ -6498,10 +6498,10 @@ Global Symbols
 <LI><a href="#[2de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Widget::Widget__sub_object()
 <LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextAreaWithOneWildcard::TextAreaWithOneWildcard()
-<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::MoveAnimator()
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::MoveAnimator()
 <LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextAreaWithOneWildcard::TextAreaWithOneWildcard()
+<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> frontendapplication.o(i._ZN8MainViewC1Ev)
 </UL>
@@ -6563,10 +6563,10 @@ Global Symbols
 <P><STRONG><a name="[f5]"></a>touchgfx::Container::add(touchgfx::Drawable&)</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, container.o(i._ZN8touchgfx9Container3addERNS_8DrawableE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = touchgfx::Container::add(touchgfx::Drawable&)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::buttonClicked(const touchgfx::AbstractButton&)
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::add(touchgfx::Drawable&)
+<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ScrollableContainer::add(touchgfx::Drawable&)
 <LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int)
+<LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::buttonClicked(const touchgfx::AbstractButton&)
 <LI><a href="#[2c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::add(touchgfx::Drawable&)
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::add(touchgfx::Drawable&)
@@ -6596,9 +6596,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::Drawable__sub_object()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
+<BR>[Called By]<UL><LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
+<LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
 <LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
-<LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
 </UL>
 
 <P><STRONG><a name="[452]"></a>touchgfx::Container::Container__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, channelcontrolpanel.o(i._ZN8touchgfx9ContainerC1Ev), UNUSED)
@@ -7040,8 +7040,8 @@ Global Symbols
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 </UL>
 <P><STRONG><a name="[2fb]"></a>touchgfx::Rect::right() const</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, lcd16bpp.o(i._ZNK8touchgfx4Rect5rightEv))
-<BR><BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::cacheDrawOperations(bool)
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::getLastChild(short, short, touchgfx::Drawable**)
+<BR><BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::getLastChild(short, short, touchgfx::Drawable**)
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::cacheDrawOperations(bool)
 <LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::setup(touchgfx::SlideMenu::ExpandDirection, const touchgfx::Bitmap&, const touchgfx::Bitmap&, const touchgfx::Bitmap&, short, short, short, short)
 <LI><a href="#[2f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Rect::includes(const touchgfx::Rect&) const
 <LI><a href="#[35f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Rect::operator &=(const touchgfx::Rect&)
@@ -7058,8 +7058,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2f9]"></a>touchgfx::Rect::bottom() const</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, lcd16bpp.o(i._ZNK8touchgfx4Rect6bottomEv))
-<BR><BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::cacheDrawOperations(bool)
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::getLastChild(short, short, touchgfx::Drawable**)
+<BR><BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::getLastChild(short, short, touchgfx::Drawable**)
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::cacheDrawOperations(bool)
 <LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::setup(touchgfx::SlideMenu::ExpandDirection, const touchgfx::Bitmap&, const touchgfx::Bitmap&, const touchgfx::Bitmap&, short, short, short, short)
 <LI><a href="#[34a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::LCD::drawStringLTR(const touchgfx::Rect&, const touchgfx::Rect&, const touchgfx::LCD::StringVisuals&, const unsigned short*, std::__va_list)
 <LI><a href="#[2f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Rect::includes(const touchgfx::Rect&) const
@@ -7076,9 +7076,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2f1]"></a>touchgfx::Rect::isEmpty() const</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, lcd16bpp.o(i._ZNK8touchgfx4Rect7isEmptyEv))
-<BR><BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::cacheDrawOperations(bool)
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::draw(const touchgfx::Rect&) const
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::draw(const touchgfx::Rect&) const
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::setupDrawChain(const touchgfx::Rect&, touchgfx::Drawable**)
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::cacheDrawOperations(bool)
 <LI><a href="#[2f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Rect::expandToFit(const touchgfx::Rect&)
 <LI><a href="#[2f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::invalidateArea(touchgfx::Rect)
 <LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::LCD16bpp::fillRect(const touchgfx::Rect&, touchgfx::colortype, unsigned char)
@@ -7123,10 +7123,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[35f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Rect::operator &=(const touchgfx::Rect&)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::draw(touchgfx::Rect&)
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::cacheDrawOperations(bool)
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::draw(const touchgfx::Rect&) const
+<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::draw(const touchgfx::Rect&) const
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::setupDrawChain(const touchgfx::Rect&, touchgfx::Drawable**)
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::draw(touchgfx::Rect&)
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::cacheDrawOperations(bool)
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::draw(touchgfx::Rect&)
 <LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::JSMOC(const touchgfx::Rect&, touchgfx::Drawable*)
 </UL>
@@ -7257,8 +7257,8 @@ Global Symbols
 <P><STRONG><a name="[357]"></a>touchgfx::CWRUtil::Q5::operator -(const touchgfx::CWRUtil::Q5&) const</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, line.o(i._ZNK8touchgfx7CWRUtil2Q5miERKS1_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = touchgfx::CWRUtil::Q5::operator -(const touchgfx::CWRUtil::Q5&) const
 </UL>
-<BR>[Called By]<UL><LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::drawCanvasWidget(const touchgfx::Rect&) const
-<LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::updateCachedShape()
+<BR>[Called By]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::updateCachedShape()
+<LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::drawCanvasWidget(const touchgfx::Rect&) const
 <LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Canvas::moveTo(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5)
 <LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Canvas::lineTo(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5)
 <LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Canvas::transformFrameBufferToDisplay(touchgfx::CWRUtil::Q5&, touchgfx::CWRUtil::Q5&) const
@@ -7289,8 +7289,8 @@ Global Symbols
 <P><STRONG><a name="[35d]"></a>touchgfx::CWRUtil::Q5::operator +(const touchgfx::CWRUtil::Q5&) const</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, line.o(i._ZNK8touchgfx7CWRUtil2Q5plERKS1_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = touchgfx::CWRUtil::Q5::operator +(const touchgfx::CWRUtil::Q5&) const
 </UL>
-<BR>[Called By]<UL><LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::drawCanvasWidget(const touchgfx::Rect&) const
-<LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::updateCachedShape()
+<BR>[Called By]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::updateCachedShape()
+<LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::drawCanvasWidget(const touchgfx::Rect&) const
 </UL>
 
 <P><STRONG><a name="[e4]"></a>touchgfx::Drawable::invalidate() const</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, drawable.o(i._ZNK8touchgfx8Drawable10invalidateEv))
@@ -7340,8 +7340,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -7369,8 +7369,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -7407,8 +7407,8 @@ Global Symbols
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
 <LI> scrollablecontainer.o(.constdata__ZTVN8touchgfx19ScrollableContainerE)
@@ -7635,9 +7635,9 @@ Global Symbols
 <P><STRONG><a name="[265]"></a>__aeabi_vec_ctor_nocookie_nodtor</STRONG> (Thumb, 36 bytes, Stack size 24 bytes, aeabi_vec_ctor_nocookie_nodtor.o(i.__aeabi_vec_ctor_nocookie_nodtor))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __aeabi_vec_ctor_nocookie_nodtor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
-<LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::Line()
+<BR>[Called By]<UL><LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::Line()
 <LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::ChannelControlPanel()
+<LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
 <LI><a href="#[263]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32F7DMA::STM32F7DMA()
 <LI><a href="#[2f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Vector&lang;touchgfx::Rect, (unsigned short)8&rang;::Vector()
 </UL>
@@ -7762,13 +7762,13 @@ Global Symbols
 <P><STRONG><a name="[7e]"></a>main</STRONG> (Thumb, 182 bytes, Stack size 24 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 380<LI>Call Chain = main &rArr; touchgfx::hw_init() &rArr; BSP_QSPI_Init &rArr; QSPI_DummyCyclesCfg &rArr; QSPI_WriteEnable &rArr; HAL_QSPI_Command &rArr; QSPI_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[39b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
+<BR>[Calls]<UL><LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
+<LI><a href="#[1d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
+<LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
+<LI><a href="#[39b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
 <LI><a href="#[322]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::touchgfx_init()
 <LI><a href="#[3cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
 <LI><a href="#[3ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
-<LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
-<LI><a href="#[1d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
-<LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
 <LI><a href="#[3cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::CanvasWidgetRenderer::setupBuffer(unsigned char*, unsigned)
 <LI><a href="#[231]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_Start
 <LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Start_DMA
@@ -8151,9 +8151,9 @@ Global Symbols
 <P><STRONG><a name="[2c3]"></a>touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))</STRONG> (Thumb, 102 bytes, Stack size 32 bytes, mainview.o(t._ZN8touchgfx12MoveAnimatorI19ChannelControlPanelE18startMoveAnimationEsstPFstsstES4_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short)) &rArr; touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep() &rArr; touchgfx::Application::unregisterTimerWidget(const touchgfx::Drawable*)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep()
-<LI><a href="#[2cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::registerTimerWidget(touchgfx::Drawable*)
+<BR>[Calls]<UL><LI><a href="#[2cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::registerTimerWidget(touchgfx::Drawable*)
 <LI><a href="#[2ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::getInstance()
+<LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::nextMoveAnimationStep()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::slideTexts(MainView::SlideDirection)
 </UL>
@@ -8278,11 +8278,11 @@ Global Symbols
 <P><STRONG><a name="[2b8]"></a>T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*)</STRONG> (Thumb, 278 bytes, Stack size 32 bytes, frontendapplication.o(t._ZN8touchgfx14makeTransitionI8MainView13MainPresenterNS_12NoTransitionE5ModelEEPT0_PPNS_6ScreenEPPNS_9PresenterERNS_7MVPHeapEPPNS_10TransitionEPT2_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*) &rArr; MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::bindTransition(touchgfx::Transition&)
+<BR>[Calls]<UL><LI><a href="#[2ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::getInstance()
+<LI><a href="#[3fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::bindTransition(touchgfx::Transition&)
 <LI><a href="#[2ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::clearAllTimerWidgets()
 <LI><a href="#[3fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainPresenter::MainPresenter(MainView&)
 <LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::MainView()
-<LI><a href="#[2ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::getInstance()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrontendApplication::gotoMainScreenImpl()
 </UL>
@@ -8378,13 +8378,13 @@ Global Symbols
 <P><STRONG><a name="[45d]"></a>touchgfx::Vector&lang;touchgfx::Rect, (unsigned short)8&rang;::Vector__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, application.o(t._ZN8touchgfx6VectorINS_4RectELt8EEC1Ev), UNUSED)
 
 <P><STRONG><a name="[26b]"></a>touchgfx::CWRUtil::Q5 touchgfx::CWRUtil::toQ5&lang;int&rang;(T1)</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, channelcontrolpanel.o(t._ZN8touchgfx7CWRUtil4toQ5IiEENS0_2Q5ET_))
-<BR><BR>[Called By]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
-<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
-<LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::Line()
+<BR><BR>[Called By]<UL><LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::Line()
 <LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Line::updateCachedShape()
 <LI><a href="#[2ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void touchgfx::Line::setStart&lang;int&rang;(T1, T1)
 <LI><a href="#[2af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void touchgfx::Line::setEnd&lang;int&rang;(T1, T1)
 <LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void touchgfx::Line::setLineWidth&lang;int&rang;(T1)
+<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::setup(int, int, int, unsigned short)
+<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::setup(int, int, int, unsigned short)
 <LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Canvas::Canvas(const touchgfx::CanvasWidget*, const touchgfx::Rect&)
 <LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::CWRUtil::_angle(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5&)
 <LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Canvas::transformFrameBufferToDisplay(touchgfx::CWRUtil::Q5&, touchgfx::CWRUtil::Q5&) const
@@ -8629,9 +8629,9 @@ Local Symbols
 <P><STRONG><a name="[23d]"></a>I2Cx_Init</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, stm32746g_discovery.o(i.I2Cx_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = I2Cx_Init &rArr; I2Cx_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
-<LI><a href="#[1fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Init
+<BR>[Calls]<UL><LI><a href="#[1fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Init
 <LI><a href="#[23e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_GetState
+<LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_MspInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TS_IO_Init
 </UL>
@@ -8649,8 +8649,8 @@ Local Symbols
 <P><STRONG><a name="[240]"></a>I2Cx_ReadMultiple</STRONG> (Thumb, 42 bytes, Stack size 32 bytes, stm32746g_discovery.o(i.I2Cx_ReadMultiple))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = I2Cx_ReadMultiple &rArr; HAL_I2C_Mem_Read &rArr; I2C_RequestMemoryRead &rArr; I2C_WaitOnTXISFlagUntilTimeout &rArr; I2C_IsAcknowledgeFailed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[23c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_Error
-<LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Read
+<BR>[Calls]<UL><LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Read
+<LI><a href="#[23c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_Error
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TS_IO_Read
 </UL>
@@ -8658,8 +8658,8 @@ Local Symbols
 <P><STRONG><a name="[241]"></a>I2Cx_WriteMultiple</STRONG> (Thumb, 42 bytes, Stack size 32 bytes, stm32746g_discovery.o(i.I2Cx_WriteMultiple))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = I2Cx_WriteMultiple &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite &rArr; I2C_WaitOnTXISFlagUntilTimeout &rArr; I2C_IsAcknowledgeFailed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[23c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_Error
-<LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Write
+<BR>[Calls]<UL><LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Write
+<LI><a href="#[23c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2Cx_Error
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TS_IO_Write
 </UL>

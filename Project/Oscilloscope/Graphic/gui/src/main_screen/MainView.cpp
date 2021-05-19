@@ -230,7 +230,7 @@ void MainView::setupScreen()
 	*/
 
 	marker1.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
-	marker1.setup(marker1.getX(), marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
+	marker1.setup(oziBackground.getWidth() - 100, marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
 
 	add(marker1);
 
@@ -290,26 +290,26 @@ void MainView::setupScreen()
 	meas_delta.setTypedText(TypedText(T_CURSOR_US));
 	meas_delta.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
 	meas_delta.setXY(10, 200);
-	add(meas_delta);
+	//add(meas_delta);
 
 	Unicode::snprintf(cursor_buff, 15, "%d", 0);
 	time_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
 	time_wildcard.setWildcard(cursor_buff);
 	time_wildcard.setPosition(50, 200,100,20);
 	time_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
-	add(time_wildcard);
+	//add(time_wildcard);
 
 	meas_freq.setTypedText(TypedText(T_CURSOR_HZ));
 	meas_freq.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
 	meas_freq.setXY(10, 215);
-	add(meas_freq);
+	//add(meas_freq);
 
 	Unicode::snprintf(freq_buff, 15, "%d", 0);
 	freq_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
 	freq_wildcard.setWildcard(freq_buff);
 	freq_wildcard.setPosition(50, 215, 100, 20);
 	freq_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
-	add(freq_wildcard);
+	//add(freq_wildcard);
 
 
 	Unicode::snprintf(trig_buff[CHANNEL_1], 5, "%d V", 0);
@@ -454,11 +454,19 @@ void MainView::buttonClicked(const AbstractButton& source)
 			remove(triggLine[CHANNEL_1]);
 			add(triggLine[CHANNEL_1]);
 			graph_container.add(graph[CHANNEL_1]);
+
+
+			remove(trigger_lvl[CHANNEL_1]);
+			remove(trig_value_wildcard[CHANNEL_1]);
+			add(trigger_lvl[CHANNEL_1]);
+			add(trig_value_wildcard[CHANNEL_1]);
 		}
 		else
 		{
 			remove(triggLine[CHANNEL_1]);
 			graph_container.remove(graph[CHANNEL_1]);
+			remove(trigger_lvl[CHANNEL_1]);
+			remove(trig_value_wildcard[CHANNEL_1]);
 
 		}
 	}
@@ -470,11 +478,18 @@ void MainView::buttonClicked(const AbstractButton& source)
 			remove(triggLine[CHANNEL_2]);
 			add(triggLine[CHANNEL_2]);
 			graph_container.add(graph[CHANNEL_2]);
+
+			remove(trigger_lvl[CHANNEL_2]);
+			remove(trig_value_wildcard[CHANNEL_2]);
+			add(trigger_lvl[CHANNEL_2]);
+			add(trig_value_wildcard[CHANNEL_2]);
 		}
 		else
 		{
 			remove(triggLine[CHANNEL_2]);
 			graph_container.remove(graph[CHANNEL_2]);
+			remove(trigger_lvl[CHANNEL_2]);
+			remove(trig_value_wildcard[CHANNEL_2]);
 		}
 	}
 
@@ -483,10 +498,22 @@ void MainView::buttonClicked(const AbstractButton& source)
 		control_menu.resetExpandedStateTimer();
 		if (MeasureButtonClicked == FALSE)
 		{
+			remove(meas_freq);
+			remove(meas_delta);
+			remove(time_wildcard);
+			remove(freq_wildcard);
+			add(meas_freq);
+			add(meas_delta);
+			add(time_wildcard);
+			add(freq_wildcard);
 			MeasureButtonClicked = TRUE;
 		}
 		else
 		{
+			remove(meas_freq);
+			remove(meas_delta);
+			remove(time_wildcard);
+			remove(freq_wildcard);
 			MeasureButtonClicked = FALSE;
 		}
 	}
@@ -639,16 +666,17 @@ void MainView::handleTickEvent()
 		temp_value = (temp_value / 1000);
 		if (temp_value == 0)  freq_value = 0; else freq_value = 1000 / temp_value;
 		Unicode::snprintf(cursor_buff, 10, "%d ms", temp_value);
-		Unicode::snprintf(freq_buff, 10, "%d hz", freq_value);
+		Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
 	}
 	else
 	{
 		if (temp_value == 0) freq_value = 0; else freq_value = 1000000 / temp_value;
 		Unicode::snprintf(cursor_buff, 10, "%d us", temp_value);
-		Unicode::snprintf(freq_buff, 10, "%d hz", freq_value);
+		Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
 	}
 
 	time_wildcard.invalidate();
+	freq_wildcard.invalidate();
 
 	tickCounter++;
 	if (tickCounter % 1 == 0)

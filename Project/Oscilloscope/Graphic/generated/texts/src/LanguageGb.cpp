@@ -49,7 +49,7 @@ KEEP extern const touchgfx::Unicode::UnicodeChar textsGb[] TEXT_LOCATION_FLASH_A
     84,105,109,101,32,58,0, // T_Cursor_us
     84,45,67,72,32,49,32,58,0, // T_Trig1_level
     84,45,67,72,32,50,32,58,0, // T_Trig2_level
-    49,50,51,52,53,54,55,56,57,48,46,32,58,32,45,32,44,32,117,109,118,104,122,115,86,0, // T_number_small
+    49,50,51,52,53,54,55,56,57,48,46,32,58,32,45,32,44,32,117,109,118,72,122,115,86,0, // T_number_small
     2,0, // T_Cursor_value
     2,0, // T_Trigg1_value
     2,0, // T_Trigg2_value
