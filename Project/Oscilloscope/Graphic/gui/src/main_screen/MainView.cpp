@@ -289,41 +289,41 @@ void MainView::setupScreen()
 	 */
 	meas_delta.setTypedText(TypedText(T_CURSOR_US));
 	meas_delta.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	meas_delta.setXY(22, 200);
+	meas_delta.setXY(10, 200);
 	add(meas_delta);
 
 	Unicode::snprintf(cursor_buff, 15, "%d", 0);
 	time_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
 	time_wildcard.setWildcard(cursor_buff);
-	time_wildcard.setPosition(40, 200,100,20);
+	time_wildcard.setPosition(50, 200,100,20);
 	time_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
 	add(time_wildcard);
 
 	meas_freq.setTypedText(TypedText(T_CURSOR_HZ));
 	meas_freq.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	meas_freq.setXY(22, 215);
+	meas_freq.setXY(10, 215);
 	add(meas_freq);
 
 	Unicode::snprintf(freq_buff, 15, "%d", 0);
 	freq_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
 	freq_wildcard.setWildcard(freq_buff);
-	freq_wildcard.setPosition(40, 215, 100, 20);
+	freq_wildcard.setPosition(50, 215, 100, 20);
 	freq_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
 	add(freq_wildcard);
 
 
-	Unicode::snprintf(trig_buff[CHANNEL_1], 5, "%d", 0);
+	Unicode::snprintf(trig_buff[CHANNEL_1], 5, "%d V", 0);
 	trig_value_wildcard[CHANNEL_1].setTypedText(TypedText(T_TRIGG1_VALUE));
 	trig_value_wildcard[CHANNEL_1].setWildcard(trig_buff[CHANNEL_1]);
-	trig_value_wildcard[CHANNEL_1].setPosition(160, 215, 50, 20);
+	trig_value_wildcard[CHANNEL_1].setPosition(170, 214, 100, 20);
 	trig_value_wildcard[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
 	add(trig_value_wildcard[CHANNEL_1]);
 	trig_value_wildcard[CHANNEL_1].invalidate();
 
-	Unicode::snprintf(trig_buff[CHANNEL_2], 5, "%d", 0);
+	Unicode::snprintf(trig_buff[CHANNEL_2], 5, "%d V", 0);
 	trig_value_wildcard[CHANNEL_2].setTypedText(TypedText(T_TRIGG2_VALUE));
 	trig_value_wildcard[CHANNEL_2].setWildcard(trig_buff[CHANNEL_2]);
-	trig_value_wildcard[CHANNEL_2].setPosition(255, 215, 50, 20);
+	trig_value_wildcard[CHANNEL_2].setPosition(265, 214, 100, 20);
 	trig_value_wildcard[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
 	add(trig_value_wildcard[CHANNEL_2]);
 	trig_value_wildcard[CHANNEL_2].invalidate();
@@ -624,7 +624,7 @@ void MainView::handleTickEvent()
 		if (presenter->p_GetVoltageScale(i) > 5)
 			float_value = float_value / 1000;
 
-		Unicode::snprintfFloat(trig_buff[i], 5, "%.2f", float_value);
+		Unicode::snprintfFloat(trig_buff[i], 7, "%.2f V", float_value);
 		trig_value_wildcard[i].invalidate();
 	}
 

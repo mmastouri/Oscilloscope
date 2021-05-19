@@ -171,7 +171,7 @@ private:
 	Unicode::UnicodeChar freq_buff[15];
 
 	TextAreaWithOneWildcard trig_value_wildcard[NUMBER_OF_CHANNEL];
-	Unicode::UnicodeChar trig_buff[NUMBER_OF_CHANNEL][5];
+	Unicode::UnicodeChar trig_buff[NUMBER_OF_CHANNEL][10];
 
 	enum SlideDirection
 	{
