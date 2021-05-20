@@ -323,17 +323,6 @@ static void MX_GPIO_Init(void)
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-	/*Configure GPIO pin : BUTTON_Pin */
-	GPIO_InitStruct.Pin = GPIO_PIN_11;
-	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
-
-	/* EXTI interrupt init*/
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
-	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
-
 }
 
 /* TIM3 init function */
@@ -471,27 +460,6 @@ void Error_Handler(void)
 	}
 	/* USER CODE END Error_Handler */
 }
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-	static bool stop_flag = false;
-	
-	if (stop_flag == false)
-	{
-		HAL_ADC_Stop_DMA(&hadc1);
-		HAL_ADC_Stop_DMA(&hadc3);
-
-		stop_flag = true;
-	}
-	else
-	{
-		HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);
-		HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
-
-		stop_flag = false;
-
-	}
-}
-
 
 extern "C"
 {
@@ -506,6 +474,19 @@ extern "C"
 	}
 }
 
+void ControlHWRunStop(int state)
+{
+	if(state == 0)
+	{
+		HAL_ADC_Stop_DMA(&hadc1);
+		HAL_ADC_Stop_DMA(&hadc3);
+	}
+	else
+	{
+		HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);
+		HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
+	}
+}
 
 void UpdateHWTimeScale(int channel, int value)
 {

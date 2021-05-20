@@ -63,6 +63,7 @@ enum TimeScale
 uint16_t * PushDaTaToModel_1(void);
 uint16_t * PushDaTaToModel_2(void);
 void UpdateHWTimeScale(int channel, int value);
+void ControlHWRunStop(int state);
 #endif // !SIMULATOR
 
 #endif

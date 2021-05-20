@@ -116,8 +116,7 @@ public:
 	int selectedChnIndex;
 
 	void Intro(void);
-	void MainView::SetMeasureButton(bool state);
-	bool MainView::isMeasButtonClicked(void);
+	int MainView::GetMeasButtonIndex(void);
 
 private:
 	Box back_ground;
@@ -189,7 +188,7 @@ private:
 	int cursor_value;
 	int alpha;
 
-	bool MeasureButtonClicked;
+	int MeasureButtonClicked;
 
 	Context appContext;
 };

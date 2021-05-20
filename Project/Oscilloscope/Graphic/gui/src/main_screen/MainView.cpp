@@ -361,7 +361,7 @@ void MainView::setupScreen()
 	chn_enable[CHANNEL_2].forceState(true);
 	
 
-	meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_ID));
+	meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
 	meas_enable.setXY(150, 242);
 	meas_enable.setAction(buttonClickedCallback);
 	meas_enable.forceState(false);
@@ -414,14 +414,7 @@ void MainView::tearDownScreen()
 {
 }
 
-void MainView::SetMeasureButton(bool state)
-{
-	MeasureButtonClicked = state;
-	meas_enable.forceState(state);
-}
-
-
-bool MainView::isMeasButtonClicked(void)
+int MainView::GetMeasButtonIndex(void)
 {
 	return MeasureButtonClicked;
 }
@@ -455,7 +448,6 @@ void MainView::buttonClicked(const AbstractButton& source)
 	}
 	else if (&source == &chn_enable[CHANNEL_1])
 	{
-		control_menu.resetExpandedStateTimer();
 		if (chn_enable[CHANNEL_1].getState() == true)
 		{
 			remove(triggLine[CHANNEL_1]);
@@ -479,7 +471,6 @@ void MainView::buttonClicked(const AbstractButton& source)
 	}
 	else if (&source == &chn_enable[CHANNEL_2])
 	{
-		control_menu.resetExpandedStateTimer();
 		if (chn_enable[CHANNEL_2].getState() == true)
 		{
 			remove(triggLine[CHANNEL_2]);
@@ -502,7 +493,6 @@ void MainView::buttonClicked(const AbstractButton& source)
 
 	else if (&source == &meas_enable)
 	{
-		control_menu.resetExpandedStateTimer();
 		if (MeasureButtonClicked == FALSE)
 		{
 			remove(meas_freq);
@@ -513,17 +503,33 @@ void MainView::buttonClicked(const AbstractButton& source)
 			add(meas_delta);
 			add(time_wildcard);
 			add(freq_wildcard);
-			MeasureButtonClicked = TRUE;
+			MeasureButtonClicked = 1;
+			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH1_ID), Bitmap(BITMAP_CURSOR_ON_CH2_ID));
+
 		}
-		else
+		else if (MeasureButtonClicked == 1)
+		{
+			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH2_ID), Bitmap(BITMAP_CURSOR_OFF_ID));
+			MeasureButtonClicked = 2;
+		}
+		else if(MeasureButtonClicked == 2)
 		{
 			remove(meas_freq);
 			remove(meas_delta);
 			remove(time_wildcard);
 			remove(freq_wildcard);
+			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
 			MeasureButtonClicked = FALSE;
 		}
+
 	}
+	else if (&source == &run_stop)
+	{
+#ifndef  SIMULATOR		
+		ControlHWRunStop(!run_stop.getState());
+#endif // ! SIMULATOR	
+	}
+
 }
 
 void MainView::Intro(void)
@@ -670,23 +676,28 @@ void MainView::handleTickEvent()
 	}
 
 
-	marker1.EnableLine(isMeasButtonClicked());
-	marker2.EnableLine(isMeasButtonClicked());
+	marker1.EnableLine(GetMeasButtonIndex() != false);
+	marker2.EnableLine(GetMeasButtonIndex() != false);
 	cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
 
-	temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(selectedChnIndex);
-	if (presenter->p_GetTimeScale(selectedChnIndex) > DIV_500uS)
+	int index = GetMeasButtonIndex();
+
+	if (index)
 	{
-		temp_value = (temp_value / 1000);
-		if (temp_value == 0)  freq_value = 0; else freq_value = 1000 / temp_value;
-		Unicode::snprintf(cursor_buff, 10, "%d ms", temp_value);
-		Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
-	}
-	else
-	{
-		if (temp_value == 0) freq_value = 0; else freq_value = 1000000 / temp_value;
-		Unicode::snprintf(cursor_buff, 10, "%d us", temp_value);
-		Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
+		temp_value = cursor_value * presenter->p_GetTimeScale2Pixel(index - 1);
+		if (presenter->p_GetTimeScale(index - 1) > DIV_500uS)
+		{
+			temp_value = (temp_value / 1000);
+			if (temp_value == 0)  freq_value = 0; else freq_value = 1000 / temp_value;
+			Unicode::snprintf(cursor_buff, 10, "%d ms", temp_value);
+			Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
+		}
+		else
+		{
+			if (temp_value == 0) freq_value = 0; else freq_value = 1000000 / temp_value;
+			Unicode::snprintf(cursor_buff, 10, "%d us", temp_value);
+			Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
+		}
 	}
 
 	time_wildcard.invalidate();

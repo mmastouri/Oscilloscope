@@ -1033,6 +1033,66 @@
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_chRightButtonUnpress.cpp</FilePath>
             </File>
+            <File>
+              <FileName>image_ch1_off.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_ch1_off.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ch1_on.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_ch1_on.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ch2_off.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_ch2_off.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ch2_on.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_ch2_on.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_control_template.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_control_template.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_cursor_off.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_cursor_off.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_cursor_on.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_cursor_on.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_measure_off.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_measure_off.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_RUN.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_RUN.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_stop.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_stop.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_cursor_on_ch1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_cursor_on_ch1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_cursor_on_ch2.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_cursor_on_ch2.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

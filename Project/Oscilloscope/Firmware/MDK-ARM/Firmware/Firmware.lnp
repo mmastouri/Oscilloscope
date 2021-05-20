@@ -120,6 +120,18 @@
 "firmware\image_chleftbuttonunpress.o"
 "firmware\image_chrightbuttonpress.o"
 "firmware\image_chrightbuttonunpress.o"
+"firmware\image_ch1_off.o"
+"firmware\image_ch1_on.o"
+"firmware\image_ch2_off.o"
+"firmware\image_ch2_on.o"
+"firmware\image_control_template.o"
+"firmware\image_cursor_off.o"
+"firmware\image_cursor_on.o"
+"firmware\image_measure_off.o"
+"firmware\image_run.o"
+"firmware\image_stop.o"
+"firmware\image_cursor_on_ch1.o"
+"firmware\image_cursor_on_ch2.o"
 --library_type=microlib --strict --scatter "..\Flash_QSPI.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
