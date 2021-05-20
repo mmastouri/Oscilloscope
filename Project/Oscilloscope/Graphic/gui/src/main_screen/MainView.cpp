@@ -337,39 +337,45 @@ void MainView::setupScreen()
 	control_menu.setExpandedStateTimeout(500);
 	
 
-	txt_ctrl_menu[CHANNEL_1].setTypedText(TypedText(T_CHN1_CTRL_MENU));
-	txt_ctrl_menu[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	txt_ctrl_menu[CHANNEL_1].setXY(40,246);
-	/*control_menu.*/add(txt_ctrl_menu[CHANNEL_1]);
+	//txt_ctrl_menu[CHANNEL_1].setTypedText(TypedText(T_CHN1_CTRL_MENU));
+	//txt_ctrl_menu[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	//txt_ctrl_menu[CHANNEL_1].setXY(40,246);
+	///*control_menu.*/add(txt_ctrl_menu[CHANNEL_1]);
 
-	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	chn_enable[CHANNEL_1].setXY(75, 242);
+	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CH1_OFF_ID), Bitmap(BITMAP_CH1_ON_ID));
+	chn_enable[CHANNEL_1].setXY(30, 242);
 	chn_enable[CHANNEL_1].setAction(buttonClickedCallback);
 	
 	
 	chn_enable[CHANNEL_1].forceState(true);
 
-	txt_ctrl_menu[CHANNEL_2].setTypedText(TypedText(T_CHN2_CTRL_MENU));
-	txt_ctrl_menu[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	txt_ctrl_menu[CHANNEL_2].setXY(120, 246);
-	/*control_menu.*/add(txt_ctrl_menu[CHANNEL_2]);
+	//txt_ctrl_menu[CHANNEL_2].setTypedText(TypedText(T_CHN2_CTRL_MENU));
+	//txt_ctrl_menu[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	//txt_ctrl_menu[CHANNEL_2].setXY(120, 246);
+	///*control_menu.*/add(txt_ctrl_menu[CHANNEL_2]);
 
-	chn_enable[CHANNEL_2].setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	chn_enable[CHANNEL_2].setXY(155, 242);
+	chn_enable[CHANNEL_2].setBitmaps(Bitmap(BITMAP_CH2_OFF_ID), Bitmap(BITMAP_CH2_ON_ID));
+	chn_enable[CHANNEL_2].setXY(90, 242);
 	chn_enable[CHANNEL_2].setAction(buttonClickedCallback);
 
 	chn_enable[CHANNEL_2].forceState(true);
 	
 
-	meas_enable.setBitmaps(Bitmap(BITMAP_CHNCONTROLBUTTONOFF_ID), Bitmap(BITMAP_CHNCONTROLBUTTONON_ID));
-	meas_enable.setXY(260, 242);
+	meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_ID));
+	meas_enable.setXY(150, 242);
 	meas_enable.setAction(buttonClickedCallback);
 	meas_enable.forceState(false);
 
-	meas_ctrl_menu.setTypedText(TypedText(T_MEAS_CTRL_MENU));
-	meas_ctrl_menu.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	meas_ctrl_menu.setXY(200, 246);
-	/*control_menu.*/add(meas_ctrl_menu);
+
+	run_stop.setBitmaps(Bitmap(BITMAP_RUN_ID), Bitmap(BITMAP_STOP_ID));
+	run_stop.setXY(240, 242);
+	run_stop.setAction(buttonClickedCallback);
+	run_stop.forceState(false);
+
+	//meas_ctrl_menu.setTypedText(TypedText(T_MEAS_CTRL_MENU));
+	//meas_ctrl_menu.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	//meas_ctrl_menu.setXY(200, 246);
+	///*control_menu.*/add(meas_ctrl_menu);
 
 
 	graph_container.add(graph[CHANNEL_1]);
@@ -377,6 +383,7 @@ void MainView::setupScreen()
 	/*control_menu.*/add(chn_enable[CHANNEL_1]);
 	/*control_menu.*/add(chn_enable[CHANNEL_2]);
 	/*control_menu.*/add(meas_enable);
+	add(run_stop);
 	
 	add(control_menu);
 

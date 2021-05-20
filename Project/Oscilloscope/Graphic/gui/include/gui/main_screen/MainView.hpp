@@ -146,6 +146,7 @@ private:
 
 	ToggleButton chn_enable[NUMBER_OF_CHANNEL];
 	ToggleButton meas_enable;
+	ToggleButton run_stop;
 
 	
 
