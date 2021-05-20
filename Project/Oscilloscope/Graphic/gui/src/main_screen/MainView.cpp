@@ -343,7 +343,7 @@ void MainView::setupScreen()
 	///*control_menu.*/add(txt_ctrl_menu[CHANNEL_1]);
 
 	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CH1_OFF_ID), Bitmap(BITMAP_CH1_ON_ID));
-	chn_enable[CHANNEL_1].setXY(30, 242);
+	chn_enable[CHANNEL_1].setXY(30, 237);
 	chn_enable[CHANNEL_1].setAction(buttonClickedCallback);
 	
 	
@@ -355,20 +355,20 @@ void MainView::setupScreen()
 	///*control_menu.*/add(txt_ctrl_menu[CHANNEL_2]);
 
 	chn_enable[CHANNEL_2].setBitmaps(Bitmap(BITMAP_CH2_OFF_ID), Bitmap(BITMAP_CH2_ON_ID));
-	chn_enable[CHANNEL_2].setXY(90, 242);
+	chn_enable[CHANNEL_2].setXY(90, 237);
 	chn_enable[CHANNEL_2].setAction(buttonClickedCallback);
 
 	chn_enable[CHANNEL_2].forceState(true);
 	
 
 	meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
-	meas_enable.setXY(150, 242);
+	meas_enable.setXY(150, 237);
 	meas_enable.setAction(buttonClickedCallback);
 	meas_enable.forceState(false);
 
 
 	run_stop.setBitmaps(Bitmap(BITMAP_RUN_ID), Bitmap(BITMAP_STOP_ID));
-	run_stop.setXY(240, 242);
+	run_stop.setXY(240, 237);
 	run_stop.setAction(buttonClickedCallback);
 	run_stop.forceState(false);
 
