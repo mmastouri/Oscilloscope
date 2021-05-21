@@ -555,7 +555,19 @@ void MainView::buttonClicked(const AbstractButton& source)
 		ControlHWRunStop(!run_stop.getState());
 #endif // ! SIMULATOR	
 	}
+	else if (&source == &save_settings)
+	{
+	   control_menu.resetExpandedStateTimer();
 
+
+	}
+	else if (&source == &reset_settings)
+	{
+	   control_menu.resetExpandedStateTimer();
+
+
+
+	}
 }
 
 void MainView::Intro(void)
