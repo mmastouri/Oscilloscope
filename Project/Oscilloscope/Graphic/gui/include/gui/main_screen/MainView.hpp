@@ -143,11 +143,16 @@ private:
 	Button rightButton;
 	Button leftButton;
 
+	Button save_settings;
+	Button reset_settings;
+
 	ToggleButton chn_enable[NUMBER_OF_CHANNEL];
 	ToggleButton meas_enable;
 	ToggleButton run_stop;
 
 	
+	int ch1_marker1_position, ch1_marker2_position;
+	int ch2_marker1_position, ch2_marker2_position;
 
 	Marker marker1;
 	Marker marker2;

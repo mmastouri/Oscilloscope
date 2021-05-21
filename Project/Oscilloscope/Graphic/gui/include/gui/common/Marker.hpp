@@ -67,7 +67,8 @@ public:
 	void setup(int x_position, int marker_height, int graph_width, uint16_t marker_color);
 	void handleMarkerDragEvent(const DragEvent&);
 	void EnableLine(bool enable);
-	int MarkerPosition(void);
+	int GetPosition(void);
+	void SetPosition(int y);
 private:
 
 	Snapper<Line> marker;
@@ -75,6 +76,7 @@ private:
 	Callback< Marker, const DragEvent& > markerDraggedCallback;
 	int x_marker;
 	int width_limit;
+	int height_limit;
 	int marker_position;
 };
 #endif

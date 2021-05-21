@@ -86,6 +86,7 @@ void Marker::setup(int x_position, int marker_height, int graph_width, uint16_t 
 	*/
 
 	width_limit = graph_width;
+	height_limit = marker_height;
 	x_marker = x_position;
 	marker_position = x_marker;
 	/*
@@ -179,7 +180,15 @@ void Marker::EnableLine(bool enable)
 	marker.invalidate();
 }
 
-int Marker::MarkerPosition(void)
+int Marker::GetPosition(void)
 {
 	return marker_position;
+}
+
+void Marker::SetPosition(int y)
+{
+	marker_position = y;
+    x_marker = y;
+	marker.setPosition(x_marker, -300, 50, height_limit + 500);
+	marker.invalidate();
 }

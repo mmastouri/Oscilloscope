@@ -239,6 +239,11 @@ void MainView::setupScreen()
 
 	add(marker2);
 
+	ch1_marker1_position = marker1.GetPosition();
+	ch1_marker2_position = marker2.GetPosition();
+	ch2_marker1_position = marker1.GetPosition();
+	ch2_marker2_position = marker2.GetPosition();
+
 	/*
 	* Trigger Line: Setup the Trigger Line
 	*/
@@ -336,6 +341,15 @@ void MainView::setupScreen()
 	control_menu.setVisiblePixelsWhenCollapsed(15);
 	control_menu.setExpandedStateTimeout(500);
 	
+	save_settings.setBitmaps(Bitmap(BITMAP_SAVE_SETTINGS_UNPRESS_ID), Bitmap(BITMAP_SAVE_SETTINGS_PRESS_ID));
+	save_settings.setXY(27, 3);
+	save_settings.setAction(buttonClickedCallback);
+	control_menu.add(save_settings);
+
+	reset_settings.setBitmaps(Bitmap(BITMAP_RESET_SETTINGS_UNPRESS_ID), Bitmap(BITMAP_RESET_SETTINGS_PRESS_ID));
+	reset_settings.setXY(87, 3);
+	reset_settings.setAction(buttonClickedCallback);
+	control_menu.add(reset_settings);
 
 	//txt_ctrl_menu[CHANNEL_1].setTypedText(TypedText(T_CHN1_CTRL_MENU));
 	//txt_ctrl_menu[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
@@ -495,6 +509,9 @@ void MainView::buttonClicked(const AbstractButton& source)
 	{
 		if (MeasureButtonClicked == FALSE)
 		{
+			marker1.SetPosition(ch1_marker1_position);
+			marker2.SetPosition(ch1_marker2_position);
+
 			remove(meas_freq);
 			remove(meas_delta);
 			remove(time_wildcard);
@@ -509,11 +526,20 @@ void MainView::buttonClicked(const AbstractButton& source)
 		}
 		else if (MeasureButtonClicked == 1)
 		{
+			ch1_marker1_position = marker1.GetPosition();
+			ch1_marker2_position = marker2.GetPosition();
+
+			marker1.SetPosition(ch2_marker1_position);
+			marker2.SetPosition(ch2_marker2_position);
+					   
 			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH2_ID), Bitmap(BITMAP_CURSOR_OFF_ID));
 			MeasureButtonClicked = 2;
 		}
 		else if(MeasureButtonClicked == 2)
 		{
+			ch2_marker1_position = marker1.GetPosition();
+			ch2_marker2_position = marker2.GetPosition();
+
 			remove(meas_freq);
 			remove(meas_delta);
 			remove(time_wildcard);
@@ -678,7 +704,7 @@ void MainView::handleTickEvent()
 
 	marker1.EnableLine(GetMeasButtonIndex() != false);
 	marker2.EnableLine(GetMeasButtonIndex() != false);
-	cursor_value = abs(marker1.MarkerPosition() - marker2.MarkerPosition());
+	cursor_value = abs(marker1.GetPosition() - marker2.GetPosition());
 
 	int index = GetMeasButtonIndex();
 
