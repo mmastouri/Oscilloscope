@@ -1,6 +1,7 @@
 # PocketOZ on STM32F746 Discovery kit
   
 ![oscilloscope](Document/Picture/osc.jpg)
+![oscilloscope](Document/Picture/osc2.jpg)
 ![oscilloscope](Document/Picture/hosc.jpg)
 
 # Official version of TouchGFX
