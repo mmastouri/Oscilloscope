@@ -196,6 +196,9 @@ private:
 	int MeasureButtonClicked;
 
 	Context appContext;
+#ifndef SIMULATOR
+	save_data_t  data;
+#endif
 };
 
 #endif // MAIN_VIEW_HPP

@@ -47,5 +47,10 @@ firmware\model.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h
 firmware\model.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 firmware\model.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
 firmware\model.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
+firmware\model.o: ../Inc/settings.h
+firmware\model.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery.h
+firmware\model.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h
+firmware\model.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery_qspi.h
+firmware\model.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\../Components/n25q128a/n25q128a.h
 firmware\model.o: ..\..\Graphic\gui\include\gui/model/ModelListener.hpp
 firmware\model.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

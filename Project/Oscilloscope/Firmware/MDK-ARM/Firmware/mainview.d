@@ -72,6 +72,11 @@ firmware\mainview.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h
 firmware\mainview.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 firmware\mainview.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
 firmware\mainview.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
+firmware\mainview.o: ../Inc/settings.h
+firmware\mainview.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery.h
+firmware\mainview.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h
+firmware\mainview.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery_qspi.h
+firmware\mainview.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\../Components/n25q128a/n25q128a.h
 firmware\mainview.o: ..\..\..\..\touchgfx\framework\include\touchgfx\widgets\ToggleButton.hpp
 firmware\mainview.o: ..\..\..\..\touchgfx\framework\include\touchgfx/widgets/Button.hpp
 firmware\mainview.o: ..\..\..\..\touchgfx\framework\include\touchgfx/widgets/AbstractButton.hpp

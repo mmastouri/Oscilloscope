@@ -77,4 +77,9 @@ firmware\graph.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h
 firmware\graph.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 firmware\graph.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
 firmware\graph.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
+firmware\graph.o: ../Inc/settings.h
+firmware\graph.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery.h
+firmware\graph.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h
+firmware\graph.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery_qspi.h
+firmware\graph.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\../Components/n25q128a/n25q128a.h
 firmware\graph.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

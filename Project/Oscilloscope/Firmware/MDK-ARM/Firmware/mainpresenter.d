@@ -46,6 +46,11 @@ firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.
 firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
 firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
+firmware\mainpresenter.o: ../Inc/settings.h
+firmware\mainpresenter.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery.h
+firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h
+firmware\mainpresenter.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery_qspi.h
+firmware\mainpresenter.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\../Components/n25q128a/n25q128a.h
 firmware\mainpresenter.o: ..\..\Graphic\gui\include\gui/main_screen/MainView.hpp
 firmware\mainpresenter.o: ..\..\..\..\touchgfx\framework\include\mvp/View.hpp
 firmware\mainpresenter.o: ..\..\..\..\touchgfx\framework\include\touchgfx/Screen.hpp

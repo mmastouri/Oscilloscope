@@ -6,6 +6,7 @@
 #include "stdio.h"
 #ifndef SIMULATOR
 #include "stm32f7xx_hal.h"
+#include "settings.h"
 #endif // SIMULATOR
 
 

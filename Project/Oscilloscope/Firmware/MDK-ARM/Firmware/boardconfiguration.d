@@ -103,6 +103,11 @@ firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal
 firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
 firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
+firmware\boardconfiguration.o: ../Inc/settings.h
+firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery.h
+firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h
+firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery_qspi.h
+firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\../Components/n25q128a/n25q128a.h
 firmware\boardconfiguration.o: ..\..\Graphic\gui\include\gui/main_screen/MainView.hpp
 firmware\boardconfiguration.o: ..\..\Graphic\gui\include\gui/main_screen/MainPresenter.hpp
 firmware\boardconfiguration.o: ..\..\Graphic\gui\include\gui/model/ModelListener.hpp
@@ -159,9 +164,5 @@ firmware\boardconfiguration.o: ..\..\..\..\touchgfx\framework\include\platform/h
 firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\include\bsp/STM32F746GTouchController.hpp
 firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\include\bsp/STM32F7Instrumentation.hpp
 firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery_sdram.h
-firmware\boardconfiguration.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h
 firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery_lcd.h
 firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\../Components/rk043fn48h/rk043fn48h.h
-firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery.h
-firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\stm32746g_discovery_qspi.h
-firmware\boardconfiguration.o: ..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery\../Components/n25q128a/n25q128a.h

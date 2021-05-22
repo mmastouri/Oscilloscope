@@ -36,6 +36,7 @@
 "firmware\stm32f7xx_hal_msp.o"
 "firmware\stm32f7xx_it.o"
 "firmware\main.o"
+"firmware\settings.o"
 "firmware\stm32f7xx_hal_rcc_ex.o"
 "firmware\stm32f7xx_hal_i2c.o"
 "firmware\stm32f7xx_hal_pwr.o"
@@ -136,6 +137,9 @@
 "firmware\image_reset_settings_unpress.o"
 "firmware\image_save_settings_press.o"
 "firmware\image_save_settings_unpress.o"
+"firmware\image_button_template.o"
+"firmware\image_trig_marker_off.o"
+"firmware\image_trig_marker_on.o"
 --library_type=microlib --strict --scatter "..\Flash_QSPI.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

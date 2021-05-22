@@ -71,9 +71,47 @@ void MainView::setupScreen()
 	panelChn[CHANNEL_2].associatedChannel = 1;
 	MeasureButtonClicked = FALSE;
 
+
+#ifndef SIMULATOR
+	qsettings_restore(&data);
+#endif
 	// overide default model settings from savedones
 	appContext.Restore();
+#ifndef SIMULATOR
 
+	if (data.item.signature == 0x55AA1122)
+	{
+		presenter->p_SetYOffset(CHANNEL_1, data.item.CH1_YOffset);
+		presenter->p_SetYOffset(CHANNEL_2, data.item.CH2_YOffset);
+		presenter->p_SetTrigger(CHANNEL_1, data.item.CH1_Trigger);
+		presenter->p_SetTrigger(CHANNEL_2, data.item.CH2_Trigger);
+		presenter->p_SetTriggerType(CHANNEL_1, data.item.CH1_TriggerType);
+		presenter->p_SetTriggerType(CHANNEL_2, data.item.CH2_TriggerType);
+
+		presenter->p_SetTriggerValue(CHANNEL_1, data.item.CH1_TriggerValue);
+		presenter->p_SetTriggerValue(CHANNEL_2, data.item.CH2_TriggerValue);
+		presenter->p_SetTimeScale(CHANNEL_1, data.item.CH1_TimeScale);
+		presenter->p_SetTimeScale(CHANNEL_2, data.item.CH2_TimeScale);
+		presenter->p_SetVoltageScale(CHANNEL_1, data.item.CH1_VoltageScale);
+		presenter->p_SetVoltageScale(CHANNEL_2, data.item.CH2_VoltageScale);
+}
+	else
+	{
+		presenter->p_SetYOffset(CHANNEL_1, 115 - 38);
+		presenter->p_SetYOffset(CHANNEL_2, 230 - 38);
+		presenter->p_SetTrigger(CHANNEL_1, true);
+		presenter->p_SetTrigger(CHANNEL_2, true);
+		presenter->p_SetTriggerType(CHANNEL_1, FALLING);
+		presenter->p_SetTriggerType(CHANNEL_2, FALLING);
+
+		presenter->p_SetTriggerValue(CHANNEL_1, 20);
+		presenter->p_SetTriggerValue(CHANNEL_2, 20);
+		presenter->p_SetTimeScale(CHANNEL_1, DIV_100uS);
+		presenter->p_SetTimeScale(CHANNEL_2, DIV_100uS);
+		presenter->p_SetVoltageScale(CHANNEL_1, DIV_2V);
+		presenter->p_SetVoltageScale(CHANNEL_2, DIV_2V);
+	}
+#else
 	presenter->p_SetYOffset(CHANNEL_1, 115 - 38);
 	presenter->p_SetYOffset(CHANNEL_2, 230 - 38);
 	presenter->p_SetTrigger(CHANNEL_1, true);
@@ -87,6 +125,7 @@ void MainView::setupScreen()
 	presenter->p_SetTimeScale(CHANNEL_2, DIV_100uS);
 	presenter->p_SetVoltageScale(CHANNEL_1, DIV_2V);
 	presenter->p_SetVoltageScale(CHANNEL_2, DIV_2V);
+#endif
 	/*
 	* Background configuration: add application,
 	*   grid, control panel and channel background
@@ -559,14 +598,66 @@ void MainView::buttonClicked(const AbstractButton& source)
 	{
 	   control_menu.resetExpandedStateTimer();
 
+#ifndef SIMULATOR
+
+	   data.item.signature = 0x55AA1122;
+
+	   data.item.CH1_YOffset = presenter->p_GetYOffset(CHANNEL_1);
+	   data.item.CH2_YOffset = presenter->p_GetYOffset(CHANNEL_2);
+	   data.item.CH1_Trigger = presenter->p_GetTrigger(CHANNEL_1);
+	   data.item.CH2_Trigger = presenter->p_GetTrigger(CHANNEL_2);
+	   data.item.CH1_TriggerType = presenter->p_GetTriggerType(CHANNEL_1);
+	   data.item.CH2_TriggerType = presenter->p_GetTriggerType(CHANNEL_2);
+	   data.item.CH1_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_1);
+	   data.item.CH2_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_2);
+	   data.item.CH1_TimeScale = presenter->p_GetTimeScale(CHANNEL_1);
+	   data.item.CH2_TimeScale = presenter->p_GetTimeScale(CHANNEL_2);
+	   data.item.CH1_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_1);
+	   data.item.CH2_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_2);
+
+	   qsettings_save(&data);
+#endif
+
 
 	}
 	else if (&source == &reset_settings)
 	{
 	   control_menu.resetExpandedStateTimer();
 
+#ifndef SIMULATOR
 
+	   data.item.signature = 0xFFFFFFFF;
 
+	   data.item.CH1_YOffset = presenter->p_GetYOffset(CHANNEL_1);
+	   data.item.CH2_YOffset = presenter->p_GetYOffset(CHANNEL_2);
+	   data.item.CH1_Trigger = presenter->p_GetTrigger(CHANNEL_1);
+	   data.item.CH2_Trigger = presenter->p_GetTrigger(CHANNEL_2);
+	   data.item.CH1_TriggerType = presenter->p_GetTriggerType(CHANNEL_1);
+	   data.item.CH2_TriggerType = presenter->p_GetTriggerType(CHANNEL_2);
+	   data.item.CH1_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_1);
+	   data.item.CH2_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_2);
+	   data.item.CH1_TimeScale = presenter->p_GetTimeScale(CHANNEL_1);
+	   data.item.CH2_TimeScale = presenter->p_GetTimeScale(CHANNEL_2);
+	   data.item.CH1_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_1);
+	   data.item.CH2_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_2);
+
+	   qsettings_save(&data);
+
+	   presenter->p_SetYOffset(CHANNEL_1, 115 - 38);
+	   presenter->p_SetYOffset(CHANNEL_2, 230 - 38);
+	   presenter->p_SetTrigger(CHANNEL_1, true);
+	   presenter->p_SetTrigger(CHANNEL_2, true);
+	   presenter->p_SetTriggerType(CHANNEL_1, FALLING);
+	   presenter->p_SetTriggerType(CHANNEL_2, FALLING);
+
+	   presenter->p_SetTriggerValue(CHANNEL_1, 20);
+	   presenter->p_SetTriggerValue(CHANNEL_2, 20);
+	   presenter->p_SetTimeScale(CHANNEL_1, DIV_100uS);
+	   presenter->p_SetTimeScale(CHANNEL_2, DIV_100uS);
+	   presenter->p_SetVoltageScale(CHANNEL_1, DIV_2V);
+	   presenter->p_SetVoltageScale(CHANNEL_2, DIV_2V);
+
+#endif
 	}
 }
 

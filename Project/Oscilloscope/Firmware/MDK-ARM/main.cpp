@@ -77,6 +77,7 @@ using namespace touchgfx;
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
+
 /*
  * Define variables
  */
@@ -129,6 +130,7 @@ int main(void)
 	hw_init();
 	touchgfx_init();
 
+  qsettings_init();
 
 	MX_GPIO_Init();
 	MX_DMA_Init();
