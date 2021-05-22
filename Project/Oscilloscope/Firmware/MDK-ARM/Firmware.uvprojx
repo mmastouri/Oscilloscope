@@ -1093,6 +1093,26 @@
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_cursor_on_ch2.cpp</FilePath>
             </File>
+            <File>
+              <FileName>image_reset_settings_press.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_reset_settings_press.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_reset_settings_unpress.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_reset_settings_unpress.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_save_settings_press.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_save_settings_press.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_save_settings_unpress.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_save_settings_unpress.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

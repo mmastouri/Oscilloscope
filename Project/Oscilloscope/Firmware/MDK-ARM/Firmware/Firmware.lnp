@@ -132,6 +132,10 @@
 "firmware\image_stop.o"
 "firmware\image_cursor_on_ch1.o"
 "firmware\image_cursor_on_ch2.o"
+"firmware\image_reset_settings_press.o"
+"firmware\image_reset_settings_unpress.o"
+"firmware\image_save_settings_press.o"
+"firmware\image_save_settings_unpress.o"
 --library_type=microlib --strict --scatter "..\Flash_QSPI.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

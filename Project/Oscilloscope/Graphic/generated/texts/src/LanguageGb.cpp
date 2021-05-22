@@ -15,7 +15,7 @@ KEEP extern const touchgfx::Unicode::UnicodeChar textsGb[] TEXT_LOCATION_FLASH_A
     67,72,32,49,0, // T_chn1
     67,72,32,50,0, // T_chn2
     84,114,105,103,103,101,114,0, // T_trgTextLabel
-    32,32,83,104,111,119,0, // T_markerText
+    77,97,114,107,101,114,0, // T_markerText
     84,114,105,103,103,101,114,0, // T_trgText
     84,121,112,101,0, // T_fallText
     83,101,99,47,68,105,118,0, // T_horizontalTxt

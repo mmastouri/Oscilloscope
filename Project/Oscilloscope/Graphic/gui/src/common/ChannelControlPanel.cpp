@@ -122,8 +122,6 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 	downOn =  downArrowOff;
 	downOff = downArrowOn;
 
-
-
 	/*
 	* Setup the background fo two viewports
 	*/
@@ -145,11 +143,6 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 
 	vcontrolBkgnd.setBitmap(Bitmap(BITMAP_BUTTON_BACKGROUND_ID));
 	vcontrolBkgnd.setXY(95, 119);
-
-
-	
-
-
 
 	/*
 	* Viewport: at all the text labels of the voltage/div or time/div into the viewport
@@ -231,10 +224,6 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 			-voltTxt[i].getHeight());
 	}
 
-	//markerLabel.setTypedText(TypedText(T_MARKERTXTLABEL));
-	//markerLabel.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	//markerLabel.setXY((chnControlPanel.getWidth() - markerLabel.getWidth()) / 2, 345 + 80);
-
 	/*
 	* Text label: setup the text label for each control section or button
 	*/
@@ -258,14 +247,6 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 	markerButtonTxt.setTypedText(TypedText(T_MARKERTEXT));
 	markerButtonTxt.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
 	markerButtonTxt.setXY(110, 10);
-
-	//markerAButton.setTypedText(TypedText(T_MARKERA));
-	//markerAButton.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	//markerAButton.setXY(chnControlPanel.getWidth() / 3 - markerAButton.getWidth() / 2 - 10, 370 + 80);
-
-	//markerBButton.setTypedText(TypedText(T_MARKERB));
-	//markerBButton.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	//markerBButton.setXY(2 * chnControlPanel.getWidth() / 3 - markerAButton.getWidth() / 2 + 10, 370 + 80);
 
 	position_vertical_txt.setTypedText(TypedText(T_POSITION));
 	position_vertical_txt.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
@@ -303,16 +284,6 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 	verticalDown.setBitmaps(Bitmap(downOff), Bitmap(downOn));
 	verticalDown.setXY(110, 181);
 	verticalDown.setAction(buttonClickedCallback);
-
-	//aButton.setBitmaps(Bitmap(controlButtonOff), Bitmap(controlButtonOn));
-	//aButton.setXY(chnControlPanel.getWidth() / 3 - aButton.getWidth() / 2 - 10, 390 + 80);
-	//aButton.setAction(buttonClickedCallback);
-
-	//bButton.setBitmaps(Bitmap(controlButtonOff), Bitmap(controlButtonOn));
-	//bButton.setXY(2 * chnControlPanel.getWidth() / 3 - bButton.getWidth() / 2 + 10, 390 + 80);
-	//bButton.setAction(buttonClickedCallback);
-
-
 	/*
 	* Line: setup lines to seperate between sections
 	*/
@@ -335,12 +306,6 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 	line3.setStart(15, 0);
 	line3.setEnd(width - 15, 0);
 	line3.setPainter(linePainter);
-
-	//line4.setLineWidth(3);
-	//line4.setPosition(0, 335 + 80, width, 5);
-	//line4.setStart(15, 0);
-	//line4.setEnd(width - 15, 0);
-	//line4.setPainter(linePainter);	
 
 	move_up_button.setXY(70,283);
 	move_up_button.setAction(buttonClickedCallback);
