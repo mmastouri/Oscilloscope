@@ -298,7 +298,7 @@ void MainView::setupScreen()
 
 	add(triggLine[CHANNEL_2]);
 
-	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine[CHANNEL_2].TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine[CHANNEL_2].GetTriggerPosition());
 
 	triggLine[CHANNEL_1].setPosition (0,
 		                    0,
@@ -313,7 +313,7 @@ void MainView::setupScreen()
 	
 
 
-	presenter->p_SetTriggerValue(CHANNEL_1, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine[CHANNEL_1].TriggerPosition());
+	presenter->p_SetTriggerValue(CHANNEL_1, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine[CHANNEL_1].GetTriggerPosition());
 
 	add(triggLine[CHANNEL_1]);
 
@@ -390,22 +390,12 @@ void MainView::setupScreen()
 	reset_settings.setAction(buttonClickedCallback);
 	control_menu.add(reset_settings);
 
-	//txt_ctrl_menu[CHANNEL_1].setTypedText(TypedText(T_CHN1_CTRL_MENU));
-	//txt_ctrl_menu[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	//txt_ctrl_menu[CHANNEL_1].setXY(40,246);
-	///*control_menu.*/add(txt_ctrl_menu[CHANNEL_1]);
-
 	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CH1_OFF_ID), Bitmap(BITMAP_CH1_ON_ID));
 	chn_enable[CHANNEL_1].setXY(30, 237);
 	chn_enable[CHANNEL_1].setAction(buttonClickedCallback);
 	
 	
 	chn_enable[CHANNEL_1].forceState(true);
-
-	//txt_ctrl_menu[CHANNEL_2].setTypedText(TypedText(T_CHN2_CTRL_MENU));
-	//txt_ctrl_menu[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	//txt_ctrl_menu[CHANNEL_2].setXY(120, 246);
-	///*control_menu.*/add(txt_ctrl_menu[CHANNEL_2]);
 
 	chn_enable[CHANNEL_2].setBitmaps(Bitmap(BITMAP_CH2_OFF_ID), Bitmap(BITMAP_CH2_ON_ID));
 	chn_enable[CHANNEL_2].setXY(90, 237);
@@ -425,17 +415,11 @@ void MainView::setupScreen()
 	run_stop.setAction(buttonClickedCallback);
 	run_stop.forceState(false);
 
-	//meas_ctrl_menu.setTypedText(TypedText(T_MEAS_CTRL_MENU));
-	//meas_ctrl_menu.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
-	//meas_ctrl_menu.setXY(200, 246);
-	///*control_menu.*/add(meas_ctrl_menu);
-
-
 	graph_container.add(graph[CHANNEL_1]);
 	graph_container.add(graph[CHANNEL_2]);
-	/*control_menu.*/add(chn_enable[CHANNEL_1]);
-	/*control_menu.*/add(chn_enable[CHANNEL_2]);
-	/*control_menu.*/add(meas_enable);
+	add(chn_enable[CHANNEL_1]);
+	add(chn_enable[CHANNEL_2]);
+	add(meas_enable);
 	add(run_stop);
 	
 	add(control_menu);
@@ -622,42 +606,43 @@ void MainView::buttonClicked(const AbstractButton& source)
 	}
 	else if (&source == &reset_settings)
 	{
-	   control_menu.resetExpandedStateTimer();
+		control_menu.resetExpandedStateTimer();
 
 #ifndef SIMULATOR
 
-	   data.item.signature = 0xFFFFFFFF;
-
-	   data.item.CH1_YOffset = presenter->p_GetYOffset(CHANNEL_1);
-	   data.item.CH2_YOffset = presenter->p_GetYOffset(CHANNEL_2);
-	   data.item.CH1_Trigger = presenter->p_GetTrigger(CHANNEL_1);
-	   data.item.CH2_Trigger = presenter->p_GetTrigger(CHANNEL_2);
-	   data.item.CH1_TriggerType = presenter->p_GetTriggerType(CHANNEL_1);
-	   data.item.CH2_TriggerType = presenter->p_GetTriggerType(CHANNEL_2);
-	   data.item.CH1_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_1);
-	   data.item.CH2_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_2);
-	   data.item.CH1_TimeScale = presenter->p_GetTimeScale(CHANNEL_1);
-	   data.item.CH2_TimeScale = presenter->p_GetTimeScale(CHANNEL_2);
-	   data.item.CH1_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_1);
-	   data.item.CH2_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_2);
-
-	   qsettings_save(&data);
-
-	   presenter->p_SetYOffset(CHANNEL_1, 115 - 38);
-	   presenter->p_SetYOffset(CHANNEL_2, 230 - 38);
-	   presenter->p_SetTrigger(CHANNEL_1, true);
-	   presenter->p_SetTrigger(CHANNEL_2, true);
-	   presenter->p_SetTriggerType(CHANNEL_1, FALLING);
-	   presenter->p_SetTriggerType(CHANNEL_2, FALLING);
-
-	   presenter->p_SetTriggerValue(CHANNEL_1, 20);
-	   presenter->p_SetTriggerValue(CHANNEL_2, 20);
-	   presenter->p_SetTimeScale(CHANNEL_1, DIV_100uS);
-	   presenter->p_SetTimeScale(CHANNEL_2, DIV_100uS);
-	   presenter->p_SetVoltageScale(CHANNEL_1, DIV_2V);
-	   presenter->p_SetVoltageScale(CHANNEL_2, DIV_2V);
-
+		data.item.signature = 0xFFFFFFFF;
+		qsettings_save(&data);
 #endif
+		presenter->p_SetYOffset(CHANNEL_1, 115 - 38);
+		presenter->p_SetYOffset(CHANNEL_2, 230 - 38);
+
+		presenter->p_SetTrigger(CHANNEL_1, true);
+		presenter->p_SetTrigger(CHANNEL_2, true);
+		presenter->p_SetTriggerType(CHANNEL_1, FALLING);
+		presenter->p_SetTriggerType(CHANNEL_2, FALLING);
+		presenter->p_SetTriggerValue(CHANNEL_1, 20);
+		presenter->p_SetTriggerValue(CHANNEL_2, 20);
+
+		presenter->p_SetTimeScale(CHANNEL_1, DIV_100uS);
+		presenter->p_SetTimeScale(CHANNEL_2, DIV_100uS);
+		presenter->p_SetVoltageScale(CHANNEL_1, DIV_2V);
+		presenter->p_SetVoltageScale(CHANNEL_2, DIV_2V);
+
+
+		for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
+		{
+			panelChn[i].SetYOffset(presenter->p_GetYOffset(i));
+			panelChn[i].SetXOffset(presenter->p_GetXOffset(i));
+
+			panelChn[i].SetFallingButton(presenter->p_GetTriggerType(i));
+			panelChn[i].SetTriggerButton(presenter->p_GetTrigger(i));
+
+
+			panelChn[i].initScaleSettingsReset(presenter->p_GetTimeScale(i), presenter->p_GetVoltageScale(i));
+			triggLine[i].SetTriggerPosition(presenter->p_GetTriggerValue(i));
+		}
+
+
 	}
 }
 
@@ -743,11 +728,6 @@ void MainView::slideTexts(SlideDirection direction)
 
 	selectedChnIndex = nextSelectedText;
 
-	/*if(selectedChnIndex == CHANNEL_2)
-	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_CH2_ID));
-	else
-	channelBackground.setBitmap(Bitmap(BITMAP_CHANNELINFO_CH1_ID));*/
-	
 }
 
 /***************************************************************************************************
@@ -773,6 +753,10 @@ void MainView::handleTickEvent()
 	/* Update model according to HMI update */ 
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
 	{
+
+
+
+
 		presenter->p_SetTimeScale(i, panelChn[i].GetTimeBaseIndex());
 		presenter->p_SetVoltageScale(i, panelChn[i].GetVoltBaseIndex());
 		presenter->p_SetRawData(i);
@@ -780,7 +764,7 @@ void MainView::handleTickEvent()
 		presenter->p_SetXOffset(i, panelChn[i].GetXOffset());
 		presenter->p_SetTrigger(i, panelChn[i].isTriggerButtonClicked());
 		presenter->p_SetTriggerType(i, panelChn[i].isFallingButtonClicked());
-		presenter->p_SetTriggerValue(i, triggLine[i].TriggerPosition());
+		presenter->p_SetTriggerValue(i, triggLine[i].GetTriggerPosition());
 
 		/* Update GUI according to HMI update */
 		graph[i].setY(presenter->p_GetYOffset(i));
@@ -802,6 +786,8 @@ void MainView::handleTickEvent()
 			Unicode::snprintf(trig_buff[i], 7, "%d mV", int_value);
 		}
 		trig_value_wildcard[i].invalidate();
+
+		panelChn[i].ProcessSettingsReset();
 	}
 
 
@@ -845,6 +831,7 @@ void MainView::handleTickEvent()
 		remove(intro);
 		remove(back_ground);
 	}
+
 
 }
 /***************************************************************************************************

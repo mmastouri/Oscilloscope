@@ -203,9 +203,18 @@ void TriggerLine::EnableLine(bool enable)
 }	
 
 
-int TriggerLine::TriggerPosition(void)
+int TriggerLine::GetTriggerPosition(void)
 {
 	return trigger_position;
+}
+
+
+void TriggerLine::SetTriggerPosition(int y)
+{
+	trigger_position = y;
+	marker = y_offset - trigger_position;
+	line.setY(marker);
+	channelbmp.setY(marker - 5);
 }
 
 void TriggerLine::setYoffset(int offset)

@@ -71,7 +71,8 @@ public:
 	void handleMarkerDragEvent(const DragEvent&);
 	void handleMarkerSnappedEvent(void);
 	void EnableLine(bool enable);
-	int TriggerPosition(void);
+	int  GetTriggerPosition(void);
+	void SetTriggerPosition(int position);
 	void setYoffset(int offset);
 
 private:

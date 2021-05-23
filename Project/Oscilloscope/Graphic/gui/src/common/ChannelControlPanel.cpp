@@ -446,6 +446,8 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 	else if (&source == &horizontalUp)
 	{
 		slideHorizotalText(UP);
+
+		hRresetProgress = selectedHorizontalTextIndex;
 #ifndef  SIMULATOR
 		UpdateHWTimeScale(associatedChannel, selectedHorizontalTextIndex);
 #endif // ! SIMULATOR	
@@ -454,6 +456,7 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 	else if (&source == &horizontalDown)
 	{
 		slideHorizotalText(DOWN);
+		hRresetProgress = selectedHorizontalTextIndex;
 #ifndef  SIMULATOR
 		UpdateHWTimeScale(associatedChannel, selectedHorizontalTextIndex);
 #endif // ! SIMULATOR	
@@ -462,11 +465,13 @@ void ChannelControlPanel ::buttonClicked(const AbstractButton &source)
 	else if (&source == &verticalUp)
 	{
 		slideVerticalText(UP);
+		vRresetProgress = selectedVerticalTextIndex;
 	}
 
 	else if (&source == &verticalDown)
 	{
 		slideVerticalText(DOWN);
+		vRresetProgress = selectedVerticalTextIndex;
 	}
 
 
@@ -532,6 +537,8 @@ void ChannelControlPanel::slideHorizotalText(SlideDirection direction)
 		{
 			return;
 		}
+
+
 	}
 
 	int animationDuration = 14;
@@ -555,7 +562,6 @@ void ChannelControlPanel::slideHorizotalText(SlideDirection direction)
 													  EasingEquations::cubicEaseOut);
 
 	selectedHorizontalTextIndex = nextSelectedTextIndex;
-
 }
 
 /*****************************************************************************************
@@ -586,6 +592,7 @@ void ChannelControlPanel::slideVerticalText(SlideDirection direction)
 			return;
 		}
 	}
+
 
 	int animationDuration = 14;
 	int animationDirection = (direction == DOWN) ? -1 : 1;
@@ -689,14 +696,102 @@ int ChannelControlPanel::GetVoltBaseIndex(void)
 void ChannelControlPanel::setScaleSettings(int timeScale, int voltageScale)
 {
 
+	vRresetProgress = voltageScale;
+	hRresetProgress = timeScale;
+
 	selectedVerticalTextIndex = voltageScale + 1;
 	selectedHorizontalTextIndex = timeScale + 1;
+
 	slideHorizotalText(DOWN);
 	slideVerticalText(DOWN);
 
 #ifndef SIMULATOR
 	UpdateHWTimeScale(associatedChannel, selectedHorizontalTextIndex);
 #endif
+}
+
+
+void ChannelControlPanel::initScaleSettingsReset(int timeScale, int voltageScale)
+{
+	hRresetProgress = timeScale;
+	vRresetProgress = voltageScale;
+
+	if (timeScale > selectedHorizontalTextIndex)
+	{
+		if ((timeScale - selectedHorizontalTextIndex) < 6) hDirection = UP;
+		else hDirection = DOWN;
+    }
+	else
+	{
+		if ((selectedHorizontalTextIndex - timeScale) < 6) hDirection = DOWN;
+		else hDirection = UP;
+	}
+
+	if (voltageScale > selectedVerticalTextIndex)
+	{
+		if ((voltageScale - selectedVerticalTextIndex) < 4) voltageScale = UP;
+		else vDirection = DOWN;
+	}
+	else
+	{
+		if ((selectedVerticalTextIndex - voltageScale) < 4) voltageScale = DOWN;
+		else vDirection = UP;
+	}
+
+#ifndef SIMULATOR
+	UpdateHWTimeScale(associatedChannel, selectedHorizontalTextIndex);
+#endif
+}
+
+void ChannelControlPanel::ProcessSettingsReset(void)
+{
+	while (hRresetProgress != selectedHorizontalTextIndex)
+	{
+		for (int i = 0; i < NUMBER_OF_TIME_BASE; i++)
+		{
+			if (timeTxt[i].isRunning())
+			{
+				return;
+			}
+
+
+		}
+		slideHorizotalText(hDirection);
+	}
+
+	while (vRresetProgress != selectedVerticalTextIndex)
+	{
+		for (int i = 0; i < NUMBER_OF_VOLT_BASE; i++)
+		{
+			if (voltTxt[i].isRunning())
+			{
+				return;
+			}
+		}
+		slideVerticalText(hDirection);
+	}
+
+}
+
+
+void ChannelControlPanel::SetYOffset(int y)
+{
+	 y_offset = y;
+}
+
+void ChannelControlPanel::SetXOffset(int x)
+{
+	x_offset = x;
+}
+
+int ChannelControlPanel::GetYOffset(void)
+{
+	return y_offset;
+}
+
+int ChannelControlPanel::GetXOffset(void)
+{
+	return x_offset;
 }
 
 /*****************************************************************************************
@@ -732,15 +827,6 @@ void ChannelControlPanel::SetUpButtonImage(uint16_t up_on,   uint16_t up_off,   
 	right_unpress = right_off;
 }
 
-int ChannelControlPanel::GetYOffset(void)
-{
-	return y_offset;
-}
-
-int ChannelControlPanel::GetXOffset(void)
-{
-	return x_offset;
-}
 
 /*****************************************************************************************
 *                                                                                        *

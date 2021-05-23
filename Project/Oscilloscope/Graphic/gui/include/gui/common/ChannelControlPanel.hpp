@@ -175,6 +175,9 @@ public:
 	void SetMarkerButton(bool state);
 	void setScaleSettings(int timeScale, int voltageScale);
 
+	void initScaleSettingsReset(int timeScale, int voltageScale);
+	void ProcessSettingsReset(void);
+
 	bool isTriggerButtonClicked(void);
 	bool isFallingButtonClicked(void);
 	bool isMarkerButtonClicked(void);
@@ -186,10 +189,12 @@ public:
 	                       uint16_t left_on, uint16_t left_off, uint16_t right_on, uint16_t right_off);
 	int GetYOffset(void);
 	int GetXOffset(void);
-
+	void SetYOffset(int y);
+	void SetXOffset(int x);
 	int associatedChannel;
 
 protected:
+	int hRresetProgress, vRresetProgress;
 
 	bool triggerButtonClicked;
 	bool fallingButtonClicked;
@@ -276,6 +281,7 @@ protected:
 		DOWN
 	};
 
+	SlideDirection hDirection, vDirection;
 
 	void slideHorizotalText(SlideDirection direction);
 	void slideVerticalText(SlideDirection direction);
