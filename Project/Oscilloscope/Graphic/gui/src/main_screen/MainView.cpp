@@ -754,9 +754,6 @@ void MainView::handleTickEvent()
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
 	{
 
-
-
-
 		presenter->p_SetTimeScale(i, panelChn[i].GetTimeBaseIndex());
 		presenter->p_SetVoltageScale(i, panelChn[i].GetVoltBaseIndex());
 		presenter->p_SetRawData(i);

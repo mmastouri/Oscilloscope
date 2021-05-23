@@ -541,7 +541,7 @@ void ChannelControlPanel::slideHorizotalText(SlideDirection direction)
 
 	}
 
-	int animationDuration = 14;
+	int animationDuration = 8;
 	int animationDirection = (direction == DOWN) ? -1 : 1;
 	int animationDistance = animationDirection * horizontalTxtContainer.getHeight();
 
@@ -594,7 +594,7 @@ void ChannelControlPanel::slideVerticalText(SlideDirection direction)
 	}
 
 
-	int animationDuration = 14;
+	int animationDuration = 8;
 	int animationDirection = (direction == DOWN) ? -1 : 1;
 	int animationDistance = animationDirection * verticalTxtContainer.getHeight();
 
@@ -729,17 +729,17 @@ void ChannelControlPanel::initScaleSettingsReset(int timeScale, int voltageScale
 
 	if (voltageScale > selectedVerticalTextIndex)
 	{
-		if ((voltageScale - selectedVerticalTextIndex) < 4) voltageScale = UP;
+		if ((voltageScale - selectedVerticalTextIndex) < 4) vDirection = UP;
 		else vDirection = DOWN;
 	}
 	else
 	{
-		if ((selectedVerticalTextIndex - voltageScale) < 4) voltageScale = DOWN;
+		if ((selectedVerticalTextIndex - voltageScale) < 4) vDirection = DOWN;
 		else vDirection = UP;
 	}
 
 #ifndef SIMULATOR
-	UpdateHWTimeScale(associatedChannel, selectedHorizontalTextIndex);
+	UpdateHWTimeScale(associatedChannel, timeScale);
 #endif
 }
 
@@ -768,7 +768,7 @@ void ChannelControlPanel::ProcessSettingsReset(void)
 				return;
 			}
 		}
-		slideVerticalText(hDirection);
+		slideVerticalText(vDirection);
 	}
 
 }
