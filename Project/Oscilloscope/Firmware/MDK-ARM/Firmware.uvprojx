@@ -1204,6 +1204,16 @@
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_square_signal.cpp</FilePath>
             </File>
+            <File>
+              <FileName>image_signal_1KHZ.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_signal_1KHZ.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_signal_10KHZ.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_signal_10KHZ.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -144,6 +144,8 @@
 "firmware\image_control_signal_on.o"
 "firmware\image_sine_signal.o"
 "firmware\image_square_signal.o"
+"firmware\image_signal_1khz.o"
+"firmware\image_signal_10khz.o"
 --library_type=microlib --strict --scatter "..\Flash_QSPI.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -394,21 +394,21 @@ void MainView::setupScreen()
 	control_menu.add(save_settings);
 
 	reset_settings.setBitmaps(Bitmap(BITMAP_RESET_SETTINGS_UNPRESS_ID), Bitmap(BITMAP_RESET_SETTINGS_PRESS_ID));
-	reset_settings.setXY(87, 3);
+	reset_settings.setXY(84, 3);
 	reset_settings.setAction(buttonClickedCallback);
 	control_menu.add(reset_settings);
 
 	signal_gen.setBitmaps(Bitmap(BITMAP_CONTROL_SIGNAL_OFF_ID), Bitmap(BITMAP_CONTROL_SIGNAL_ON_ID));
-	signal_gen.setXY(147, 3);
+	signal_gen.setXY(141, 3);
 	signal_gen.setAction(buttonClickedCallback);
 	control_menu.add(signal_gen);
 
 	signal_type.setBitmaps(Bitmap(BITMAP_SQUARE_SIGNAL_ID), Bitmap(BITMAP_SINE_SIGNAL_ID));
-	signal_type.setXY(207, 3);
+	signal_type.setXY(199, 3);
 	signal_type.setAction(buttonClickedCallback);
 
 	signal_value.setBitmaps(Bitmap(BITMAP_SIGNAL_1KHZ_ID), Bitmap(BITMAP_SIGNAL_10KHZ_ID));
-	signal_value.setXY(267, 3);
+	signal_value.setXY(256, 3);
 	signal_value.setAction(buttonClickedCallback);
 
 	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CH1_OFF_ID), Bitmap(BITMAP_CH1_ON_ID));
@@ -432,7 +432,7 @@ void MainView::setupScreen()
 
 
 	run_stop.setBitmaps(Bitmap(BITMAP_RUN_ID), Bitmap(BITMAP_STOP_ID));
-	run_stop.setXY(240, 237);
+	run_stop.setXY(249, 237);
 	run_stop.setAction(buttonClickedCallback);
 	run_stop.forceState(false);
 
