@@ -151,6 +151,7 @@ private:
 	ToggleButton run_stop;
 	ToggleButton signal_gen;
 	ToggleButton signal_type;
+	ToggleButton signal_value;
 
 	
 	int ch1_marker1_position, ch1_marker2_position;

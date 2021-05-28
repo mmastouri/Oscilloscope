@@ -407,7 +407,9 @@ void MainView::setupScreen()
 	signal_type.setXY(207, 3);
 	signal_type.setAction(buttonClickedCallback);
 
-
+	signal_value.setBitmaps(Bitmap(BITMAP_SIGNAL_1KHZ_ID), Bitmap(BITMAP_SIGNAL_10KHZ_ID));
+	signal_value.setXY(267, 3);
+	signal_value.setAction(buttonClickedCallback);
 
 	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CH1_OFF_ID), Bitmap(BITMAP_CH1_ON_ID));
 	chn_enable[CHANNEL_1].setXY(30, 237);
@@ -670,11 +672,14 @@ void MainView::buttonClicked(const AbstractButton& source)
 	control_menu.resetExpandedStateTimer();
 	    if (signal_gen.getState() == true)
 	    {
+			control_menu.remove(signal_value);
 			control_menu.remove(signal_type);
 			control_menu.add(signal_type);
+			control_menu.add(signal_value);
 	    }
 	    else
 	    {
+			control_menu.remove(signal_value);
 			control_menu.remove(signal_type);
 	    }
     }
