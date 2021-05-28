@@ -403,6 +403,12 @@ void MainView::setupScreen()
 	signal_gen.setAction(buttonClickedCallback);
 	control_menu.add(signal_gen);
 
+	signal_type.setBitmaps(Bitmap(BITMAP_SQUARE_SIGNAL_ID), Bitmap(BITMAP_SINE_SIGNAL_ID));
+	signal_type.setXY(207, 3);
+	signal_type.setAction(buttonClickedCallback);
+
+
+
 	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CH1_OFF_ID), Bitmap(BITMAP_CH1_ON_ID));
 	chn_enable[CHANNEL_1].setXY(30, 237);
 	chn_enable[CHANNEL_1].setAction(buttonClickedCallback);
@@ -569,11 +575,11 @@ void MainView::buttonClicked(const AbstractButton& source)
 
 			marker1.SetPosition(ch2_marker1_position);
 			marker2.SetPosition(ch2_marker2_position);
-					   
+
 			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH2_ID), Bitmap(BITMAP_CURSOR_OFF_ID));
 			MeasureButtonClicked = 2;
 		}
-		else if(MeasureButtonClicked == 2)
+		else if (MeasureButtonClicked == 2)
 		{
 			ch2_marker1_position = marker1.GetPosition();
 			ch2_marker2_position = marker2.GetPosition();
@@ -595,26 +601,26 @@ void MainView::buttonClicked(const AbstractButton& source)
 	}
 	else if (&source == &save_settings)
 	{
-	   control_menu.resetExpandedStateTimer();
+		control_menu.resetExpandedStateTimer();
 
 #ifndef SIMULATOR
 
-	   data.item.signature = 0x55AA1122;
+		data.item.signature = 0x55AA1122;
 
-	   data.item.CH1_YOffset = presenter->p_GetYOffset(CHANNEL_1);
-	   data.item.CH2_YOffset = presenter->p_GetYOffset(CHANNEL_2);
-	   data.item.CH1_Trigger = presenter->p_GetTrigger(CHANNEL_1);
-	   data.item.CH2_Trigger = presenter->p_GetTrigger(CHANNEL_2);
-	   data.item.CH1_TriggerType = presenter->p_GetTriggerType(CHANNEL_1);
-	   data.item.CH2_TriggerType = presenter->p_GetTriggerType(CHANNEL_2);
-	   data.item.CH1_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_1);
-	   data.item.CH2_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_2);
-	   data.item.CH1_TimeScale = presenter->p_GetTimeScale(CHANNEL_1);
-	   data.item.CH2_TimeScale = presenter->p_GetTimeScale(CHANNEL_2);
-	   data.item.CH1_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_1);
-	   data.item.CH2_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_2);
+		data.item.CH1_YOffset = presenter->p_GetYOffset(CHANNEL_1);
+		data.item.CH2_YOffset = presenter->p_GetYOffset(CHANNEL_2);
+		data.item.CH1_Trigger = presenter->p_GetTrigger(CHANNEL_1);
+		data.item.CH2_Trigger = presenter->p_GetTrigger(CHANNEL_2);
+		data.item.CH1_TriggerType = presenter->p_GetTriggerType(CHANNEL_1);
+		data.item.CH2_TriggerType = presenter->p_GetTriggerType(CHANNEL_2);
+		data.item.CH1_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_1);
+		data.item.CH2_TriggerValue = presenter->p_GetTriggerValue(CHANNEL_2);
+		data.item.CH1_TimeScale = presenter->p_GetTimeScale(CHANNEL_1);
+		data.item.CH2_TimeScale = presenter->p_GetTimeScale(CHANNEL_2);
+		data.item.CH1_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_1);
+		data.item.CH2_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_2);
 
-	   qsettings_save(&data);
+		qsettings_save(&data);
 #endif
 
 
@@ -657,6 +663,24 @@ void MainView::buttonClicked(const AbstractButton& source)
 			triggLine[i].SetTriggerPosition(presenter->p_GetTriggerValue(i));
 		}
 
+
+	}
+	else if (&source == &signal_gen)
+	{
+	control_menu.resetExpandedStateTimer();
+	    if (signal_gen.getState() == true)
+	    {
+			control_menu.remove(signal_type);
+			control_menu.add(signal_type);
+	    }
+	    else
+	    {
+			control_menu.remove(signal_type);
+	    }
+    }
+	else if (&source == &signal_type)
+	{
+	control_menu.resetExpandedStateTimer();
 
 	}
 }

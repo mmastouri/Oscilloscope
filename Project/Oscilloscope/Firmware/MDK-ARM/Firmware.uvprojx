@@ -1194,6 +1194,16 @@
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_control_signal_on.cpp</FilePath>
             </File>
+            <File>
+              <FileName>image_sine_signal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_sine_signal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_square_signal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_square_signal.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

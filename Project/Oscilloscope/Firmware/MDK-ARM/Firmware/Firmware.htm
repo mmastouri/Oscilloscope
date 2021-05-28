@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri May 28 21:10:28 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri May 28 22:54:57 2021
 <BR><P>
 <H3>Maximum Stack Usage =        848 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -3197,7 +3197,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> frontendapplication.o(.constdata__ZTV19FrontendApplication)
 </UL>
 <P><STRONG><a name="[a8]"></a>FrontendApplication::gotoMainScreenImpl()</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, frontendapplication.o(i._ZN19FrontendApplication18gotoMainScreenImplEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = FrontendApplication::gotoMainScreenImpl() &rArr; T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*) &rArr; MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = FrontendApplication::gotoMainScreenImpl() &rArr; T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*) &rArr; MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*)
 </UL>
@@ -3470,7 +3470,7 @@ Global Symbols
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[10f]"></a>MainView::setupScreen()</STRONG> (Thumb, 2900 bytes, Stack size 152 bytes, mainview.o(i._ZN8MainView11setupScreenEv))
+<P><STRONG><a name="[10f]"></a>MainView::setupScreen()</STRONG> (Thumb, 2926 bytes, Stack size 152 bytes, mainview.o(i._ZN8MainView11setupScreenEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 468<LI>Call Chain = MainView::setupScreen() &rArr; ChannelControlPanel::setup(int, int, int, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, int, int) &rArr; void touchgfx::Line::setStart&lang;int&rang;(T1, T1) &rArr; touchgfx::Line::setStart(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5) &rArr; touchgfx::Line::updateCachedShape() &rArr; touchgfx::CWRUtil::muldivQ5(touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5, touchgfx::CWRUtil::Q5) &rArr; touchgfx::muldiv(int, int, int)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Graph::SetGraphColor(touchgfx::colortype)
@@ -3528,7 +3528,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mainview.o(.constdata__ZTV8MainView)
 </UL>
-<P><STRONG><a name="[a9]"></a>MainView::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 1154 bytes, Stack size 56 bytes, mainview.o(i._ZN8MainView13buttonClickedERKN8touchgfx14AbstractButtonE))
+<P><STRONG><a name="[a9]"></a>MainView::buttonClicked(const touchgfx::AbstractButton&)</STRONG> (Thumb, 1240 bytes, Stack size 56 bytes, mainview.o(i._ZN8MainView13buttonClickedERKN8touchgfx14AbstractButtonE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 324<LI>Call Chain = MainView::buttonClicked(const touchgfx::AbstractButton&) &rArr; qsettings_save &rArr; BSP_QSPI_Init &rArr; QSPI_DummyCyclesCfg &rArr; QSPI_WriteEnable &rArr; HAL_QSPI_Command &rArr; QSPI_Config
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TriggerLine::SetTriggerPosition(int)
@@ -3543,6 +3543,8 @@ Global Symbols
 <LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::SetYOffset(int)
 <LI><a href="#[2dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::SetXOffset(int)
 <LI><a href="#[2db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qsettings_save
+<LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::remove(touchgfx::Drawable&)
+<LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::add(touchgfx::Drawable&)
 <LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::resetExpandedStateTimer()
 <LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ControlHWRunStop(int)
 <LI><a href="#[2da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::ToggleButton::getState() const
@@ -3619,8 +3621,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[2e9]"></a>MainView::MainView()</STRONG> (Thumb, 684 bytes, Stack size 48 bytes, frontendapplication.o(i._ZN8MainViewC1Ev))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
+<P><STRONG><a name="[2e9]"></a>MainView::MainView()</STRONG> (Thumb, 702 bytes, Stack size 56 bytes, frontendapplication.o(i._ZN8MainViewC1Ev))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::SlideMenu()
 <LI><a href="#[2ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::Screen()
@@ -3639,9 +3641,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*)
 </UL>
 
-<P><STRONG><a name="[432]"></a>MainView::MainView__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, frontendapplication.o(i._ZN8MainViewC1Ev), UNUSED)
+<P><STRONG><a name="[432]"></a>MainView::MainView__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 56 bytes, frontendapplication.o(i._ZN8MainViewC1Ev), UNUSED)
 
-<P><STRONG><a name="[10d]"></a>MainView::~MainView()</STRONG> (Thumb, 414 bytes, Stack size 8 bytes, mainview.o(i._ZN8MainViewD1Ev))
+<P><STRONG><a name="[10d]"></a>MainView::~MainView()</STRONG> (Thumb, 416 bytes, Stack size 8 bytes, mainview.o(i._ZN8MainViewD1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = MainView::~MainView() &rArr; __aeabi_vec_dtor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Marker::~Marker()
@@ -5679,8 +5681,8 @@ Global Symbols
 <LI> box.o(.constdata__ZTVN8touchgfx3BoxE)
 <LI> button.o(.constdata__ZTVN8touchgfx6ButtonE)
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6050,8 +6052,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6080,8 +6082,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6115,8 +6117,8 @@ Global Symbols
 <LI> button.o(.constdata__ZTVN8touchgfx6ButtonE)
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6135,8 +6137,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6155,8 +6157,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
@@ -6194,8 +6196,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6225,8 +6227,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6248,8 +6250,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6280,8 +6282,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6313,8 +6315,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6337,8 +6339,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6361,8 +6363,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -6719,8 +6721,8 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[f6]"></a>touchgfx::Container::remove(touchgfx::Drawable&)</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, container.o(i._ZN8touchgfx9Container6removeERNS_8DrawableE))
 <BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::buttonClicked(const touchgfx::AbstractButton&)
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 <LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::remove(touchgfx::Drawable&)
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::handleTickEvent()
 </UL>
 <BR>[Address Reference Count : 7]<UL><LI> channelcontrolpanel.o(.constdata__ZTV19ChannelControlPanel)
 <LI> frontendapplication.o(.constdata__ZTVN8touchgfx12MoveAnimatorI19ChannelControlPanelEE)
@@ -6810,7 +6812,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::add(touchgfx::Drawable&)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::buttonClicked(const touchgfx::AbstractButton&)
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
 </UL>
@@ -6830,6 +6833,8 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[198]"></a>touchgfx::SlideMenu::remove(touchgfx::Drawable&)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, slidemenu.o(i._ZN8touchgfx9SlideMenu6removeERNS_8DrawableE))
 <BR><BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Container::remove(touchgfx::Drawable&)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::buttonClicked(const touchgfx::AbstractButton&)
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> slidemenu.o(.constdata__ZTVN8touchgfx9SlideMenuE)
 </UL>
@@ -7453,8 +7458,8 @@ Global Symbols
 <LI> button.o(.constdata__ZTVN8touchgfx6ButtonE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
 <LI> textareawithwildcard.o(.constdata__ZTVN8touchgfx23TextAreaWithOneWildcardE)
@@ -7480,8 +7485,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -7509,8 +7514,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -7547,8 +7552,8 @@ Global Symbols
 <LI> canvaswidget.o(.constdata__ZTVN8touchgfx12CanvasWidgetE)
 <LI> container.o(.constdata__ZTVN8touchgfx9ContainerE)
 <LI> drawable.o(.constdata__ZTVN8touchgfx8DrawableE)
-<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> image.o(.constdata__ZTVN8touchgfx5ImageE)
+<LI> togglebutton.o(.constdata__ZTVN8touchgfx12ToggleButtonE)
 <LI> repeatbutton.o(.constdata__ZTVN8touchgfx12RepeatButtonE)
 <LI> line.o(.constdata__ZTVN8touchgfx4LineE)
 <LI> textarea.o(.constdata__ZTVN8touchgfx8TextAreaE)
@@ -8453,7 +8458,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2c0]"></a>T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*)</STRONG> (Thumb, 278 bytes, Stack size 32 bytes, frontendapplication.o(t._ZN8touchgfx14makeTransitionI8MainView13MainPresenterNS_12NoTransitionE5ModelEEPT0_PPNS_6ScreenEPPNS_9PresenterERNS_7MVPHeapEPPNS_10TransitionEPT2_))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*) &rArr; MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = T2* touchgfx::makeTransition&lang;MainView, MainPresenter, touchgfx::NoTransition, Model&rang;(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, T4*) &rArr; MainView::MainView() &rArr; Marker::Marker() &rArr; touchgfx::Line::Line() &rArr; touchgfx::CanvasWidget::CanvasWidget__sub_object() &rArr; touchgfx::Rect::Rect(short, short, short, short)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[409]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Screen::bindTransition(touchgfx::Transition&)
 <LI><a href="#[30c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::clearAllTimerWidgets()

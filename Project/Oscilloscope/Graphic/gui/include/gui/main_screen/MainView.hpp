@@ -150,6 +150,7 @@ private:
 	ToggleButton meas_enable;
 	ToggleButton run_stop;
 	ToggleButton signal_gen;
+	ToggleButton signal_type;
 
 	
 	int ch1_marker1_position, ch1_marker2_position;
