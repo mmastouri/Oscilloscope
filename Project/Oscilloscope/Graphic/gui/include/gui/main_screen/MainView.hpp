@@ -120,7 +120,7 @@ public:
 
 private:
 	Box back_ground;
-
+	Container oscill_layout;
 	Container chnTextViewPort;
 	Container chnControlPanelViewPort;
 
@@ -149,6 +149,7 @@ private:
 	ToggleButton chn_enable[NUMBER_OF_CHANNEL];
 	ToggleButton meas_enable;
 	ToggleButton run_stop;
+	ToggleButton signal_gen;
 
 	
 	int ch1_marker1_position, ch1_marker2_position;

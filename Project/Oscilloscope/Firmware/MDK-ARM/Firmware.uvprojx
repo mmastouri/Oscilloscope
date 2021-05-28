@@ -1184,6 +1184,16 @@
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_trig_marker_on.cpp</FilePath>
             </File>
+            <File>
+              <FileName>image_control_signal_off.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_control_signal_off.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_control_signal_on.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Graphic\generated\images\src\image_control_signal_on.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

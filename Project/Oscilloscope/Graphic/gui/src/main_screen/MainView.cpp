@@ -67,6 +67,14 @@
 void MainView::setupScreen()
 {
 	tickCounter = 0;
+
+
+	oscill_layout.setPosition(0,
+		                      0,
+		                      HAL::DISPLAY_WIDTH,
+		                      HAL::DISPLAY_HEIGHT);
+
+
 	panelChn[CHANNEL_1].associatedChannel = 0;
 	panelChn[CHANNEL_2].associatedChannel = 1;
 	MeasureButtonClicked = FALSE;
@@ -137,15 +145,15 @@ void MainView::setupScreen()
 
 	oziBackground.setBitmap(Bitmap(BITMAP_OZIBACKGROUND_ID));
 	oziBackground.setXY(3, 3);
-	add(oziBackground);
+	oscill_layout.add(oziBackground);
 
 	controlPanelBackground.setBitmap(Bitmap(BITMAP_CONTROLPANEL_ID));
 	controlPanelBackground.setXY(314, 3);
-	add(controlPanelBackground);
+	oscill_layout.add(controlPanelBackground);
 
 	channelBackground.setBitmap(Bitmap(BITMAP_CHANNEL_INFO_ID));
 	channelBackground.setXY(314, 237);
-	add(channelBackground);
+	oscill_layout.add(channelBackground);
 
 	/*
 	* Button section:  Configure buttons for changing between two channels
@@ -154,12 +162,12 @@ void MainView::setupScreen()
 	rightButton.setBitmaps(Bitmap(BITMAP_CHRIGHTBUTTONUNPRESS_ID), Bitmap(BITMAP_CHRIGHTBUTTONPRESS_ID));
 	rightButton.setXY(450, 239);
 	rightButton.setAction(buttonClickedCallback);
-	add(rightButton);
+	oscill_layout.add(rightButton);
 
 	leftButton.setBitmaps(Bitmap(BITMAP_CHLEFTBUTTONUNPRESS_ID), Bitmap(BITMAP_CHLEFTBUTTONPRESS_ID));
 	leftButton.setXY(315, 239);
 	leftButton.setAction(buttonClickedCallback);
-	add(leftButton);
+	oscill_layout.add(leftButton);
 
 	/*
 	* Text section:  Configure Text label "Channel 1, channel 2"
@@ -179,7 +187,7 @@ void MainView::setupScreen()
 		                                 controlPanelBackground.getWidth(),
 		                                 controlPanelBackground.getHeight());
 
-	add(chnControlPanelViewPort);
+	oscill_layout.add(chnControlPanelViewPort);
 
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
 	{
@@ -229,7 +237,7 @@ void MainView::setupScreen()
 			                     controlPanelBackground.getHeight());
 	}
 
-	add(chnTextViewPort);
+	oscill_layout.add(chnTextViewPort);
 	selectedChnIndex = CHANNEL_2;
 	slideTexts(LEFT);
 
@@ -258,7 +266,7 @@ void MainView::setupScreen()
 								oziBackground.getWidth(),
 								oziBackground.getHeight());
 	
-	add(graph_container);
+	oscill_layout.add(graph_container);
 
 	Application::getInstance()->registerTimerWidget(&graph[CHANNEL_1]);
 	Application::getInstance()->registerTimerWidget(&graph[CHANNEL_2]);
@@ -271,12 +279,12 @@ void MainView::setupScreen()
 	marker1.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
 	marker1.setup(oziBackground.getWidth() - 100, marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
 
-	add(marker1);
+	oscill_layout.add(marker1);
 
 	marker2.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
 	marker2.setup( oziBackground.getWidth() - 50, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
 
-	add(marker2);
+	oscill_layout.add(marker2);
 
 	ch1_marker1_position = marker1.GetPosition();
 	ch1_marker2_position = marker2.GetPosition();
@@ -296,7 +304,7 @@ void MainView::setupScreen()
 		                 presenter->p_GetTriggerValue(CHANNEL_2),
 		                 Color::getColorFrom24BitRGB(255, 133, 7));
 
-	add(triggLine[CHANNEL_2]);
+	oscill_layout.add(triggLine[CHANNEL_2]);
 
 	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine[CHANNEL_2].GetTriggerPosition());
 
@@ -315,18 +323,18 @@ void MainView::setupScreen()
 
 	presenter->p_SetTriggerValue(CHANNEL_1, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine[CHANNEL_1].GetTriggerPosition());
 
-	add(triggLine[CHANNEL_1]);
+	oscill_layout.add(triggLine[CHANNEL_1]);
 
 
 	trigger_lvl[CHANNEL_1].setTypedText(TypedText(T_TRIG1_LEVEL));
 	trigger_lvl[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
 	trigger_lvl[CHANNEL_1].setXY(125, 215);
-	add(trigger_lvl[CHANNEL_1]);
+	oscill_layout.add(trigger_lvl[CHANNEL_1]);
 
 	trigger_lvl[CHANNEL_2].setTypedText(TypedText(T_TRIG2_LEVEL));
 	trigger_lvl[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
 	trigger_lvl[CHANNEL_2].setXY(220, 215);
-	add(trigger_lvl[CHANNEL_2]);
+	oscill_layout.add(trigger_lvl[CHANNEL_2]);
 
 	/*
 	 *  Display Value section
@@ -361,7 +369,7 @@ void MainView::setupScreen()
 	trig_value_wildcard[CHANNEL_1].setWildcard(trig_buff[CHANNEL_1]);
 	trig_value_wildcard[CHANNEL_1].setPosition(170, 214, 100, 20);
 	trig_value_wildcard[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
-	add(trig_value_wildcard[CHANNEL_1]);
+	oscill_layout.add(trig_value_wildcard[CHANNEL_1]);
 	trig_value_wildcard[CHANNEL_1].invalidate();
 
 	Unicode::snprintf(trig_buff[CHANNEL_2], 5, "%d V", 0);
@@ -369,13 +377,13 @@ void MainView::setupScreen()
 	trig_value_wildcard[CHANNEL_2].setWildcard(trig_buff[CHANNEL_2]);
 	trig_value_wildcard[CHANNEL_2].setPosition(265, 214, 100, 20);
 	trig_value_wildcard[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
-	add(trig_value_wildcard[CHANNEL_2]);
+	oscill_layout.add(trig_value_wildcard[CHANNEL_2]);
 	trig_value_wildcard[CHANNEL_2].invalidate();
 
 	/*
      * Control Menu section	
    	 */
-	control_menu.setup(SlideMenu::EAST, Bitmap(BITMAP_SLIDEMENU_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_PRESS_ID), 0, 0, 291, 0);
+	control_menu.setup(SlideMenu::EAST, Bitmap(BITMAP_SLIDEMENU_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_PRESS_ID), 0, 0, 461, 0);
 	control_menu.setXY(3, 235);
 	control_menu.setVisiblePixelsWhenCollapsed(15);
 	control_menu.setExpandedStateTimeout(500);
@@ -389,6 +397,11 @@ void MainView::setupScreen()
 	reset_settings.setXY(87, 3);
 	reset_settings.setAction(buttonClickedCallback);
 	control_menu.add(reset_settings);
+
+	signal_gen.setBitmaps(Bitmap(BITMAP_CONTROL_SIGNAL_OFF_ID), Bitmap(BITMAP_CONTROL_SIGNAL_ON_ID));
+	signal_gen.setXY(147, 3);
+	signal_gen.setAction(buttonClickedCallback);
+	control_menu.add(signal_gen);
 
 	chn_enable[CHANNEL_1].setBitmaps(Bitmap(BITMAP_CH1_OFF_ID), Bitmap(BITMAP_CH1_ON_ID));
 	chn_enable[CHANNEL_1].setXY(30, 237);
@@ -417,12 +430,12 @@ void MainView::setupScreen()
 
 	graph_container.add(graph[CHANNEL_1]);
 	graph_container.add(graph[CHANNEL_2]);
-	add(chn_enable[CHANNEL_1]);
-	add(chn_enable[CHANNEL_2]);
-	add(meas_enable);
-	add(run_stop);
+	oscill_layout.add(chn_enable[CHANNEL_1]);
+	oscill_layout.add(chn_enable[CHANNEL_2]);
+	oscill_layout.add(meas_enable);
+	oscill_layout.add(run_stop);
 	
-	add(control_menu);
+	oscill_layout.add(control_menu);
 
 	// Init Panel from default / saved settings 
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
@@ -432,6 +445,8 @@ void MainView::setupScreen()
 		panelChn[i].SetMarkerButton(presenter->p_GetTrigger(i));
 		panelChn[i].setScaleSettings(presenter->p_GetTimeScale(i), presenter->p_GetVoltageScale(i));
 	}
+
+	add(oscill_layout);
 	Intro();
 }
 
@@ -487,22 +502,22 @@ void MainView::buttonClicked(const AbstractButton& source)
 	{
 		if (chn_enable[CHANNEL_1].getState() == true)
 		{
-			remove(triggLine[CHANNEL_1]);
-			add(triggLine[CHANNEL_1]);
+			oscill_layout.remove(triggLine[CHANNEL_1]);
+			oscill_layout.add(triggLine[CHANNEL_1]);
 			graph_container.add(graph[CHANNEL_1]);
 
 
-			remove(trigger_lvl[CHANNEL_1]);
-			remove(trig_value_wildcard[CHANNEL_1]);
-			add(trigger_lvl[CHANNEL_1]);
-			add(trig_value_wildcard[CHANNEL_1]);
+			oscill_layout.remove(trigger_lvl[CHANNEL_1]);
+			oscill_layout.remove(trig_value_wildcard[CHANNEL_1]);
+			oscill_layout.add(trigger_lvl[CHANNEL_1]);
+			oscill_layout.add(trig_value_wildcard[CHANNEL_1]);
 		}
 		else
 		{
-			remove(triggLine[CHANNEL_1]);
+			oscill_layout.remove(triggLine[CHANNEL_1]);
 			graph_container.remove(graph[CHANNEL_1]);
-			remove(trigger_lvl[CHANNEL_1]);
-			remove(trig_value_wildcard[CHANNEL_1]);
+			oscill_layout.remove(trigger_lvl[CHANNEL_1]);
+			oscill_layout.remove(trig_value_wildcard[CHANNEL_1]);
 
 		}
 	}
@@ -510,21 +525,21 @@ void MainView::buttonClicked(const AbstractButton& source)
 	{
 		if (chn_enable[CHANNEL_2].getState() == true)
 		{
-			remove(triggLine[CHANNEL_2]);
-			add(triggLine[CHANNEL_2]);
+			oscill_layout.remove(triggLine[CHANNEL_2]);
+			oscill_layout.add(triggLine[CHANNEL_2]);
 			graph_container.add(graph[CHANNEL_2]);
 
-			remove(trigger_lvl[CHANNEL_2]);
-			remove(trig_value_wildcard[CHANNEL_2]);
-			add(trigger_lvl[CHANNEL_2]);
-			add(trig_value_wildcard[CHANNEL_2]);
+			oscill_layout.remove(trigger_lvl[CHANNEL_2]);
+			oscill_layout.remove(trig_value_wildcard[CHANNEL_2]);
+			oscill_layout.add(trigger_lvl[CHANNEL_2]);
+			oscill_layout.add(trig_value_wildcard[CHANNEL_2]);
 		}
 		else
 		{
-			remove(triggLine[CHANNEL_2]);
+			oscill_layout.remove(triggLine[CHANNEL_2]);
 			graph_container.remove(graph[CHANNEL_2]);
-			remove(trigger_lvl[CHANNEL_2]);
-			remove(trig_value_wildcard[CHANNEL_2]);
+			oscill_layout.remove(trigger_lvl[CHANNEL_2]);
+			oscill_layout.remove(trig_value_wildcard[CHANNEL_2]);
 		}
 	}
 
@@ -535,14 +550,14 @@ void MainView::buttonClicked(const AbstractButton& source)
 			marker1.SetPosition(ch1_marker1_position);
 			marker2.SetPosition(ch1_marker2_position);
 
-			remove(meas_freq);
-			remove(meas_delta);
-			remove(time_wildcard);
-			remove(freq_wildcard);
-			add(meas_freq);
-			add(meas_delta);
-			add(time_wildcard);
-			add(freq_wildcard);
+			oscill_layout.remove(meas_freq);
+			oscill_layout.remove(meas_delta);
+			oscill_layout.remove(time_wildcard);
+			oscill_layout.remove(freq_wildcard);
+			oscill_layout.add(meas_freq);
+			oscill_layout.add(meas_delta);
+			oscill_layout.add(time_wildcard);
+			oscill_layout.add(freq_wildcard);
 			MeasureButtonClicked = 1;
 			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH1_ID), Bitmap(BITMAP_CURSOR_ON_CH2_ID));
 
@@ -563,10 +578,10 @@ void MainView::buttonClicked(const AbstractButton& source)
 			ch2_marker1_position = marker1.GetPosition();
 			ch2_marker2_position = marker2.GetPosition();
 
-			remove(meas_freq);
-			remove(meas_delta);
-			remove(time_wildcard);
-			remove(freq_wildcard);
+			oscill_layout.remove(meas_freq);
+			oscill_layout.remove(meas_delta);
+			oscill_layout.remove(time_wildcard);
+			oscill_layout.remove(freq_wildcard);
 			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
 			MeasureButtonClicked = FALSE;
 		}
