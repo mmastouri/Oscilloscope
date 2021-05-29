@@ -419,20 +419,20 @@ void MainView::setupScreen()
 	chn_enable[CHANNEL_1].forceState(true);
 
 	chn_enable[CHANNEL_2].setBitmaps(Bitmap(BITMAP_CH2_OFF_ID), Bitmap(BITMAP_CH2_ON_ID));
-	chn_enable[CHANNEL_2].setXY(90, 237);
+	chn_enable[CHANNEL_2].setXY(91, 237);
 	chn_enable[CHANNEL_2].setAction(buttonClickedCallback);
 
 	chn_enable[CHANNEL_2].forceState(true);
 	
 
 	meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
-	meas_enable.setXY(150, 237);
+	meas_enable.setXY(152, 237);
 	meas_enable.setAction(buttonClickedCallback);
 	meas_enable.forceState(false);
 
 
 	run_stop.setBitmaps(Bitmap(BITMAP_RUN_ID), Bitmap(BITMAP_STOP_ID));
-	run_stop.setXY(249, 237);
+	run_stop.setXY(213, 237);
 	run_stop.setAction(buttonClickedCallback);
 	run_stop.forceState(false);
 

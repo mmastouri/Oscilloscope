@@ -116,6 +116,18 @@ const uint16_t sine_wave[100] =
 		844, 951, 1061, 1176, 1294, 1415, 1539, 1664, 1791, 1919,
 };
 
+const uint16_t square_wave[100] = 
+{
+    4095,4095,4095,4095,4095,4095,4095,4095,4095,4095,
+		4095,4095,4095,4095,4095,4095,4095,4095,4095,4095,
+		4095,4095,4095,4095,4095,4095,4095,4095,4095,4095,
+		4095,4095,4095,4095,4095,4095,4095,4095,4095,4095,
+	  0,0,0,0,0,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,		
+	  0,0,0,0,0,0,0,0,0,0,
+	  0,0,0,0,0,0,0,0,0,0,		
+	  0,0,0,0,0,0,0,0,0,0,
+};
  /*
   * Fuction prototypes
   */
@@ -250,7 +262,7 @@ static void MX_TIM6_Init(void)
   /* Time base configuration */
   htim6.Instance = TIM6;
 
-  htim6.Init.Period            = 0x64;//0x3E8;
+  htim6.Init.Period            = 0x3E8;//0x64;
   htim6.Init.Prescaler         = 0;
   htim6.Init.ClockDivision     = 0;
   htim6.Init.CounterMode       = TIM_COUNTERMODE_UP;
