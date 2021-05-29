@@ -88,6 +88,8 @@ uint16_t adc_chn2_buffer[ADC_BUFF_SIZ];
 uint16_t adc_chn1_readptr = 0;
 uint16_t adc_chn2_readptr = 0;
 
+DAC_HandleTypeDef DacHandle;
+
 ADC_HandleTypeDef hadc1;
 ADC_HandleTypeDef hadc3;
 
@@ -96,8 +98,23 @@ DMA_HandleTypeDef hdma_adc3;
 
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
+TIM_HandleTypeDef htim6;
 
 UART_HandleTypeDef huart2;
+	
+const uint16_t sine_wave[100] = 
+{
+    2048, 2177, 2305, 2432, 2557, 2681, 2802, 2920, 3035, 3145,
+		3252, 3353, 3450, 3541, 3626, 3705, 3777, 3843, 3901, 3952,
+		3996, 4032, 4060, 4080, 4091, 4095, 4091, 4080, 4060, 4032,
+		3996, 3952, 3901, 3843, 3777, 3705, 3626, 3541, 3450, 3353,
+		3252, 3145, 3035, 2920, 2802, 2681, 2557, 2432, 2305, 2177,
+		2048, 1919, 1791, 1664, 1539, 1415, 1294, 1176, 1061, 951,
+		844, 743, 646, 555, 470, 391, 319, 253, 195, 144,
+		100, 64, 36, 16, 4, 0, 4, 16, 36, 64,
+		100, 144, 195, 253, 319, 391, 470, 555, 646, 743,
+		844, 951, 1061, 1176, 1294, 1415, 1539, 1664, 1791, 1919,
+};
 
  /*
   * Fuction prototypes
@@ -112,7 +129,8 @@ static void MX_TIM3_Init_Mod(int period, int pulse);
 static void MX_TIM4_Init_Mod(int period, int pulse);
 static void MX_TIM4_Init(void);
 static void MX_USART2_UART_Init(void);
-
+static void MX_TIM6_Init(void);
+static void MX_DAC_Init(void);
 /*
  *  Free RTOS Task Section
  */
@@ -138,10 +156,16 @@ int main(void)
 	MX_ADC3_Init();
 	MX_TIM3_Init();
 	MX_TIM4_Init();
-
+	MX_TIM6_Init();	
+	
+	
+	MX_DAC_Init();
+	
 	HAL_UART_Init(&huart2);
 	printf("hello \n");
 
+
+	
 	static uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 	CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
@@ -154,10 +178,13 @@ int main(void)
 
 	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);
 	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
-
+  HAL_DAC_Start_DMA(&DacHandle, DACx_CHANNEL, (uint32_t *)sine_wave, 100, DAC_ALIGN_12B_R);
 
 	HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_4);
 	HAL_TIM_OC_Start(&htim4, TIM_CHANNEL_4);
+  HAL_TIM_Base_Start(&htim6);
+	
+
 
 	vTaskStartScheduler();
 
@@ -201,6 +228,62 @@ uint16_t* PushDaTaToModel_1(void)
 uint16_t* PushDaTaToModel_2(void)
 {
 	return &adc_chn2_buffer[adc_chn2_readptr];
+
+}
+
+
+/**
+  * @brief  TIM6 Configuration
+  * @note   TIM6 configuration is based on APB1 frequency
+  * @note   TIM6 Update event occurs each TIM6CLK/256
+  * @param  None
+  * @retval None
+  */
+static void MX_TIM6_Init(void)
+{
+
+  TIM_MasterConfigTypeDef sMasterConfig;
+
+	 __HAL_RCC_TIM6_CLK_ENABLE();
+	
+  /*##-1- Configure the TIM peripheral #######################################*/
+  /* Time base configuration */
+  htim6.Instance = TIM6;
+
+  htim6.Init.Period            = 0x64;//0x3E8;
+  htim6.Init.Prescaler         = 0;
+  htim6.Init.ClockDivision     = 0;
+  htim6.Init.CounterMode       = TIM_COUNTERMODE_UP;
+  htim6.Init.RepetitionCounter = 0;
+  HAL_TIM_Base_Init(&htim6);
+
+  /* TIM6 TRGO selection */
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+
+  HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig);
+}
+
+static void MX_DAC_Init(void)
+{
+  DAC_ChannelConfTypeDef sConfig;	
+  DacHandle.Instance = DACx;
+  
+  if (HAL_DAC_Init(&DacHandle) != HAL_OK)
+  {
+    /* Initialization Error */
+    Error_Handler();
+  }
+
+  /*##-1- DAC channel1 Configuration #########################################*/
+  sConfig.DAC_Trigger = DAC_TRIGGER_T6_TRGO;
+  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
+
+  if (HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DACx_CHANNEL) != HAL_OK)
+  {
+    /* Channel configuration Error */
+    Error_Handler();
+  }	
 
 }
 

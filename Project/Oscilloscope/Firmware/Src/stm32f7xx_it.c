@@ -42,13 +42,23 @@
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_adc1;
 extern DMA_HandleTypeDef hdma_adc3;
-
+extern DAC_HandleTypeDef DacHandle;
 /******************************************************************************/
 /* STM32F7xx Peripheral Interrupt Handlers                                    */
 /* Add here the Interrupt Handlers for the used peripherals.                  */
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f7xx.s).                    */
 /******************************************************************************/
+
+/**
+* @brief  This function handles DMA interrupt request.
+* @param  None
+* @retval None
+*/
+void DACx_DMA_IRQHandler(void)
+{
+  HAL_DMA_IRQHandler(DacHandle.DMA_Handle1);
+}
 
 /**
 * @brief This function handles DMA2 stream0 global interrupt.

@@ -63,6 +63,8 @@
 "firmware\stm32f7xx_hal_uart.o"
 "firmware\stm32f7xx_hal_adc_ex.o"
 "firmware\stm32f7xx_hal_sd.o"
+"firmware\stm32f7xx_hal_dac.o"
+"firmware\stm32f7xx_hal_dac_ex.o"
 "firmware\startup_stm32f746xx.o"
 "firmware\languagegb.o"
 "firmware\texts.o"

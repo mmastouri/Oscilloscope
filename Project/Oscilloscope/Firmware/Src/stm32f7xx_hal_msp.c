@@ -160,6 +160,52 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
 
 }
 
+void HAL_DAC_MspInit(DAC_HandleTypeDef *hdac)
+{
+  GPIO_InitTypeDef          GPIO_InitStruct;
+  static DMA_HandleTypeDef  hdma_dac1;
+
+  /*##-1- Enable peripherals and GPIO Clocks #################################*/
+  /* Enable GPIO clock ****************************************/
+  DACx_CHANNEL_GPIO_CLK_ENABLE();
+  /* DAC Periph clock enable */
+  DACx_CLK_ENABLE();
+  /* DMA1 clock enable */
+  DMAx_CLK_ENABLE();
+
+  /*##-2- Configure peripheral GPIO ##########################################*/
+  /* DAC Channel1 GPIO pin configuration */
+  GPIO_InitStruct.Pin = DACx_CHANNEL_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(DACx_CHANNEL_GPIO_PORT, &GPIO_InitStruct);
+
+  /*##-3- Configure the DMA ##########################################*/
+  /* Set the parameters to be configured for DACx_DMA_STREAM */
+  hdma_dac1.Instance = DACx_DMA_INSTANCE;
+
+  hdma_dac1.Init.Channel  = DACx_DMA_CHANNEL;
+
+  hdma_dac1.Init.Direction = DMA_MEMORY_TO_PERIPH;
+  hdma_dac1.Init.PeriphInc = DMA_PINC_DISABLE;
+  hdma_dac1.Init.MemInc = DMA_MINC_ENABLE;
+  hdma_dac1.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
+  hdma_dac1.Init.MemDataAlignment = DMA_PDATAALIGN_HALFWORD;
+  hdma_dac1.Init.Mode = DMA_CIRCULAR;
+  hdma_dac1.Init.Priority = DMA_PRIORITY_HIGH;
+
+  HAL_DMA_Init(&hdma_dac1);
+
+  /* Associate the initialized DMA handle to the DAC handle */
+  __HAL_LINKDMA(hdac, DMA_Handle1, hdma_dac1);
+
+  /*##-4- Configure the NVIC for DMA #########################################*/
+  /* Enable the DMA1_Stream5 IRQ Channel */
+  HAL_NVIC_SetPriority(DACx_DMA_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DACx_DMA_IRQn);
+
+}
+
 void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
 {
 

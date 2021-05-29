@@ -29,6 +29,8 @@ firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cort
 firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_adc.h
 firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_adc_ex.h
 firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma2d.h
+firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dac.h
+firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dac_ex.h
 firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash.h
 firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash_ex.h
 firmware\mainpresenter.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_sdram.h
