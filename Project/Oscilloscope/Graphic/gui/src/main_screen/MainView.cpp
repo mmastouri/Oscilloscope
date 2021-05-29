@@ -453,7 +453,7 @@ void MainView::setupScreen()
 		panelChn[i].SetMarkerButton(presenter->p_GetTrigger(i));
 		panelChn[i].setScaleSettings(presenter->p_GetTimeScale(i), presenter->p_GetVoltageScale(i));
 	}
-
+  signal_type.forceState(true);
 	add(oscill_layout);
 	Intro();
 }
@@ -676,18 +676,55 @@ void MainView::buttonClicked(const AbstractButton& source)
 			control_menu.remove(signal_type);
 			control_menu.add(signal_type);
 			control_menu.add(signal_value);
+#ifndef SIMULATOR
+			 gen_set_signal_type(1);
+#endif
 	    }
 	    else
 	    {
+#ifndef SIMULATOR
+			gen_set_signal_type(0);
+#endif
 			control_menu.remove(signal_value);
 			control_menu.remove(signal_type);
 	    }
     }
 	else if (&source == &signal_type)
 	{
-	control_menu.resetExpandedStateTimer();
-
+		control_menu.resetExpandedStateTimer();
+		if (signal_type.getState() == true)
+		{
+#ifndef SIMULATOR
+			 gen_set_signal_type(1);
+#endif
+	    }
+		else
+		{
+#ifndef SIMULATOR
+			gen_set_signal_type(2);
+#endif
+		}
 	}
+	else if (&source == &signal_value)
+	{
+	   control_menu.resetExpandedStateTimer();
+	   if (signal_value.getState() == true)
+	   {
+#ifndef SIMULATOR
+		   gen_set_signal_freq(1);
+#endif
+		}
+	   else
+	   {
+#ifndef SIMULATOR
+		   gen_set_signal_freq(0);
+#endif
+	   }
+	}
+
+	//void gen_set_signal_type(int type);
+	//void gen_set_signal_freq(int freq);
+
 }
 
 void MainView::Intro(void)

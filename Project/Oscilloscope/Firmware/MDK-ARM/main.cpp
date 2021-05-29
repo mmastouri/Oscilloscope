@@ -244,6 +244,39 @@ uint16_t* PushDaTaToModel_2(void)
 }
 
 
+// 0 : stop
+// 1 : sine
+// 2 : square
+void gen_set_signal_type(int type)
+{
+	
+  HAL_DAC_Stop_DMA(&DacHandle, DACx_CHANNEL);		
+	if(type == 1)
+	{
+    HAL_DAC_Start_DMA(&DacHandle, DACx_CHANNEL, (uint32_t *)sine_wave, 100, DAC_ALIGN_12B_R);
+	}
+	else if(type == 2)
+	{
+    HAL_DAC_Start_DMA(&DacHandle, DACx_CHANNEL, (uint32_t *)square_wave, 100, DAC_ALIGN_12B_R);
+	}
+}
+
+
+// 0 :  1 KHz
+// 1 : 10 KHz
+
+void gen_set_signal_freq(int freq)
+{
+	if(freq == 0)
+	{
+		__HAL_TIM_SET_AUTORELOAD(&htim6, 0x3E8);
+	}
+	else
+	{
+		__HAL_TIM_SET_AUTORELOAD(&htim6, 0x64);
+	}
+}
+
 /**
   * @brief  TIM6 Configuration
   * @note   TIM6 configuration is based on APB1 frequency

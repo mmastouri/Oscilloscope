@@ -65,6 +65,10 @@ uint16_t * PushDaTaToModel_1(void);
 uint16_t * PushDaTaToModel_2(void);
 void UpdateHWTimeScale(int channel, int value);
 void ControlHWRunStop(int state);
+
+void gen_set_signal_type(int type);
+void gen_set_signal_freq(int freq);
+	
 #endif // !SIMULATOR
 
 #endif
