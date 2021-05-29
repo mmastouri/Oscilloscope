@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat May 29 22:24:32 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat May 29 22:30:58 2021
 <BR><P>
 <H3>Maximum Stack Usage =        848 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2802,8 +2802,8 @@ Global Symbols
 <P><STRONG><a name="[432]"></a>STM32F7DMA::STM32F7DMA__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, stm32f7dma.o(i._ZN10STM32F7DMAC1Ev), UNUSED)
 
 <P><STRONG><a name="[a3]"></a>STM32F7DMA::~STM32F7DMA()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f7dma.o(i._ZN10STM32F7DMAD1Ev))
-<BR>[Address Reference Count : 2]<UL><LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
-<LI> stm32f7dma.o(.constdata__ZTV10STM32F7DMA)
+<BR>[Address Reference Count : 2]<UL><LI> stm32f7dma.o(.constdata__ZTV10STM32F7DMA)
+<LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
 </UL>
 <P><STRONG><a name="[433]"></a>STM32F7DMA::~STM32F7DMA__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, stm32f7dma.o(i._ZN10STM32F7DMAD1Ev), UNUSED)
 
@@ -2909,8 +2909,8 @@ Global Symbols
 <P><STRONG><a name="[435]"></a>TriggerLine::TriggerLine__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, triggerline.o(i._ZN11TriggerLineC1Ev), UNUSED)
 
 <P><STRONG><a name="[9b]"></a>TriggerLine::~TriggerLine()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, triggerline.o(i._ZN11TriggerLineD1Ev))
-<BR>[Address Reference Count : 2]<UL><LI> triggerline.o(.constdata__ZTV11TriggerLine)
-<LI> mainview.o(i._ZN8MainViewD1Ev)
+<BR>[Address Reference Count : 2]<UL><LI> mainview.o(i._ZN8MainViewD1Ev)
+<LI> triggerline.o(.constdata__ZTV11TriggerLine)
 </UL>
 <P><STRONG><a name="[436]"></a>TriggerLine::~TriggerLine__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, triggerline.o(i._ZN11TriggerLineD1Ev), UNUSED)
 
@@ -3403,8 +3403,8 @@ Global Symbols
 <P><STRONG><a name="[440]"></a>Graph::Graph__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, graph.o(i._ZN5GraphC1Ev), UNUSED)
 
 <P><STRONG><a name="[9a]"></a>Graph::~Graph()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, graph.o(i._ZN5GraphD1Ev))
-<BR>[Address Reference Count : 2]<UL><LI> graph.o(.constdata__ZTV5Graph)
-<LI> mainview.o(i._ZN8MainViewD1Ev)
+<BR>[Address Reference Count : 2]<UL><LI> mainview.o(i._ZN8MainViewD1Ev)
+<LI> graph.o(.constdata__ZTV5Graph)
 </UL>
 <P><STRONG><a name="[441]"></a>Graph::~Graph__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, graph.o(i._ZN5GraphD1Ev), UNUSED)
 
@@ -4067,16 +4067,16 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChannelControlPanel::~ChannelControlPanel()
 </UL>
-<BR>[Address Reference Count : 2]<UL><LI> frontendapplication.o(.constdata__ZTVN8touchgfx12MoveAnimatorI19ChannelControlPanelEE)
-<LI> mainview.o(i._ZN8MainViewD1Ev)
+<BR>[Address Reference Count : 2]<UL><LI> mainview.o(i._ZN8MainViewD1Ev)
+<LI> frontendapplication.o(.constdata__ZTVN8touchgfx12MoveAnimatorI19ChannelControlPanelEE)
 </UL>
 <P><STRONG><a name="[44b]"></a>touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::~MoveAnimator__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, frontendapplication.o(i._ZN8touchgfx12MoveAnimatorI19ChannelControlPanelED1Ev), UNUSED)
 
 <P><STRONG><a name="[8f]"></a>touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::~MoveAnimator()</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, channelcontrolpanel.o(i._ZN8touchgfx12MoveAnimatorINS_8TextAreaEED1Ev))
 <BR><BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::TextArea::~TextArea()
 </UL>
-<BR>[Address Reference Count : 3]<UL><LI> channelcontrolpanel.o(i._ZN19ChannelControlPanelD1Ev)
-<LI> mainview.o(i._ZN8MainViewD1Ev)
+<BR>[Address Reference Count : 3]<UL><LI> mainview.o(i._ZN8MainViewD1Ev)
+<LI> channelcontrolpanel.o(i._ZN19ChannelControlPanelD1Ev)
 <LI> channelcontrolpanel.o(.constdata__ZTVN8touchgfx12MoveAnimatorINS_8TextAreaEEE)
 </UL>
 <P><STRONG><a name="[44c]"></a>touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::~MoveAnimator__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, channelcontrolpanel.o(i._ZN8touchgfx12MoveAnimatorINS_8TextAreaEED1Ev), UNUSED)
@@ -4846,8 +4846,8 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> stm32f7instrumentation.o(.constdata__ZTVN8touchgfx22STM32F7InstrumentationE)
 </UL>
 <P><STRONG><a name="[a5]"></a>touchgfx::STM32F7Instrumentation::~STM32F7Instrumentation()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, boardconfiguration.o(i._ZN8touchgfx22STM32F7InstrumentationD1Ev))
-<BR>[Address Reference Count : 2]<UL><LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
-<LI> stm32f7instrumentation.o(.constdata__ZTVN8touchgfx22STM32F7InstrumentationE)
+<BR>[Address Reference Count : 2]<UL><LI> stm32f7instrumentation.o(.constdata__ZTVN8touchgfx22STM32F7InstrumentationE)
+<LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
 </UL>
 <P><STRONG><a name="[45a]"></a>touchgfx::STM32F7Instrumentation::~STM32F7Instrumentation__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, boardconfiguration.o(i._ZN8touchgfx22STM32F7InstrumentationD1Ev), UNUSED)
 
@@ -4895,8 +4895,8 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> stm32f746gtouchcontroller.o(.constdata__ZTVN8touchgfx25STM32F746GTouchControllerE)
 </UL>
 <P><STRONG><a name="[a4]"></a>touchgfx::STM32F746GTouchController::~STM32F746GTouchController()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, boardconfiguration.o(i._ZN8touchgfx25STM32F746GTouchControllerD1Ev))
-<BR>[Address Reference Count : 2]<UL><LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
-<LI> stm32f746gtouchcontroller.o(.constdata__ZTVN8touchgfx25STM32F746GTouchControllerE)
+<BR>[Address Reference Count : 2]<UL><LI> stm32f746gtouchcontroller.o(.constdata__ZTVN8touchgfx25STM32F746GTouchControllerE)
+<LI> boardconfiguration.o(i.__sti___22_BoardConfiguration_cpp_dceb80ee)
 </UL>
 <P><STRONG><a name="[45d]"></a>touchgfx::STM32F746GTouchController::~STM32F746GTouchController__sub_object()</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, boardconfiguration.o(i._ZN8touchgfx25STM32F746GTouchControllerD1Ev), UNUSED)
 
