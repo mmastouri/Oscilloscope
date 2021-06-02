@@ -43,7 +43,7 @@ __packed typedef union
 		uint32_t signature;
     uint32_t CH1_YOffset;
     uint32_t CH2_YOffset;
-		
+
     uint32_t CH1_Trigger;
     uint32_t CH2_Trigger;
 		uint32_t CH1_TriggerType;
@@ -54,8 +54,25 @@ __packed typedef union
 		uint32_t CH1_TimeScale;		
 		uint32_t CH2_TimeScale;		
 		uint32_t CH1_VoltageScale;		
-		uint32_t CH2_VoltageScale;				
+		uint32_t CH2_VoltageScale;		
 
+    uint32_t CH1_Enable;			
+    uint32_t CH2_Enable;			
+		uint32_t measure_enable;
+
+		uint32_t CH2_marker1;		
+    uint32_t CH2_marker2;		
+		uint32_t CH1_marker1;		
+    uint32_t CH1_marker2;	
+		
+		uint32_t signal_enable;		
+		uint32_t signal_type;		
+		uint32_t signal_freq;	
+
+    uint32_t CH1_XOffset;
+    uint32_t CH2_XOffset;		
+		
+		
   } item;
 }save_data_t;
 

@@ -77,7 +77,7 @@ void MainView::setupScreen()
 
 	panelChn[CHANNEL_1].associatedChannel = 0;
 	panelChn[CHANNEL_2].associatedChannel = 1;
-	MeasureButtonClicked = FALSE;
+
 
 
 #ifndef SIMULATOR
@@ -102,9 +102,12 @@ void MainView::setupScreen()
 		presenter->p_SetTimeScale(CHANNEL_2, data.item.CH2_TimeScale);
 		presenter->p_SetVoltageScale(CHANNEL_1, data.item.CH1_VoltageScale);
 		presenter->p_SetVoltageScale(CHANNEL_2, data.item.CH2_VoltageScale);
+
+		MeasureButtonClicked = data.item.measure_enable;
 }
 	else
 	{
+		MeasureButtonClicked = FALSE;
 		presenter->p_SetYOffset(CHANNEL_1, 115 - 38);
 		presenter->p_SetYOffset(CHANNEL_2, 230 - 38);
 		presenter->p_SetTrigger(CHANNEL_1, true);
@@ -304,7 +307,7 @@ void MainView::setupScreen()
 		                 presenter->p_GetTriggerValue(CHANNEL_2),
 		                 Color::getColorFrom24BitRGB(255, 133, 7));
 
-	oscill_layout.add(triggLine[CHANNEL_2]);
+	//oscill_layout.add(triggLine[CHANNEL_2]);
 
 	presenter->p_SetTriggerValue(CHANNEL_2, presenter->p_GetVoltScale2Pixel(CHANNEL_2) - triggLine[CHANNEL_2].GetTriggerPosition());
 
@@ -416,28 +419,28 @@ void MainView::setupScreen()
 	chn_enable[CHANNEL_1].setAction(buttonClickedCallback);
 	
 	
-	chn_enable[CHANNEL_1].forceState(true);
+
 
 	chn_enable[CHANNEL_2].setBitmaps(Bitmap(BITMAP_CH2_OFF_ID), Bitmap(BITMAP_CH2_ON_ID));
 	chn_enable[CHANNEL_2].setXY(91, 237);
 	chn_enable[CHANNEL_2].setAction(buttonClickedCallback);
 
-	chn_enable[CHANNEL_2].forceState(true);
+
 	
 
 	meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
 	meas_enable.setXY(152, 237);
 	meas_enable.setAction(buttonClickedCallback);
-	meas_enable.forceState(false);
+
 
 
 	run_stop.setBitmaps(Bitmap(BITMAP_RUN_ID), Bitmap(BITMAP_STOP_ID));
 	run_stop.setXY(213, 237);
 	run_stop.setAction(buttonClickedCallback);
-	run_stop.forceState(false);
 
-	graph_container.add(graph[CHANNEL_1]);
-	graph_container.add(graph[CHANNEL_2]);
+
+	//graph_container.add(graph[CHANNEL_1]);
+	//graph_container.add(graph[CHANNEL_2]);
 	oscill_layout.add(chn_enable[CHANNEL_1]);
 	oscill_layout.add(chn_enable[CHANNEL_2]);
 	oscill_layout.add(meas_enable);
@@ -453,7 +456,149 @@ void MainView::setupScreen()
 		panelChn[i].SetMarkerButton(presenter->p_GetTrigger(i));
 		panelChn[i].setScaleSettings(presenter->p_GetTimeScale(i), presenter->p_GetVoltageScale(i));
 	}
-  signal_type.forceState(true);
+	control_menu.add(signal_type);
+	control_menu.add(signal_value);
+	run_stop.forceState(false);
+#ifndef SIMULATOR
+	MeasureButtonClicked = data.item.measure_enable;
+	chn_enable[CHANNEL_1].forceState(data.item.CH1_Enable);
+	chn_enable[CHANNEL_2].forceState(data.item.CH2_Enable);
+	signal_type.forceState(data.item.signal_type);
+	signal_gen.forceState(data.item.signal_enable);
+#else
+	MeasureButtonClicked = 0;
+	chn_enable[CHANNEL_1].forceState(true);
+	chn_enable[CHANNEL_2].forceState(true);
+	signal_type.forceState(true);
+	signal_gen.forceState(true);
+#endif
+
+	if (chn_enable[CHANNEL_1].getState() == true)
+	{
+		oscill_layout.remove(triggLine[CHANNEL_1]);
+		oscill_layout.add(triggLine[CHANNEL_1]);
+		graph_container.add(graph[CHANNEL_1]);
+
+
+		oscill_layout.remove(trigger_lvl[CHANNEL_1]);
+		oscill_layout.remove(trig_value_wildcard[CHANNEL_1]);
+		oscill_layout.add(trigger_lvl[CHANNEL_1]);
+		oscill_layout.add(trig_value_wildcard[CHANNEL_1]);
+	}
+	else
+	{
+		oscill_layout.remove(triggLine[CHANNEL_1]);
+		graph_container.remove(graph[CHANNEL_1]);
+		oscill_layout.remove(trigger_lvl[CHANNEL_1]);
+		oscill_layout.remove(trig_value_wildcard[CHANNEL_1]);
+
+	}
+
+	if (chn_enable[CHANNEL_2].getState() == true)
+	{
+		oscill_layout.remove(triggLine[CHANNEL_2]);
+		oscill_layout.add(triggLine[CHANNEL_2]);
+		graph_container.add(graph[CHANNEL_2]);
+
+		oscill_layout.remove(trigger_lvl[CHANNEL_2]);
+		oscill_layout.remove(trig_value_wildcard[CHANNEL_2]);
+		oscill_layout.add(trigger_lvl[CHANNEL_2]);
+		oscill_layout.add(trig_value_wildcard[CHANNEL_2]);
+	}
+	else
+	{
+		oscill_layout.remove(triggLine[CHANNEL_2]);
+		graph_container.remove(graph[CHANNEL_2]);
+		oscill_layout.remove(trigger_lvl[CHANNEL_2]);
+		oscill_layout.remove(trig_value_wildcard[CHANNEL_2]);
+	}
+
+	if (MeasureButtonClicked == 1)
+	{
+		marker1.SetPosition(ch1_marker1_position);
+		marker2.SetPosition(ch1_marker2_position);
+
+		oscill_layout.remove(meas_freq);
+		oscill_layout.remove(meas_delta);
+		oscill_layout.remove(time_wildcard);
+		oscill_layout.remove(freq_wildcard);
+		oscill_layout.add(meas_freq);
+		oscill_layout.add(meas_delta);
+		oscill_layout.add(time_wildcard);
+		oscill_layout.add(freq_wildcard);
+
+		meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH1_ID), Bitmap(BITMAP_CURSOR_ON_CH2_ID));
+
+	}
+	else if (MeasureButtonClicked == 2)
+	{
+		ch1_marker1_position = marker1.GetPosition();
+		ch1_marker2_position = marker2.GetPosition();
+
+		marker1.SetPosition(ch2_marker1_position);
+		marker2.SetPosition(ch2_marker2_position);
+
+		meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH2_ID), Bitmap(BITMAP_CURSOR_OFF_ID));
+
+	}
+	else if (MeasureButtonClicked == 0)
+	{
+		ch2_marker1_position = marker1.GetPosition();
+		ch2_marker2_position = marker2.GetPosition();
+
+		oscill_layout.remove(meas_freq);
+		oscill_layout.remove(meas_delta);
+		oscill_layout.remove(time_wildcard);
+		oscill_layout.remove(freq_wildcard);
+		meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
+
+	}
+
+	if (signal_gen.getState() == true)
+	{
+		control_menu.remove(signal_value);
+		control_menu.remove(signal_type);
+		control_menu.add(signal_type);
+		control_menu.add(signal_value);
+#ifndef SIMULATOR
+		gen_set_signal_type(1);
+#endif
+	}
+	else
+	{
+#ifndef SIMULATOR
+		gen_set_signal_type(0);
+#endif
+		control_menu.remove(signal_value);
+		control_menu.remove(signal_type);
+	}
+
+	if (signal_type.getState() == true)
+	{
+#ifndef SIMULATOR
+		gen_set_signal_type(1);
+#endif
+	}
+	else
+	{
+#ifndef SIMULATOR
+		gen_set_signal_type(2);
+#endif
+	}
+
+	if (signal_value.getState() == true)
+	{
+#ifndef SIMULATOR
+		gen_set_signal_freq(1);
+#endif
+	}
+	else
+	{
+#ifndef SIMULATOR
+		gen_set_signal_freq(0);
+#endif
+	}
+
 	add(oscill_layout);
 	Intro();
 }
@@ -621,6 +766,10 @@ void MainView::buttonClicked(const AbstractButton& source)
 		data.item.CH2_TimeScale = presenter->p_GetTimeScale(CHANNEL_2);
 		data.item.CH1_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_1);
 		data.item.CH2_VoltageScale = presenter->p_GetVoltageScale(CHANNEL_2);
+
+		data.item.measure_enable = MeasureButtonClicked;
+		data.item.CH1_Enable = chn_enable[CHANNEL_1].getState();
+		data.item.CH2_Enable = chn_enable[CHANNEL_2].getState();
 
 		qsettings_save(&data);
 #endif
