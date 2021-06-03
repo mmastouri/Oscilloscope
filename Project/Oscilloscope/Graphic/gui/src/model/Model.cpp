@@ -119,6 +119,42 @@ void Model::SetRawData(int channel, uint16_t *data)
 	}
 }
 
+int Model::getSignalMax(int channel)
+{
+	int max = 0;
+	switch (channel)
+	{
+	case CHANNEL_1:
+		for (int i = 0; i < NUMBER_OF_POINT; i++)
+		{
+			if (chan1.raw_data[i] > max)
+			{
+				max = chan1.raw_data[i];
+			}
+		}
+		break;
+
+	case CHANNEL_2:
+		for (int i = 0; i < NUMBER_OF_POINT; i++)
+		{
+			if (chan2.raw_data[i] > max)
+			{
+				max = chan2.raw_data[i];
+			}
+		}
+		break;
+	}
+	return max;
+}
+
+int Model::getSignalFreq(int channel)
+{
+	int freq;
+
+	return freq;
+}
+
+
 void Model::ConvertToTriggerData(int channel)
 {
 	int trigg_position;

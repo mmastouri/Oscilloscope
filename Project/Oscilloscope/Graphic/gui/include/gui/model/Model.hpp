@@ -81,6 +81,9 @@ public:
 	void ConvertToTriggerData(int channel);
 	int * GetTriggerData(int channel);
 
+	int getSignalMax(int channel);
+	int getSignalFreq(int channel);
+
 	void SetYOffset(int channel, int value);
 	int GetYOffset(int channel);
 
