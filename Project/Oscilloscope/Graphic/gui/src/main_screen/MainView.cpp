@@ -103,6 +103,11 @@ void MainView::setupScreen()
 		presenter->p_SetVoltageScale(CHANNEL_1, data.item.CH1_VoltageScale);
 		presenter->p_SetVoltageScale(CHANNEL_2, data.item.CH2_VoltageScale);
 
+		ch1_marker1_position = data.item.CH1_marker1;
+		ch1_marker2_position = data.item.CH1_marker2;
+		ch2_marker1_position = data.item.CH2_marker1;
+		ch2_marker2_position = data.item.CH2_marker2;
+
 		MeasureButtonClicked = data.item.measure_enable;
 }
 	else
@@ -121,6 +126,12 @@ void MainView::setupScreen()
 		presenter->p_SetTimeScale(CHANNEL_2, DIV_100uS);
 		presenter->p_SetVoltageScale(CHANNEL_1, DIV_2V);
 		presenter->p_SetVoltageScale(CHANNEL_2, DIV_2V);
+
+		ch1_marker1_position = oziBackground.getWidth() - 100;
+		ch1_marker2_position = oziBackground.getWidth() - 50;
+		ch2_marker1_position = oziBackground.getWidth() - 200;
+		ch2_marker2_position = oziBackground.getWidth() - 150;
+
 	}
 #else
 	presenter->p_SetYOffset(CHANNEL_1, 115 - 38);
@@ -136,6 +147,11 @@ void MainView::setupScreen()
 	presenter->p_SetTimeScale(CHANNEL_2, DIV_100uS);
 	presenter->p_SetVoltageScale(CHANNEL_1, DIV_2V);
 	presenter->p_SetVoltageScale(CHANNEL_2, DIV_2V);
+
+	ch1_marker1_position = 306 - 100;
+	ch1_marker2_position = 306 - 50;
+	ch2_marker1_position = 306 - 200;
+	ch2_marker2_position = 306 - 150;
 #endif
 	/*
 	* Background configuration: add application,
@@ -280,19 +296,21 @@ void MainView::setupScreen()
 	*/
 
 	marker1.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
-	marker1.setup(oziBackground.getWidth() - 100, marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
+	marker2.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
+	  
+    if (MeasureButtonClicked == 2)
+	{
+		marker1.setup(ch2_marker1_position, marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
+		marker2.setup(ch2_marker2_position, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
+	}
+	else
+	{
+		marker1.setup(ch1_marker1_position, marker1.getHeight(), marker1.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
+		marker2.setup(ch1_marker2_position, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
+	}
 
 	oscill_layout.add(marker1);
-
-	marker2.setPosition(oziBackground.getX(), oziBackground.getY(), oziBackground.getWidth(), oziBackground.getHeight());
-	marker2.setup( oziBackground.getWidth() - 50, marker2.getHeight(), marker2.getWidth(), Color::getColorFrom24BitRGB(255, 255, 255));
-
 	oscill_layout.add(marker2);
-
-	ch1_marker1_position = marker1.GetPosition();
-	ch1_marker2_position = marker2.GetPosition();
-	ch2_marker1_position = marker1.GetPosition();
-	ch2_marker2_position = marker2.GetPosition();
 
 	/*
 	* Trigger Line: Setup the Trigger Line
@@ -343,7 +361,7 @@ void MainView::setupScreen()
 	 *  Display Value section
 	 */
 	meas_delta.setTypedText(TypedText(T_CURSOR_US));
-	meas_delta.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	meas_delta.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
 	meas_delta.setXY(10, 200);
 	//add(meas_delta);
 
@@ -355,7 +373,7 @@ void MainView::setupScreen()
 	//add(time_wildcard);
 
 	meas_freq.setTypedText(TypedText(T_CURSOR_HZ));
-	meas_freq.setColor(Color::getColorFrom24BitRGB(246, 241, 237));
+	meas_freq.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
 	meas_freq.setXY(10, 215);
 	//add(meas_freq);
 
@@ -532,8 +550,6 @@ void MainView::setupScreen()
 	}
 	else if (MeasureButtonClicked == 2)
 	{
-		ch1_marker1_position = marker1.GetPosition();
-		ch1_marker2_position = marker2.GetPosition();
 
 		marker1.SetPosition(ch2_marker1_position);
 		marker2.SetPosition(ch2_marker2_position);
@@ -543,8 +559,6 @@ void MainView::setupScreen()
 	}
 	else if (MeasureButtonClicked == 0)
 	{
-		ch2_marker1_position = marker1.GetPosition();
-		ch2_marker2_position = marker2.GetPosition();
 
 		oscill_layout.remove(meas_freq);
 		oscill_layout.remove(meas_delta);
@@ -717,8 +731,6 @@ void MainView::buttonClicked(const AbstractButton& source)
 		}
 		else if (MeasureButtonClicked == 1)
 		{
-			ch1_marker1_position = marker1.GetPosition();
-			ch1_marker2_position = marker2.GetPosition();
 
 			marker1.SetPosition(ch2_marker1_position);
 			marker2.SetPosition(ch2_marker2_position);
@@ -728,9 +740,6 @@ void MainView::buttonClicked(const AbstractButton& source)
 		}
 		else if (MeasureButtonClicked == 2)
 		{
-			ch2_marker1_position = marker1.GetPosition();
-			ch2_marker2_position = marker2.GetPosition();
-
 			oscill_layout.remove(meas_freq);
 			oscill_layout.remove(meas_delta);
 			oscill_layout.remove(time_wildcard);
@@ -770,7 +779,10 @@ void MainView::buttonClicked(const AbstractButton& source)
 		data.item.measure_enable = MeasureButtonClicked;
 		data.item.CH1_Enable = chn_enable[CHANNEL_1].getState();
 		data.item.CH2_Enable = chn_enable[CHANNEL_2].getState();
-
+		data.item.CH1_marker1 = ch1_marker1_position;
+		data.item.CH1_marker2 = ch1_marker2_position;
+		data.item.CH2_marker1 = ch2_marker1_position;
+		data.item.CH2_marker2 = ch2_marker2_position;
 		qsettings_save(&data);
 #endif
 
@@ -1017,6 +1029,16 @@ void MainView::handleTickEvent()
 		panelChn[i].ProcessSettingsReset();
 	}
 
+	if (MeasureButtonClicked == 1)
+	{
+		ch1_marker1_position = marker1.GetPosition();
+		ch1_marker2_position = marker2.GetPosition();
+	}
+	else if (MeasureButtonClicked == 2)
+	{
+		ch2_marker1_position = marker1.GetPosition();
+		ch2_marker2_position = marker2.GetPosition();
+	}
 
 	marker1.EnableLine(GetMeasButtonIndex() != false);
 	marker2.EnableLine(GetMeasButtonIndex() != false);
