@@ -714,19 +714,35 @@ void MainView::buttonClicked(const AbstractButton& source)
 	{
 		if (MeasureButtonClicked == FALSE)
 		{
-			marker1.SetPosition(ch1_marker1_position);
-			marker2.SetPosition(ch1_marker2_position);
 
-			oscill_layout.remove(meas_freq);
-			oscill_layout.remove(meas_delta);
-			oscill_layout.remove(time_wildcard);
-			oscill_layout.remove(freq_wildcard);
-			oscill_layout.add(meas_freq);
-			oscill_layout.add(meas_delta);
-			oscill_layout.add(time_wildcard);
-			oscill_layout.add(freq_wildcard);
-			MeasureButtonClicked = 1;
-			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH1_ID), Bitmap(BITMAP_CURSOR_ON_CH2_ID));
+			if ((chn_enable[CHANNEL_1].getState() == true) || (chn_enable[CHANNEL_2].getState() == true))
+			{
+				marker1.SetPosition(ch1_marker1_position);
+				marker2.SetPosition(ch1_marker2_position);
+
+				oscill_layout.remove(meas_freq);
+				oscill_layout.remove(meas_delta);
+				oscill_layout.remove(time_wildcard);
+				oscill_layout.remove(freq_wildcard);
+				oscill_layout.add(meas_freq);
+				oscill_layout.add(meas_delta);
+				oscill_layout.add(time_wildcard);
+				oscill_layout.add(freq_wildcard);
+				
+				if (chn_enable[CHANNEL_1].getState() == true)
+				{
+					MeasureButtonClicked = 1;
+					if (chn_enable[CHANNEL_2].getState() == true)
+					   meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH1_ID), Bitmap(BITMAP_CURSOR_ON_CH2_ID));
+					else
+						meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH1_ID), Bitmap(BITMAP_CURSOR_OFF_ID));
+				}
+				else if (chn_enable[CHANNEL_2].getState() == true)
+				{
+					MeasureButtonClicked = 2;
+					meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH2_ID), Bitmap(BITMAP_CURSOR_OFF_ID));
+				}
+			}
 
 		}
 		else if (MeasureButtonClicked == 1)
@@ -735,8 +751,22 @@ void MainView::buttonClicked(const AbstractButton& source)
 			marker1.SetPosition(ch2_marker1_position);
 			marker2.SetPosition(ch2_marker2_position);
 
-			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH2_ID), Bitmap(BITMAP_CURSOR_OFF_ID));
-			MeasureButtonClicked = 2;
+			if (chn_enable[CHANNEL_2].getState() == true)
+			{
+				MeasureButtonClicked = 2;
+				meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH2_ID), Bitmap(BITMAP_CURSOR_OFF_ID));
+			}
+			else
+			{
+				oscill_layout.remove(meas_freq);
+				oscill_layout.remove(meas_delta);
+				oscill_layout.remove(time_wildcard);
+				oscill_layout.remove(freq_wildcard);
+				
+   			   meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
+
+				MeasureButtonClicked = FALSE;
+			}
 		}
 		else if (MeasureButtonClicked == 2)
 		{
@@ -744,7 +774,10 @@ void MainView::buttonClicked(const AbstractButton& source)
 			oscill_layout.remove(meas_delta);
 			oscill_layout.remove(time_wildcard);
 			oscill_layout.remove(freq_wildcard);
-			meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
+			if (chn_enable[CHANNEL_1].getState() == true)
+			   meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
+			else
+				meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH2_ID));
 			MeasureButtonClicked = FALSE;
 		}
 
