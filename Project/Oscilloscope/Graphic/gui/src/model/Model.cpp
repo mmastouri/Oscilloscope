@@ -484,64 +484,75 @@ float Model::GetTimeScale2Pixel(int channel)
 	{
 		switch (chan1.time_scale)
 		{
-			//div 50us
-			case 0:
-				temp_value = 1.316f;
-				break;
+			//div 25us
+		case 13:
+			temp_value = 0.658f;
+			break;
+		case 0:
+			temp_value = 1.316f;
+			break;
 			//div 100us 
-			case 1:
-				temp_value = 2.632f;
-				break;
+		case 1:
+			temp_value = 2.632f;
+			break;
 			//div 200us 
-			case 2:
-				temp_value = 5.263f;
-				break;
+		case 2:
+			temp_value = 5.263f;
+			break;
 			//div 500us 
-			case 3:
-				temp_value = 13.158f;
-				break;
+		case 3:
+			temp_value = 13.158f;
+			break;
 			//div 1ms
-			case 4:
-				temp_value = 26.316f;
-				break;
+		case 4:
+			temp_value = 26.316f;
+			break;
 			//div 2ms
-			case 5:
-				temp_value = 52.632f;
-				break;
+		case 5:
+			temp_value = 52.632f;
+			break;
 			//div 5ms
-			case 6:
-				temp_value = 131.579f;
-				break;
+		case 6:
+			temp_value = 131.579f;
+			break;
 			//div 10ms
-			case 7:
-				temp_value = 263.158f;
-				break;
+		case 7:
+			temp_value = 263.158f;
+			break;
 			//div 20ms
-			case 8:
-				temp_value = 526.318f;
-				break;
+		case 8:
+			temp_value = 526.318f;
+			break;
 			//div 50ms
-			case 9:
-				temp_value = 1315.789f;
-				break;
+		case 9:
+			temp_value = 1315.789f;
+			break;
 			//div 100ms
-			case 10:
-				temp_value = 2631.579f;
-				break;
+		case 10:
+			temp_value = 2631.579f;
+			break;
 			//div 200ms
-			case 11:
-				temp_value = 5263.158f;
-				break;
+		case 11:
+			temp_value = 5263.158f;
+			break;
 			//div 500ms
-			case 12:
-				temp_value = 13157.894f;
-				break;
+		case 12:
+			temp_value = 13157.894f;
+			break;
 		}
 	}
 	else
 	{
 		switch (chan2.time_scale)
 		{
+			//div 10us
+		case 13:
+			temp_value = 0.263f;
+			break;
+			//div 20us
+		case 14:
+			temp_value = 0.526f;
+			break;
 			//div 50us
 		case 0:
 			temp_value = 1.316f;

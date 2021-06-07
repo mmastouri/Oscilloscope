@@ -108,6 +108,10 @@ void MainView::setupScreen()
 		ch2_marker1_position = data.item.CH2_marker1;
 		ch2_marker2_position = data.item.CH2_marker2;
 
+
+
+
+
 		MeasureButtonClicked = data.item.measure_enable;
 }
 	else
@@ -481,14 +485,15 @@ void MainView::setupScreen()
 	MeasureButtonClicked = data.item.measure_enable;
 	chn_enable[CHANNEL_1].forceState(data.item.CH1_Enable);
 	chn_enable[CHANNEL_2].forceState(data.item.CH2_Enable);
-	signal_type.forceState(data.item.signal_type);
 	signal_gen.forceState(data.item.signal_enable);
+
 #else
 	MeasureButtonClicked = 0;
 	chn_enable[CHANNEL_1].forceState(true);
 	chn_enable[CHANNEL_2].forceState(true);
 	signal_type.forceState(true);
 	signal_gen.forceState(true);
+	signal_value.forceState(false);
 #endif
 
 	if (chn_enable[CHANNEL_1].getState() == true)
@@ -575,7 +580,10 @@ void MainView::setupScreen()
 		control_menu.add(signal_type);
 		control_menu.add(signal_value);
 #ifndef SIMULATOR
-		gen_set_signal_type(1);
+		signal_type.forceState(data.item.signal_type);
+		signal_value.forceState(data.item.signal_freq);
+		gen_set_signal_freq(data.item.signal_freq);
+		gen_set_signal_type(1 + 1 - data.item.signal_type);
 #endif
 	}
 	else
@@ -587,31 +595,6 @@ void MainView::setupScreen()
 		control_menu.remove(signal_type);
 	}
 
-	if (signal_type.getState() == true)
-	{
-#ifndef SIMULATOR
-		gen_set_signal_type(1);
-#endif
-	}
-	else
-	{
-#ifndef SIMULATOR
-		gen_set_signal_type(2);
-#endif
-	}
-
-	if (signal_value.getState() == true)
-	{
-#ifndef SIMULATOR
-		gen_set_signal_freq(1);
-#endif
-	}
-	else
-	{
-#ifndef SIMULATOR
-		gen_set_signal_freq(0);
-#endif
-	}
 
 	add(oscill_layout);
 	Intro();
@@ -816,6 +799,10 @@ void MainView::buttonClicked(const AbstractButton& source)
 		data.item.CH1_marker2 = ch1_marker2_position;
 		data.item.CH2_marker1 = ch2_marker1_position;
 		data.item.CH2_marker2 = ch2_marker2_position;
+
+		data.item.signal_enable = signal_gen.getState();
+		data.item.signal_type = signal_type.getState();
+		data.item.signal_freq = signal_value.getState();
 		qsettings_save(&data);
 #endif
 
@@ -1031,7 +1018,7 @@ void MainView::handleTickEvent()
 
 		presenter->p_SetTimeScale(i, panelChn[i].GetTimeBaseIndex());
 		presenter->p_SetVoltageScale(i, panelChn[i].GetVoltBaseIndex());
-		presenter->p_SetRawData(i);
+
 		presenter->p_SetYOffset(i, panelChn[i].GetYOffset());
 		presenter->p_SetXOffset(i, panelChn[i].GetXOffset());
 		presenter->p_SetTrigger(i, panelChn[i].isTriggerButtonClicked());
@@ -1039,6 +1026,7 @@ void MainView::handleTickEvent()
 		presenter->p_SetTriggerValue(i, triggLine[i].GetTriggerPosition());
 
 		/* Update GUI according to HMI update */
+		presenter->p_SetRawData(i);
 		graph[i].setY(presenter->p_GetYOffset(i));
 		graph[i].invalidate();
 

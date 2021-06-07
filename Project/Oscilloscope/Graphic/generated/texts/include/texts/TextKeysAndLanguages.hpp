@@ -35,6 +35,8 @@ typedef enum
     T_200MS,
     T_500MS,
     T_50US,
+    T_25US,
+    T_10US,
     T_10MV,
     T_20MV,
     T_50MV,

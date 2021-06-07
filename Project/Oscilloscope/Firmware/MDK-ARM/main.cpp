@@ -622,94 +622,90 @@ void ControlHWRunStop(int state)
 void UpdateHWTimeScale(int channel, int value)
 {
 	int period;
-	int pulse;
 
 	switch (value)
 	{
 
+//		//Div 10us
+//	case 13:
+//		period = 3;
+//		pulse = 2;
+//		break;
 
+		//Div 25us
+	case 13:
+		period = 6;
+		break;
+	
 		//Div 50us
 	case 0:
-		period = 12;
-		pulse = 6;
+		period = 12 ;
 		break;
 
 		//Div 100us
 	case 1:
 		period = 24;
-		pulse = 12;
 		break;
 
 		//Div 200us
 	case 2:
 		period = 48;
-		pulse = 24;
 		break;
 
 		//Div 500us
 	case 3:
 		period = 120;
-		pulse = 60;
 		break;
 
 		//Div 1ms
 	case 4:
 		period = 240;
-		pulse = 120;
 		break;
 
 		//Div 2ms
 	case 5:
 		period = 480;
-		pulse = 240;
 		break;
 
 		//Div 5ms
 	case 6:
 		period = 1200;
-		pulse = 600;
 		break;
 
 		//Div 10ms
 	case 7:
 		period = 2400;
-		pulse = 1200;
 		break;
 
 		//Div 20ms
 	case 8:
 		period = 4800;
-		pulse = 2400;
 		break;
 
 		//Div 50ms
 	case 9:
 		period = 12000;
-		pulse = 6000;
 		break;
 
 		//Div 100ms
 	case 10:
 		period = 24000;
-		pulse = 12000;
 		break;
 
 		//Div 200ms
 	case 11:
 		period = 48000;
-		pulse = 24000;
 		break;
 
 		//Div 500ms
 	case 12:
 		period = 120000;
-		pulse = 60000;
 		break;
 	}
 	if (channel == 0)
-		MX_TIM3_Init_Mod(period, pulse);
+		MX_TIM3_Init_Mod(period, period/2);
 	else
-		MX_TIM4_Init_Mod(period, pulse);
+		MX_TIM4_Init_Mod(period, period/2);
 }
 
 #ifdef USE_FULL_ASSERT

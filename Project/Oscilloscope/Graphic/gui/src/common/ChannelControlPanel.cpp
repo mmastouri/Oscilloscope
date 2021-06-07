@@ -184,6 +184,8 @@ void ChannelControlPanel::setup(int y0, int width, int height, uint16_t buttonOn
 	timeTxt[11].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
 	timeTxt[12].setTypedText(TypedText(T_500MS));
 	timeTxt[12].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
+	timeTxt[13].setTypedText(TypedText(T_25US));
+	timeTxt[13].setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
 
 	for (int i = 0; i < NUMBER_OF_TIME_BASE; i++)
 	{
