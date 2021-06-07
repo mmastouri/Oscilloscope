@@ -858,7 +858,7 @@ void MainView::buttonClicked(const AbstractButton& source)
 			control_menu.add(signal_type);
 			control_menu.add(signal_value);
 #ifndef SIMULATOR
-			 gen_set_signal_type(1);
+			gen_set_signal_type(1 + 1 - signal_type.getState());
 #endif
 	    }
 	    else
