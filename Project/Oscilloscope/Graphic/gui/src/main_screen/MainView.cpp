@@ -104,16 +104,19 @@ void MainView::setupScreen()
 		presenter->p_SetVoltageScale(CHANNEL_2, data.item.CH2_VoltageScale);
 
 		ch1_marker1_position = data.item.CH1_marker1;
+		if (ch1_marker1_position > 306 && ch1_marker1_position < 0) ch1_marker1_position = oziBackground.getWidth() - 100;
+
 		ch1_marker2_position = data.item.CH1_marker2;
+		if (ch1_marker2_position > 306 && ch1_marker2_position < 0) ch1_marker2_position = oziBackground.getWidth() - 50;
+
 		ch2_marker1_position = data.item.CH2_marker1;
+		if (ch2_marker1_position > 306 && ch2_marker1_position < 0) ch2_marker1_position = oziBackground.getWidth() - 200;
+
 		ch2_marker2_position = data.item.CH2_marker2;
-
-
-
-
+		if (ch2_marker2_position > 306 && ch2_marker2_position < 0) ch2_marker2_position = oziBackground.getWidth() - 150;
 
 		MeasureButtonClicked = data.item.measure_enable;
-}
+	}
 	else
 	{
 		MeasureButtonClicked = FALSE;
