@@ -1071,13 +1071,22 @@ void MainView::handleTickEvent()
 			temp_value = (temp_value / 1000);
 			if (temp_value == 0)  freq_value = 0; else freq_value = 1000 / temp_value;
 			Unicode::snprintf(cursor_buff, 10, "%d ms", temp_value);
-			Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
+
+			if(freq_value > 1000)
+				Unicode::snprintfFloat(freq_buff, 15, "%.1f KHz", (float)((float)freq_value /1000));
+			else
+			   Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
 		}
 		else
 		{
 			if (temp_value == 0) freq_value = 0; else freq_value = 1000000 / temp_value;
 			Unicode::snprintf(cursor_buff, 10, "%d us", temp_value);
-			Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
+
+
+			if (freq_value > 1000)
+				Unicode::snprintfFloat(freq_buff, 15, "%.1f KHz", (float)((float)freq_value / 1000));
+			else
+				Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
 		}
 	}
 
