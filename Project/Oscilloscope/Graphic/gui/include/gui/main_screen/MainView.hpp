@@ -125,6 +125,7 @@ private:
 	Container chnControlPanelViewPort;
 
 	SlideMenu control_menu;
+	SlideMenu settings_menu;
 	
 	int tickCounter;
 

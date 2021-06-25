@@ -95,14 +95,14 @@ void Marker::setup(int x_position, int marker_height, int graph_width, uint16_t 
 	* Add to the screen
 	*/
 	marker_painter.setColor(marker_color);
-	marker.setLineWidth(1);
+	marker.setLineWidth(0.5);
 	marker.setPosition(x_marker, -300, 50, marker_height + 500);
 	marker.setStart(5, 0);
 	marker.setEnd(5, marker_height + 500);
 	marker.setPainter(marker_painter);
 	marker.setDragAction(markerDraggedCallback);
 	marker.setTouchable(true);
-	marker.setAlpha(255);
+	//marker.setAlpha(255);
 	add(marker);
 }
 

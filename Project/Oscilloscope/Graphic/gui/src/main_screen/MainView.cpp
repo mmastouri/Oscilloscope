@@ -408,6 +408,11 @@ void MainView::setupScreen()
 	control_menu.setXY(3, 235);
 	control_menu.setVisiblePixelsWhenCollapsed(15);
 	control_menu.setExpandedStateTimeout(500);
+
+	settings_menu.setup(SlideMenu::SOUTH, Bitmap(BITMAP_CONTROLPANEL_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_ID), Bitmap(BITMAP_SIDESLIDEBUTTON_PRESS_ID), 0, 0, 0, 210);
+	settings_menu.setXY(314, 3);
+	settings_menu.setVisiblePixelsWhenCollapsed(15);
+	settings_menu.setExpandedStateTimeout(500);
 	
 	save_settings.setBitmaps(Bitmap(BITMAP_SAVE_SETTINGS_UNPRESS_ID), Bitmap(BITMAP_SAVE_SETTINGS_PRESS_ID));
 	save_settings.setXY(27, 3);
@@ -465,6 +470,7 @@ void MainView::setupScreen()
 	oscill_layout.add(run_stop);
 	
 	oscill_layout.add(control_menu);
+	//oscill_layout.add(settings_menu);
 
 	// Init Panel from default / saved settings 
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
@@ -1072,7 +1078,7 @@ void MainView::handleTickEvent()
 			if (temp_value == 0)  freq_value = 0; else freq_value = 1000 / temp_value;
 			Unicode::snprintf(cursor_buff, 10, "%d ms", temp_value);
 
-			if(freq_value > 1000)
+			if(freq_value >= 1000)
 				Unicode::snprintfFloat(freq_buff, 15, "%.1f KHz", (float)((float)freq_value /1000));
 			else
 			   Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
@@ -1083,7 +1089,7 @@ void MainView::handleTickEvent()
 			Unicode::snprintf(cursor_buff, 10, "%d us", temp_value);
 
 
-			if (freq_value > 1000)
+			if (freq_value >= 1000)
 				Unicode::snprintfFloat(freq_buff, 15, "%.1f KHz", (float)((float)freq_value / 1000));
 			else
 				Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);

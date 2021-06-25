@@ -55,7 +55,7 @@ void qsettings_save (save_data_t *pdata)
   BSP_QSPI_Init();  
 	
 	BSP_QSPI_Erase_Block(address);  
-  BSP_QSPI_Write ( (uint8_t *)pdata->data, address, 512);
+  BSP_QSPI_Write ( (uint8_t *)pdata->data, address, sizeof(save_data_t));
   BSP_QSPI_EnableMemoryMappedMode();
 }
 
@@ -64,7 +64,7 @@ void qsettings_restore (save_data_t *pdata)
   BSP_QSPI_DeInit();
   BSP_QSPI_Init();  
 
-  BSP_QSPI_Read ( (uint8_t *)pdata->data, address, 512);
+  BSP_QSPI_Read ( (uint8_t *)pdata->data, address, sizeof(save_data_t));
   BSP_QSPI_EnableMemoryMappedMode();
 }
 /**

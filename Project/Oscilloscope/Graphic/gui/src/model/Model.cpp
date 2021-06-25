@@ -178,7 +178,7 @@ void Model::ConvertToTriggerData(int channel)
 							(chan1.raw_data[i + 2] > chan1.trigger_level) &&
 							(chan1.raw_data[i + 3] > chan1.trigger_level))
 						{
-							trigg_position = i + 1 + chan1.x_offset;
+							trigg_position = i + 2 + chan1.x_offset;
 							chan1.trigger_found = true;
 							for (j = 0; j < NUMBER_OF_POINT; j++)
 							{
@@ -205,7 +205,7 @@ void Model::ConvertToTriggerData(int channel)
 							(chan1.raw_data[i + 2] < chan1.trigger_level) &&
 							(chan1.raw_data[i + 3] < chan1.trigger_level))
 						{
-							trigg_position = i + 1 + chan1.x_offset ;
+							trigg_position = i + 2 + chan1.x_offset ;
 							chan1.trigger_found = true;
 							for (j = 0; j < NUMBER_OF_POINT; j++)
 							{
@@ -250,7 +250,7 @@ void Model::ConvertToTriggerData(int channel)
 							(chan2.raw_data[i + 3]  > chan2.trigger_level))
 						{
 							chan2.trigger_found = true;
-							trigg_position = i + 1 + chan2.x_offset;
+							trigg_position = i + 2 + chan2.x_offset;
 							for (j = 0; j < NUMBER_OF_POINT; j++)
 							{
 								chan2.trigger_data[j] =  (chan2.raw_data[trigg_position]);
@@ -277,7 +277,7 @@ void Model::ConvertToTriggerData(int channel)
 							(chan2.raw_data[i + 3]  < chan2.trigger_level))
 						{
 							chan2.trigger_found = true;
-							trigg_position = i + 1 + chan2.x_offset;
+							trigg_position = i + 2 + chan2.x_offset;
 							for (j = 0; j < NUMBER_OF_POINT; j++)
 							{
 								chan2.trigger_data[j] =  (chan2.raw_data[trigg_position]);

@@ -56,6 +56,7 @@ using namespace touchgfx;
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+#include "timers.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -81,7 +82,8 @@ using namespace touchgfx;
 /*
  * Define variables
  */
-
+TimerHandle_t  htimer;
+uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 uint16_t adc_chn1_buffer[ADC_BUFF_SIZ];
 uint16_t adc_chn2_buffer[ADC_BUFF_SIZ]; 
 
@@ -141,9 +143,10 @@ static void MX_TIM3_Init(void);
 static void MX_TIM3_Init_Mod(int period, int pulse);
 static void MX_TIM4_Init_Mod(int period, int pulse);
 static void MX_TIM4_Init(void);
-static void MX_USART2_UART_Init(void);
+static void MX_USART1_UART_Init(void);
 static void MX_TIM6_Init(void);
 static void MX_DAC_Init(void);
+void TimerCallback(TimerHandle_t pxTimer);
 /*
  *  Free RTOS Task Section
  */
@@ -174,12 +177,8 @@ int main(void)
 	
 	MX_DAC_Init();
 	
-	HAL_UART_Init(&huart2);
-	printf("hello \n");
+	MX_USART1_UART_Init();
 
-
-	
-	static uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 	CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
 	xTaskCreate(GUITask, (TASKCREATE_NAME_TYPE)"GUITask",
@@ -189,6 +188,8 @@ int main(void)
 		NULL);
 
 
+	htimer = xTimerCreate ("Touch Screen", pdMS_TO_TICKS(1000), pdTRUE, 0, TimerCallback );
+	
 	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);
 	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
   HAL_DAC_Start_DMA(&DacHandle, DACx_CHANNEL, (uint32_t *)sine_wave, 100, DAC_ALIGN_12B_R);
@@ -197,13 +198,19 @@ int main(void)
 	HAL_TIM_OC_Start(&htim4, TIM_CHANNEL_4);
   HAL_TIM_Base_Start(&htim6);
 	
-
-
+  printf ("Starting PocketOz\n\r");
+	
+  xTimerStart(htimer, 0);
 	vTaskStartScheduler();
 
 	for (;;);
 
 }
+
+void TimerCallback(TimerHandle_t pxTimer){
+  printf ("Starting PocketOz\n\r");
+}
+
 
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
 {
@@ -538,20 +545,20 @@ static void MX_TIM4_Init(void)
 }
 
 
-/* USART2 init function */
-static void MX_USART2_UART_Init(void)
+/* USART1 init function */
+static void MX_USART1_UART_Init(void)
 {
 
-	huart2.Instance = USART2;
+	huart2.Instance = USART1;
 	huart2.Init.BaudRate = 115200;
 	huart2.Init.WordLength = UART_WORDLENGTH_8B;
 	huart2.Init.StopBits = UART_STOPBITS_1;
-	huart2.Init.Parity = UART_PARITY_ODD;
+	huart2.Init.Parity = UART_PARITY_NONE;
 	huart2.Init.Mode = UART_MODE_TX_RX;
 	huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	huart2.Init.OverSampling = UART_OVERSAMPLING_16;
 	huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-	huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+
 	if (HAL_UART_Init(&huart2) != HAL_OK)
 	{
 		Error_Handler();

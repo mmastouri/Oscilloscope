@@ -98,4 +98,5 @@ firmware\main.o: ..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\include\mpu_wrappe
 firmware\main.o: ..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\include\task.h
 firmware\main.o: ..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\include\list.h
 firmware\main.o: ..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\include\queue.h
+firmware\main.o: ..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\include\timers.h
 firmware\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
