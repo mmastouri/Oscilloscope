@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Firmware\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Firmware\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat Jun 26 18:37:51 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat Jun 26 19:48:38 2021
 <BR><P>
 <H3>Maximum Stack Usage =        848 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1359,7 +1359,6 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[1b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvUARTCommandConsoleTask
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvExecUICommand
 </UL>
 
 <P><STRONG><a name="[273]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
@@ -1437,8 +1436,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[1c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_ddtor_pointer_addr
 <LI><a href="#[1bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::touchgfx_init()
-<LI><a href="#[1ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___22_BoardConfiguration_cpp_dceb80ee
+<BR>[Called By]<UL><LI><a href="#[1ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___22_BoardConfiguration_cpp_dceb80ee
+<LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::touchgfx_init()
 <LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getFont_Asap_Regular_18_4bpp()
 <LI><a href="#[268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getFont_Asap_Regular_14_8bpp()
 <LI><a href="#[267]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getFont_Asap_Regular_13_4bpp()
@@ -1595,9 +1594,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_QSPI_MemoryMapped
 </UL>
-<BR>[Called By]<UL><LI><a href="#[39e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
-<LI><a href="#[2c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qsettings_save
+<BR>[Called By]<UL><LI><a href="#[2c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qsettings_save
 <LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qsettings_restore
+<LI><a href="#[39e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
 <LI><a href="#[3ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qsettings_init
 </UL>
 
@@ -1627,9 +1626,9 @@ Global Symbols
 <LI><a href="#[1df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;QSPI_WriteEnable
 <LI><a href="#[1e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;QSPI_AutoPollingMemReady
 </UL>
-<BR>[Called By]<UL><LI><a href="#[39e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
-<LI><a href="#[2c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qsettings_save
+<BR>[Called By]<UL><LI><a href="#[2c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qsettings_save
 <LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qsettings_restore
+<LI><a href="#[39e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::hw_init()
 <LI><a href="#[3ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qsettings_init
 </UL>
 
@@ -3813,10 +3812,10 @@ Global Symbols
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Drawable::moveRelative(short, short)
 <LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::TextArea&rang;::handleTickEvent()
-<LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::touchgfx_init()
 <LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::SlideMenu::~SlideMenu()
 <LI><a href="#[2bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;ChannelControlPanel&rang;::startMoveAnimation(short, short, unsigned short, short(*)(unsigned short, short, short, unsigned short), short(*)(unsigned short, short, short, unsigned short))
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainView::setupScreen()
+<LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::touchgfx_init()
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::tick()
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::RepeatButton::handleClickEvent(const touchgfx::ClickEvent&)
 <LI><a href="#[407]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::MoveAnimator&lang;touchgfx::Container&rang;::nextMoveAnimationStep()
@@ -4347,6 +4346,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[2b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrontendApplication::FrontendApplication(Model&, FrontendHeap&)
 <LI><a href="#[323]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FrontendApplication::gotoMainScreen()
 <LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Application::getInstance()
+<LI><a href="#[322]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::Model()
 <LI><a href="#[31e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Bitmap::registerBitmapDatabase(const touchgfx::Bitmap::BitmapData*, unsigned short, unsigned short*, unsigned, unsigned)
 <LI><a href="#[31f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::Texts::setLanguage(unsigned short)
 <LI><a href="#[31b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::HAL::initialize()
@@ -4355,7 +4355,6 @@ Global Symbols
 <LI><a href="#[320]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touchgfx::FontManager::setFontProvider(touchgfx::FontProvider*)
 <LI><a href="#[31c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BitmapDatabase::getInstanceSize()
 <LI><a href="#[31d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BitmapDatabase::getInstance()
-<LI><a href="#[322]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Model::Model()
 <LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxa_guard_acquire
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 <LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
@@ -8921,17 +8920,16 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_cli.o(.constdata)
 </UL>
-<P><STRONG><a name="[ba]"></a>prvExecUICommand</STRONG> (Thumb, 98 bytes, Stack size 24 bytes, cli-commands.o(i.prvExecUICommand))
+<P><STRONG><a name="[ba]"></a>prvExecUICommand</STRONG> (Thumb, 138 bytes, Stack size 24 bytes, cli-commands.o(i.prvExecUICommand))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = prvExecUICommand &rArr; atol &rArr; strtol &rArr; _strtoul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FreeRTOS_CLIGetParameter
 <LI><a href="#[1bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atol
 <LI><a href="#[3df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
-<LI><a href="#[1b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> cli-commands.o(.constdata)
 </UL>
-<P><STRONG><a name="[b9]"></a>prvResetCommand</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, cli-commands.o(i.prvResetCommand))
+<P><STRONG><a name="[b9]"></a>prvResetCommand</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, cli-commands.o(i.prvResetCommand))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = prvResetCommand &rArr; atol &rArr; strtol &rArr; _strtoul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SystemReset
