@@ -1019,11 +1019,15 @@ void MainView::handleTickEvent()
 	CLI_cmd = Get_CLI_UX_Commands();
 	switch (CLI_cmd)
 	{
-	case 0x100:
+	case PRESS_SIGTYPE:
 		signal_type.forceState(1 - signal_type.getState());
 	  buttonClicked(signal_type);
 		break;
 
+	case PRESS_SAVE:
+	  buttonClicked(save_settings);
+		break;
+	
 	default:
 		break;
 	}
