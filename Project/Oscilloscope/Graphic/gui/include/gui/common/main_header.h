@@ -1,7 +1,9 @@
 
 #ifndef MAIN_HEADER_H
 #define MAIN_HEADER_H
-
+#ifdef __cplusplus
+ extern "C" {
+#endif
 #include "stdlib.h"
 #include "stdio.h"
 #ifndef SIMULATOR
@@ -69,7 +71,10 @@ void ControlHWRunStop(int state);
 void gen_set_signal_type(int type);
 void gen_set_signal_freq(int freq);
 	
+int32_t Get_CLI_UX_Commands(void);
 #endif // !SIMULATOR
-
+#ifdef __cplusplus
+}
+#endif
 #endif
 

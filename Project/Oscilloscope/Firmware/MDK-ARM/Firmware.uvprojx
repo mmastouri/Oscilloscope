@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F746xx ST STM32F756xx USE_FREERTOS_8 USE_OS_SYSTICK USE_STM32746G_DISCOVERY USE_BPP=16</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F7xx_HAL_Driver/Inc;../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F7xx/Include;../Drivers/CMSIS/Include;..\..\Graphic\gui\include;..\..\Graphic\platform\os;..\..\Graphic\generated\fonts\include;..\..\Graphic\generated\images\include;..\..\Graphic\generated\texts\include;..\..\..\..\touchgfx\framework\include;..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\include;..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\portable\RVDS\ST_CM7;..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\include;..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery;..\..\Graphic\gui\include\gui\common</IncludePath>
+              <IncludePath>../Inc;../Drivers/STM32F7xx_HAL_Driver/Inc;../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F7xx/Include;../Drivers/CMSIS/Include;..\..\Graphic\gui\include;..\..\Graphic\platform\os;..\..\Graphic\generated\fonts\include;..\..\Graphic\generated\images\include;..\..\Graphic\generated\texts\include;..\..\..\..\touchgfx\framework\include;..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\include;..\..\..\..\touchgfx\os\FreeRTOS8.2.0\Source\portable\RVDS\ST_CM7;..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\include;..\..\..\..\touchgfx\board\ST\STM32F746G-DISCO\source\vendor\STM32746G-Discovery;..\..\Graphic\gui\include\gui\common;..\..\..\..\FreeRTOS-Plus-CLI</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1223,6 +1223,26 @@
               <FileName>image_signal_10KHZ.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\Graphic\generated\images\src\image_signal_10KHZ.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS_CLI</GroupName>
+          <Files>
+            <File>
+              <FileName>FreeRTOS_CLI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\FreeRTOS-Plus-CLI\FreeRTOS_CLI.c</FilePath>
+            </File>
+            <File>
+              <FileName>CLI-commands.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\CLI-commands.c</FilePath>
+            </File>
+            <File>
+              <FileName>CLI_uart_polling.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\CLI_uart_polling.c</FilePath>
             </File>
           </Files>
         </Group>

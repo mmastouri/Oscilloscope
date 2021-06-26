@@ -1012,7 +1012,22 @@ void MainView::handleTickEvent()
 	int int_value;
 	int temp_value;
 	int freq_value;
+	int CLI_cmd;
 
+	
+#ifndef SIMULATOR
+	CLI_cmd = Get_CLI_UX_Commands();
+	switch (CLI_cmd)
+	{
+	case 0x100:
+		signal_type.forceState(1 - signal_type.getState());
+	  buttonClicked(signal_type);
+		break;
+
+	default:
+		break;
+	}
+#endif
 
 	/* Update model according to HMI update */ 
 	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)

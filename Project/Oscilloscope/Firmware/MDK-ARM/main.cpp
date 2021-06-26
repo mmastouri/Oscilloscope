@@ -60,7 +60,8 @@ using namespace touchgfx;
 
 #include <stdlib.h>
 #include <string.h>
-
+#include "FreeRTOS_CLI.h"
+#include "CLI_uart_polling.h"
 /*
  * Define const/macros
  */
@@ -69,7 +70,7 @@ using namespace touchgfx;
 #define configGUI_TASK_PRIORITY                 ( tskIDLE_PRIORITY + 3 )
 #define configGUI_TASK_STK_SIZE                 ( 1000 )
 #define CANVAS_BUFFER_SIZE (4000)
-
+#define RX_BUFF_SIZE   128
 #ifdef __GNUC__
  /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
 	set to 'Yes') calls __io_putchar() */
@@ -102,8 +103,18 @@ TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim6;
 
-UART_HandleTypeDef huart2;
-	
+UART_HandleTypeDef huart1;
+
+struct UART2_Rx
+{
+	bool fullFlag;
+	bool cmdReady;
+	uint8_t count;
+	uint8_t buff[RX_BUFF_SIZE];
+};
+
+UART2_Rx tempBuff;
+uint8_t* ptrTempBuff = &tempBuff.buff[0];
 const uint16_t sine_wave[100] = 
 {
     2048, 2177, 2305, 2432, 2557, 2681, 2802, 2920, 3035, 3145,
@@ -160,7 +171,6 @@ static void GUITask(void* params)
  */
 int main(void)
 {
-
 	hw_init();
 	touchgfx_init();
 
@@ -188,7 +198,7 @@ int main(void)
 		NULL);
 
 
-	htimer = xTimerCreate ("Touch Screen", pdMS_TO_TICKS(1000), pdTRUE, 0, TimerCallback );
+	htimer = xTimerCreate ("Periodic Event", pdMS_TO_TICKS(1000), pdTRUE, 0, TimerCallback );
 	
 	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_chn1_buffer, ADC_BUFF_SIZ);
 	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)adc_chn2_buffer, ADC_BUFF_SIZ);
@@ -197,9 +207,10 @@ int main(void)
 	HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_4);
 	HAL_TIM_OC_Start(&htim4, TIM_CHANNEL_4);
   HAL_TIM_Base_Start(&htim6);
-	
-  printf ("Starting PocketOz\n\r");
-	
+
+  vRegisterCLICommands();
+	 
+	vUARTCommandConsoleStart(); 
   xTimerStart(htimer, 0);
 	vTaskStartScheduler();
 
@@ -207,8 +218,42 @@ int main(void)
 
 }
 
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  HAL_StatusTypeDef status = HAL_OK;
+  printf("%c", tempBuff.buff[tempBuff.count]);
+  if(huart->Instance == USART1)
+  {
+	  // We can accept the character
+	  if( (tempBuff.count < RX_BUFF_SIZE) && (tempBuff.fullFlag == false))
+	  {
+		  // It's the end of a command
+		  if(tempBuff.buff[tempBuff.count] == '\r')
+		  {
+			  // Signal we have a command and reset pointer
+			  tempBuff.cmdReady = true;
+			  ptrTempBuff = &tempBuff.buff[0];
+		  }
+		  else // Assume character is good
+		  {
+			  tempBuff.count += 1;
+			  ptrTempBuff++;
+			  // Enable reception again
+			  HAL_UART_Receive_IT(huart, ptrTempBuff, sizeof(uint8_t));
+
+		  }
+	  }
+	  else // We can't accept it so start again
+	  {
+		  // Signal an error condition, reset pointer
+		  tempBuff.fullFlag = true;
+		  ptrTempBuff = &tempBuff.buff[0];
+	  }
+  }
+}
+
 void TimerCallback(TimerHandle_t pxTimer){
-  printf ("Starting PocketOz\n\r");
+ 
 }
 
 
@@ -549,20 +594,22 @@ static void MX_TIM4_Init(void)
 static void MX_USART1_UART_Init(void)
 {
 
-	huart2.Instance = USART1;
-	huart2.Init.BaudRate = 115200;
-	huart2.Init.WordLength = UART_WORDLENGTH_8B;
-	huart2.Init.StopBits = UART_STOPBITS_1;
-	huart2.Init.Parity = UART_PARITY_NONE;
-	huart2.Init.Mode = UART_MODE_TX_RX;
-	huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-	huart2.Init.OverSampling = UART_OVERSAMPLING_16;
-	huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+	huart1.Instance = USART1;
+	huart1.Init.BaudRate = 115200;
+	huart1.Init.WordLength = UART_WORDLENGTH_8B;
+	huart1.Init.StopBits = UART_STOPBITS_1;
+	huart1.Init.Parity = UART_PARITY_NONE;
+	huart1.Init.Mode = UART_MODE_TX_RX;
+	huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+	huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+	huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
 
-	if (HAL_UART_Init(&huart2) != HAL_OK)
+	if (HAL_UART_Init(&huart1) != HAL_OK)
 	{
 		Error_Handler();
 	}
+	
+	// HAL_UART_Receive_IT(&huart1, &tempBuff.buff[0], sizeof(uint8_t));
 
 }
 
@@ -606,7 +653,7 @@ extern "C"
 	{
 		/* Place your implementation of fputc here */
 		/* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
-		HAL_UART_Transmit(&huart2, (uint8_t*)&ch, 1, 0xFFFF);
+		HAL_UART_Transmit(&huart1, (uint8_t*)&ch, 1, 0xFFFF);
 
 		return ch;
 	}

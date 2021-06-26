@@ -88,6 +88,20 @@ void DMA2_Stream4_IRQHandler(void)
   /* USER CODE END DMA2_Stream4_IRQn 1 */
 }
 
+extern UART_HandleTypeDef huart1;
+/**
+* @brief This function handles DMA2 stream4 global interrupt.
+*/
+void USART1_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA2_Stream4_IRQn 0 */
+
+  /* USER CODE END DMA2_Stream4_IRQn 0 */
+  HAL_UART_IRQHandler(&huart1);
+  /* USER CODE BEGIN DMA2_Stream4_IRQn 1 */
+
+  /* USER CODE END DMA2_Stream4_IRQn 1 */
+}
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
