@@ -82,23 +82,41 @@ extern UART_HandleTypeDef huart1;
 #define cmd500ms					( ( void * ) ( 500UL / portTICK_RATE_MS ) )
 /*-----------------------------------------------------------*/
 
-const char logo_01[] = "              **      *   *      **                   \n\r";  
-const char logo_02[] = "           ***       *** ***       ***                \n\r";
-const char logo_03[] = "        *****       *********        *****            \n\r";
-const char logo_04[] = "      *******      ***********       *******          \n\r";
-const char logo_05[] = "    **********    *************     *********         \n\r";
-const char logo_06[] = "   ********************************************       \n\r";
-const char logo_07[] = "  **********************************************      \n\r";
-const char logo_08[] = " ************************************************     \n\r";
-const char logo_09[] = " ************************************************     \n\r";
-const char logo_10[] = " ************************************************     \n\r";
-const char logo_11[] = "  **********************************************      \n\r";
-const char logo_12[] = "   ********        ***********         ********       \n\r";
-const char logo_13[] = "    *******         *********          *******        \n\r";
-const char logo_14[] = "      ******         *******          ******          \n\r";
-const char logo_15[] = "        *****         *****          *****            \n\r";
-const char logo_16[] = "           ***         ***          ***               \n\r";
-const char logo_17[] = "             **         *          **                 \n\r";
+const char logo_01[] = "                                                     \n\r"; 
+const char logo_02[] = "                   ________                          \n\r";
+const char logo_03[] = "                  /\\       \\                         \n\r";
+const char logo_04[] = "                 /  \\       \\                        \n\r";
+const char logo_05[] = "                /    \\       \\                       \n\r";
+const char logo_06[] = "               /      \\_______\\                      \n\r";
+const char logo_07[] = "               \\      /       /                      \n\r";
+const char logo_08[] = "             ___\\    /   ____/___                    \n\r";
+const char logo_09[] = "            /\\   \\  /   /\\       \\                   \n\r";
+const char logo_10[] = "           /  \\   \\/___/  \\       \\                  \n\r";
+const char logo_11[] = "          /    \\       \\   \\       \\                 \n\r";
+const char logo_12[] = "         /      \\_______\\   \\_______\\                \n\r";
+const char logo_13[] = "         \\      /       /   /       /                \n\r";
+const char logo_14[] = "          \\    /       /   /       /                 \n\r";
+const char logo_15[] = "           \\  /       /\\  /       /                  \n\r";
+const char logo_16[] = "            \\/_______/  \\/_______/                   \n\r";
+const char logo_17[] = "                                                     \n\r";
+
+//const char logo_01[] = "              **      *   *      **                   \n\r";  
+//const char logo_02[] = "           ***       *** ***       ***                \n\r";
+//const char logo_03[] = "        *****       *********        *****            \n\r";
+//const char logo_04[] = "      *******      ***********       *******          \n\r";
+//const char logo_05[] = "    **********    *************     *********         \n\r";
+//const char logo_06[] = "   ********************************************       \n\r";
+//const char logo_07[] = "  **********************************************      \n\r";
+//const char logo_08[] = " ************************************************     \n\r";
+//const char logo_09[] = " ************************************************     \n\r";
+//const char logo_10[] = " ************************************************     \n\r";
+//const char logo_11[] = "  **********************************************      \n\r";
+//const char logo_12[] = "   ********        ***********         ********       \n\r";
+//const char logo_13[] = "    *******         *********          *******        \n\r";
+//const char logo_14[] = "      ******         *******          ******          \n\r";
+//const char logo_15[] = "        *****         *****          *****            \n\r";
+//const char logo_16[] = "           ***         ***          ***               \n\r";
+//const char logo_17[] = "             **         *          **                 \n\r";
 
 /*
  * The task that implements the command console processing.
