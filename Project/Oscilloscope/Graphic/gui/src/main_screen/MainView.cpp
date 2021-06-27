@@ -1028,6 +1028,26 @@ void MainView::handleTickEvent()
 	  buttonClicked(save_settings);
 		break;
 	
+	case PRESS_SWITCH_CHANNEL:
+		slideTexts(RIGHT);
+		break;
+	
+	case PRESS_TIME_UP:
+		panelChn[selectedChnIndex].buttonClicked(panelChn[selectedChnIndex].horizontalUp);
+		break;	
+	
+	case PRESS_TIME_DOWN:
+		panelChn[selectedChnIndex].buttonClicked(panelChn[selectedChnIndex].horizontalDown);
+		break;	
+
+		case PRESS_VOLT_UP:
+		panelChn[selectedChnIndex].buttonClicked(panelChn[selectedChnIndex].verticalUp);
+		break;	
+	
+	case PRESS_VOLT_DOWN:
+		panelChn[selectedChnIndex].buttonClicked(panelChn[selectedChnIndex].verticalDown);
+		break;	
+	
 	default:
 		break;
 	}

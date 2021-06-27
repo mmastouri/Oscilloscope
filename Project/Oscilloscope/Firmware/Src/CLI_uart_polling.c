@@ -82,21 +82,23 @@ extern UART_HandleTypeDef huart1;
 #define cmd500ms					( ( void * ) ( 500UL / portTICK_RATE_MS ) )
 /*-----------------------------------------------------------*/
 
- 
-
-const char logo_01[] = "                    ,     \\    /      ,           \n\r";
-const char logo_02[] = "                   / \\    )\\__/(     / \\        \n\r";
-const char logo_03[] = "                  /   \\  (_\\  /_)   /   \\       \n\r";
-const char logo_04[] = "             ____/_____\\__\\@  @/___/_____\\____  \n\r";
-const char logo_05[] = "            |             |\\../|              |   \n\r";
-const char logo_06[] = "            |              \\VV/               |   \n\r";
-const char logo_07[] = "            |         Pocket OZ V2.0    MMA21 |    \n\r";
-const char logo_08[] = "            |_________________________________|    \n\r";
-const char logo_09[] = "             |    /\\ /      \\       \\ /\\    |  \n\r";
-const char logo_10[] = "             |  /   V        ))       V   \\  |    \n\r";
-const char logo_11[] = "             |/     `       //        '     \\|    \n\r";
-const char logo_12[] = "             `              V                '	   \n\r";
-const char logo_13[] = "            	                                     \n\r";
+const char logo_01[] = "              **      *   *      **                   \n\r";  
+const char logo_02[] = "           ***       *** ***       ***                \n\r";
+const char logo_03[] = "        *****       *********        *****            \n\r";
+const char logo_04[] = "      *******      ***********       *******          \n\r";
+const char logo_05[] = "    **********    *************     *********         \n\r";
+const char logo_06[] = "   ********************************************       \n\r";
+const char logo_07[] = "  **********************************************      \n\r";
+const char logo_08[] = " ************************************************     \n\r";
+const char logo_09[] = " ************************************************     \n\r";
+const char logo_10[] = " ************************************************     \n\r";
+const char logo_11[] = "  **********************************************      \n\r";
+const char logo_12[] = "   ********        ***********         ********       \n\r";
+const char logo_13[] = "    *******         *********          *******        \n\r";
+const char logo_14[] = "      ******         *******          ******          \n\r";
+const char logo_15[] = "        *****         *****          *****            \n\r";
+const char logo_16[] = "           ***         ***          ***               \n\r";
+const char logo_17[] = "             **         *          **                 \n\r";
 
 /*
  * The task that implements the command console processing.
@@ -108,7 +110,7 @@ static void prvUARTCommandConsoleTask(void const * pvParameters );
 /* Holds the handle of the task that implements the UART command console. */
 static xTaskHandle xCommandConsoleTask = NULL;
 
-static const int8_t * const pcWelcomeMessage = ( int8_t * ) "\rPocketOZ CLI server started.\r\nType <Help> to view a list of registered commands.\r\n\r\n>";
+static const int8_t * const pcWelcomeMessage = ( int8_t * ) "\n\rPocketOZ v2.0 copyright (c) maher.mastouri@gmail.com\r\nType <Help> to view a list of registered commands.\r\n\r\n>";
 static const int8_t * const pcNewLine = ( int8_t * ) "\r\n";
 static const int8_t * const pcEndOfCommandOutputString = ( int8_t * ) "\r\n[Press ENTER to execute the previous command again]\r\n>";
 
@@ -148,20 +150,23 @@ portBASE_TYPE xReturned;
 
         if(UART_CheckIdleState(&huart1) == HAL_OK)
         {
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_01, strlen( ( char * ) logo_01 ) ,strlen( ( char * ) logo_01 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_02, strlen( ( char * ) logo_02 ) ,strlen( ( char * ) logo_02 ) );
-		      HAL_UART_Transmit(&huart1, (uint8_t *) logo_03, strlen( ( char * ) logo_03 ) ,strlen( ( char * ) logo_03 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_04, strlen( ( char * ) logo_04 ) ,strlen( ( char * ) logo_04 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_05, strlen( ( char * ) logo_05 ) ,strlen( ( char * ) logo_05 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_06, strlen( ( char * ) logo_06 ) ,strlen( ( char * ) logo_06 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_07, strlen( ( char * ) logo_07 ) ,strlen( ( char * ) logo_07 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_08, strlen( ( char * ) logo_08 ) ,strlen( ( char * ) logo_08 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_09, strlen( ( char * ) logo_09 ) ,strlen( ( char * ) logo_09 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_10, strlen( ( char * ) logo_10 ) ,strlen( ( char * ) logo_10 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_11, strlen( ( char * ) logo_11 ) ,strlen( ( char * ) logo_11 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_12, strlen( ( char * ) logo_12 ) ,strlen( ( char * ) logo_12 ) );
-          HAL_UART_Transmit(&huart1, (uint8_t *) logo_13, strlen( ( char * ) logo_13 ) ,strlen( ( char * ) logo_13 ) );					
-					
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_01, strlen( ( char * ) logo_01) ,strlen( ( char * ) logo_01) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_02, strlen( ( char * ) logo_02) ,strlen( ( char * ) logo_02) );
+		      HAL_UART_Transmit(&huart1, (uint8_t *) logo_03, strlen( ( char * ) logo_03) ,strlen( ( char * ) logo_03) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_04, strlen( ( char * ) logo_04) ,strlen( ( char * ) logo_04) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_05, strlen( ( char * ) logo_05) ,strlen( ( char * ) logo_05) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_06, strlen( ( char * ) logo_06) ,strlen( ( char * ) logo_06) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_07, strlen( ( char * ) logo_07) ,strlen( ( char * ) logo_07) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_08, strlen( ( char * ) logo_08) ,strlen( ( char * ) logo_08) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_09, strlen( ( char * ) logo_09) ,strlen( ( char * ) logo_09) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_10, strlen( ( char * ) logo_10) ,strlen( ( char * ) logo_10) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_11, strlen( ( char * ) logo_11) ,strlen( ( char * ) logo_11) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_12, strlen( ( char * ) logo_12) ,strlen( ( char * ) logo_12) );
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_13, strlen( ( char * ) logo_13) ,strlen( ( char * ) logo_13) );					
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_14, strlen( ( char * ) logo_14) ,strlen( ( char * ) logo_14) );	
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_15, strlen( ( char * ) logo_15) ,strlen( ( char * ) logo_15) );	
+          HAL_UART_Transmit(&huart1, (uint8_t *) logo_16, strlen( ( char * ) logo_16) ,strlen( ( char * ) logo_16) );		
+					HAL_UART_Transmit(&huart1, (uint8_t *) logo_17, strlen( ( char * ) logo_17) ,strlen( ( char * ) logo_17) );	
 					HAL_UART_Transmit(&huart1, (uint8_t *) pcWelcomeMessage, strlen( ( char * ) pcWelcomeMessage ) ,strlen( ( char * ) pcWelcomeMessage ) );
 					
 					

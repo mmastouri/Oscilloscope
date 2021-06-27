@@ -131,7 +131,7 @@ static portBASE_TYPE prvResetCommand( int8_t *pcWriteBuffer, size_t xWriteBuffer
 static portBASE_TYPE prvExecUICommand( int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString )
 {
   int8_t *pcParameterString;
-  portBASE_TYPE xParameterStringLength;
+  portBASE_TYPE xParameterStringLength, xReturn;
   int32_t lParameterValue;
 	
   ( void ) pcCommandString;
@@ -161,6 +161,45 @@ static portBASE_TYPE prvExecUICommand( int8_t *pcWriteBuffer, size_t xWriteBuffe
 			CLI_cmd = PRESS_SAVE;
 		  strcpy( (char *)pcWriteBuffer, "settings saved \r\n");		
 	}
+	
+	else if(strcmp((char *)pcParameterString, "channel") == 0)
+	{
+			CLI_cmd = PRESS_SWITCH_CHANNEL;
+		  strcpy( (char *)pcWriteBuffer, "Channel switched \r\n");		
+	}	
+	
+	
+	else if(strcmp((char *)pcParameterString, "timeup") == 0)
+	{
+			  CLI_cmd = PRESS_TIME_UP;
+		    strcpy( (char *)pcWriteBuffer, "time up \r\n");		
+	}
+			
+	
+	else if(strcmp((char *)pcParameterString, "timedown") == 0)
+	{
+			  CLI_cmd = PRESS_TIME_DOWN;
+		    strcpy( (char *)pcWriteBuffer, "time down \r\n");			
+	}	
+	else if(strcmp((char *)pcParameterString, "voltup") == 0)
+	{
+			  CLI_cmd = PRESS_VOLT_UP;
+		    strcpy( (char *)pcWriteBuffer, "volt up \r\n");		
+	}
+			
+	
+	else if(strcmp((char *)pcParameterString, "voltdown") == 0)
+	{
+			  CLI_cmd = PRESS_VOLT_DOWN;
+		    strcpy( (char *)pcWriteBuffer, "volt down \r\n");			
+	}		
+	else
+	{
+		strcpy( (char *)pcWriteBuffer, "Invalid command! \r\n");		
+	}
+
+	
+	
 	
 	
 	configASSERT( pcWriteBuffer );

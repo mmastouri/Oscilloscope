@@ -192,6 +192,10 @@ public:
 	void SetYOffset(int y);
 	void SetXOffset(int x);
 	int associatedChannel;
+		Button horizontalUp;
+	Button horizontalDown;
+	Button verticalUp;
+	Button verticalDown;	
 
 protected:
 	int hRresetProgress, vRresetProgress;
@@ -221,10 +225,8 @@ protected:
 	ToggleButton TriggerButton;
 	ToggleButton FallingButton;
 	ToggleButton MarkerButton;
-	Button horizontalUp;
-	Button horizontalDown;
-	Button verticalUp;
-	Button verticalDown;
+
+
 	ToggleButton aButton;
 	ToggleButton bButton;
 

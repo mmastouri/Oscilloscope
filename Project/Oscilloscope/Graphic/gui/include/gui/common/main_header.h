@@ -62,8 +62,13 @@ enum TimeScale
 	DIV_500mS = 12,
 };
 
-#define PRESS_SIGTYPE       0x100
-#define PRESS_SAVE          0x101
+#define PRESS_SIGTYPE          0x100
+#define PRESS_SAVE             0x101
+#define PRESS_SWITCH_CHANNEL   0x102
+#define PRESS_TIME_UP          0x103
+#define PRESS_TIME_DOWN        0x104
+#define PRESS_VOLT_UP          0x105
+#define PRESS_VOLT_DOWN        0x106
 
 #ifndef SIMULATOR
 uint16_t * PushDaTaToModel_1(void);
