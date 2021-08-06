@@ -63,6 +63,14 @@ typedef enum
     T_SIGN,
     T_CURSOR_HZ,
     T_MEAS_CTRL_MENU,
+    T_FREQ1_VALUE,
+    T_FREQ2_VALUE,
+    T_PP1_VALUE,
+    T_PP2_VALUE,
+    T_FREQ1_LABEL,
+    T_FREQ2_LABEL,
+    T_PP1_LABEL,
+    T_PP2_LABEL,
     NUMBER_OF_TEXT_KEYS
 } TEXTS;
 

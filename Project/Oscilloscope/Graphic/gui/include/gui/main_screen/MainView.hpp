@@ -128,6 +128,7 @@ private:
 	SlideMenu settings_menu;
 	
 	int tickCounter;
+	int32_t refreshcounter;
 
 	MoveAnimator <ChannelControlPanel> panelChn[NUMBER_OF_CHANNEL];
 
@@ -169,8 +170,10 @@ private:
 
 	TextArea meas_delta;
 	TextArea meas_freq;
-	TextArea trigger_lvl[NUMBER_OF_CHANNEL];
-
+	
+	TextArea sig_freq[NUMBER_OF_CHANNEL];
+	TextArea sig_pp[NUMBER_OF_CHANNEL];
+    TextArea trigger_lvl[NUMBER_OF_CHANNEL];
 	TextArea txt_ctrl_menu[NUMBER_OF_CHANNEL];
 	TextArea meas_ctrl_menu;
 
@@ -179,7 +182,15 @@ private:
 	Unicode::UnicodeChar cursor_buff[15];
 	Unicode::UnicodeChar freq_buff[15];
 
+	Unicode::UnicodeChar freqch_buff[NUMBER_OF_CHANNEL][15];
+	Unicode::UnicodeChar peakch_buff[NUMBER_OF_CHANNEL][15];
+
 	TextAreaWithOneWildcard trig_value_wildcard[NUMBER_OF_CHANNEL];
+
+	TextAreaWithOneWildcard freqch_value_wildcard[NUMBER_OF_CHANNEL];
+
+	TextAreaWithOneWildcard ppch_value_wildcard[NUMBER_OF_CHANNEL];
+
 	Unicode::UnicodeChar trig_buff[NUMBER_OF_CHANNEL][10];
 
 	enum SlideDirection

@@ -296,6 +296,16 @@ void MainPresenter::p_SetTriggerValue(int channel, int value)
 	model->SetTriggerValue(channel, value);
 }
 
+int MainPresenter::p_getSignalPeak(int channel)
+{
+	return model->getSignalPeak(channel);
+}
+
+int MainPresenter::p_getSignalFreq(int channel)
+{
+	return model->getSignalFreq(channel);
+}
+
 bool MainPresenter::p_GetTrigger(int channel)
 {
 	return model->GetTrigger(channel) ;

@@ -60,7 +60,15 @@ KEEP extern const touchgfx::Unicode::UnicodeChar textsGb[] TEXT_LOCATION_FLASH_A
     115,116,111,112,47,114,117,110,58,32,0, // T_stop_ctrl_menu
     46,44,58,59,45,95,0, // T_sign
     70,114,101,113,32,32,58,0, // T_Cursor_hz
-    77,101,97,115,117,114,101,32,58,32,0  // T_meas_ctrl_menu
+    77,101,97,115,117,114,101,32,58,32,0, // T_meas_ctrl_menu
+    2,0, // T_Freq1_value
+    2,0, // T_Freq2_value
+    2,0, // T_PP1_value
+    2,0, // T_PP2_value
+    70,114,101,113,40,49,41,32,58,0, // T_freq1_label
+    70,114,101,113,40,50,41,32,58,0, // T_freq2_label
+    80,107,45,80,107,40,49,41,32,58,0, // T_pp1_label
+    80,107,45,80,107,40,50,41,32,58,0  // T_pp2_label
 };
 
 TEXT_LOCATION_FLASH_PRAGMA
@@ -114,5 +122,13 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE =
     304, // T_stop_ctrl_menu
     315, // T_sign
     322, // T_Cursor_hz
-    330  // T_meas_ctrl_menu
+    330, // T_meas_ctrl_menu
+    341, // T_Freq1_value
+    343, // T_Freq2_value
+    345, // T_PP1_value
+    347, // T_PP2_value
+    349, // T_freq1_label
+    359, // T_freq2_label
+    369, // T_pp1_label
+    380  // T_pp2_label
 };

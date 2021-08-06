@@ -119,37 +119,105 @@ void Model::SetRawData(int channel, uint16_t *data)
 	}
 }
 
-int Model::getSignalMax(int channel)
+int Model::getSignalPeak(int channel)
 {
-	int max = 0;
+	int max = 0, min = 0;
+
 	switch (channel)
 	{
 	case CHANNEL_1:
+		max = chan1.raw_data[0];
+		min = chan1.raw_data[0];
+
 		for (int i = 0; i < NUMBER_OF_POINT; i++)
 		{
 			if (chan1.raw_data[i] > max)
 			{
 				max = chan1.raw_data[i];
 			}
+
+			if (chan1.raw_data[i] < min)
+			{
+				min = chan1.raw_data[i];
+			}
+
 		}
 		break;
 
 	case CHANNEL_2:
+		max = chan2.raw_data[0];
+		min = chan2.raw_data[0];
+		
 		for (int i = 0; i < NUMBER_OF_POINT; i++)
 		{
 			if (chan2.raw_data[i] > max)
 			{
 				max = chan2.raw_data[i];
 			}
+
+			if (chan2.raw_data[i] < min)
+			{
+				min = chan1.raw_data[i];
+			}
 		}
 		break;
 	}
-	return max;
+	return max - min ;
 }
 
 int Model::getSignalFreq(int channel)
 {
-	int freq;
+	int zeroindex[NUMBER_OF_POINT];
+	int zerocount = 0, freq, diff;
+	int cursig, nextsig;
+	int offset = getSignalPeak(channel) / 2;
+
+	switch (channel)
+	{
+	case CHANNEL_1:
+
+		for (int i = 0; i < NUMBER_OF_POINT - 2; i++)
+		{
+			cursig  = ((chan1.raw_data[i] - offset) > 0);
+			nextsig = ((chan1.raw_data[i+ 1] - offset) > 0);
+
+			if (cursig != nextsig)
+			{
+				zeroindex[zerocount++] = i;
+			}
+
+		}
+		break;
+
+	case CHANNEL_2:
+		for (int i = 0; i < NUMBER_OF_POINT - 2; i++)
+		{
+			cursig = ((chan2.raw_data[i] - offset) > 0);
+			nextsig = ((chan2.raw_data[i + 1] - offset) > 0);
+
+			if (cursig != nextsig)
+			{
+				zeroindex[zerocount++] = i;
+			}
+
+		}
+		break;
+	}
+
+	if (zerocount > 2)
+	{
+		diff = zeroindex[2] - zeroindex[0] - 1;
+		for (int i = 2; i < zerocount/2; i+=2)
+		{
+			diff = (diff + zeroindex[2 + i] - zeroindex[i]) / 2;
+		}
+	}
+	else
+	{
+		diff = 1;
+	}
+
+	freq = 1000000 / (diff * GetTimeScale2Pixel(channel));
 
 	return freq;
 }

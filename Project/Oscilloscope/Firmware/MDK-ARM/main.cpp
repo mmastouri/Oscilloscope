@@ -68,7 +68,7 @@ using namespace touchgfx;
 #define ULONG_MAX 0xFFFFFFFFUL 
 #define  ADC_BUFF_SIZ   2000
 #define configGUI_TASK_PRIORITY                 ( tskIDLE_PRIORITY + 3 )
-#define configGUI_TASK_STK_SIZE                 ( 1000 )
+#define configGUI_TASK_STK_SIZE                 ( 4000 )
 #define CANVAS_BUFFER_SIZE (4000)
 #define RX_BUFF_SIZE   128
 #ifdef __GNUC__

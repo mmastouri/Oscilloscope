@@ -206,11 +206,11 @@
     <None Include="..\..\assets\images\up_btn_pressed.png">
       <Filter>Resource Files\assets\images</Filter>
     </None>
-    <None Include="..\..\assets\texts\texts.xlsx">
-      <Filter>Resource Files\assets\texts</Filter>
-    </None>
     <None Include="..\..\config\msvs\Application.props">
       <Filter>Resource Files\config\msvs</Filter>
+    </None>
+    <None Include="..\..\assets\texts\texts.xlsx">
+      <Filter>Resource Files\assets\texts</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

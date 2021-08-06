@@ -67,7 +67,7 @@
 void MainView::setupScreen()
 {
 	tickCounter = 0;
-
+	refreshcounter = 0;
 
 	oscill_layout.setPosition(0,
 		                      0,
@@ -352,10 +352,66 @@ void MainView::setupScreen()
 	trigger_lvl[CHANNEL_1].setXY(125, 215);
 	oscill_layout.add(trigger_lvl[CHANNEL_1]);
 
+
 	trigger_lvl[CHANNEL_2].setTypedText(TypedText(T_TRIG2_LEVEL));
 	trigger_lvl[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
 	trigger_lvl[CHANNEL_2].setXY(220, 215);
 	oscill_layout.add(trigger_lvl[CHANNEL_2]);
+
+
+	sig_freq[CHANNEL_1].setTypedText(TypedText(T_FREQ1_LABEL));
+	sig_freq[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
+	sig_freq[CHANNEL_1].setXY(5, 5);
+	oscill_layout.add(sig_freq[CHANNEL_1]);
+
+
+	Unicode::snprintf(freqch_buff[CHANNEL_1], 5, "%d Hz", 0);
+	freqch_value_wildcard[CHANNEL_1].setTypedText(TypedText(T_FREQ1_VALUE));
+	freqch_value_wildcard[CHANNEL_1].setWildcard(freqch_buff[CHANNEL_1]);
+	freqch_value_wildcard[CHANNEL_1].setPosition(55, 5, 100, 20);
+	freqch_value_wildcard[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
+	oscill_layout.add(freqch_value_wildcard[CHANNEL_1]);
+	freqch_value_wildcard[CHANNEL_1].invalidate();
+
+	sig_freq[CHANNEL_2].setTypedText(TypedText(T_FREQ2_LABEL));
+	sig_freq[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
+	sig_freq[CHANNEL_2].setXY(5, 20);
+	oscill_layout.add(sig_freq[CHANNEL_2]);
+
+	Unicode::snprintf(freqch_buff[CHANNEL_2], 5, "%d Hz", 0);
+	freqch_value_wildcard[CHANNEL_2].setTypedText(TypedText(T_FREQ2_VALUE));
+	freqch_value_wildcard[CHANNEL_2].setWildcard(freqch_buff[CHANNEL_2]);
+	freqch_value_wildcard[CHANNEL_2].setPosition(55, 20, 100, 20);
+	freqch_value_wildcard[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
+	oscill_layout.add(freqch_value_wildcard[CHANNEL_2]);
+	freqch_value_wildcard[CHANNEL_2].invalidate();
+
+	sig_pp[CHANNEL_1].setTypedText(TypedText(T_PP1_LABEL));
+	sig_pp[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
+	sig_pp[CHANNEL_1].setXY(200, 5);
+	oscill_layout.add(sig_pp[CHANNEL_1]);
+
+	Unicode::snprintf(peakch_buff[CHANNEL_1], 5, "%d V", 0);
+	ppch_value_wildcard[CHANNEL_1].setTypedText(TypedText(T_PP1_VALUE));
+	ppch_value_wildcard[CHANNEL_1].setWildcard(peakch_buff[CHANNEL_1]);
+	ppch_value_wildcard[CHANNEL_1].setPosition(250, 5, 100, 20);
+	ppch_value_wildcard[CHANNEL_1].setColor(Color::getColorFrom24BitRGB(102, 178, 255));
+	oscill_layout.add(ppch_value_wildcard[CHANNEL_1]);
+	ppch_value_wildcard[CHANNEL_1].invalidate();
+
+
+	sig_pp[CHANNEL_2].setTypedText(TypedText(T_PP2_LABEL));
+	sig_pp[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
+	sig_pp[CHANNEL_2].setXY(200, 20);
+	oscill_layout.add(sig_pp[CHANNEL_2]);
+
+	Unicode::snprintf(peakch_buff[CHANNEL_2], 5, "%d V", 0);
+	ppch_value_wildcard[CHANNEL_2].setTypedText(TypedText(T_PP2_VALUE));
+	ppch_value_wildcard[CHANNEL_2].setWildcard(peakch_buff[CHANNEL_2]);
+	ppch_value_wildcard[CHANNEL_2].setPosition(250, 20, 100, 20);
+	ppch_value_wildcard[CHANNEL_2].setColor(Color::getColorFrom24BitRGB(255, 133, 7));
+	oscill_layout.add(ppch_value_wildcard[CHANNEL_2]);
+	ppch_value_wildcard[CHANNEL_2].invalidate();
 
 	/*
 	 *  Display Value section
@@ -509,6 +565,17 @@ void MainView::setupScreen()
 		oscill_layout.remove(trig_value_wildcard[CHANNEL_1]);
 		oscill_layout.add(trigger_lvl[CHANNEL_1]);
 		oscill_layout.add(trig_value_wildcard[CHANNEL_1]);
+
+		oscill_layout.remove(freqch_value_wildcard[CHANNEL_1]);
+		oscill_layout.remove(ppch_value_wildcard[CHANNEL_1]);
+		oscill_layout.add(freqch_value_wildcard[CHANNEL_1]);
+		oscill_layout.add(ppch_value_wildcard[CHANNEL_1]);
+
+		oscill_layout.remove(sig_freq[CHANNEL_1]);
+		oscill_layout.remove(sig_pp[CHANNEL_1]);
+		oscill_layout.add(sig_freq[CHANNEL_1]);
+		oscill_layout.add(sig_pp[CHANNEL_1]);
+
 	}
 	else
 	{
@@ -516,6 +583,11 @@ void MainView::setupScreen()
 		graph_container.remove(graph[CHANNEL_1]);
 		oscill_layout.remove(trigger_lvl[CHANNEL_1]);
 		oscill_layout.remove(trig_value_wildcard[CHANNEL_1]);
+		oscill_layout.remove(freqch_value_wildcard[CHANNEL_1]);
+		oscill_layout.remove(ppch_value_wildcard[CHANNEL_1]);
+
+		oscill_layout.remove(sig_freq[CHANNEL_1]);
+		oscill_layout.remove(sig_pp[CHANNEL_1]);
 
 	}
 
@@ -529,6 +601,15 @@ void MainView::setupScreen()
 		oscill_layout.remove(trig_value_wildcard[CHANNEL_2]);
 		oscill_layout.add(trigger_lvl[CHANNEL_2]);
 		oscill_layout.add(trig_value_wildcard[CHANNEL_2]);
+		oscill_layout.remove(freqch_value_wildcard[CHANNEL_2]);
+		oscill_layout.remove(ppch_value_wildcard[CHANNEL_2]);
+		oscill_layout.add(freqch_value_wildcard[CHANNEL_2]);
+		oscill_layout.add(ppch_value_wildcard[CHANNEL_2]);
+
+		oscill_layout.remove(sig_freq[CHANNEL_2]);
+		oscill_layout.remove(sig_pp[CHANNEL_2]);
+		oscill_layout.add(sig_freq[CHANNEL_2]);
+		oscill_layout.add(sig_pp[CHANNEL_2]);
 	}
 	else
 	{
@@ -536,6 +617,11 @@ void MainView::setupScreen()
 		graph_container.remove(graph[CHANNEL_2]);
 		oscill_layout.remove(trigger_lvl[CHANNEL_2]);
 		oscill_layout.remove(trig_value_wildcard[CHANNEL_2]);
+		oscill_layout.remove(freqch_value_wildcard[CHANNEL_2]);
+		oscill_layout.remove(ppch_value_wildcard[CHANNEL_2]);
+
+		oscill_layout.remove(sig_freq[CHANNEL_2]);
+		oscill_layout.remove(sig_pp[CHANNEL_2]);
 	}
 
 	if (MeasureButtonClicked == 1)
@@ -547,6 +633,7 @@ void MainView::setupScreen()
 		oscill_layout.remove(meas_delta);
 		oscill_layout.remove(time_wildcard);
 		oscill_layout.remove(freq_wildcard);
+
 		oscill_layout.add(meas_freq);
 		oscill_layout.add(meas_delta);
 		oscill_layout.add(time_wildcard);
@@ -663,6 +750,16 @@ void MainView::buttonClicked(const AbstractButton& source)
 			oscill_layout.remove(trig_value_wildcard[CHANNEL_1]);
 			oscill_layout.add(trigger_lvl[CHANNEL_1]);
 			oscill_layout.add(trig_value_wildcard[CHANNEL_1]);
+
+			oscill_layout.remove(freqch_value_wildcard[CHANNEL_1]);
+			oscill_layout.remove(ppch_value_wildcard[CHANNEL_1]);
+			oscill_layout.add(freqch_value_wildcard[CHANNEL_1]);
+			oscill_layout.add(ppch_value_wildcard[CHANNEL_1]);
+
+			oscill_layout.remove(sig_pp[CHANNEL_1]);
+			oscill_layout.remove(sig_freq[CHANNEL_1]);
+			oscill_layout.add(sig_freq[CHANNEL_1]);
+			oscill_layout.add(sig_pp[CHANNEL_1]);
 		}
 		else
 		{
@@ -670,6 +767,11 @@ void MainView::buttonClicked(const AbstractButton& source)
 			graph_container.remove(graph[CHANNEL_1]);
 			oscill_layout.remove(trigger_lvl[CHANNEL_1]);
 			oscill_layout.remove(trig_value_wildcard[CHANNEL_1]);
+			oscill_layout.remove(freqch_value_wildcard[CHANNEL_1]);
+			oscill_layout.remove(ppch_value_wildcard[CHANNEL_1]);
+
+			oscill_layout.remove(sig_pp[CHANNEL_1]);
+			oscill_layout.remove(sig_freq[CHANNEL_1]);
 
 		}
 	}
@@ -685,6 +787,15 @@ void MainView::buttonClicked(const AbstractButton& source)
 			oscill_layout.remove(trig_value_wildcard[CHANNEL_2]);
 			oscill_layout.add(trigger_lvl[CHANNEL_2]);
 			oscill_layout.add(trig_value_wildcard[CHANNEL_2]);
+			oscill_layout.remove(freqch_value_wildcard[CHANNEL_2]);
+			oscill_layout.remove(ppch_value_wildcard[CHANNEL_2]);
+			oscill_layout.add(freqch_value_wildcard[CHANNEL_2]);
+			oscill_layout.add(ppch_value_wildcard[CHANNEL_2]);
+
+			oscill_layout.remove(sig_freq[CHANNEL_2]);
+			oscill_layout.remove(sig_pp[CHANNEL_2]);
+			oscill_layout.add(sig_freq[CHANNEL_2]);
+			oscill_layout.add(sig_pp[CHANNEL_2]);
 		}
 		else
 		{
@@ -692,6 +803,11 @@ void MainView::buttonClicked(const AbstractButton& source)
 			graph_container.remove(graph[CHANNEL_2]);
 			oscill_layout.remove(trigger_lvl[CHANNEL_2]);
 			oscill_layout.remove(trig_value_wildcard[CHANNEL_2]);
+			oscill_layout.remove(freqch_value_wildcard[CHANNEL_2]);
+			oscill_layout.remove(ppch_value_wildcard[CHANNEL_2]);
+
+			oscill_layout.remove(sig_freq[CHANNEL_2]);
+			oscill_layout.remove(sig_pp[CHANNEL_2]);
 		}
 	}
 
@@ -1019,9 +1135,20 @@ void MainView::handleTickEvent()
 	CLI_cmd = Get_CLI_UX_Commands();
 	switch (CLI_cmd)
 	{
+		
+	case PRESS_MENU:
+		//control_menu.forceState(1 - signal_type.getState());
+	  //buttonClicked(control_menu);
+		break;
+	
 	case PRESS_SIGTYPE:
 		signal_type.forceState(1 - signal_type.getState());
 	  buttonClicked(signal_type);
+		break;
+
+	case PRESS_SIGFREQ:
+		signal_value.forceState(1 - signal_value.getState());
+		buttonClicked(signal_value);
 		break;
 
 	case PRESS_SAVE:
@@ -1133,6 +1260,31 @@ void MainView::handleTickEvent()
 			else
 				Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
 		}
+
+		
+
+	}
+	if (refreshcounter++ > 20)
+	{
+		for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
+		{
+			temp_value = presenter->p_getSignalPeak(i) * presenter->p_VoltagePerPixel(i);
+			freq_value = presenter->p_getSignalFreq(i);
+			if (freq_value >= 1000)
+				Unicode::snprintfFloat(freqch_buff[i], 15, "%.2f KHz", (float)((float)freq_value / 1000));
+			else
+				Unicode::snprintf(freqch_buff[i], 10, "%d Hz", freq_value);
+
+			if (temp_value >= 1000)
+				Unicode::snprintfFloat(peakch_buff[i], 15, "%.2f V", (float)((float)temp_value / 1000));
+			else
+				Unicode::snprintf(peakch_buff[i], 15, "%d mV", temp_value);
+
+		
+		freqch_value_wildcard[i].invalidate();
+		ppch_value_wildcard[i].invalidate();
+		}
+		refreshcounter = 0;
 	}
 
 	time_wildcard.invalidate();

@@ -89,6 +89,12 @@ public:
 	int p_GetTimeScale(int channel);
 	void p_SetTimeScale(int channel, int value);
 
+
+	int p_getSignalPeak(int channel);
+	int p_getSignalFreq(int channel);
+	
+
+
 	int p_GetVoltageScale(int channel);
 	void p_SetVoltageScale(int channel, int value);
 

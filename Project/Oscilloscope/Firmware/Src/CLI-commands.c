@@ -156,6 +156,12 @@ static portBASE_TYPE prvExecUICommand( int8_t *pcWriteBuffer, size_t xWriteBuffe
 		  strcpy( (char *)pcWriteBuffer, "Signal type switched \r\n");
 	}
 	
+	else if(strcmp((char *)pcParameterString, "sigfreq") == 0)
+	{
+			CLI_cmd = PRESS_SIGFREQ;
+		  strcpy( (char *)pcWriteBuffer, "Signal freq switched \r\n");
+	}	
+	
 	else if(strcmp((char *)pcParameterString, "save") == 0)
 	{
 			CLI_cmd = PRESS_SAVE;
@@ -192,7 +198,12 @@ static portBASE_TYPE prvExecUICommand( int8_t *pcWriteBuffer, size_t xWriteBuffe
 	{
 			  CLI_cmd = PRESS_VOLT_DOWN;
 		    strcpy( (char *)pcWriteBuffer, "volt down \r\n");			
-	}		
+	}	
+	else if(strcmp((char *)pcParameterString, "menu") == 0)
+  {
+			  CLI_cmd = PRESS_MENU;
+		    strcpy( (char *)pcWriteBuffer, "settings menu toggled \r\n");			
+  }
 	else
 	{
 		strcpy( (char *)pcWriteBuffer, "Invalid command! \r\n");		

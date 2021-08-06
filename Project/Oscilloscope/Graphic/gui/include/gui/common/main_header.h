@@ -69,6 +69,8 @@ enum TimeScale
 #define PRESS_TIME_DOWN        0x104
 #define PRESS_VOLT_UP          0x105
 #define PRESS_VOLT_DOWN        0x106
+#define PRESS_MENU             0x107
+#define PRESS_SIGFREQ          0x108 
 
 #ifndef SIMULATOR
 uint16_t * PushDaTaToModel_1(void);
