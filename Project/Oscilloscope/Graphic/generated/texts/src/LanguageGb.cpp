@@ -48,7 +48,7 @@ KEEP extern const touchgfx::Unicode::UnicodeChar textsGb[] TEXT_LOCATION_FLASH_A
     67,117,114,115,111,114,32,66,0, // T_markerB
     80,111,115,105,116,105,111,110,0, // T_position
     77,101,110,117,0, // T_menu
-    84,105,109,101,32,58,0, // T_Cursor_us
+    68,101,108,116,97,32,58,0, // T_Cursor_us
     84,45,67,72,32,49,32,58,0, // T_Trig1_level
     84,45,67,72,32,50,32,58,0, // T_Trig2_level
     49,50,51,52,53,54,55,56,57,48,46,32,58,32,45,32,44,32,117,109,86,75,72,122,115,0, // T_number_small
@@ -111,24 +111,24 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE =
     220, // T_position
     229, // T_menu
     234, // T_Cursor_us
-    241, // T_Trig1_level
-    250, // T_Trig2_level
-    259, // T_number_small
-    285, // T_Cursor_value
-    287, // T_Trigg1_value
-    289, // T_Trigg2_value
-    291, // T_chn1_ctrl_menu
-    297, // T_chn2_ctrl_menu
-    304, // T_stop_ctrl_menu
-    315, // T_sign
-    322, // T_Cursor_hz
-    330, // T_meas_ctrl_menu
-    341, // T_Freq1_value
-    343, // T_Freq2_value
-    345, // T_PP1_value
-    347, // T_PP2_value
-    349, // T_freq1_label
-    359, // T_freq2_label
-    369, // T_pp1_label
-    380  // T_pp2_label
+    242, // T_Trig1_level
+    251, // T_Trig2_level
+    260, // T_number_small
+    286, // T_Cursor_value
+    288, // T_Trigg1_value
+    290, // T_Trigg2_value
+    292, // T_chn1_ctrl_menu
+    298, // T_chn2_ctrl_menu
+    305, // T_stop_ctrl_menu
+    316, // T_sign
+    323, // T_Cursor_hz
+    331, // T_meas_ctrl_menu
+    342, // T_Freq1_value
+    344, // T_Freq2_value
+    346, // T_PP1_value
+    348, // T_PP2_value
+    350, // T_freq1_label
+    360, // T_freq2_label
+    370, // T_pp1_label
+    381  // T_pp2_label
 };

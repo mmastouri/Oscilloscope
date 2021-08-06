@@ -169,7 +169,6 @@ private:
 	Container graph_container;
 
 	TextArea meas_delta;
-	TextArea meas_freq;
 	
 	TextArea sig_freq[NUMBER_OF_CHANNEL];
 	TextArea sig_pp[NUMBER_OF_CHANNEL];
@@ -178,9 +177,8 @@ private:
 	TextArea meas_ctrl_menu;
 
 	TextAreaWithOneWildcard time_wildcard;
-	TextAreaWithOneWildcard freq_wildcard;
+
 	Unicode::UnicodeChar cursor_buff[15];
-	Unicode::UnicodeChar freq_buff[15];
 
 	Unicode::UnicodeChar freqch_buff[NUMBER_OF_CHANNEL][15];
 	Unicode::UnicodeChar peakch_buff[NUMBER_OF_CHANNEL][15];

@@ -418,28 +418,14 @@ void MainView::setupScreen()
 	 */
 	meas_delta.setTypedText(TypedText(T_CURSOR_US));
 	meas_delta.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
-	meas_delta.setXY(10, 200);
+	meas_delta.setXY(10, 215);
 	//add(meas_delta);
 
 	Unicode::snprintf(cursor_buff, 15, "%d", 0);
 	time_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
 	time_wildcard.setWildcard(cursor_buff);
-	time_wildcard.setPosition(50, 200,100,20);
+	time_wildcard.setPosition(50, 215,100,20);
 	time_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
-	//add(time_wildcard);
-
-	meas_freq.setTypedText(TypedText(T_CURSOR_HZ));
-	meas_freq.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
-	meas_freq.setXY(10, 215);
-	//add(meas_freq);
-
-	Unicode::snprintf(freq_buff, 15, "%d", 0);
-	freq_wildcard.setTypedText(TypedText(T_CURSOR_VALUE));
-	freq_wildcard.setWildcard(freq_buff);
-	freq_wildcard.setPosition(50, 215, 100, 20);
-	freq_wildcard.setColor(Color::getColorFrom24BitRGB(255, 255, 255));
-	//add(freq_wildcard);
-
 
 	Unicode::snprintf(trig_buff[CHANNEL_1], 5, "%d V", 0);
 	trig_value_wildcard[CHANNEL_1].setTypedText(TypedText(T_TRIGG1_VALUE));
@@ -629,15 +615,11 @@ void MainView::setupScreen()
 		marker1.SetPosition(ch1_marker1_position);
 		marker2.SetPosition(ch1_marker2_position);
 
-		oscill_layout.remove(meas_freq);
 		oscill_layout.remove(meas_delta);
 		oscill_layout.remove(time_wildcard);
-		oscill_layout.remove(freq_wildcard);
 
-		oscill_layout.add(meas_freq);
 		oscill_layout.add(meas_delta);
 		oscill_layout.add(time_wildcard);
-		oscill_layout.add(freq_wildcard);
 
 		meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_ON_CH1_ID), Bitmap(BITMAP_CURSOR_ON_CH2_ID));
 
@@ -654,10 +636,8 @@ void MainView::setupScreen()
 	else if (MeasureButtonClicked == 0)
 	{
 
-		oscill_layout.remove(meas_freq);
 		oscill_layout.remove(meas_delta);
 		oscill_layout.remove(time_wildcard);
-		oscill_layout.remove(freq_wildcard);
 		meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
 
 	}
@@ -821,15 +801,12 @@ void MainView::buttonClicked(const AbstractButton& source)
 				marker1.SetPosition(ch1_marker1_position);
 				marker2.SetPosition(ch1_marker2_position);
 
-				oscill_layout.remove(meas_freq);
+		
 				oscill_layout.remove(meas_delta);
 				oscill_layout.remove(time_wildcard);
-				oscill_layout.remove(freq_wildcard);
-				oscill_layout.add(meas_freq);
 				oscill_layout.add(meas_delta);
 				oscill_layout.add(time_wildcard);
-				oscill_layout.add(freq_wildcard);
-				
+								
 				if (chn_enable[CHANNEL_1].getState() == true)
 				{
 					MeasureButtonClicked = 1;
@@ -859,11 +836,10 @@ void MainView::buttonClicked(const AbstractButton& source)
 			}
 			else
 			{
-				oscill_layout.remove(meas_freq);
+			
 				oscill_layout.remove(meas_delta);
 				oscill_layout.remove(time_wildcard);
-				oscill_layout.remove(freq_wildcard);
-				
+								
    			   meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
 
 				MeasureButtonClicked = FALSE;
@@ -871,10 +847,10 @@ void MainView::buttonClicked(const AbstractButton& source)
 		}
 		else if (MeasureButtonClicked == 2)
 		{
-			oscill_layout.remove(meas_freq);
+		
 			oscill_layout.remove(meas_delta);
 			oscill_layout.remove(time_wildcard);
-			oscill_layout.remove(freq_wildcard);
+			
 			if (chn_enable[CHANNEL_1].getState() == true)
 			   meas_enable.setBitmaps(Bitmap(BITMAP_CURSOR_OFF_ID), Bitmap(BITMAP_CURSOR_ON_CH1_ID));
 			else
@@ -1244,21 +1220,13 @@ void MainView::handleTickEvent()
 			if (temp_value == 0)  freq_value = 0; else freq_value = 1000 / temp_value;
 			Unicode::snprintf(cursor_buff, 10, "%d ms", temp_value);
 
-			if(freq_value >= 1000)
-				Unicode::snprintfFloat(freq_buff, 15, "%.1f KHz", (float)((float)freq_value /1000));
-			else
-			   Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
+			
 		}
 		else
 		{
 			if (temp_value == 0) freq_value = 0; else freq_value = 1000000 / temp_value;
 			Unicode::snprintf(cursor_buff, 10, "%d us", temp_value);
 
-
-			if (freq_value >= 1000)
-				Unicode::snprintfFloat(freq_buff, 15, "%.1f KHz", (float)((float)freq_value / 1000));
-			else
-				Unicode::snprintf(freq_buff, 10, "%d Hz", freq_value);
 		}
 
 		
@@ -1288,7 +1256,6 @@ void MainView::handleTickEvent()
 	}
 
 	time_wildcard.invalidate();
-	freq_wildcard.invalidate();
 
 	tickCounter++;
 	if (tickCounter % 1 == 0)

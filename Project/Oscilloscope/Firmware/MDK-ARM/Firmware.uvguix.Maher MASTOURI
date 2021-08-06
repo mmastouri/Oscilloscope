@@ -3651,7 +3651,7 @@
       </Doc>
       <Doc>
         <Name>..\..\Graphic\gui\src\main_screen\MainView.cpp</Name>
-        <ColumnNumber>16</ColumnNumber>
+        <ColumnNumber>17</ColumnNumber>
         <TopLine>1053</TopLine>
         <CurrentLine>1070</CurrentLine>
         <Folding>1</Folding>
@@ -3759,9 +3759,9 @@
       </Doc>
       <Doc>
         <Name>..\..\Graphic\platform\os\FreeRTOSConfig.h</Name>
-        <ColumnNumber>64</ColumnNumber>
+        <ColumnNumber>33</ColumnNumber>
         <TopLine>94</TopLine>
-        <CurrentLine>108</CurrentLine>
+        <CurrentLine>104</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
