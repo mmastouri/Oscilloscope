@@ -79,6 +79,8 @@ Model::Model() : modelListener(0)
 	chan1.triger_type = RISING;
 	chan2.triger_type = RISING;
 
+	prevch[1] = prevch[2] = 1;
+  counter = 0;
 
 }
 
@@ -167,37 +169,47 @@ int Model::getSignalPeak(int channel)
 
 int Model::getSignalFreq(int channel)
 {
-	int zeroindex[NUMBER_OF_POINT];
+	int zeroindex[3];
 	int zerocount = 0, freq, diff;
-	int cursig, nextsig;
+	int cursig0, cursig1, cursig2, cursig3;
 	int offset = getSignalPeak(channel) / 2;
 
 	switch (channel)
 	{
 	case CHANNEL_1:
 
-		for (int i = 0; i < NUMBER_OF_POINT - 2; i++)
+		for (int i = 0; i < 2 * NUMBER_OF_POINT - 4; i++)
 		{
-			cursig  = ((chan1.raw_data[i] - offset) > 0);
-			nextsig = ((chan1.raw_data[i+ 1] - offset) > 0);
+			cursig0 = ((chan1.raw_data[i] - offset) > 0);
+			cursig1 = ((chan1.raw_data[i+1] - offset) > 0);
+			cursig2 = ((chan1.raw_data[i+2] - offset) > 0);
+			cursig3 = ((chan1.raw_data[i+3] - offset) > 0);
 
-			if (cursig != nextsig)
+
+			if ((cursig0 == cursig1) &&(cursig2 == cursig3) && (cursig0 != cursig2))
 			{
 				zeroindex[zerocount++] = i;
+				if (zerocount > 2)
+					break;
 			}
 
 		}
 		break;
 
 	case CHANNEL_2:
-		for (int i = 0; i < NUMBER_OF_POINT - 2; i++)
+		for (int i = 0; i < 2 * NUMBER_OF_POINT - 1; i++)
 		{
-			cursig = ((chan2.raw_data[i] - offset) > 0);
-			nextsig = ((chan2.raw_data[i + 1] - offset) > 0);
+			cursig0 = ((chan2.raw_data[i] - offset) > 0);
+			cursig1 = ((chan2.raw_data[i + 1] - offset) > 0);
+			cursig2 = ((chan2.raw_data[i + 2] - offset) > 0);
+			cursig3 = ((chan2.raw_data[i + 3] - offset) > 0);
 
-			if (cursig != nextsig)
+
+			if ((cursig0 == cursig1) && (cursig2 == cursig3) && (cursig0 != cursig2))
 			{
 				zeroindex[zerocount++] = i;
+				if (zerocount > 2)
+					break;
 			}
 
 		}
@@ -206,18 +218,27 @@ int Model::getSignalFreq(int channel)
 
 	if (zerocount > 2)
 	{
-		diff = zeroindex[2] - zeroindex[0] - 1;
-		for (int i = 2; i < zerocount/2; i+=2)
-		{
-			diff = (diff + zeroindex[2 + i] - zeroindex[i]) / 2;
-		}
-	}
-	else
-	{
-		diff = 1;
+		diff = (9 * (zeroindex[2] - zeroindex[0]) +  prevch[channel])/10;
+		prevch[channel] = diff;
+		counter = 2;
+    freq = 1000000000 / (diff * (1000 * GetTimeScale2Pixel(channel)));   
 	}
 
-	freq = 1000000 / (diff * GetTimeScale2Pixel(channel));
+	else
+	{
+		if(counter -- < 0)
+		{
+			counter = 0;
+			freq = 0; 
+		}
+		else
+		{
+		 diff = prevch[channel];
+		 freq = 1000000000 / (diff * (1000 * GetTimeScale2Pixel(channel)));
+		}
+	}
+
+	
 
 	return freq;
 }
@@ -554,58 +575,59 @@ float Model::GetTimeScale2Pixel(int channel)
 		{
 			//div 25us
 		case 13:
-			temp_value = 0.658f;
+			temp_value = 0.653f;
 			break;
+			//div 50us
 		case 0:
-			temp_value = 1.316f;
+			temp_value = 1.307f;
 			break;
 			//div 100us 
 		case 1:
-			temp_value = 2.632f;
+			temp_value = 2.614f;
 			break;
 			//div 200us 
 		case 2:
-			temp_value = 5.263f;
+			temp_value = 5.228f;
 			break;
 			//div 500us 
 		case 3:
-			temp_value = 13.158f;
+			temp_value = 13.071f;
 			break;
 			//div 1ms
 		case 4:
-			temp_value = 26.316f;
+			temp_value = 26.143f;
 			break;
 			//div 2ms
 		case 5:
-			temp_value = 52.632f;
+			temp_value = 52.287f;
 			break;
 			//div 5ms
 		case 6:
-			temp_value = 131.579f;
+			temp_value = 130.718f;
 			break;
 			//div 10ms
 		case 7:
-			temp_value = 263.158f;
+			temp_value = 261.437f;
 			break;
 			//div 20ms
 		case 8:
-			temp_value = 526.318f;
+			temp_value = 522.875f;
 			break;
 			//div 50ms
 		case 9:
-			temp_value = 1315.789f;
+			temp_value = 1307.189f;
 			break;
 			//div 100ms
 		case 10:
-			temp_value = 2631.579f;
+			temp_value = 2614.379f;
 			break;
 			//div 200ms
 		case 11:
-			temp_value = 5263.158f;
+			temp_value = 5228.758f;
 			break;
 			//div 500ms
 		case 12:
-			temp_value = 13157.894f;
+			temp_value = 13071.895f;
 			break;
 		}
 	}
@@ -613,70 +635,69 @@ float Model::GetTimeScale2Pixel(int channel)
 	{
 		switch (chan2.time_scale)
 		{
-			//div 10us
+			//div 25us
 		case 13:
-			temp_value = 0.263f;
-			break;
-			//div 20us
-		case 14:
-			temp_value = 0.526f;
+			temp_value = 0.653f;
 			break;
 			//div 50us
 		case 0:
-			temp_value = 1.316f;
+			temp_value = 1.307f;
 			break;
 			//div 100us 
 		case 1:
-			temp_value = 2.632f;
+			temp_value = 2.614f;
 			break;
 			//div 200us 
 		case 2:
-			temp_value = 5.263f;
+			temp_value = 5.228f;
 			break;
 			//div 500us 
 		case 3:
-			temp_value = 13.158f;
+			temp_value = 13.071f;
 			break;
 			//div 1ms
 		case 4:
-			temp_value = 26.316f;
+			temp_value = 26.143f;
 			break;
 			//div 2ms
 		case 5:
-			temp_value = 52.632f;
+			temp_value = 52.287f;
 			break;
 			//div 5ms
 		case 6:
-			temp_value = 131.579f;
+			temp_value = 130.718f;
 			break;
 			//div 10ms
 		case 7:
-			temp_value = 263.158f;
+			temp_value = 261.437f;
 			break;
 			//div 20ms
 		case 8:
-			temp_value = 526.318f;
+			temp_value = 522.875f;
 			break;
 			//div 50ms
 		case 9:
-			temp_value = 1315.789f;
+			temp_value = 1307.189f;
 			break;
 			//div 100ms
 		case 10:
-			temp_value = 2631.579f;
+			temp_value = 2614.379f;
 			break;
 			//div 200ms
 		case 11:
-			temp_value = 5263.158f;
+			temp_value = 5228.758f;
 			break;
 			//div 500ms
 		case 12:
-			temp_value = 13157.894f;
+			temp_value = 13071.895f;
 			break;
 		}
 	}
 	return temp_value;
 }
+
+
+
 
 int Model::GetVoltageScale2Pixel(int channel)
 {

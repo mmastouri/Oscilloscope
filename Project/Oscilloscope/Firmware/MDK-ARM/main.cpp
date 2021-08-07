@@ -68,7 +68,7 @@ using namespace touchgfx;
 #define ULONG_MAX 0xFFFFFFFFUL 
 #define  ADC_BUFF_SIZ   2000
 #define configGUI_TASK_PRIORITY                 ( tskIDLE_PRIORITY + 3 )
-#define configGUI_TASK_STK_SIZE                 ( 4000 )
+#define configGUI_TASK_STK_SIZE                 ( 4096 )
 #define CANVAS_BUFFER_SIZE (4000)
 #define RX_BUFF_SIZE   128
 #ifdef __GNUC__
@@ -614,17 +614,19 @@ static void MX_USART1_UART_Init(void)
 }
 
 /* TIM3 init function */
-static void MX_TIM3_Init_Mod(int period, int pulse)
+static void MX_TIM3_Init_Mod(int period, int prescaler)
 {
 
 	__HAL_TIM_SET_AUTORELOAD(&htim3, period);
-	__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, pulse);
+	__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, period/2);
+	__HAL_TIM_SET_PRESCALER(&htim3, prescaler);
 }
 
-static void MX_TIM4_Init_Mod(int period, int pulse)
+static void MX_TIM4_Init_Mod(int period, int prescaler)
 {
 	__HAL_TIM_SET_AUTORELOAD(&htim4, period);
-	__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_4, pulse);
+	__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_4, period/2);
+	__HAL_TIM_SET_PRESCALER(&htim4, prescaler);	
 }
 
 /* USER CODE BEGIN 4 */
@@ -676,90 +678,100 @@ void ControlHWRunStop(int state)
 void UpdateHWTimeScale(int channel, int value)
 {
 	int period;
+	int prescaler;
 
 	switch (value)
 	{
 
-//		//Div 10us
-//	case 13:
-//		period = 3;
-//		pulse = 2;
-//		break;
 
-		//Div 25us
+		//Div 25us // 1.530 MHz
 	case 13:
-		period = 6;
+		period = 5;
+	  prescaler = 4;
 		break;
 	
-		//Div 50us
+		//Div 50us // 765 KHz
 	case 0:
 		period = 12 ;
+	  prescaler = 4;	
 		break;
 
-		//Div 100us
+		//Div 100us // 382.5KHz / 800K
 	case 1:
-		period = 24;
+		period = 25;
+	  prescaler = 4;	
 		break;
 
-		//Div 200us
+		//Div 200us // 191,250 KHz
 	case 2:
-		period = 48;
+		period = 51;
+	  prescaler = 4;	
 		break;
 
-		//Div 500us
+		//Div 500us // 76.5 KHz
 	case 3:
-		period = 120;
+		period = 129;
+	  prescaler = 4;	
 		break;
 
-		//Div 1ms
+		//Div 1ms  // 38.25 KHz
 	case 4:
-		period = 240;
+		period = 259;
+	  prescaler = 4;	
 		break;
 
-		//Div 2ms
+		//Div 2ms  // 19.125 KHz
 	case 5:
-		period = 480;
+		period = 521;
+	  prescaler = 4;	
 		break;
 
-		//Div 5ms
+		//Div 5ms  // 7.65 KHz
 	case 6:
-		period = 1200;
+		period = 1304;
+	  prescaler = 4;	
 		break;
 
-		//Div 10ms
+		//Div 10ms  // 3.825 KHz
 	case 7:
-		period = 2400;
+		period = 2609;
+	  prescaler = 4;	
 		break;
 
-		//Div 20ms
+		//Div 20ms // 1.9125 KHz
 	case 8:
-		period = 4800;
+		period = 5219;
+	  prescaler = 4;	
 		break;
 
-		//Div 50ms
+		//Div 50ms  // 765 Hz
 	case 9:
-		period = 12000;
+		period = 13049;
+	  prescaler = 4;	
 		break;
 
-		//Div 100ms
+		//Div 100ms // 382.5 Hz
 	case 10:
-		period = 24000;
+		period = 26099;
+		prescaler = 4;
 		break;
 
-		//Div 200ms
+		//Div 200ms // 191.25 Hz
 	case 11:
-		period = 48000;
+		period = 52199;
+	  prescaler = 4;	
 		break;
 
-		//Div 500ms
+		//Div 500ms // 76.5 Hz
 	case 12:
-		period = 120000;
+		period = 52199;
+	  prescaler = 9;	
 		break;
 	}
 	if (channel == 0)
-		MX_TIM3_Init_Mod(period, period/2);
+		MX_TIM3_Init_Mod(period, prescaler);
 	else
-		MX_TIM4_Init_Mod(period, period/2);
+		MX_TIM4_Init_Mod(period, prescaler);
 }
 
 #ifdef USE_FULL_ASSERT

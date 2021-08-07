@@ -115,7 +115,8 @@ protected:
 	 * Pointer to the currently active presenter.
 	 */
 	ModelListener* modelListener;
-	
+	int prevch[4];
+  int counter ;
 private: 
 
 	struct GraphData
@@ -132,6 +133,8 @@ private:
 		int x_offset;
 		int y_offset;
 	} chan1, chan2;	
+
+	
 };
 
 #endif /* MODEL_HPP */

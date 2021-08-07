@@ -67,7 +67,7 @@
 void MainView::setupScreen()
 {
 	tickCounter = 0;
-	refreshcounter = 0;
+	refreshcounter[0] = refreshcounter[1] =  0;
 
 	oscill_layout.setPosition(0,
 		                      0,
@@ -1232,28 +1232,32 @@ void MainView::handleTickEvent()
 		
 
 	}
-	if (refreshcounter++ > 20)
+
+	for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
 	{
-		for (int i = 0; i < NUMBER_OF_CHANNEL; i++)
+		temp_value = presenter->p_getSignalPeak(i) * presenter->p_VoltagePerPixel(i);
+		freq_value = presenter->p_getSignalFreq(i);
+		if (refreshcounter[i]++ > 20)
 		{
-			temp_value = presenter->p_getSignalPeak(i) * presenter->p_VoltagePerPixel(i);
-			freq_value = presenter->p_getSignalFreq(i);
 			if (freq_value >= 1000)
-				Unicode::snprintfFloat(freqch_buff[i], 15, "%.2f KHz", (float)((float)freq_value / 1000));
+				Unicode::snprintfFloat(freqch_buff[i], 15, "%.1f KHz", (float)((float)freq_value / 1000));
 			else
 				Unicode::snprintf(freqch_buff[i], 10, "%d Hz", freq_value);
 
 			if (temp_value >= 1000)
-				Unicode::snprintfFloat(peakch_buff[i], 15, "%.2f V", (float)((float)temp_value / 1000));
+				Unicode::snprintfFloat(peakch_buff[i], 15, "%.1f V", (float)((float)temp_value / 1000));
 			else
 				Unicode::snprintf(peakch_buff[i], 15, "%d mV", temp_value);
-
+			
+			refreshcounter[i] = 0;
+		}
 		
+
 		freqch_value_wildcard[i].invalidate();
 		ppch_value_wildcard[i].invalidate();
-		}
-		refreshcounter = 0;
+
 	}
+
 
 	time_wildcard.invalidate();
 

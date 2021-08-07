@@ -128,7 +128,7 @@ private:
 	SlideMenu settings_menu;
 	
 	int tickCounter;
-	int32_t refreshcounter;
+	int32_t refreshcounter[2];
 
 	MoveAnimator <ChannelControlPanel> panelChn[NUMBER_OF_CHANNEL];
 
